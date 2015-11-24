@@ -1,0 +1,73 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.xuie.demo.fragment.TransitionsFragment">
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/fragment_id"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical"
+        tools:context="com.xuie.demo.fragment.TransitionsFragment">
+
+        <!-- TODO: Update blank fragment layout -->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:id="@+id/make_scene_transition_animation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:background="@android:color/holo_blue_dark"
+                android:text="makeSceneTransitionAnimation" />
+
+            <Button
+                android:id="@+id/fab_button"
+                android:layout_width="56dp"
+                android:layout_height="56dp"
+                android:layout_alignLeft="@+id/make_scene_transition_animation"
+                android:layout_centerVertical="true"
+                android:layout_margin="5dp"
+                android:background="@drawable/_ripple_round"
+                android:elevation="5dp"
+                android:transitionName="fab" />
+        </RelativeLayout>
+
+
+        <Button
+            android:id="@+id/explode"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:background="@android:color/holo_blue_dark"
+            android:text="Explode" />
+
+        <Button
+            android:id="@+id/slide"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:background="@android:color/holo_blue_dark"
+            android:text="Slide" />
+
+        <Button
+            android:id="@+id/fade"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:background="@android:color/holo_blue_dark"
+            android:text="Fade" />
+
+        <ImageView
+            android:id="@+id/over_shoot"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/ic_trans_frag_bg" />
+
+    </LinearLayout>
+</ScrollView>
