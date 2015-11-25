@@ -1,18 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.xuie.androiddemo" >
+    package="com.xuie.androiddemo">
+
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="android.permission.MANAGE_ACCOUNTS" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
 
     <application
-        android:name=".ui.MyApplication"
+        android:name=".App"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:supportsRtl="true">
         <activity
-            android:name=".ui.MainActivity"
+            android:name=".view.activity.MainActivity"
             android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/AppTheme.DayNight.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -20,11 +32,31 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.ShowActivity"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:name=".view.activity.ShowActivity"
+            android:theme="@style/AppTheme.DayNight.NoActionBar" />
         <activity
-            android:name=".ui.Show2Activity"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:name=".view.activity.Show2Activity"
+            android:theme="@style/AppTheme.DayNight.NoActionBar" />
+        <activity
+            android:name=".view.activity.ShotActivity"
+            android:theme="@style/AppTheme.DayNight.NoActionBar" />
+        <activity
+            android:name=".view.activity.LoginActivity"
+            android:theme="@style/AppTheme.DayNight.NoActionBar" />
+
+        <service
+            android:name="com.umeng.update.net.DownloadingService"
+            android:process=":DownloadingService" />
+        <activity
+            android:name="com.umeng.update.UpdateDialogActivity"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+
+        <meta-data
+            android:name="UMENG_APPKEY"
+            android:value="5693f235e0f55a249f0005f4" />
+        <meta-data
+            android:name="UMENG_CHANNEL"
+            android:value="Channel ID" />
     </application>
 
 </manifest>

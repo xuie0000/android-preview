@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:transitionName="share01"
-    tools:context=".ShowActivity">
+    tools:context=".view.activity.ShowActivity">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -29,7 +29,6 @@
             android:elevation="5dp"
             android:transitionName="share02"/>
     </RelativeLayout>
-
 
     <ImageView
         android:layout_width="match_parent"

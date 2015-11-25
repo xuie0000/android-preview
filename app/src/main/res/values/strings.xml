@@ -7,11 +7,35 @@
     <string name="action_settings">Settings</string>
     <string name="action_update">Update</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_detail">DetailActivity</string>
 
     <string name="element_text">Element</string>
     <string name="grid_layout_manager">Grid Layout Manager</string>
     <string name="linear_layout_manager">Linear Layout Manager</string>
+    <string name="linear_hor_manager">Linear Horizontal Manager</string>
+    <string name="recycler_single">Single</string>
+    <string name="recycler_stagger">Stagger</string>
+    <string name="app_btn1">有九宫格、有编辑页</string>
+    <string name="app_btn2">有九宫格、无编辑页</string>
+    <string name="app_btn3">无九宫格、有编辑页</string>
+    <string name="app_btn4">无九宫格、无编辑页</string>
+    <string name="app_derect_share">直接分享</string>
+    <string name="test">测试页面</string>
+    <string name="new_frame">图片</string>
+    <string name="recyclerview">RecyclerView示例</string>
+    <string name="indicator">ViewPager指示器</string>
+    <string name="transitions">5.0动画</string>
+    <string name="animation">动画</string>
+    <string name="contentDescription">contentDescription</string>
+
+    <string name="action_day_night_yes">Night Mode</string>
+    <string name="action_day_night_no">Day Mode</string>
+    <string name="action_bottom_sheet_dialog">Bottom Sheet Dialog</string>
+    <string name="text_for_day_night_mode_night_no">NightMode: AppCompatDelegate.MODE_NIGHT_NO</string>
+    <string name="text_for_day_night_mode_night_yes">NightMode: AppCompatDelegate.MODE_NIGHT_YES</string>
+    <string name="text_for_day_night_mode_night_auto">NightMode: AppCompatDelegate.MODE_NIGHT_AUTO</string>
+
+    <string name="login_failed">你还没有成功登陆哟！！！</string>
+
 </resources>

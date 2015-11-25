@@ -1,0 +1,16 @@
+package com.xuie.androiddemo.view.IView;
+
+import android.os.Handler;
+
+import com.xuie.androiddemo.bean.User;
+
+import java.util.List;
+
+public interface IShotActivity<T> {
+
+    void showShots(List<T> list, int current_page);
+
+    void uploadUserInfo(User user);
+
+    Handler getHandler();
+}

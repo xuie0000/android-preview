@@ -63,11 +63,62 @@
             android:background="@android:color/holo_blue_dark"
             android:text="Fade" />
 
-        <ImageView
-            android:id="@+id/over_shoot"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:src="@mipmap/ic_trans_frag_bg" />
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/over_shoot"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/ic_trans_frag_bg" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_margin="5dp"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <Button
+                    android:id="@+id/cir_reveal_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="CircularReveal" />
+
+                <ImageView
+                    android:id="@+id/cir_reveal_dst"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/ic_launcher" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_margin="5dp"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/cir_reveal_normal"
+                    android:layout_width="64dp"
+                    android:layout_height="64dp"
+                    android:layout_margin="5dp"
+                    android:src="@android:color/holo_blue_bright" />
+
+                <ImageView
+                    android:id="@+id/cir_reveal_hypot"
+                    android:layout_width="64dp"
+                    android:layout_height="64dp"
+                    android:layout_margin="5dp"
+                    android:src="@android:color/holo_blue_bright" />
+            </LinearLayout>
+
+        </LinearLayout>
+
 
     </LinearLayout>
 </ScrollView>

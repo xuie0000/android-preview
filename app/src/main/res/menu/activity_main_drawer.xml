@@ -1,44 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-
-    <group android:checkableBehavior="single">
-        <item
-            android:id="@+id/nav_transitions"
-            android:icon="@android:drawable/ic_menu_view"
-            android:title="Transitions"/>
-        <item
-            android:id="@+id/nav_custom_view"
-            android:icon="@android:drawable/ic_menu_view"
-            android:title="CustomView"/>
-        <item
-            android:id="@+id/nav_recycler_view"
-            android:icon="@android:drawable/ic_menu_view"
-            android:title="RecyclerView"/>
-    </group>
-
-    <item android:title="LiLi">
-        <menu>
-            <item
-                android:id="@+id/nav_rx_java"
-                android:icon="@android:drawable/ic_menu_share"
-                android:title="RxJavaTest"/>
-            <item
-                android:id="@+id/nav_xxx"
-                android:icon="@android:drawable/ic_menu_send"
-                android:title="Send"/>
-        </menu>
-    </item>
-    <item android:title="Communicate">
-        <menu>
-            <item
-                android:id="@+id/nav_share"
-                android:icon="@android:drawable/ic_menu_share"
-                android:title="Share"/>
-            <item
-                android:id="@+id/nav_send"
-                android:icon="@android:drawable/ic_menu_send"
-                android:title="Send"/>
-        </menu>
-    </item>
+    <item
+        android:id="@+id/nav_test"
+        android:icon="@mipmap/ic_invert_colors"
+        android:title="@string/test"/>
+    <item
+        android:id="@+id/nav_new_frame"
+        android:icon="@mipmap/ic_invert_colors"
+        android:title="@string/new_frame"/>
+    <item
+        android:id="@+id/nav_recycler_view"
+        android:icon="@mipmap/ic_invert_colors"
+        android:title="@string/recyclerview"/>
+    <item
+        android:id="@+id/nav_indicator"
+        android:icon="@mipmap/ic_invert_colors"
+        android:title="@string/indicator"/>
+    <item
+        android:id="@+id/nav_transitions"
+        android:icon="@mipmap/ic_invert_colors"
+        android:title="@string/transitions"/>
+    <item
+        android:id="@+id/nav_animation"
+        android:icon="@mipmap/ic_invert_colors"
+        android:title="@string/animation"/>
 
 </menu>
