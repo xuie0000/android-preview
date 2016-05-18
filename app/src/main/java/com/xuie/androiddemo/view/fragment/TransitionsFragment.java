@@ -23,7 +23,7 @@ import com.xuie.androiddemo.R;
 import com.xuie.androiddemo.view.activity.Show2Activity;
 import com.xuie.androiddemo.view.activity.ShowActivity;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
@@ -31,12 +31,12 @@ import butterknife.OnClick;
  * A simple {@link Fragment} subclass.
  */
 public class TransitionsFragment extends Fragment {
-    @Bind(R.id.make_scene_transition_animation) Button makeSceneTransitionAnimation;
-    @Bind(R.id.fab_button) Button fabButton;
-    @Bind(R.id.over_shoot) ImageView overShoot;
-    @Bind(R.id.cir_reveal_dst) ImageView cirRevealDst;
-    @Bind(R.id.cir_reveal_hypot) ImageView cirRevealHypot;
-    @Bind(R.id.cir_reveal_normal) ImageView cirRevealNormal;
+    @BindView(R.id.make_scene_transition_animation) Button makeSceneTransitionAnimation;
+    @BindView(R.id.fab_button) Button fabButton;
+    @BindView(R.id.over_shoot) ImageView overShoot;
+    @BindView(R.id.cir_reveal_dst) ImageView cirRevealDst;
+    @BindView(R.id.cir_reveal_hypot) ImageView cirRevealHypot;
+    @BindView(R.id.cir_reveal_normal) ImageView cirRevealNormal;
 
     @Override public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_transitions, container, false);
@@ -157,8 +157,4 @@ public class TransitionsFragment extends Fragment {
         ActivityCompat.startActivity(getActivity(), intent, options.toBundle());
     }
 
-    @Override public void onDestroyView() {
-        super.onDestroyView();
-        ButterKnife.unbind(this);
-    }
 }

@@ -20,12 +20,12 @@ import com.xuie.androiddemo.util.ToastUtil;
 import com.xuie.androiddemo.view.IView.ILoginActivity;
 import com.xuie.androiddemo.widget.ProgressWeb;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class LoginActivity extends BaseActivity<LoginActivity, LoginPresenter> implements ILoginActivity {
-    @Bind(R.id.toolbar) Toolbar mToolbar;
-    @Bind(R.id.webView) ProgressWeb webView;
+    @BindView(R.id.toolbar) Toolbar mToolbar;
+    @BindView(R.id.webView) ProgressWeb webView;
 
     private LoginPresenter mLoginPresenter;
 

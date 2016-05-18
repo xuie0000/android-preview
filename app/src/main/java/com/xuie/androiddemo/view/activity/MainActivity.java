@@ -38,7 +38,7 @@ import com.xuie.util.BitmapUtils;
 
 import java.io.File;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class MainActivity extends BaseActivity<MainActivity, MainPresenter> implements IMainActivity {
@@ -50,10 +50,10 @@ public class MainActivity extends BaseActivity<MainActivity, MainPresenter> impl
 
     int currentFragmentId = -1;
 
-    @Bind(R.id.toolbar) Toolbar toolbar;
-    @Bind(R.id.nav_view) NavigationView navView;
-    @Bind(R.id.drawer_layout) DrawerLayout drawerLayout;
-    @Bind(R.id.fab) FloatingActionButton fab;
+    @BindView(R.id.toolbar) Toolbar toolbar;
+    @BindView(R.id.nav_view) NavigationView navView;
+    @BindView(R.id.drawer_layout) DrawerLayout drawerLayout;
+    @BindView(R.id.fab) FloatingActionButton fab;
 
     ImageView userAvatar;
     TextView userName;
@@ -80,8 +80,7 @@ public class MainActivity extends BaseActivity<MainActivity, MainPresenter> impl
 
         navView.setNavigationItemSelectedListener(item -> {
             switchNavigation(item.getItemId());
-            DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-            drawer.closeDrawer(GravityCompat.START);
+            drawerLayout.closeDrawer(GravityCompat.START);
             return true;
         });
 
@@ -126,9 +125,8 @@ public class MainActivity extends BaseActivity<MainActivity, MainPresenter> impl
     }
 
     @Override public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawer(GravityCompat.START);
+        if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
+            drawerLayout.closeDrawer(GravityCompat.START);
         } else {
             super.onBackPressed();
         }

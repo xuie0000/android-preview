@@ -16,7 +16,7 @@ import android.widget.ImageView;
 import com.xuie.androiddemo.R;
 import com.xuie.androiddemo.widget.IndicatorView;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
@@ -26,8 +26,8 @@ import butterknife.ButterKnife;
 public class ViewPagerIndicatorFragment extends Fragment {
     final static String TAG = ViewPagerIndicatorFragment.class.getSimpleName();
 
-    @Bind(R.id.id_view_pager) ViewPager viewPager;
-    @Bind(R.id.id_indicator) IndicatorView indicator;
+    @BindView(R.id.id_view_pager) ViewPager viewPager;
+    @BindView(R.id.id_indicator) IndicatorView indicator;
 
     @Override public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_view_pager_indicator, container, false);
@@ -37,11 +37,6 @@ public class ViewPagerIndicatorFragment extends Fragment {
         viewPager.setAdapter(new MyPagerAdapter(getChildFragmentManager()));
         indicator.setViewPager(viewPager);
         return view;
-    }
-
-    @Override public void onDestroyView() {
-        super.onDestroyView();
-        ButterKnife.unbind(this);
     }
 
     class MyPagerAdapter extends FragmentPagerAdapter {

@@ -24,7 +24,7 @@ import android.widget.TextView;
 
 import com.xuie.androiddemo.R;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
@@ -42,17 +42,11 @@ public class AnimationFragment extends Fragment {
         OBJ_ANIMATION,
     }
 
-    @Bind(R.id.alpha) TextView alpha;
-    @Bind(R.id.scale) TextView scale;
-    @Bind(R.id.translate) TextView translate;
-    @Bind(R.id.rotate) TextView rotate;
-    @Bind(R.id.association) TextView association;
-
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        ButterKnife.unbind(this);
-    }
+    @BindView(R.id.alpha) TextView alpha;
+    @BindView(R.id.scale) TextView scale;
+    @BindView(R.id.translate) TextView translate;
+    @BindView(R.id.rotate) TextView rotate;
+    @BindView(R.id.association) TextView association;
 
     AniType aniType = AniType.ANIMATION;
     MethodType methodType = MethodType.CODE;

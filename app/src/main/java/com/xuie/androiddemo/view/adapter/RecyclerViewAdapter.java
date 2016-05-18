@@ -28,7 +28,7 @@ import com.xuie.androiddemo.bean.TextPicture;
 
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
@@ -55,7 +55,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     }
 
     public class NormalViewHolder extends RecyclerView.ViewHolder {
-        @Bind(R.id.button) Button button;
+        @BindView(R.id.button) Button button;
 
         public NormalViewHolder(View view) {
             super(view);

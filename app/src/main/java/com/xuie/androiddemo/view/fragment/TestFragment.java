@@ -22,7 +22,7 @@ import com.xuie.androiddemo.widget.ClearableEditText;
 import com.xuie.androiddemo.widget.ColorfulRingProgressView;
 import com.xuie.androiddemo.widget.SectorProgressView;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
@@ -30,19 +30,19 @@ import butterknife.OnClick;
  * A simple {@link Fragment} subclass.
  */
 public class TestFragment extends Fragment {
-    @Bind(R.id.status_text_view) TextView statusTextView;
-    @Bind(R.id.shake_view) ImageView shakeView;
+    @BindView(R.id.status_text_view) TextView statusTextView;
+    @BindView(R.id.shake_view) ImageView shakeView;
 
-    @Bind(R.id.circle_progress_1) CircularProgress circleProgress1;
-    @Bind(R.id.circle_progress_2) CircularProgress circleProgress2;
-    @Bind(R.id.crpv) ColorfulRingProgressView crpv;
-    @Bind(R.id.spv) SectorProgressView spv;
-    @Bind(R.id.vector_drawable_cpu) ImageView vectorDrawableCpu;
-    @Bind(R.id.vector_drawable_cpu_ani) ImageView vectorDrawableCpuAni;
-    @Bind(R.id.email) ClearableEditText email;
-    @Bind(R.id.email_text_input_layout) TextInputLayout emailTextInputLayout;
-    @Bind(R.id.password) ClearableEditText password;
-    @Bind(R.id.password_text_input_layout) TextInputLayout passwordTextInputLayout;
+    @BindView(R.id.circle_progress_1) CircularProgress circleProgress1;
+    @BindView(R.id.circle_progress_2) CircularProgress circleProgress2;
+    @BindView(R.id.crpv) ColorfulRingProgressView crpv;
+    @BindView(R.id.spv) SectorProgressView spv;
+    @BindView(R.id.vector_drawable_cpu) ImageView vectorDrawableCpu;
+    @BindView(R.id.vector_drawable_cpu_ani) ImageView vectorDrawableCpuAni;
+    @BindView(R.id.email) ClearableEditText email;
+    @BindView(R.id.email_text_input_layout) TextInputLayout emailTextInputLayout;
+    @BindView(R.id.password) ClearableEditText password;
+    @BindView(R.id.password_text_input_layout) TextInputLayout passwordTextInputLayout;
 
     @Override public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_test, container, false);
@@ -119,9 +119,4 @@ public class TestFragment extends Fragment {
         animSpv.start();
     }
 
-
-    @Override public void onDestroyView() {
-        super.onDestroyView();
-        ButterKnife.unbind(this);
-    }
 }

@@ -40,8 +40,7 @@ public class SingleShotFragment extends BaseLazyFragment implements View.OnClick
     public SingleShotFragment() {
     }
 
-    @Nullable @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    @Nullable @Override public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.content_shot, container, false);
         binding = DataBindingUtil.bind(view);
 

@@ -27,15 +27,15 @@ import android.view.ViewGroup;
 import android.view.animation.OvershootInterpolator;
 
 import com.xuie.androiddemo.R;
+import com.xuie.androiddemo.bean.TextPicture;
 import com.xuie.androiddemo.view.adapter.RecyclerStaggeredViewAdapter;
 import com.xuie.androiddemo.view.adapter.RecyclerViewAdapter;
-import com.xuie.androiddemo.bean.TextPicture;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import jp.wasabeef.recyclerview.animators.adapters.AlphaInAnimationAdapter;
@@ -79,7 +79,7 @@ public class RecyclerViewFragment extends Fragment {
     RecyclerView.LayoutManager mLayoutManager;
     List<TextPicture> textPictures = new ArrayList<>();
 
-    @Bind(R.id.recyclerView) RecyclerView mRecyclerView;
+    @BindView(R.id.recyclerView) RecyclerView mRecyclerView;
 
     @Override public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -166,11 +166,6 @@ public class RecyclerViewFragment extends Fragment {
     @Override public void onSaveInstanceState(Bundle savedInstanceState) {
         savedInstanceState.putSerializable(KEY_LAYOUT_MANAGER, mCurrentLayoutManagerType);
         super.onSaveInstanceState(savedInstanceState);
-    }
-
-    @Override public void onDestroyView() {
-        super.onDestroyView();
-        ButterKnife.unbind(this);
     }
 
     private void addAdapter() {

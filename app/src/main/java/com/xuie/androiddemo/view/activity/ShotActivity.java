@@ -17,7 +17,7 @@ import com.xuie.androiddemo.view.adapter.ViewPagerAdapter;
 
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class ShotActivity extends BaseActivity<ShotActivity, ShotPresenter> implements IShotActivity<Shot>{
@@ -26,7 +26,7 @@ public class ShotActivity extends BaseActivity<ShotActivity, ShotPresenter> impl
     int currentPosition;
     List shotList;
 
-    @Bind(R.id.view_pager) ViewPager viewPager;
+    @BindView(R.id.view_pager) ViewPager viewPager;
 
     @Override public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

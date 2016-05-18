@@ -13,7 +13,7 @@ import com.xuie.androiddemo.bean.TextPicture;
 
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
@@ -57,8 +57,8 @@ public class RecyclerStaggeredViewAdapter extends RecyclerViewAdapter {
     }
 
     public class LargerViewHolder extends RecyclerView.ViewHolder {
-        @Bind(R.id.button) Button button;
-        @Bind(R.id.subText) TextView subText;
+        @BindView(R.id.button) Button button;
+        @BindView(R.id.subText) TextView subText;
 
         public LargerViewHolder(View view) {
             super(view);

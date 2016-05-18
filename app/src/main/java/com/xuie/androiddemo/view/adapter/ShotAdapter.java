@@ -26,7 +26,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class ShotAdapter extends RecyclerView.Adapter<ShotAdapter.ViewHolder> {
@@ -165,12 +165,12 @@ public class ShotAdapter extends RecyclerView.Adapter<ShotAdapter.ViewHolder> {
     static class ViewHolder extends RecyclerView.ViewHolder {
         boolean isLike = false;
 
-        @Bind(R.id.shot_image) ImageView shotImage;
-        @Bind(R.id.avatar_image) CircleImageView avatarImage;
-        @Bind(R.id.username_text) TextView usernameText;
-        @Bind(R.id.commentsCount_text) TextView commentsCountText;
-        @Bind(R.id.likeCount_text) TextView likeCountText;
-        @Bind(R.id.shot_favorite) ImageView mFavoriteImg;
+        @BindView(R.id.shot_image) ImageView shotImage;
+        @BindView(R.id.avatar_image) CircleImageView avatarImage;
+        @BindView(R.id.username_text) TextView usernameText;
+        @BindView(R.id.commentsCount_text) TextView commentsCountText;
+        @BindView(R.id.likeCount_text) TextView likeCountText;
+        @BindView(R.id.shot_favorite) ImageView mFavoriteImg;
 
         ViewHolder(View view) {
             super(view);
