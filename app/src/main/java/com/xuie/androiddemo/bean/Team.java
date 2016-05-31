@@ -1,8 +1,5 @@
 package com.xuie.androiddemo.bean;
 
-import com.google.gson.annotations.Expose;
-import com.google.gson.annotations.SerializedName;
-
 import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
 
@@ -16,37 +13,37 @@ public class Team extends RealmObject {
         this.id = 0;
     }
 
-    @SerializedName("id") @Expose @PrimaryKey private Integer id;
-    @SerializedName("name") @Expose private String name;
-    @SerializedName("username") @Expose private String username;
-    @SerializedName("html_url") @Expose private String htmlUrl;
-    @SerializedName("avatar_url") @Expose private String avatarUrl;
-    @SerializedName("bio") @Expose private String bio;
-    @SerializedName("location") @Expose private String location;
-    @SerializedName("links") @Expose private Links links;
-    @SerializedName("buckets_count") @Expose private Integer bucketsCount;
-    @SerializedName("comments_received_count") @Expose private Integer commentsReceivedCount;
-    @SerializedName("followers_count") @Expose private Integer followersCount;
-    @SerializedName("followings_count") @Expose private Integer followingsCount;
-    @SerializedName("likes_count") @Expose private Integer likesCount;
-    @SerializedName("likes_received_count") @Expose private Integer likesReceivedCount;
-    @SerializedName("projects_count") @Expose private Integer projectsCount;
-    @SerializedName("rebounds_received_count") @Expose private Integer reboundsReceivedCount;
-    @SerializedName("shots_count") @Expose private Integer shotsCount;
-    @SerializedName("can_upload_shot") @Expose private Boolean canUploadShot;
-    @SerializedName("type") @Expose private String type;
-    @SerializedName("pro") @Expose private Boolean pro;
-    @SerializedName("buckets_url") @Expose private String bucketsUrl;
-    @SerializedName("followers_url") @Expose private String followersUrl;
-    @SerializedName("following_url") @Expose private String followingUrl;
-    @SerializedName("likes_url") @Expose private String likesUrl;
-    @SerializedName("projects_url") @Expose private String projectsUrl;
-    @SerializedName("shots_url") @Expose private String shotsUrl;
-    @SerializedName("created_at") @Expose private String createdAt;
-    @SerializedName("updated_at") @Expose private String updatedAt;
-    @SerializedName("members_count") @Expose private Integer membersCount;
-    @SerializedName("members_url") @Expose private String membersUrl;
-    @SerializedName("team_shots_url") @Expose private String teamShotsUrl;
+    @PrimaryKey private Integer id;
+    String name;
+    String username;
+    String htmlUrl;
+    String avatarUrl;
+    String bio;
+    String location;
+    Links links;
+    Integer bucketsCount;
+    Integer commentsReceivedCount;
+    Integer followersCount;
+    Integer followingsCount;
+    Integer likesCount;
+    Integer likesReceivedCount;
+    Integer projectsCount;
+    Integer reboundsReceivedCount;
+    Integer shotsCount;
+    Boolean canUploadShot;
+    String type;
+    Boolean pro;
+    String bucketsUrl;
+    String followersUrl;
+    String followingUrl;
+    String likesUrl;
+    String projectsUrl;
+    String shotsUrl;
+    String createdAt;
+    String updatedAt;
+    Integer membersCount;
+    String membersUrl;
+    String teamShotsUrl;
 
     /**
      * @return The id

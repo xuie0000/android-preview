@@ -1,37 +1,34 @@
 package com.xuie.androiddemo.bean;
 
-import com.google.gson.annotations.Expose;
-import com.google.gson.annotations.SerializedName;
-
 import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
 
 public class Shot extends RealmObject {
 
-    @SerializedName("id") @Expose @PrimaryKey private Integer id;
-    @SerializedName("title") @Expose private String title;
-    @SerializedName("description") @Expose private String description;
-    @SerializedName("width") @Expose private Integer width;
-    @SerializedName("height") @Expose private Integer height;
-    @SerializedName("images") @Expose private Images images;
-    @SerializedName("views_count") @Expose private Integer viewsCount;
-    @SerializedName("likes_count") @Expose private Integer likesCount;
-    @SerializedName("comments_count") @Expose private Integer commentsCount;
-    @SerializedName("attachments_count") @Expose private Integer attachmentsCount;
-    @SerializedName("rebounds_count") @Expose private Integer reboundsCount;
-    @SerializedName("buckets_count") @Expose private Integer bucketsCount;
-    @SerializedName("created_at") @Expose private String createdAt;
-    @SerializedName("updated_at") @Expose private String updatedAt;
-    @SerializedName("html_url") @Expose private String htmlUrl;
-    @SerializedName("attachments_url") @Expose private String attachmentsUrl;
-    @SerializedName("buckets_url") @Expose private String bucketsUrl;
-    @SerializedName("comments_url") @Expose private String commentsUrl;
-    @SerializedName("likes_url") @Expose private String likesUrl;
-    @SerializedName("projects_url") @Expose private String projectsUrl;
-    @SerializedName("rebounds_url") @Expose private String reboundsUrl;
-    @SerializedName("animated") @Expose private Boolean animated;
-    @SerializedName("user") @Expose private User user;
-    @SerializedName("team") @Expose private Team team = new Team();
+    @PrimaryKey private Integer id;
+    String title;
+    String description;
+    Integer width;
+    Integer height;
+    Images images;
+    Integer viewsCount;
+    Integer likesCount;
+    Integer commentsCount;
+    Integer attachmentsCount;
+    Integer reboundsCount;
+    Integer bucketsCount;
+    String createdAt;
+    String updatedAt;
+    String htmlUrl;
+    String attachmentsUrl;
+    String bucketsUrl;
+    String commentsUrl;
+    String likesUrl;
+    String projectsUrl;
+    String reboundsUrl;
+    Boolean animated;
+    User user;
+    Team team = new Team();
 
     /**
      * @return The id

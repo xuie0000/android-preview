@@ -1,16 +1,13 @@
 package com.xuie.androiddemo.bean;
 
-import com.google.gson.annotations.Expose;
-import com.google.gson.annotations.SerializedName;
-
 import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
 
 public class Images extends RealmObject {
 
-    @SerializedName("hidpi") @Expose private String hidpi;
-    @SerializedName("normal") @Expose @PrimaryKey private String normal;
-    @SerializedName("teaser") @Expose private String teaser;
+    private String hidpi;
+    @PrimaryKey private String normal;
+    String teaser;
 
     /**
      * @return The hidpi
