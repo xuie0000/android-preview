@@ -113,9 +113,7 @@ public class ShotsPresenter extends BasePresenter<ShotsFragment> {
                         mCurrentUser = user;
                         getView().uploadUserInfo(mCurrentUser);
                     }
-                }, throwable -> {
-                    Logger.d(throwable.getMessage());
-                });
+                }, throwable -> Logger.e(throwable.getMessage()));
     }
 
     public void requestDate() {
