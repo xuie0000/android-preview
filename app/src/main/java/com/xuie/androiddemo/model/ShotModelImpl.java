@@ -5,7 +5,7 @@ import com.xuie.androiddemo.bean.Shot;
 import com.xuie.androiddemo.bean.Team;
 import com.xuie.androiddemo.model.IModel.ShotModel;
 import com.xuie.androiddemo.model.service.ServiceAPI;
-import com.xuie.androiddemo.model.service.ServiceAPIModel;
+import com.xuie.androiddemo.model.service.ServiceGenerator;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,7 +34,7 @@ public class ShotModelImpl implements ShotModel {
     }
 
     private ShotModelImpl() {
-        mServiceAPI = ServiceAPIModel.provideServiceAPI(ServiceAPIModel.provideOkHttpClient());
+        mServiceAPI = ServiceGenerator.createService(ServiceAPI.class);
     }
 
 

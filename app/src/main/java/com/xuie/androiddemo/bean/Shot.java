@@ -1,34 +1,36 @@
 package com.xuie.androiddemo.bean;
 
+import com.google.gson.annotations.Expose;
+
 import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
 
 public class Shot extends RealmObject {
 
-    @PrimaryKey private Integer id;
-    String title;
-    String description;
-    Integer width;
-    Integer height;
-    Images images;
-    Integer viewsCount;
-    Integer likesCount;
-    Integer commentsCount;
-    Integer attachmentsCount;
-    Integer reboundsCount;
-    Integer bucketsCount;
-    String createdAt;
-    String updatedAt;
-    String htmlUrl;
-    String attachmentsUrl;
-    String bucketsUrl;
-    String commentsUrl;
-    String likesUrl;
-    String projectsUrl;
-    String reboundsUrl;
-    Boolean animated;
-    User user;
-    Team team = new Team();
+    @Expose @PrimaryKey private Integer id;
+    @Expose String title;
+    @Expose String description;
+    @Expose Integer width;
+    @Expose Integer height;
+    @Expose Images images;
+    @Expose Integer viewsCount;
+    @Expose Integer likesCount;
+    @Expose Integer commentsCount;
+    @Expose Integer attachmentsCount;
+    @Expose Integer reboundsCount;
+    @Expose Integer bucketsCount;
+    @Expose String createdAt;
+    @Expose String updatedAt;
+    @Expose String htmlUrl;
+    @Expose String attachmentsUrl;
+    @Expose String bucketsUrl;
+    @Expose String commentsUrl;
+    @Expose String likesUrl;
+    @Expose String projectsUrl;
+    @Expose String reboundsUrl;
+    @Expose Boolean animated;
+    @Expose User user;
+    @Expose Team team = new Team();
 
     /**
      * @return The id

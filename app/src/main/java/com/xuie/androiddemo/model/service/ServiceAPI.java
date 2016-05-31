@@ -14,8 +14,6 @@ import rx.Observable;
 
 public interface ServiceAPI {
 
-    String API = "https://api.dribbble.com/v1/";
-
     @GET("shots") Observable<Shot[]> getShots(@Query("list") String list,
                                               @Query("timeframe") String timeframe,
                                               @Query("date") String date,

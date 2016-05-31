@@ -76,13 +76,13 @@ public class ShotsPresenter extends BasePresenter<ShotsFragment> {
                         mShot = shots.get(0);
                         Logger.d("第一次成功请求后保存数据");
                     } else {
-                        Logger.e("按道理来说不可能到这里来呀------_--");
+                        Logger.e("按道理来说不可能到这里来");
                         getView().showShots(shots, page);
                     }
                 }, throwable -> {
                     closeProgress();
                     ToastUtil.Toast("网络刷新出现了错误");
-                    Logger.e("从server中加载数据出错----->>>>" + throwable.toString());
+                    Logger.e(throwable.getMessage());
                 });
     }
 
@@ -114,7 +114,7 @@ public class ShotsPresenter extends BasePresenter<ShotsFragment> {
                         getView().uploadUserInfo(mCurrentUser);
                     }
                 }, throwable -> {
-                    Logger.d("为什么从网络上更新用户消息失败呀------>>>>" + throwable.toString());
+                    Logger.d(throwable.getMessage());
                 });
     }
 
@@ -132,17 +132,13 @@ public class ShotsPresenter extends BasePresenter<ShotsFragment> {
         userModel.getCurrentUser()
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(user -> {
-                            if (user != null) {
-                                mCurrentUser = user;
-                                getView().uploadUserInfo(mCurrentUser);
-                                //从网络更新用户消息
-                                updateUserInfo();
-                            } else ToastUtil.Toast("你还没登录哟\n登陆后会更加精彩哟");
-                        }
-                        , throwable -> {
-                            Logger.e("为什么又在这里出现问题了" + throwable.toString());
-                            ToastUtil.Toast("出现了不可预计的错误...");
-                        });
+                    if (user != null) {
+                        mCurrentUser = user;
+                        getView().uploadUserInfo(mCurrentUser);
+                        //从网络更新用户消息
+                        updateUserInfo();
+                    } else ToastUtil.Toast("你还没登录哟\n登陆后会更加精彩哟");
+                }, throwable -> Logger.e(throwable.getMessage()));
     }
 
     public void loadImageWithurl(String url, CircleImageView imageView) {

@@ -33,11 +33,11 @@ public class SingleShotFragment extends BaseLazyFragment implements View.OnClick
 //    }
 
 
-    @SuppressLint("ValidFragment") public SingleShotFragment(Shot shot) {
-        this.shot = shot;
+    public SingleShotFragment() {
     }
 
-    public SingleShotFragment() {
+    @SuppressLint("ValidFragment") public SingleShotFragment(Shot shot) {
+        this.shot = shot;
     }
 
     @Nullable @Override public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {

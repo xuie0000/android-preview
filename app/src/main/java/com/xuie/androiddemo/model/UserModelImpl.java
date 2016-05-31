@@ -6,25 +6,27 @@ import com.xuie.androiddemo.bean.AuthBody;
 import com.xuie.androiddemo.bean.User;
 import com.xuie.androiddemo.model.IModel.UserModel;
 import com.xuie.androiddemo.model.service.ServiceAPI;
-import com.xuie.androiddemo.model.service.ServiceAPIModel;
+import com.xuie.androiddemo.model.service.ServiceGenerator;
 import com.xuie.androiddemo.util.SPUtil;
 
 import io.realm.Realm;
 import rx.Observable;
 
 public class UserModelImpl implements UserModel {
+    static UserModel instance;
     ServiceAPI mServiceAPI;
 
     private UserModelImpl() {
-        mServiceAPI = ServiceAPIModel.provideServiceAPI(ServiceAPIModel.provideOkHttpClient());
+        mServiceAPI = ServiceGenerator.createService(ServiceAPI.class);
     }
 
     public static UserModel getInstance() {
-        return UserModelHolder.instance;
-    }
-
-    private final static class UserModelHolder {
-        private final static UserModel instance = new UserModelImpl();
+        if (instance == null) {
+            synchronized (UserModelImpl.class) {
+                instance = new UserModelImpl();
+            }
+        }
+        return instance;
     }
 
     @Override public Observable<User> getCurrentUser() {
