@@ -59,7 +59,7 @@ public class ShotsFragment extends BaseFragment<ShotsFragment, ShotsPresenter> i
     @Override public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         init();
-        mPresenter.loadDataFromReaml();
+        mPresenter.loadDataFromRealm();
     }
 
     public void init() {
@@ -104,7 +104,6 @@ public class ShotsFragment extends BaseFragment<ShotsFragment, ShotsPresenter> i
 
     @Override public void onResume() {
         super.onResume();
-        Logger.d("FragmentShots----->>> onResume");
         int position = (int) SpUtils.getParam(getActivity(), "current_position", -1);
         if (mShotAdapter != null && mShotAdapter.dataList != null && position != -1) {
             mShotAdapter.notifyDataSetChanged();

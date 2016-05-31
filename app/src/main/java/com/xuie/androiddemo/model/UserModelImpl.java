@@ -1,7 +1,6 @@
 package com.xuie.androiddemo.model;
 
-import android.util.Log;
-
+import com.orhanobut.logger.Logger;
 import com.xuie.androiddemo.App;
 import com.xuie.androiddemo.bean.AuthBody;
 import com.xuie.androiddemo.bean.User;
@@ -14,7 +13,6 @@ import io.realm.Realm;
 import rx.Observable;
 
 public class UserModelImpl implements UserModel {
-    private static final String TAG = "UserModelImpl";
     ServiceAPI mServiceAPI;
 
     private UserModelImpl() {
@@ -32,7 +30,7 @@ public class UserModelImpl implements UserModel {
     @Override public Observable<User> getCurrentUser() {
         final String accessToken = SPUtil.getAccessToken(App.getContext());
         if (!accessToken.equals(SPUtil.NOACESSTOKEN)) {
-            return queryUserFromReaml(accessToken);
+            return queryUserFromRealm(accessToken);
         }
 
         return Observable.just(null);
@@ -41,12 +39,12 @@ public class UserModelImpl implements UserModel {
     @Override public Observable deleteCurrentUser() {
         final String accessToken = SPUtil.getAccessToken(App.getContext());
         if (!accessToken.equals(SPUtil.NOACESSTOKEN)) {
-            return queryUserFromReaml(accessToken)
+            return queryUserFromRealm(accessToken)
                     .map(user -> {
-                        Realm mReam = Realm.getDefaultInstance();
-                        mReam.beginTransaction();
-                        user.removeFromRealm();
-                        mReam.commitTransaction();
+                        Realm realm = Realm.getDefaultInstance();
+                        realm.beginTransaction();
+                        realm.delete(User.class);
+                        realm.commitTransaction();
                         return user;
                     });
         }
@@ -54,8 +52,8 @@ public class UserModelImpl implements UserModel {
         return null;
     }
 
-    @Override public Observable<User> queryUserFromReaml(String accessToken) {
-        Log.d(TAG, "accessToken" + accessToken);
+    @Override public Observable<User> queryUserFromRealm(String accessToken) {
+        Logger.d("accessToken" + accessToken);
         return Observable.just(accessToken)
                 .flatMap(s -> {
                     Realm mRealm = Realm.getDefaultInstance();
@@ -63,8 +61,6 @@ public class UserModelImpl implements UserModel {
                             .equalTo("accessToken", s)
                             .findAllAsync()
                             .asObservable()
-//                            .flatMap(users ->
-//                                    Observable.from(users));
                             .flatMap(Observable::from);
                 });
     }
@@ -82,13 +78,13 @@ public class UserModelImpl implements UserModel {
     @Override public Observable<User> setCurrentUser(User user) {
         return Observable.just(user)
                 .map(user1 -> {
-                    saveUserToReaml(user1);
+                    saveUserToRealm(user1);
                     return user1;
                 });
 
     }
 
-    @Override public void saveUserToReaml(User user) {
+    @Override public void saveUserToRealm(User user) {
         Realm mRealm = Realm.getDefaultInstance();
         mRealm.beginTransaction();
         mRealm.copyToRealmOrUpdate(user);

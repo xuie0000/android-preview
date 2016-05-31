@@ -39,7 +39,7 @@ public class ShotActivity extends BaseActivity<ShotActivity, ShotPresenter> impl
 
         getWindow().setFormat(PixelFormat.TRANSLUCENT);
         mAdapter = new ViewPagerAdapter(getSupportFragmentManager(), viewPager);
-        mPresenter.loadDataFromReaml();
+        mPresenter.loadDataFromRealm();
     }
 
     @Override protected void onPause() {

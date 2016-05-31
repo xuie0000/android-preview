@@ -6,7 +6,7 @@ import com.google.gson.annotations.SerializedName;
 import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
 
-public class Shot extends RealmObject/* implements Parcelable*/{
+public class Shot extends RealmObject {
 
     @SerializedName("id") @Expose @PrimaryKey private Integer id;
     @SerializedName("title") @Expose private String title;
@@ -32,33 +32,7 @@ public class Shot extends RealmObject/* implements Parcelable*/{
     @SerializedName("animated") @Expose private Boolean animated;
     @SerializedName("user") @Expose private User user;
     @SerializedName("team") @Expose private Team team = new Team();
-/*
-    protected Shot(Parcel in) {
-        title = in.readString();
-        description = in.readString();
-        createdAt = in.readString();
-        updatedAt = in.readString();
-        htmlUrl = in.readString();
-        attachmentsUrl = in.readString();
-        bucketsUrl = in.readString();
-        commentsUrl = in.readString();
-        likesUrl = in.readString();
-        projectsUrl = in.readString();
-        reboundsUrl = in.readString();
-    }
 
-    public static final Creator<Shot> CREATOR = new Creator<Shot>() {
-        @Override
-        public Shot createFromParcel(Parcel in) {
-            return new Shot(in);
-        }
-
-        @Override
-        public Shot[] newArray(int size) {
-            return new Shot[size];
-        }
-    };
-*/
     /**
      * @return The id
      */
@@ -413,22 +387,33 @@ public class Shot extends RealmObject/* implements Parcelable*/{
     public void setTeam(Team team) {
         this.team = team;
     }
-/*
-    @Override public int describeContents() {
-        return 0;
-    }
 
-    @Override public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(title);
-        dest.writeString(description);
-        dest.writeString(createdAt);
-        dest.writeString(updatedAt);
-        dest.writeString(htmlUrl);
-        dest.writeString(attachmentsUrl);
-        dest.writeString(bucketsUrl);
-        dest.writeString(commentsUrl);
-        dest.writeString(likesUrl);
-        dest.writeString(projectsUrl);
-        dest.writeString(reboundsUrl);
-    } */
+    @Override public String toString() {
+        return "Shot{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", description='" + description + '\'' +
+                ", width=" + width +
+                ", height=" + height +
+                ", images=" + images +
+                ", viewsCount=" + viewsCount +
+                ", likesCount=" + likesCount +
+                ", commentsCount=" + commentsCount +
+                ", attachmentsCount=" + attachmentsCount +
+                ", reboundsCount=" + reboundsCount +
+                ", bucketsCount=" + bucketsCount +
+                ", createdAt='" + createdAt + '\'' +
+                ", updatedAt='" + updatedAt + '\'' +
+                ", htmlUrl='" + htmlUrl + '\'' +
+                ", attachmentsUrl='" + attachmentsUrl + '\'' +
+                ", bucketsUrl='" + bucketsUrl + '\'' +
+                ", commentsUrl='" + commentsUrl + '\'' +
+                ", likesUrl='" + likesUrl + '\'' +
+                ", projectsUrl='" + projectsUrl + '\'' +
+                ", reboundsUrl='" + reboundsUrl + '\'' +
+                ", animated=" + animated +
+                ", user=" + user +
+                ", team=" + team +
+                '}';
+    }
 }

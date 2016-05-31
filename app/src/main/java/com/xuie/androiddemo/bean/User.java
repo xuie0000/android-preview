@@ -469,4 +469,39 @@ public class User extends RealmObject {
         this.updatedAt = updatedAt;
     }
 
+    @Override public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", username='" + username + '\'' +
+                ", htmlUrl='" + htmlUrl + '\'' +
+                ", avatarUrl='" + avatarUrl + '\'' +
+                ", bio='" + bio + '\'' +
+                ", location='" + location + '\'' +
+                ", links=" + links +
+                ", bucketsCount=" + bucketsCount +
+                ", commentsReceivedCount=" + commentsReceivedCount +
+                ", followersCount=" + followersCount +
+                ", followingsCount=" + followingsCount +
+                ", likesCount=" + likesCount +
+                ", likesReceivedCount=" + likesReceivedCount +
+                ", projectsCount=" + projectsCount +
+                ", reboundsReceivedCount=" + reboundsReceivedCount +
+                ", shotsCount=" + shotsCount +
+                ", teamsCount=" + teamsCount +
+                ", canUploadShot=" + canUploadShot +
+                ", type='" + type + '\'' +
+                ", pro=" + pro +
+                ", bucketsUrl='" + bucketsUrl + '\'' +
+                ", followersUrl='" + followersUrl + '\'' +
+                ", followingUrl='" + followingUrl + '\'' +
+                ", likesUrl='" + likesUrl + '\'' +
+                ", projectsUrl='" + projectsUrl + '\'' +
+                ", shotsUrl='" + shotsUrl + '\'' +
+                ", teamsUrl='" + teamsUrl + '\'' +
+                ", createdAt='" + createdAt + '\'' +
+                ", updatedAt='" + updatedAt + '\'' +
+                ", accessToken='" + accessToken + '\'' +
+                '}';
+    }
 }

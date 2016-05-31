@@ -20,11 +20,7 @@ import com.xuie.androiddemo.util.UserUtil;
 import com.xuie.androiddemo.view.fragment.ShotsFragment;
 import com.xuie.androiddemo.widget.CircleImageView;
 
-import java.util.List;
-
 import rx.android.schedulers.AndroidSchedulers;
-import rx.functions.Action1;
-import rx.functions.Func1;
 import rx.schedulers.Schedulers;
 
 public class ShotsPresenter extends BasePresenter<ShotsFragment> {
@@ -41,16 +37,15 @@ public class ShotsPresenter extends BasePresenter<ShotsFragment> {
         shotModel = ShotModelImpl.getInstance();
     }
 
-    public void loadDataFromReaml() {
-        shotModel.loadShots().subscribe(new Action1<List<Shot>>() {
-            @Override
-            public void call(List<Shot> shots) {
-                Logger.d("load form realm shosts.size()------>>>>>" + shots.size());
-                if (shots.size() == 0) realm_is_null = true;
-                else mShot = shots.get(0);
-                getView().showShots(shots, 1);
-            }
-        }, throwable -> Logger.e("从Realm中加载数据出错----->>>>" + throwable.toString()));
+    public void loadDataFromRealm() {
+        shotModel.loadShots2Realm()
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(shots -> {
+                    Logger.d("load form realm shots size: " + shots.size() + "\n ?content : " + shots.toString());
+                    if (shots.size() == 0) realm_is_null = true;
+                    else mShot = shots.get(0);
+                    getView().showShots(shots, 1);
+                }, throwable -> Logger.e(throwable.getMessage()));
 
         requestNewDate();
     }
@@ -58,58 +53,36 @@ public class ShotsPresenter extends BasePresenter<ShotsFragment> {
     public void loadShotsFromServer(int page, int per_page, boolean isShow) {
         shotModel.getShotsFromServer(page, per_page)
                 .subscribeOn(Schedulers.newThread())
-//                .doOnSubscribe(new Action0() {
-//                    @Override
-//                    public void call() {
-//                        getView().getHandler().post(new Runnable() {
-//                            @Override
-//                            public void run() {
-//                                if (isShow) showProgress();
-//                            }
-//                        });
-//                    }
-//                })
                 .doOnSubscribe(() -> getView().getHandler().post(() -> {
                     if (isShow) showProgress();
                 }))
-                .subscribeOn(AndroidSchedulers.mainThread())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Action1<List<Shot>>() {
-                    @Override public void call(List<Shot> shots) {
-                        closeProgress();
+                .subscribe(shots -> {
+                    closeProgress();
 
-                    /*Logger.d("这里一共有" + shots.size()
-                            + "个数据\n" + "这里的page是：" + page
-                            + "\n这里的realm_is_null" + realm_is_null
-                            + "\n这里的isShow" + isShow
-                            + "\nmShot---->>>" + mShot.getId().toString()
-                            + "\nshot----->>>>>" + shots.get(0).getId().toString());*/
-                        if (mShot != null && (mShot.getId().equals(shots.get(0).getId()) && isShow)) {
-                            ToastUtil.Toast("已经是最新的数据了");
-                        } else if (mShot != null && (!(mShot.getId().equals(shots.get(0).getId())) && isShow)) {
-                            shotModel.clearShotsToRealm();
-                            shotModel.saveShotsToRealm(shots);
-                            getView().showShots(shots, page);
-                            mShot = shots.get(0);
-                            Logger.d("首页有更新重新保存数据");
-                        } else if (realm_is_null) {
-                            shotModel.clearShotsToRealm();
-                            shotModel.saveShotsToRealm(shots);
-                            getView().showShots(shots, page);
-                            realm_is_null = false;
-                            mShot = shots.get(0);
-                            Logger.d("第一次成功请求后保存数据");
-                        } else {
-                            Logger.e("按道理来说不可能到这里来呀------_--");
-                            getView().showShots(shots, page);
-                        }
+                    if (mShot != null && (mShot.getId().equals(shots.get(0).getId()) && isShow)) {
+                        ToastUtil.Toast("已经是最新的数据了");
+                    } else if (mShot != null && (!(mShot.getId().equals(shots.get(0).getId())) && isShow)) {
+                        shotModel.clearShotsToRealm();
+                        shotModel.saveShotsToRealm(shots);
+                        getView().showShots(shots, page);
+                        mShot = shots.get(0);
+                        Logger.d("首页有更新重新保存数据");
+                    } else if (realm_is_null) {
+                        shotModel.clearShotsToRealm();
+                        shotModel.saveShotsToRealm(shots);
+                        getView().showShots(shots, page);
+                        realm_is_null = false;
+                        mShot = shots.get(0);
+                        Logger.d("第一次成功请求后保存数据");
+                    } else {
+                        Logger.e("按道理来说不可能到这里来呀------_--");
+                        getView().showShots(shots, page);
                     }
-                }, new Action1<Throwable>() {
-                    @Override public void call(Throwable throwable) {
-                        closeProgress();
-                        ToastUtil.Toast("网络刷新出现了错误");
-                        Logger.e("从server中加载数据出错----->>>>" + throwable.toString());
-                    }
+                }, throwable -> {
+                    closeProgress();
+                    ToastUtil.Toast("网络刷新出现了错误");
+                    Logger.e("从server中加载数据出错----->>>>" + throwable.toString());
                 });
     }
 
@@ -126,31 +99,22 @@ public class ShotsPresenter extends BasePresenter<ShotsFragment> {
         userModel.getUseWithAccessToken(SPUtil.getAccessToken(App.getContext()))
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
-                .map(new Func1<User, User>() {
-                    @Override
-                    public User call(User user) {
-                        if (!UserUtil.enqual(user, mCurrentUser)) {
-                            user.setAccessToken(mCurrentUser.getAccessToken());
-                            Logger.d("更新USER数据成功");
-                            userModel.saveUserToReaml(user);
-                            return user;
-                        }
-                        return null;
+                .map(user -> {
+                    if (!UserUtil.enqual(user, mCurrentUser)) {
+                        user.setAccessToken(mCurrentUser.getAccessToken());
+                        Logger.d("更新USER数据成功");
+                        userModel.saveUserToRealm(user);
+                        return user;
                     }
+                    return null;
                 })
-                .subscribe(new Action1<User>() {
-                    @Override
-                    public void call(User user) {
-                        if (user != null) {
-                            mCurrentUser = user;
-                            getView().uploadUserInfo(mCurrentUser);
-                        }
+                .subscribe(user -> {
+                    if (user != null) {
+                        mCurrentUser = user;
+                        getView().uploadUserInfo(mCurrentUser);
                     }
-                }, new Action1<Throwable>() {
-                    @Override
-                    public void call(Throwable throwable) {
-                        Logger.d("为什么从网络上更新用户消息失败呀------>>>>" + throwable.toString());
-                    }
+                }, throwable -> {
+                    Logger.d("为什么从网络上更新用户消息失败呀------>>>>" + throwable.toString());
                 });
     }
 

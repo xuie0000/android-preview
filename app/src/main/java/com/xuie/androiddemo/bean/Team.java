@@ -482,4 +482,39 @@ public class Team extends RealmObject {
         this.teamShotsUrl = teamShotsUrl;
     }
 
+    @Override public String toString() {
+        return "Team{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", username='" + username + '\'' +
+                ", htmlUrl='" + htmlUrl + '\'' +
+                ", avatarUrl='" + avatarUrl + '\'' +
+                ", bio='" + bio + '\'' +
+                ", location='" + location + '\'' +
+                ", links=" + links +
+                ", bucketsCount=" + bucketsCount +
+                ", commentsReceivedCount=" + commentsReceivedCount +
+                ", followersCount=" + followersCount +
+                ", followingsCount=" + followingsCount +
+                ", likesCount=" + likesCount +
+                ", likesReceivedCount=" + likesReceivedCount +
+                ", projectsCount=" + projectsCount +
+                ", reboundsReceivedCount=" + reboundsReceivedCount +
+                ", shotsCount=" + shotsCount +
+                ", canUploadShot=" + canUploadShot +
+                ", type='" + type + '\'' +
+                ", pro=" + pro +
+                ", bucketsUrl='" + bucketsUrl + '\'' +
+                ", followersUrl='" + followersUrl + '\'' +
+                ", followingUrl='" + followingUrl + '\'' +
+                ", likesUrl='" + likesUrl + '\'' +
+                ", projectsUrl='" + projectsUrl + '\'' +
+                ", shotsUrl='" + shotsUrl + '\'' +
+                ", createdAt='" + createdAt + '\'' +
+                ", updatedAt='" + updatedAt + '\'' +
+                ", membersCount=" + membersCount +
+                ", membersUrl='" + membersUrl + '\'' +
+                ", teamShotsUrl='" + teamShotsUrl + '\'' +
+                '}';
+    }
 }

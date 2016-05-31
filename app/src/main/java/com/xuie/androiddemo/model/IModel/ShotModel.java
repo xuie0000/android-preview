@@ -8,7 +8,7 @@ import rx.Observable;
 
 public interface ShotModel {
 
-    Observable loadShots();
+    Observable<List<Shot>> loadShots2Realm();
 
     Observable<List<Shot>> getShotsFromServer(int page, int per_page);
 

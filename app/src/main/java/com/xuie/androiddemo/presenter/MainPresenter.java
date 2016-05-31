@@ -107,7 +107,7 @@ public class MainPresenter extends BasePresenter<MainActivity> {
                         if (!UserUtil.enqual(user, mCurrentUser)) {
                             user.setAccessToken(mCurrentUser.getAccessToken());
                             Logger.d("更新USER数据成功");
-                            mUserModel.saveUserToReaml(user);
+                            mUserModel.saveUserToRealm(user);
                             return user;
                         }
                         return null;

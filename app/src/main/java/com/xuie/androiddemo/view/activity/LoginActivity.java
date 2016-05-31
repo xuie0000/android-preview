@@ -27,7 +27,7 @@ public class LoginActivity extends BaseActivity<LoginActivity, LoginPresenter> i
     @BindView(R.id.toolbar) Toolbar mToolbar;
     @BindView(R.id.webView) ProgressWeb webView;
 
-    private LoginPresenter mLoginPresenter;
+    LoginPresenter mLoginPresenter;
 
     @Override public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,14 +50,12 @@ public class LoginActivity extends BaseActivity<LoginActivity, LoginPresenter> i
             String authCode;
 
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
-//                Logger.d("shouldOverrideUrlLoading");
                 view.loadUrl(url);
                 return true;
             }
 
             @Override public void onReceivedSslError(WebView view, SslErrorHandler handler, SslError error) {
                 super.onReceivedSslError(view, handler, error);
-//                Logger.d("onReceivedSslError");
                 ToastUtil.Toast("登录失败请稍后重试\n" + error.toString());
             }
 
@@ -85,11 +83,9 @@ public class LoginActivity extends BaseActivity<LoginActivity, LoginPresenter> i
     }
 
     @Override public void showLoading() {
-
     }
 
     @Override public void closeLoading() {
-
     }
 }
 

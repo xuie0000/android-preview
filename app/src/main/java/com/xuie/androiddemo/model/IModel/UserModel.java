@@ -10,7 +10,7 @@ public interface UserModel {
 
     Observable deleteCurrentUser();
 
-    Observable<User> queryUserFromReaml(String accessToken);
+    Observable<User> queryUserFromRealm(String accessToken);
 
     Observable<String> Login2GetAccessToken(String oauthCode);
 
@@ -18,7 +18,7 @@ public interface UserModel {
 
     Observable<User> setCurrentUser(User user);
 
-    void saveUserToReaml(User user);
+    void saveUserToRealm(User user);
 
     Observable<User> getOtherUser(String username);
 }

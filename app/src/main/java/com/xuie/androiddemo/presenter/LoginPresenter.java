@@ -43,7 +43,7 @@ public class LoginPresenter extends BasePresenter<LoginActivity> {
                     @Override
                     public User call(User user) {
                         user.setAccessToken(accessToken);
-                        mUserModel.saveUserToReaml(user);
+                        mUserModel.saveUserToRealm(user);
                         return user;
                     }
                 })

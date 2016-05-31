@@ -13,7 +13,6 @@ import java.util.List;
 import io.realm.Realm;
 import io.realm.RealmResults;
 import rx.Observable;
-import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Func1;
 
 public class ShotModelImpl implements ShotModel {
@@ -35,7 +34,6 @@ public class ShotModelImpl implements ShotModel {
     }
 
     private ShotModelImpl() {
-
         mServiceAPI = ServiceAPIModel.provideServiceAPI(ServiceAPIModel.provideOkHttpClient());
     }
 
@@ -66,7 +64,7 @@ public class ShotModelImpl implements ShotModel {
     @Override public void clearShotsToRealm() {
         mRealm = Realm.getDefaultInstance();
         mRealm.beginTransaction();
-        mRealm.clear(Shot.class);
+        mRealm.delete(Shot.class);
         mRealm.commitTransaction();
         mRealm.close();
         Logger.d("清除了所有Shot");
@@ -79,27 +77,11 @@ public class ShotModelImpl implements ShotModel {
     }
 
 
-    @Override public Observable<List<Shot>> loadShots() {
+    @Override public Observable<List<Shot>> loadShots2Realm() {
         return Realm.getDefaultInstance().where(Shot.class)
                 .findAllAsync()
                 .asObservable()
-                .observeOn(AndroidSchedulers.mainThread())
-//                .filter(new Func1<RealmResults<Shot>, Boolean>() {
-//                    @Override
-//                    public Boolean call(RealmResults<Shot> shots) {
-//                        return shots.isLoaded();
-//                    }
-//                })
                 .filter(RealmResults::isLoaded)
-//                .map(new Func1<RealmResults<Shot>, List<Shot>>() {
-//                    @Override
-//                    public List<Shot> call(RealmResults<Shot> shots) {
-//                        ArrayList<Shot> LIST = new ArrayList<Shot>();
-//                        for (Shot shot : shots) LIST.add(shot);
-//
-//                        return LIST;
-//                    }
-//                });
                 .map((Func1<RealmResults<Shot>, List<Shot>>) shots -> {
                     ArrayList<Shot> list = new ArrayList<>();
                     for (Shot shot : shots) list.add(shot);
