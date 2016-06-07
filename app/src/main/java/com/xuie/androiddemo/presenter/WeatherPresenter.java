@@ -7,12 +7,11 @@ import com.xuie.androiddemo.model.UserModelImpl;
 import com.xuie.androiddemo.model.service.DribbbleAPI;
 import com.xuie.androiddemo.model.service.ServiceGenerator;
 import com.xuie.androiddemo.util.SPUtil;
-import com.xuie.androiddemo.view.activity.LoginActivity;
 
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
-public class LoginPresenter extends BasePresenter<LoginActivity> {
+public class WeatherPresenter extends BasePresenter<WeatherPresenter> {
     DribbbleAPI mServiceAPI;
     private String accessToken;
     private UserModel mUserModel;

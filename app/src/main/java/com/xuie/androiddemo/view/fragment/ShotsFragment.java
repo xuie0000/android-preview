@@ -27,7 +27,7 @@ import com.xuie.androiddemo.model.ImageModelImpl;
 import com.xuie.androiddemo.presenter.ShotsPresenter;
 import com.xuie.androiddemo.util.ScreenUtils;
 import com.xuie.androiddemo.util.SpUtils;
-import com.xuie.androiddemo.view.IView.IShotsFragment;
+import com.xuie.androiddemo.view.fragment.IView.IShotsFragment;
 import com.xuie.androiddemo.view.activity.ShotActivity;
 import com.xuie.androiddemo.widget.CircleImageView;
 

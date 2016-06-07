@@ -2,7 +2,7 @@ package com.xuie.androiddemo.presenter;
 
 import com.xuie.androiddemo.model.IModel.UserModel;
 import com.xuie.androiddemo.model.UserModelImpl;
-import com.xuie.androiddemo.view.IView.IPersonFragment;
+import com.xuie.androiddemo.view.fragment.IView.IPersonFragment;
 import com.xuie.androiddemo.view.fragment.PersonFragment;
 
 public class PersonPresenter extends BasePresenter<PersonFragment> {

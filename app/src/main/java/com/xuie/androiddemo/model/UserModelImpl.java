@@ -5,7 +5,7 @@ import com.xuie.androiddemo.App;
 import com.xuie.androiddemo.bean.AuthBody;
 import com.xuie.androiddemo.bean.User;
 import com.xuie.androiddemo.model.IModel.UserModel;
-import com.xuie.androiddemo.model.service.ServiceAPI;
+import com.xuie.androiddemo.model.service.DribbbleAPI;
 import com.xuie.androiddemo.model.service.ServiceGenerator;
 import com.xuie.androiddemo.util.SPUtil;
 
@@ -14,10 +14,10 @@ import rx.Observable;
 
 public class UserModelImpl implements UserModel {
     static UserModel instance;
-    ServiceAPI mServiceAPI;
+    DribbbleAPI mServiceAPI;
 
     private UserModelImpl() {
-        mServiceAPI = ServiceGenerator.createService(ServiceAPI.class);
+        mServiceAPI = ServiceGenerator.createService(DribbbleAPI.class);
     }
 
     public static UserModel getInstance() {

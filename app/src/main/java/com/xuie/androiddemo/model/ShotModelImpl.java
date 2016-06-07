@@ -4,7 +4,7 @@ import com.orhanobut.logger.Logger;
 import com.xuie.androiddemo.bean.Shot;
 import com.xuie.androiddemo.bean.Team;
 import com.xuie.androiddemo.model.IModel.ShotModel;
-import com.xuie.androiddemo.model.service.ServiceAPI;
+import com.xuie.androiddemo.model.service.DribbbleAPI;
 import com.xuie.androiddemo.model.service.ServiceGenerator;
 
 import java.util.ArrayList;
@@ -18,7 +18,7 @@ import rx.functions.Func1;
 public class ShotModelImpl implements ShotModel {
     private Realm mRealm;
     private static ShotModelImpl instance;
-    private static ServiceAPI mServiceAPI;
+    private static DribbbleAPI mServiceAPI;
 
     public final static int PAGE = 1;
     public final static int PER_PAGE = 10;
@@ -34,7 +34,7 @@ public class ShotModelImpl implements ShotModel {
     }
 
     private ShotModelImpl() {
-        mServiceAPI = ServiceGenerator.createService(ServiceAPI.class);
+        mServiceAPI = ServiceGenerator.createService(DribbbleAPI.class);
     }
 
 

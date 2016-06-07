@@ -13,7 +13,7 @@ import android.view.ViewGroup;
 import com.xuie.androiddemo.R;
 import com.xuie.androiddemo.bean.User;
 import com.xuie.androiddemo.presenter.PersonPresenter;
-import com.xuie.androiddemo.view.IView.IPersonFragment;
+import com.xuie.androiddemo.view.fragment.IView.IPersonFragment;
 import com.xuie.androiddemo.widget.CircleImageView;
 
 import butterknife.BindView;

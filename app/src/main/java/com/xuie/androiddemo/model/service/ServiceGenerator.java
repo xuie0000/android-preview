@@ -13,8 +13,6 @@ import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ServiceGenerator {
-    public static final String API_BASE_URL = "https://api.dribbble.com/v1/";
-
     private static OkHttpClient.Builder httpClient = new OkHttpClient.Builder();
 
     private static Gson gson = new GsonBuilder().setExclusionStrategies(new ExclusionStrategy() {
@@ -29,7 +27,7 @@ public class ServiceGenerator {
 
     private static Retrofit.Builder builder =
             new Retrofit.Builder()
-                    .baseUrl(API_BASE_URL)
+                    .baseUrl(DribbbleAPI.API)
                     .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                     .addConverterFactory(GsonConverterFactory.create(gson));
 
@@ -38,6 +36,10 @@ public class ServiceGenerator {
     }
 
     public static <S> S createService(Class<S> serviceClass, final String authToken) {
+        return createService(serviceClass, builder, authToken);
+    }
+
+    public static <S> S createService(Class<S> serviceClass, Retrofit.Builder builder, final String authToken) {
         if (authToken != null) {
             httpClient.interceptors().add(chain -> {
                 Request original = chain.request();

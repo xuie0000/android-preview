@@ -12,7 +12,7 @@ import com.xuie.androiddemo.bean.Shot;
 import com.xuie.androiddemo.bean.User;
 import com.xuie.androiddemo.presenter.ShotPresenter;
 import com.xuie.androiddemo.util.SpUtils;
-import com.xuie.androiddemo.view.IView.IShotActivity;
+import com.xuie.androiddemo.view.activity.IView.IShotActivity;
 import com.xuie.androiddemo.view.adapter.ViewPagerAdapter;
 
 import java.util.List;

@@ -1,4 +1,4 @@
-package com.xuie.androiddemo.view.IView;
+package com.xuie.androiddemo.view.fragment.IView;
 
 import com.xuie.androiddemo.bean.User;
 

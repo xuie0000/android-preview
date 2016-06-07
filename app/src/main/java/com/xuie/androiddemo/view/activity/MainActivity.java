@@ -31,7 +31,7 @@ import com.umeng.update.UmengUpdateAgent;
 import com.xuie.androiddemo.R;
 import com.xuie.androiddemo.bean.User;
 import com.xuie.androiddemo.presenter.MainPresenter;
-import com.xuie.androiddemo.view.IView.IMainActivity;
+import com.xuie.androiddemo.view.activity.IView.IMainActivity;
 import com.xuie.androiddemo.view.fragment.PersonFragment;
 import com.xuie.androiddemo.widget.BottomSheetDialogView;
 import com.xuie.util.BitmapUtils;

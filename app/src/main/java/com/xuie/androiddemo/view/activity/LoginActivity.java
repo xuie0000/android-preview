@@ -17,7 +17,7 @@ import com.xuie.androiddemo.OAuthUrl;
 import com.xuie.androiddemo.R;
 import com.xuie.androiddemo.presenter.LoginPresenter;
 import com.xuie.androiddemo.util.ToastUtil;
-import com.xuie.androiddemo.view.IView.ILoginActivity;
+import com.xuie.androiddemo.view.activity.IView.ILoginActivity;
 import com.xuie.androiddemo.widget.ProgressWeb;
 
 import butterknife.BindView;

@@ -12,7 +12,8 @@ import retrofit2.http.Path;
 import retrofit2.http.Query;
 import rx.Observable;
 
-public interface ServiceAPI {
+public interface DribbbleAPI {
+    String API = "https://api.dribbble.com/v1/";
 
     @GET("shots") Observable<Shot[]> getShots(@Query("list") String list,
                                               @Query("timeframe") String timeframe,
