@@ -36,6 +36,7 @@ public class CrashHandler implements Thread.UncaughtExceptionHandler {
     }
 
     @Override public void uncaughtException(Thread thread, Throwable ex) {
+        System.out.println(ex.getMessage());
         Logger.d(ex.getMessage());
         MobclickAgent.reportError(context, ex.getMessage());
         try {

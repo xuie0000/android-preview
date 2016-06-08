@@ -3,16 +3,16 @@ package com.xuie.androiddemo.presenter;
 import com.orhanobut.logger.Logger;
 import com.xuie.androiddemo.model.IModel.WeatherModel;
 import com.xuie.androiddemo.model.WeatherModelImpl;
-import com.xuie.androiddemo.view.activity.WeatherActivity;
+import com.xuie.androiddemo.view.activity.Weather_2_Activity;
 
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
-public class WeatherPresenter extends BasePresenter<WeatherActivity> {
+public class Weather2Presenter extends BasePresenter<Weather_2_Activity> {
 
     WeatherModel weatherModel;
 
-    public WeatherPresenter() {
+    public Weather2Presenter() {
         this.weatherModel = new WeatherModelImpl();
     }
 

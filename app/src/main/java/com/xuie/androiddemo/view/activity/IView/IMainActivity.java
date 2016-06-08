@@ -10,4 +10,5 @@ public interface IMainActivity {
     void refreshDelegateMode(int mode);
     void showBottomSheetDialog();
     void loadUerInfo(User user);
+    void startWeather();
 }

@@ -1,15 +1,12 @@
 package com.xuie.androiddemo.model;
 
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
-import com.xuie.androiddemo.bean.WeatherBean;
+import com.xuie.androiddemo.bean.Weather;
 import com.xuie.androiddemo.model.IModel.WeatherModel;
-import com.xuie.androiddemo.model.service.BaiduAPI;
-import com.xuie.androiddemo.model.service.DribbbleAPI;
 import com.xuie.androiddemo.model.service.ServiceGenerator;
+import com.xuie.androiddemo.model.service.SinaAPI;
 import com.xuie.androiddemo.model.service.WthrcdnAPI;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Retrofit;
@@ -23,17 +20,22 @@ import rx.Observable;
 public class WeatherModelImpl implements WeatherModel {
 
     static WeatherModelImpl instance;
-    private static Retrofit.Builder builder =
+    private static Retrofit.Builder wthrcdnBuilder =
             new Retrofit.Builder()
-                    .baseUrl(DribbbleAPI.API)
+                    .baseUrl(WthrcdnAPI.API)
                     .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                     .addConverterFactory(GsonConverterFactory.create());
-    private static BaiduAPI baiduAPI;
+    private static Retrofit.Builder sinaBuilder =
+            new Retrofit.Builder()
+                    .baseUrl(SinaAPI.API)
+                    .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+                    .addConverterFactory(GsonConverterFactory.create());
+    private static SinaAPI sinaApi;
     private static WthrcdnAPI wthrcdnAPI;
 
     public WeatherModelImpl() {
-        baiduAPI = ServiceGenerator.createService(BaiduAPI.class, builder, null);
-        wthrcdnAPI = ServiceGenerator.createService(WthrcdnAPI.class, builder, null);
+        sinaApi = ServiceGenerator.createService(SinaAPI.class, sinaBuilder, null);
+        wthrcdnAPI = ServiceGenerator.createService(WthrcdnAPI.class, wthrcdnBuilder, null);
     }
 
     public static WeatherModelImpl getInstance() {
@@ -45,31 +47,19 @@ public class WeatherModelImpl implements WeatherModel {
         return instance;
     }
 
-    @Override public Observable<String> loadLocation(double location, double longitude) {
-        return baiduAPI.loadLocation(location, longitude).map(this::getCity);
+    @Override public Observable<String> getCity() {
+        return sinaApi.getSinaDpool().map(s -> {
+            String newData = s.substring(0, s.length() - 4);
+            int startIndex = newData.lastIndexOf('\t') + 1;
+            return newData.substring(startIndex, newData.length());
+        });
     }
 
-    @Override public Observable<List<WeatherBean>> loadWeather(String city) {
-        return null;
-    }
-
-
-    public String getCity(String json) {
-        JsonParser parser = new JsonParser();
-        JsonObject jsonObj = parser.parse(json).getAsJsonObject();
-        JsonElement status = jsonObj.get("status");
-        if (status != null && "OK".equals(status.getAsString())) {
-            JsonObject result = jsonObj.getAsJsonObject("result");
-            if (result != null) {
-                JsonObject addressComponent = result.getAsJsonObject("addressComponent");
-                if (addressComponent != null) {
-                    JsonElement cityElement = addressComponent.get("city");
-                    if (cityElement != null) {
-                        return cityElement.getAsString().replace("市", "");
-                    }
-                }
-            }
-        }
-        return null;
+    @Override public Observable<List<Weather>> getWeathers(String city) {
+        return wthrcdnAPI.getWthrcdnData(city).map(wthrcdn -> {
+            List<Weather> weathers = new ArrayList<>();
+            weathers.addAll(wthrcdn.getData().getWeather());
+            return weathers;
+        });
     }
 }

@@ -9,6 +9,6 @@ import rx.Observable;
  */
 public interface BaiduAPI {
     String API = "http://api.map.baidu.com/geocoder?output=json&referer=32D45CBEEC107315C553AD1131915D366EEF79B4&location=";
-
+    String API2 = "http://int.dpool.sina.com.cn/iplookup/iplookup.php";
     @GET("{location},{longitude}") Observable<String> loadLocation(@Path("location") double location, @Path("longitude") double longitude);
 }

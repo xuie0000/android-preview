@@ -76,6 +76,8 @@ public class MainPresenter extends BasePresenter<MainActivity> {
             getView().refreshDelegateMode(AppCompatDelegate.MODE_NIGHT_NO);
         } else if (id == R.id.action_bottom_sheet_dialog) {
             getView().showBottomSheetDialog();
+        } else if (id == R.id.action_weather) {
+            getView().startWeather();
         }
     }
 

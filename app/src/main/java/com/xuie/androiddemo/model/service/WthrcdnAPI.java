@@ -1,8 +1,6 @@
 package com.xuie.androiddemo.model.service;
 
-import com.xuie.androiddemo.bean.WeatherBean;
-
-import java.util.List;
+import com.xuie.androiddemo.bean.Wthrcdn;
 
 import retrofit2.http.GET;
 import retrofit2.http.Path;
@@ -14,8 +12,6 @@ import rx.Observable;
 public interface WthrcdnAPI {
     String API = "http://wthrcdn.etouch.cn/weather_mini?city=";
 
-    Observable<String> loadLocation();
-
-    @GET("{city}") Observable<List<WeatherBean>> loadWeather(@Path("city") String city);
+    @GET("{city}") Observable<Wthrcdn> getWthrcdnData(@Path("city") String city);
 
 }
