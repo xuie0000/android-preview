@@ -7,7 +7,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Window;
 
 import com.mikepenz.iconics.context.IconicsContextWrapper;
-import com.orhanobut.logger.Logger;
 import com.xuie.androiddemo.presenter.BasePresenter;
 
 /**
@@ -21,15 +20,10 @@ public abstract class BaseActivity<V, T extends BasePresenter<V>> extends AppCom
         super.onCreate(savedInstanceState);
         getWindow().requestFeature(Window.FEATURE_CONTENT_TRANSITIONS);
 
-        try {
-            mPresenter = createPresenter();
-            mHandler = new Handler();
-            mPresenter.attachView((V) this);
-            mPresenter.OnViewCreate();
-        } catch (Exception e) {
-            Logger.e(e.getMessage());
-            finish();
-        }
+        mPresenter = createPresenter();
+        mHandler = new Handler();
+        mPresenter.attachView((V) this);
+        mPresenter.OnViewCreate();
     }
 
     @Override protected void onResume() {

@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@android:color/holo_blue_dark"
@@ -35,16 +34,6 @@
         android:orientation="horizontal"
         android:padding="12dp">
 
-        <!--
-                <com.mikepenz.iconics.view.IconicsImageView
-                    android:id="@+id/icon"
-                    android:layout_width="72dp"
-                    android:layout_height="72dp"
-                    app:iiv_background_color="@android:color/holo_blue_bright"
-                    app:iiv_color="@android:color/holo_green_dark"
-                    app:iiv_icon="wic_day_sunny"
-                    app:iiv_padding="8dp"/>
-        -->
         <ImageView
             android:id="@+id/icon"
             android:layout_width="72dp"

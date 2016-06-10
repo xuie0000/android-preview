@@ -4,12 +4,12 @@ import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.mikepenz.iconics.context.IconicsContextWrapper;
-import com.mikepenz.iconics.view.IconicsImageView;
 import com.orhanobut.logger.Logger;
 import com.xuie.androiddemo.R;
 import com.xuie.androiddemo.bean.Weather;
@@ -26,7 +26,7 @@ public class WeatherActivity extends BaseActivity<WeatherActivity, WeatherPresen
 
     @BindView(R.id.city) TextView city;
     @BindView(R.id.today) TextView today;
-    @BindView(R.id.icon) IconicsImageView icon;
+    @BindView(R.id.icon) ImageView icon;
     @BindView(R.id.temp) TextView temp;
     @BindView(R.id.wind) TextView wind;
     @BindView(R.id.weather) TextView weather;
@@ -34,14 +34,12 @@ public class WeatherActivity extends BaseActivity<WeatherActivity, WeatherPresen
 
     @Override protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
         setContentView(R.layout.activity_weather);
         ButterKnife.bind(this);
         Logger.d("onCreate");
-
         mPresenter.loadCity();
-        Logger.d("hello o000");
-
-        city.setText("China? a city");
     }
 
     @Override protected WeatherPresenter createPresenter() {
