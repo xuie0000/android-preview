@@ -1,15 +1,14 @@
 package com.xuie.androiddemo.view.activity;
 
+import android.content.Context;
 import android.os.Bundle;
-import android.support.v4.view.LayoutInflaterCompat;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.mikepenz.iconics.context.IconicsLayoutInflater;
+import com.mikepenz.iconics.context.IconicsContextWrapper;
 import com.mikepenz.iconics.view.IconicsImageView;
 import com.orhanobut.logger.Logger;
 import com.xuie.androiddemo.R;
@@ -33,19 +32,24 @@ public class WeatherActivity extends BaseActivity<WeatherActivity, WeatherPresen
     @BindView(R.id.weather) TextView weather;
     @BindView(R.id.weather_content) LinearLayout weatherContent;
 
-    @Override public void onCreate(Bundle savedInstanceState) {
-        LayoutInflaterCompat.setFactory(getLayoutInflater(), new IconicsLayoutInflater(getDelegate()));
+    @Override protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_weather);
         ButterKnife.bind(this);
         Logger.d("onCreate");
 
-//        mPresenter.loadCity();
+        mPresenter.loadCity();
+        Logger.d("hello o000");
+
+        city.setText("China? a city");
     }
 
     @Override protected WeatherPresenter createPresenter() {
         return new WeatherPresenter();
+    }
+
+    @Override protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(IconicsContextWrapper.wrap(newBase));
     }
 
     @Override public void setCity(String city) {

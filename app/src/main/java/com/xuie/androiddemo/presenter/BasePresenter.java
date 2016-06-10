@@ -48,4 +48,5 @@ public abstract class BasePresenter<T> {
     public void onViewDestroy() {
 
     }
+
 }

@@ -10,7 +10,7 @@ import rx.Observable;
  * Created by xuie on 16-6-7.
  */
 public interface WeatherModel {
-    Observable<String> getCity();
+    void getCity(IWeatherCallback weatherCallback);
 
     Observable<List<Weather>> getWeathers(String city);
 }

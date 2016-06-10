@@ -17,21 +17,19 @@ public abstract class BaseActivity<V, T extends BasePresenter<V>> extends AppCom
     protected T mPresenter;
     protected Handler mHandler;
 
-    @Override public void onCreate(Bundle savedInstanceState) {
-        Logger.d("onCreate............");
+    @Override protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Logger.d("onCreate............");
         getWindow().requestFeature(Window.FEATURE_CONTENT_TRANSITIONS);
 
-        Logger.d("onCreate............");
-        mPresenter = createPresenter();
-        Logger.d("onCreate............");
-        mHandler = new Handler();
-        Logger.d("onCreate............");
-        mPresenter.attachView((V) this);
-        Logger.d("onCreate............");
-        mPresenter.OnViewCreate();
-        Logger.d("onCreate............");
+        try {
+            mPresenter = createPresenter();
+            mHandler = new Handler();
+            mPresenter.attachView((V) this);
+            mPresenter.OnViewCreate();
+        } catch (Exception e) {
+            Logger.e(e.getMessage());
+            finish();
+        }
     }
 
     @Override protected void onResume() {

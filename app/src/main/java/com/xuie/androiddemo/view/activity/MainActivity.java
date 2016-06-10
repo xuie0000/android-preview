@@ -221,7 +221,7 @@ public class MainActivity extends BaseActivity<MainActivity, MainPresenter> impl
 
     @Override public void startWeather() {
         Logger.d("startWeather");
-        startActivity(new Intent(this, Weather_2_Activity.class));
+        startActivity(new Intent(this, WeatherActivity.class));
     }
 
 }

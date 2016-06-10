@@ -26,8 +26,6 @@ import com.xuie.androiddemo.view.fragment.TransitionsFragment;
 import com.xuie.androiddemo.view.fragment.ViewPagerIndicatorFragment;
 
 import rx.android.schedulers.AndroidSchedulers;
-import rx.functions.Action1;
-import rx.functions.Func1;
 import rx.schedulers.Schedulers;
 
 /**
@@ -103,32 +101,22 @@ public class MainPresenter extends BasePresenter<MainActivity> {
         mUserModel.getUseWithAccessToken(SPUtil.getAccessToken(App.getContext()))
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
-                .map(new Func1<User, User>() {
-                    @Override
-                    public User call(User user) {
-                        if (!UserUtil.enqual(user, mCurrentUser)) {
-                            user.setAccessToken(mCurrentUser.getAccessToken());
-                            Logger.d("更新USER数据成功");
-                            mUserModel.saveUserToRealm(user);
-                            return user;
-                        }
-                        return null;
+                .map(user -> {
+                    if (!UserUtil.enqual(user, mCurrentUser)) {
+                        user.setAccessToken(mCurrentUser.getAccessToken());
+                        Logger.d("更新USER数据成功");
+                        mUserModel.saveUserToRealm(user);
+                        return user;
                     }
+                    return null;
                 })
-                .subscribe(new Action1<User>() {
-                    @Override
-                    public void call(User user) {
-                        if (user != null) {
-                            mCurrentUser = user;
-                            getView().loadUerInfo(mCurrentUser);
-                        }
-                        return;
+                .subscribe(user -> {
+                    if (user != null) {
+                        mCurrentUser = user;
+                        getView().loadUerInfo(mCurrentUser);
                     }
-                }, new Action1<Throwable>() {
-                    @Override
-                    public void call(Throwable throwable) {
-                        Logger.e("为什么从网络上更新用户消息失败呀------>>>>" + throwable.toString());
-                    }
+                }, throwable -> {
+                    Logger.e("为什么从网络上更新用户消息失败呀------>>>>" + throwable.toString());
                 });
     }
 
