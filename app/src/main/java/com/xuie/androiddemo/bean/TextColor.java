@@ -3,13 +3,13 @@ package com.xuie.androiddemo.bean;
 /**
  * Created by xuie on 15-12-13.
  */
-public class TextPicture {
+public class TextColor {
     String text;
-    int picture;
+    int color;
 
-    public TextPicture(String text, int picture) {
+    public TextColor(String text, int picture) {
         this.text = text;
-        this.picture = picture;
+        this.color = picture;
     }
 
     public String getText() {
@@ -20,11 +20,11 @@ public class TextPicture {
         this.text = text;
     }
 
-    public int getPicture() {
-        return picture;
+    public int getColor() {
+        return color;
     }
 
-    public void setPicture(int picture) {
-        this.picture = picture;
+    public void setColor(int color) {
+        this.color = color;
     }
 }

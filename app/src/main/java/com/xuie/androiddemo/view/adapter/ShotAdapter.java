@@ -16,7 +16,7 @@ import com.bumptech.glide.request.target.SimpleTarget;
 import com.mikepenz.iconics.IconicsDrawable;
 import com.xuie.androiddemo.App;
 import com.xuie.androiddemo.R;
-import com.xuie.androiddemo.bean.Shot;
+import com.xuie.androiddemo.bean.dribbble.Shot;
 import com.xuie.androiddemo.model.ImageModelImpl;
 import com.xuie.androiddemo.util.ScreenUtils;
 import com.xuie.androiddemo.view.activity.ShotActivity;

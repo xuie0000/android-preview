@@ -13,28 +13,26 @@ import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
 public class LoginPresenter extends BasePresenter<LoginActivity> {
-    DribbbleAPI mServiceAPI;
-    private String accessToken;
-    private UserModel mUserModel;
+    DribbbleAPI dribbbleAPI;
+    String accessToken;
+    UserModel userModel;
 
-    @Override
-    public void OnViewResume() {
-        super.OnViewResume();
-        mServiceAPI = ServiceGenerator.createService(DribbbleAPI.class);
-        mUserModel = UserModelImpl.getInstance();
+    public LoginPresenter() {
+        dribbbleAPI = ServiceGenerator.createService(DribbbleAPI.class);
+        userModel = UserModelImpl.getInstance();
     }
 
     public void getAccessToken(final String authCode) {
-        mUserModel.Login2GetAccessToken(authCode)
+        userModel.Login2GetAccessToken(authCode)
                 .flatMap(s -> {
                     accessToken = s;
                     SPUtil.putAccesToken(App.getContext(), s);
-                    return mUserModel.getUseWithAccessToken(s);
+                    return userModel.getUseWithAccessToken(s);
                 })
                 .subscribeOn(Schedulers.newThread())
                 .map(user -> {
                     user.setAccessToken(accessToken);
-                    mUserModel.saveUserToRealm(user);
+                    userModel.saveUserToRealm(user);
                     return user;
                 })
                 .observeOn(AndroidSchedulers.mainThread())

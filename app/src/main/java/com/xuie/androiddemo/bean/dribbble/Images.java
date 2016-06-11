@@ -1,4 +1,4 @@
-package com.xuie.androiddemo.bean;
+package com.xuie.androiddemo.bean.dribbble;
 
 import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;

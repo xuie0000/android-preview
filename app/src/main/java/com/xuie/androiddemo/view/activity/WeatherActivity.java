@@ -12,7 +12,7 @@ import android.widget.TextView;
 import com.mikepenz.iconics.context.IconicsContextWrapper;
 import com.orhanobut.logger.Logger;
 import com.xuie.androiddemo.R;
-import com.xuie.androiddemo.bean.Weather;
+import com.xuie.androiddemo.bean.weather.Weather;
 import com.xuie.androiddemo.presenter.WeatherPresenter;
 import com.xuie.androiddemo.util.WeatherUtils;
 import com.xuie.androiddemo.view.activity.IView.IWeatherActivity;

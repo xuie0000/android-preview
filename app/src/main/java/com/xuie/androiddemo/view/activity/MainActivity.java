@@ -29,7 +29,7 @@ import com.tbruyelle.rxpermissions.RxPermissions;
 import com.umeng.analytics.MobclickAgent;
 import com.umeng.update.UmengUpdateAgent;
 import com.xuie.androiddemo.R;
-import com.xuie.androiddemo.bean.User;
+import com.xuie.androiddemo.bean.dribbble.User;
 import com.xuie.androiddemo.presenter.MainPresenter;
 import com.xuie.androiddemo.view.activity.IView.IMainActivity;
 import com.xuie.androiddemo.view.fragment.PersonFragment;
@@ -84,9 +84,9 @@ public class MainActivity extends BaseActivity<MainActivity, MainPresenter> impl
             return true;
         });
 
-        userAvatar = (ImageView) navView.getHeaderView(0).findViewById(R.id.nav_header_img);
-        userName = (TextView) navView.getHeaderView(0).findViewById(R.id.nav_header_name);
-        userDescribe = (TextView) navView.getHeaderView(0).findViewById(R.id.nav_header_describe);
+        userAvatar = ButterKnife.findById(navView.getHeaderView(0), R.id.nav_header_img);
+        userName = ButterKnife.findById(navView.getHeaderView(0), R.id.nav_header_name);
+        userDescribe = ButterKnife.findById(navView.getHeaderView(0), R.id.nav_header_describe);
         //头像登录
         userAvatar.setOnClickListener(v -> {
             Logger.d("userAvatar onClick");
@@ -214,13 +214,12 @@ public class MainActivity extends BaseActivity<MainActivity, MainPresenter> impl
     }
 
     @Override public void loadUerInfo(User user) {
-        mPresenter.loadImageWithurl(user.getAvatarUrl(), userAvatar);
+        mPresenter.loadImageWithUrl(user.getAvatarUrl(), userAvatar);
         userName.setText(user.getUsername());
         userDescribe.setText(user.getHtmlUrl());
     }
 
     @Override public void startWeather() {
-        Logger.d("startWeather");
         startActivity(new Intent(this, WeatherActivity.class));
     }
 

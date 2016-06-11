@@ -1,6 +1,6 @@
 package com.xuie.androiddemo.view.activity.IView;
 
-import com.xuie.androiddemo.bean.Weather;
+import com.xuie.androiddemo.bean.weather.Weather;
 
 import java.util.List;
 

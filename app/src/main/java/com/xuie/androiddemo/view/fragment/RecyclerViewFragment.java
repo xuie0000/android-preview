@@ -17,17 +17,20 @@
 package com.xuie.androiddemo.view.fragment;
 
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.OvershootInterpolator;
+import android.widget.RadioButton;
 
 import com.xuie.androiddemo.R;
-import com.xuie.androiddemo.bean.TextPicture;
+import com.xuie.androiddemo.bean.TextColor;
 import com.xuie.androiddemo.view.adapter.RecyclerStaggeredViewAdapter;
 import com.xuie.androiddemo.view.adapter.RecyclerViewAdapter;
 
@@ -37,52 +40,148 @@ import java.util.Random;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
-import jp.wasabeef.recyclerview.animators.adapters.AlphaInAnimationAdapter;
-import jp.wasabeef.recyclerview.animators.adapters.ScaleInAnimationAdapter;
 
 public class RecyclerViewFragment extends Fragment {
-    static final String KEY_LAYOUT_MANAGER = "layoutManager";
-    static final int SPAN_COUNT = 2;
-    static final int DATA_COUNT = 60;
+    public static final String KEY_LAYOUT_MANAGER = "layoutManager";
+    public static final int SPAN_COUNT = 2;
+    public static final int DATA_COUNT = 60;
 
-    /**
-     * 线性布局/Grid布局
-     */
     enum LayoutManagerType {
         GRID_VER_MANAGER,
         LINEAR_VER_MANAGER,
         LINEAR_HOR_MANAGER,
     }
 
-    /**
-     * 单一布局/双布局Item
-     */
     enum ItemType {
         SINGLE,
         STAGGERED,
     }
 
-    int[] colors = {android.R.color.holo_blue_dark,
-            android.R.color.holo_blue_bright,
-            android.R.color.holo_blue_light,
-            android.R.color.holo_green_light,
-            android.R.color.holo_orange_dark,
-            android.R.color.holo_purple,
-            android.R.color.holo_red_dark,
-            android.R.color.holo_red_light};
+    @BindView(R.id.linear_layout) RadioButton linearLayout;
+    @BindView(R.id.grid_layout) RadioButton gridLayout;
+    @BindView(R.id.linear_horizontal) RadioButton linearHorizontal;
+    @BindView(R.id.single) RadioButton single;
+    @BindView(R.id.stagger) RadioButton stagger;
+    @BindView(R.id.recyclerView) RecyclerView recyclerView;
 
-    LayoutManagerType mCurrentLayoutManagerType;
-    ItemType mItemType;
-    RecyclerViewAdapter mAdapter;
-    RecyclerStaggeredViewAdapter mStaggeredAdapter;
-    RecyclerView.LayoutManager mLayoutManager;
-    List<TextPicture> textPictures = new ArrayList<>();
+    LayoutManagerType currentLayoutManagerType;
+    ItemType currentItemType;
 
-    @BindView(R.id.recyclerView) RecyclerView mRecyclerView;
+    RecyclerViewAdapter recyclerViewAdapter;
+    RecyclerStaggeredViewAdapter recyclerStaggeredViewAdapter;
+    RecyclerView.LayoutManager layoutManager;
+
+    List<TextColor> textPictures = new ArrayList<>();
 
     @Override public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        initTextColor();
+    }
+
+    @Override public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View rootView = inflater.inflate(R.layout.fragment_recycler_view, container, false);
+        ButterKnife.bind(this, rootView);
+        return rootView;
+    }
+
+    @Override public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        currentLayoutManagerType = LayoutManagerType.LINEAR_VER_MANAGER;
+        if (savedInstanceState != null) {
+            currentLayoutManagerType = (LayoutManagerType) savedInstanceState.getSerializable(KEY_LAYOUT_MANAGER);
+        }
+        setRecyclerViewLayoutManager(currentLayoutManagerType);
+
+        recyclerViewAdapter = new RecyclerViewAdapter(textPictures);
+        recyclerStaggeredViewAdapter = new RecyclerStaggeredViewAdapter(textPictures);
+        currentItemType = ItemType.SINGLE;
+        refreshAdapter(recyclerViewAdapter);
+
+        linearLayout.setOnClickListener(v -> {
+            if (currentLayoutManagerType != LayoutManagerType.LINEAR_VER_MANAGER) {
+                currentLayoutManagerType = LayoutManagerType.LINEAR_VER_MANAGER;
+                setRecyclerViewLayoutManager(currentLayoutManagerType);
+            }
+        });
+
+        gridLayout.setOnClickListener(v -> {
+            if (currentLayoutManagerType != LayoutManagerType.GRID_VER_MANAGER) {
+                currentLayoutManagerType = LayoutManagerType.GRID_VER_MANAGER;
+                setRecyclerViewLayoutManager(currentLayoutManagerType);
+            }
+        });
+
+        linearHorizontal.setOnClickListener(v -> {
+            if (currentLayoutManagerType != LayoutManagerType.LINEAR_HOR_MANAGER) {
+                currentLayoutManagerType = LayoutManagerType.LINEAR_HOR_MANAGER;
+                setRecyclerViewLayoutManager(currentLayoutManagerType);
+            }
+        });
+
+        single.setOnClickListener(v -> {
+            if (currentItemType != ItemType.SINGLE) {
+                currentItemType = ItemType.SINGLE;
+                refreshAdapter(recyclerViewAdapter);
+            }
+        });
+
+        stagger.setOnClickListener(v -> {
+            if (currentItemType != ItemType.STAGGERED) {
+                currentItemType = ItemType.STAGGERED;
+                refreshAdapter(recyclerStaggeredViewAdapter);
+            }
+        });
+    }
+
+    private void setRecyclerViewLayoutManager(LayoutManagerType type) {
+        int scrollPosition = 0;
+        if (recyclerView.getLayoutManager() != null) {
+            scrollPosition = ((LinearLayoutManager) recyclerView.getLayoutManager()).findFirstCompletelyVisibleItemPosition();
+        }
+
+        switch (type) {
+            case GRID_VER_MANAGER:
+                if (currentItemType != ItemType.STAGGERED) {
+                    layoutManager = new GridLayoutManager(getActivity(), SPAN_COUNT);
+                } else {
+                    layoutManager = new StaggeredGridLayoutManager(SPAN_COUNT, StaggeredGridLayoutManager.VERTICAL);
+                }
+                break;
+            case LINEAR_VER_MANAGER:
+            default:
+                layoutManager = new LinearLayoutManager(getActivity());
+                break;
+            case LINEAR_HOR_MANAGER:
+                layoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
+                break;
+        }
+
+        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.scrollToPosition(scrollPosition);
+    }
+
+    @Override public void onSaveInstanceState(Bundle savedInstanceState) {
+        savedInstanceState.putSerializable(KEY_LAYOUT_MANAGER, currentLayoutManagerType);
+        super.onSaveInstanceState(savedInstanceState);
+    }
+
+    private void refreshAdapter(RecyclerView.Adapter adapter) {
+        recyclerView.setAdapter(adapter);
+    }
+
+    private void initTextColor() {
+        int[] colors = {
+                ContextCompat.getColor(getActivity(), android.R.color.holo_blue_dark),
+                ContextCompat.getColor(getActivity(), android.R.color.holo_blue_bright),
+                ContextCompat.getColor(getActivity(), android.R.color.holo_blue_light),
+                ContextCompat.getColor(getActivity(), android.R.color.holo_green_light),
+                ContextCompat.getColor(getActivity(), android.R.color.holo_orange_dark),
+                ContextCompat.getColor(getActivity(), android.R.color.holo_purple),
+                ContextCompat.getColor(getActivity(), android.R.color.holo_red_dark),
+                ContextCompat.getColor(getActivity(), android.R.color.holo_red_light),
+        };
+
+
         int per = -1, cur;
         Random r = new Random();
         for (int i = 0; i < DATA_COUNT; i++) {
@@ -90,103 +189,8 @@ public class RecyclerViewFragment extends Fragment {
                 cur = r.nextInt(8);
             } while (cur == per);
             per = cur;
-            textPictures.add(new TextPicture("This is element #" + i, colors[cur]));
+            textPictures.add(new TextColor("This is element #" + i, colors[cur]));
         }
     }
 
-    @Override public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.recycler_view_frag, container, false);
-        ButterKnife.bind(this, rootView);
-
-        mLayoutManager = new LinearLayoutManager(getActivity());
-        mCurrentLayoutManagerType = LayoutManagerType.LINEAR_VER_MANAGER;
-        if (savedInstanceState != null) {
-            mCurrentLayoutManagerType = (LayoutManagerType) savedInstanceState.getSerializable(KEY_LAYOUT_MANAGER);
-        }
-        setRecyclerViewLayoutManager();
-
-        mAdapter = new RecyclerViewAdapter(textPictures);
-        mStaggeredAdapter = new RecyclerStaggeredViewAdapter(textPictures);
-        mItemType = ItemType.SINGLE;
-        addAdapter();
-
-        return rootView;
-    }
-
-    @OnClick({R.id.linear_layout_rb, R.id.grid_layout_rb, R.id.linear_hor_rb,
-            R.id.single_rb, R.id.stagger_rb})
-    void onClick(View view) {
-        switch (view.getId()) {
-            case R.id.linear_layout_rb:
-                mCurrentLayoutManagerType = LayoutManagerType.LINEAR_VER_MANAGER;
-                setRecyclerViewLayoutManager();
-                break;
-            case R.id.grid_layout_rb:
-                mCurrentLayoutManagerType = LayoutManagerType.GRID_VER_MANAGER;
-                setRecyclerViewLayoutManager();
-                break;
-            case R.id.linear_hor_rb:
-                mCurrentLayoutManagerType = LayoutManagerType.LINEAR_HOR_MANAGER;
-                setRecyclerViewLayoutManager();
-                break;
-            case R.id.single_rb:
-                mItemType = ItemType.SINGLE;
-                addAdapter();
-                break;
-            case R.id.stagger_rb:
-                mItemType = ItemType.STAGGERED;
-                addAdapter();
-                break;
-        }
-    }
-
-    private void setRecyclerViewLayoutManager() {
-        int scrollPosition = 0;
-        if (mRecyclerView.getLayoutManager() != null) {
-            scrollPosition = ((LinearLayoutManager) mRecyclerView.getLayoutManager()).findFirstCompletelyVisibleItemPosition();
-        }
-
-        switch (mCurrentLayoutManagerType) {
-            case GRID_VER_MANAGER:
-                mLayoutManager = new GridLayoutManager(getActivity(), SPAN_COUNT);
-                break;
-            case LINEAR_VER_MANAGER:
-            default:
-                mLayoutManager = new LinearLayoutManager(getActivity());
-                break;
-            case LINEAR_HOR_MANAGER:
-                mLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
-                break;
-        }
-
-        mRecyclerView.setLayoutManager(mLayoutManager);
-        mRecyclerView.scrollToPosition(scrollPosition);
-    }
-
-    @Override public void onSaveInstanceState(Bundle savedInstanceState) {
-        savedInstanceState.putSerializable(KEY_LAYOUT_MANAGER, mCurrentLayoutManagerType);
-        super.onSaveInstanceState(savedInstanceState);
-    }
-
-    private void addAdapter() {
-        if (mItemType == ItemType.SINGLE) {
-            // 1. 默认
-//            mRecyclerView.setAdapter(mAdapter);
-            // 2. 添加动画
-            AlphaInAnimationAdapter alphaAdapter = new AlphaInAnimationAdapter(mAdapter);
-            ScaleInAnimationAdapter scaleAdapter = new ScaleInAnimationAdapter(alphaAdapter);
-            scaleAdapter.setFirstOnly(false);
-            scaleAdapter.setInterpolator(new OvershootInterpolator());
-            mRecyclerView.setAdapter(scaleAdapter);
-        } else if (mItemType == ItemType.STAGGERED) {
-            // 3. 默认添加双布局
-//            mRecyclerView.setAdapter(mStaggeredAdapter);
-            // 4. 添加双布局的动画
-            AlphaInAnimationAdapter alphaAdapter = new AlphaInAnimationAdapter(mStaggeredAdapter);
-            ScaleInAnimationAdapter scaleAdapter = new ScaleInAnimationAdapter(alphaAdapter);
-            scaleAdapter.setFirstOnly(false);
-            scaleAdapter.setInterpolator(new OvershootInterpolator());
-            mRecyclerView.setAdapter(scaleAdapter);
-        }
-    }
 }

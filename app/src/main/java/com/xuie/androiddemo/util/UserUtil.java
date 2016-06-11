@@ -1,6 +1,6 @@
 package com.xuie.androiddemo.util;
 
-import com.xuie.androiddemo.bean.User;
+import com.xuie.androiddemo.bean.dribbble.User;
 
 public class UserUtil {
 

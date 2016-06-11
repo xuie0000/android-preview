@@ -1,7 +1,7 @@
 package com.xuie.androiddemo.model;
 
 import com.orhanobut.logger.Logger;
-import com.xuie.androiddemo.bean.Weather;
+import com.xuie.androiddemo.bean.weather.Weather;
 import com.xuie.androiddemo.model.IModel.IWeatherCallback;
 import com.xuie.androiddemo.model.IModel.WeatherModel;
 import com.xuie.androiddemo.model.service.ServiceGenerator;

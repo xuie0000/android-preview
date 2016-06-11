@@ -2,7 +2,7 @@ package com.xuie.androiddemo.view.fragment.IView;
 
 import android.os.Handler;
 
-import com.xuie.androiddemo.bean.User;
+import com.xuie.androiddemo.bean.dribbble.User;
 
 import java.util.List;
 

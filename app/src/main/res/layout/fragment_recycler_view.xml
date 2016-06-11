@@ -23,26 +23,26 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
-        android:checkedButton="@+id/linear_layout_rb"
+        android:checkedButton="@+id/linear_layout"
         android:gravity="center"
         android:orientation="horizontal">
 
         <RadioButton
-            android:id="@+id/linear_layout_rb"
+            android:id="@+id/linear_layout"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/linear_layout_manager" />
 
         <RadioButton
-            android:id="@+id/grid_layout_rb"
+            android:id="@+id/grid_layout"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/grid_layout_manager" />
 
         <RadioButton
-            android:id="@+id/linear_hor_rb"
+            android:id="@+id/linear_horizontal"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -53,19 +53,19 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
-        android:checkedButton="@+id/single_rb"
+        android:checkedButton="@+id/single"
         android:gravity="center"
         android:orientation="horizontal">
 
         <RadioButton
-            android:id="@+id/single_rb"
+            android:id="@+id/single"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/recycler_single" />
 
         <RadioButton
-            android:id="@+id/stagger_rb"
+            android:id="@+id/stagger"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"

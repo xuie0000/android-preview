@@ -1,4 +1,4 @@
-package com.xuie.androiddemo.bean;
+package com.xuie.androiddemo.bean.weather;
 
 /**
  * Created by xuie on 16-6-8.

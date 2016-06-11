@@ -15,9 +15,7 @@ public class WeatherPresenter extends BasePresenter<WeatherActivity> {
     private WeatherCallback weatherCallback = new WeatherCallback();
 
     public WeatherPresenter() {
-        Logger.d("WeatherPresenter................");
         this.weatherModel = WeatherModelImpl.getInstance();
-        Logger.d("..............WeatherPresenter");
     }
 
     public void loadWeathers(String city) {

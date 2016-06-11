@@ -8,8 +8,8 @@ import android.view.WindowManager;
 
 import com.mikepenz.iconics.context.IconicsContextWrapper;
 import com.xuie.androiddemo.R;
-import com.xuie.androiddemo.bean.Shot;
-import com.xuie.androiddemo.bean.User;
+import com.xuie.androiddemo.bean.dribbble.Shot;
+import com.xuie.androiddemo.bean.dribbble.User;
 import com.xuie.androiddemo.presenter.ShotPresenter;
 import com.xuie.androiddemo.util.SpUtils;
 import com.xuie.androiddemo.view.activity.IView.IShotActivity;

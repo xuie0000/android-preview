@@ -6,50 +6,30 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:gravity="center"
         android:orientation="vertical">
 
         <RadioGroup
+            android:id="@+id/normal_or_object"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            android:checkedButton="@+id/code_rb"
+            android:checkedButton="@+id/animation"
             android:gravity="center_horizontal"
             android:orientation="horizontal">
 
             <RadioButton
-                android:id="@+id/code_rb"
+                android:id="@+id/animation"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="代码" />
+                android:text="Animation" />
 
             <RadioButton
-                android:id="@+id/xml_rb"
+                android:id="@+id/animator"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="XML" />
-        </RadioGroup>
-
-        <RadioGroup
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:checkedButton="@+id/normal_rb"
-            android:gravity="center_horizontal"
-            android:orientation="horizontal">
-
-            <RadioButton
-                android:id="@+id/normal_rb"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Anim" />
-
-            <RadioButton
-                android:id="@+id/object_rb"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="ObjAnim" />
+                android:text="ObjAnimator" />
         </RadioGroup>
 
         <TextView
@@ -96,7 +76,5 @@
             android:background="@android:color/holo_blue_dark"
             android:gravity="center"
             android:text="association" />
-
     </LinearLayout>
-
 </ScrollView>

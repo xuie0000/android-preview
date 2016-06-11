@@ -1,11 +1,19 @@
-package com.xuie.androiddemo.bean;
+package com.xuie.androiddemo.bean.dribbble;
 
 import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
 
-public class User extends RealmObject {
+public class Team extends RealmObject {
 
-    @PrimaryKey Integer id;
+    public Team(Integer id) {
+        this.id = id;
+    }
+
+    public Team() {
+        this.id = 0;
+    }
+
+    @PrimaryKey private Integer id;
     String name;
     String username;
     String htmlUrl;
@@ -22,7 +30,6 @@ public class User extends RealmObject {
     Integer projectsCount;
     Integer reboundsReceivedCount;
     Integer shotsCount;
-    Integer teamsCount;
     Boolean canUploadShot;
     String type;
     Boolean pro;
@@ -32,19 +39,11 @@ public class User extends RealmObject {
     String likesUrl;
     String projectsUrl;
     String shotsUrl;
-    String teamsUrl;
     String createdAt;
     String updatedAt;
-
-    private String accessToken;
-
-    public String getAccessToken() {
-        return accessToken;
-    }
-
-    public void setAccessToken(String accessToken) {
-        this.accessToken = accessToken;
-    }
+    Integer membersCount;
+    String membersUrl;
+    String teamShotsUrl;
 
     /**
      * @return The id
@@ -285,20 +284,6 @@ public class User extends RealmObject {
     }
 
     /**
-     * @return The teamsCount
-     */
-    public Integer getTeamsCount() {
-        return teamsCount;
-    }
-
-    /**
-     * @param teamsCount The teams_count
-     */
-    public void setTeamsCount(Integer teamsCount) {
-        this.teamsCount = teamsCount;
-    }
-
-    /**
      * @return The canUploadShot
      */
     public Boolean getCanUploadShot() {
@@ -425,20 +410,6 @@ public class User extends RealmObject {
     }
 
     /**
-     * @return The teamsUrl
-     */
-    public String getTeamsUrl() {
-        return teamsUrl;
-    }
-
-    /**
-     * @param teamsUrl The teams_url
-     */
-    public void setTeamsUrl(String teamsUrl) {
-        this.teamsUrl = teamsUrl;
-    }
-
-    /**
      * @return The createdAt
      */
     public String getCreatedAt() {
@@ -466,8 +437,50 @@ public class User extends RealmObject {
         this.updatedAt = updatedAt;
     }
 
+    /**
+     * @return The membersCount
+     */
+    public Integer getMembersCount() {
+        return membersCount;
+    }
+
+    /**
+     * @param membersCount The members_count
+     */
+    public void setMembersCount(Integer membersCount) {
+        this.membersCount = membersCount;
+    }
+
+    /**
+     * @return The membersUrl
+     */
+    public String getMembersUrl() {
+        return membersUrl;
+    }
+
+    /**
+     * @param membersUrl The members_url
+     */
+    public void setMembersUrl(String membersUrl) {
+        this.membersUrl = membersUrl;
+    }
+
+    /**
+     * @return The teamShotsUrl
+     */
+    public String getTeamShotsUrl() {
+        return teamShotsUrl;
+    }
+
+    /**
+     * @param teamShotsUrl The team_shots_url
+     */
+    public void setTeamShotsUrl(String teamShotsUrl) {
+        this.teamShotsUrl = teamShotsUrl;
+    }
+
     @Override public String toString() {
-        return "User{" +
+        return "Team{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", username='" + username + '\'' +
@@ -485,7 +498,6 @@ public class User extends RealmObject {
                 ", projectsCount=" + projectsCount +
                 ", reboundsReceivedCount=" + reboundsReceivedCount +
                 ", shotsCount=" + shotsCount +
-                ", teamsCount=" + teamsCount +
                 ", canUploadShot=" + canUploadShot +
                 ", type='" + type + '\'' +
                 ", pro=" + pro +
@@ -495,10 +507,11 @@ public class User extends RealmObject {
                 ", likesUrl='" + likesUrl + '\'' +
                 ", projectsUrl='" + projectsUrl + '\'' +
                 ", shotsUrl='" + shotsUrl + '\'' +
-                ", teamsUrl='" + teamsUrl + '\'' +
                 ", createdAt='" + createdAt + '\'' +
                 ", updatedAt='" + updatedAt + '\'' +
-                ", accessToken='" + accessToken + '\'' +
+                ", membersCount=" + membersCount +
+                ", membersUrl='" + membersUrl + '\'' +
+                ", teamShotsUrl='" + teamShotsUrl + '\'' +
                 '}';
     }
 }

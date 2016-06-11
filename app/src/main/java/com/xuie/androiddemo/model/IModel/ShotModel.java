@@ -1,6 +1,6 @@
 package com.xuie.androiddemo.model.IModel;
 
-import com.xuie.androiddemo.bean.Shot;
+import com.xuie.androiddemo.bean.dribbble.Shot;
 
 import java.util.List;
 

@@ -1,6 +1,6 @@
 package com.xuie.androiddemo.model.IModel;
 
-import com.xuie.androiddemo.bean.User;
+import com.xuie.androiddemo.bean.dribbble.User;
 
 import rx.Observable;
 

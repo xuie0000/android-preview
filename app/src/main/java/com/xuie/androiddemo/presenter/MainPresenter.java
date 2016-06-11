@@ -10,7 +10,7 @@ import com.bumptech.glide.request.target.SimpleTarget;
 import com.orhanobut.logger.Logger;
 import com.xuie.androiddemo.App;
 import com.xuie.androiddemo.R;
-import com.xuie.androiddemo.bean.User;
+import com.xuie.androiddemo.bean.dribbble.User;
 import com.xuie.androiddemo.model.IModel.UserModel;
 import com.xuie.androiddemo.model.ImageModelImpl;
 import com.xuie.androiddemo.model.UserModelImpl;
@@ -120,7 +120,7 @@ public class MainPresenter extends BasePresenter<MainActivity> {
                 });
     }
 
-    public void loadImageWithurl(String url, ImageView imageView) {
+    public void loadImageWithUrl(String url, ImageView imageView) {
         ImageModelImpl.getInstance().loadImageWithTargetView(url, new SimpleTarget<Bitmap>() {
             @Override
             public void onResourceReady(Bitmap resource, GlideAnimation<? super Bitmap> glideAnimation) {

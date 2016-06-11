@@ -1,4 +1,4 @@
-package com.xuie.androiddemo.bean;
+package com.xuie.androiddemo.bean.weather;
 
 import java.util.List;
 

@@ -9,7 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.xuie.androiddemo.R;
-import com.xuie.androiddemo.bean.Shot;
+import com.xuie.androiddemo.bean.dribbble.Shot;
 import com.xuie.androiddemo.databinding.ContentShotBinding;
 import com.xuie.androiddemo.model.ImageModelImpl;
 

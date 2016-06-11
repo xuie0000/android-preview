@@ -3,12 +3,11 @@ package com.xuie.androiddemo.view.fragment;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 
-import com.xuie.androiddemo.bean.Shot;
+import com.xuie.androiddemo.bean.dribbble.Shot;
 
 
 abstract class BaseLazyFragment extends Fragment {
-    private static final String TAG = BaseLazyFragment.class.getSimpleName();
-    private boolean isPrepared;
+    boolean isPrepared;
 
     @Override public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);

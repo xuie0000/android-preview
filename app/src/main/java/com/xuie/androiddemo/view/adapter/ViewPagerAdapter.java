@@ -6,7 +6,7 @@ import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 
 import com.orhanobut.logger.Logger;
-import com.xuie.androiddemo.bean.Shot;
+import com.xuie.androiddemo.bean.dribbble.Shot;
 import com.xuie.androiddemo.model.ShotModelImpl;
 import com.xuie.androiddemo.presenter.ShotsPresenter;
 import com.xuie.androiddemo.view.fragment.SingleShotFragment;

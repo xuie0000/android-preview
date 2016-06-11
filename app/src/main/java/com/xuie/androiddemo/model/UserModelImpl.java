@@ -2,8 +2,8 @@ package com.xuie.androiddemo.model;
 
 import com.orhanobut.logger.Logger;
 import com.xuie.androiddemo.App;
-import com.xuie.androiddemo.bean.AuthBody;
-import com.xuie.androiddemo.bean.User;
+import com.xuie.androiddemo.bean.dribbble.AuthBody;
+import com.xuie.androiddemo.bean.dribbble.User;
 import com.xuie.androiddemo.model.IModel.UserModel;
 import com.xuie.androiddemo.model.service.DribbbleAPI;
 import com.xuie.androiddemo.model.service.ServiceGenerator;

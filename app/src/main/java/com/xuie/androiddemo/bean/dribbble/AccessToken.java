@@ -1,4 +1,4 @@
-package com.xuie.androiddemo.bean;
+package com.xuie.androiddemo.bean.dribbble;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;

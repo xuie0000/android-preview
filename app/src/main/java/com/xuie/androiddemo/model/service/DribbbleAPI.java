@@ -1,9 +1,9 @@
 package com.xuie.androiddemo.model.service;
 
-import com.xuie.androiddemo.bean.AccessToken;
-import com.xuie.androiddemo.bean.AuthBody;
-import com.xuie.androiddemo.bean.Shot;
-import com.xuie.androiddemo.bean.User;
+import com.xuie.androiddemo.bean.dribbble.AccessToken;
+import com.xuie.androiddemo.bean.dribbble.AuthBody;
+import com.xuie.androiddemo.bean.dribbble.Shot;
+import com.xuie.androiddemo.bean.dribbble.User;
 
 import retrofit2.http.Body;
 import retrofit2.http.GET;

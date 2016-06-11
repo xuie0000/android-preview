@@ -1,30 +1,17 @@
-/*
-* Copyright (C) 2014 The Android Open Source Project
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*      http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
 package com.xuie.androiddemo.view.adapter;
 
+import android.animation.Animator;
+import android.animation.ObjectAnimator;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
+import android.widget.TextView;
 
 import com.orhanobut.logger.Logger;
 import com.xuie.androiddemo.R;
-import com.xuie.androiddemo.bean.TextPicture;
+import com.xuie.androiddemo.bean.TextColor;
 
 import java.util.List;
 
@@ -32,35 +19,43 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
-    protected List<TextPicture> textPictures;
+    protected List<TextColor> textPictures;
 
-    public RecyclerViewAdapter(List<TextPicture> textPictures) {
+    public RecyclerViewAdapter(List<TextColor> textPictures) {
         this.textPictures = textPictures;
     }
 
     @Override public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
         View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.text_row_item, viewGroup, false);
-        return new NormalViewHolder(v);
+        return new RecyclerViewHolder(v);
     }
 
-    @Override public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int position) {
-        TextPicture textPicture = textPictures.get(position);
-        NormalViewHolder vh = ((NormalViewHolder) viewHolder);
-        vh.button.setBackgroundResource(textPicture.getPicture());
-        vh.button.setText(textPicture.getText());
+    @Override public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+        TextColor textPicture = textPictures.get(position);
+        RecyclerViewHolder vh = ((RecyclerViewHolder) holder);
+        ((CardView)holder.itemView).setCardBackgroundColor(textPicture.getColor());
+        vh.title.setText(textPicture.getText());
+
+        Animator[] anims = new Animator[]{
+                ObjectAnimator.ofFloat(holder.itemView, "scaleY", 1, 1.1f, 1),
+                ObjectAnimator.ofFloat(holder.itemView, "scaleX", 1, 1.1f, 1)
+        };
+
+        for (Animator anim : anims) {
+            anim.setDuration(300).start();
+        }
     }
 
     @Override public int getItemCount() {
         return textPictures.size();
     }
 
-    public class NormalViewHolder extends RecyclerView.ViewHolder {
-        @BindView(R.id.button) Button button;
-
-        public NormalViewHolder(View view) {
+    protected class RecyclerViewHolder extends RecyclerView.ViewHolder {
+        @BindView(R.id.title) TextView title;
+        public RecyclerViewHolder(View view) {
             super(view);
             ButterKnife.bind(this, view);
-            button.setOnClickListener(v -> Logger.d("Element " + getAdapterPosition() + " clicked."));
+            title.setOnClickListener(v -> Logger.d("Element " + getAdapterPosition() + " clicked."));
         }
     }
 

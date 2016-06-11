@@ -1,8 +1,8 @@
 package com.xuie.androiddemo.model;
 
 import com.orhanobut.logger.Logger;
-import com.xuie.androiddemo.bean.Shot;
-import com.xuie.androiddemo.bean.Team;
+import com.xuie.androiddemo.bean.dribbble.Shot;
+import com.xuie.androiddemo.bean.dribbble.Team;
 import com.xuie.androiddemo.model.IModel.ShotModel;
 import com.xuie.androiddemo.model.service.DribbbleAPI;
 import com.xuie.androiddemo.model.service.ServiceGenerator;

@@ -1,6 +1,6 @@
 package com.xuie.androiddemo.view.activity.IView;
 
-import com.xuie.androiddemo.bean.User;
+import com.xuie.androiddemo.bean.dribbble.User;
 
 /**
  * Created by xuie on 16-4-10.

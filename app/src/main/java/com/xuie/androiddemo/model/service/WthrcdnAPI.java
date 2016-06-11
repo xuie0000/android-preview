@@ -1,6 +1,6 @@
 package com.xuie.androiddemo.model.service;
 
-import com.xuie.androiddemo.bean.Wthrcdn;
+import com.xuie.androiddemo.bean.weather.Wthrcdn;
 
 import retrofit2.http.GET;
 import retrofit2.http.Query;
