@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="Client_ID">45571b7483d7662e895e0ce413d08900b4548c4413fa022e291383b1ca814014</string>
-    <string name="Client_Secret">d3bcaf10f45d54393a7589d9d6aa39c06b75981769c86f957fe9980fd4d72d8f</string>
-    <string name="Client_Access_Token">Bearer a077363cb77f6321c6c915d8479a2d7b3208949b25189cd883e4a1e1599ad8df</string>
+    <string name="Client_ID">d858fbe7e9820a07eefbb6e7a76f3e5cf3928798cfb6208c17c5beaec2ff4545</string>
+    <string name="Client_Secret">9e30361522d75276aab725329874978064af5830117fe9b08a3726ca94ba6d14</string>
+    <string name="Client_Access_Token">Bearer f0eef740b4c44e287e9681c491a3867ecbff02b4552334c0dbb4defccc24bd6b</string>
 </resources>

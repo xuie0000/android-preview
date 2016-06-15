@@ -1,7 +1,6 @@
 package com.xuie.androiddemo.view.fragment;
 
 
-import android.animation.Animator;
 import android.animation.ObjectAnimator;
 import android.animation.PropertyValuesHolder;
 import android.os.Bundle;
@@ -68,7 +67,7 @@ public class AnimationFragment extends Fragment {
 
                 alpha.startAnimation(alphaAnimation);
             } else {
-                Animator alphaAnimator;
+                ObjectAnimator alphaAnimator;
                 alphaAnimator = ObjectAnimator.ofFloat(alpha, "alpha", 1.0f, 0.0f, 1.0f);
                 alphaAnimator.setDuration(1000);
 //                alphaAnimator = AnimatorInflater.loadAnimator(getActivity(), R.animator.alpha);
@@ -97,7 +96,7 @@ public class AnimationFragment extends Fragment {
 //                scaleAnimation = AnimationUtils.loadAnimation(getActivity(), R.anim.scale);
                 scale.startAnimation(scaleAnimation);
             } else {
-                Animator scaleAnimator;
+                ObjectAnimator scaleAnimator;
                 scaleAnimator = ObjectAnimator.ofFloat(scale, "scaleX", 1.0f, 0.2f, 1.0f).setDuration(1000);
 //                scaleAnimator = AnimatorInflater.loadAnimator(getActivity(), R.animator.scale);
 //                scaleAnimator.setTarget(scale);
@@ -113,7 +112,7 @@ public class AnimationFragment extends Fragment {
 //                translateAnimation = AnimationUtils.loadAnimation(getActivity(), R.anim.traslate);
                 translate.startAnimation(translateAnimation);
             } else {
-                Animator translateAnimator;
+                ObjectAnimator translateAnimator;
                 translateAnimator = ObjectAnimator.ofFloat(translate, "translationX", 0, 300, -200, 0);
                 translateAnimator.setDuration(2000);
 //                translateAnimator = AnimatorInflater.loadAnimator(getActivity(), R.animator.translate);
@@ -141,7 +140,7 @@ public class AnimationFragment extends Fragment {
 //                rotateAnimation = AnimationUtils.loadAnimation(getActivity(), R.anim.rotate);
                 rotate.startAnimation(rotateAnimation);
             } else {
-                Animator rotateAnimator;
+                ObjectAnimator rotateAnimator;
                 // "rotation" "rotationX" "rotationY"
                 rotateAnimator = ObjectAnimator.ofFloat(rotate, "rotation", 0, 360);
 //                rotateAnimator = AnimatorInflater.loadAnimator(getActivity(), R.animator.rotate);

@@ -14,24 +14,9 @@ import com.xuie.androiddemo.databinding.ContentShotBinding;
 import com.xuie.androiddemo.model.ImageModelImpl;
 
 public class SingleShotFragment extends BaseLazyFragment implements View.OnClickListener {
-    public static final String SHOT = "shot";
     private Shot shot;
     private ContentShotBinding binding;
     private boolean isVisible;
-
-//    public static SingleShotFragment newInstance(Shot shot) {
-//        SingleShotFragment fragment = new SingleShotFragment();
-//        Bundle bundle = new Bundle();
-//        bundle.putParcelable(SHOT, shot);
-//        fragment.setArguments(bundle);
-//        return fragment;
-//    }
-//
-//    @Override public void onCreate(@Nullable Bundle savedInstanceState) {
-//        super.onCreate(savedInstanceState);
-//        shot = getArguments().getParcelable(SHOT);
-//    }
-
 
     public SingleShotFragment() {
     }

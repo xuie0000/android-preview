@@ -8,6 +8,7 @@ import java.lang.ref.WeakReference;
 
 public class MyActivityManager {
 
+    private static MyActivityManager instance;
     private WeakReference<Activity> sCurrentActivity;
 
     private MyActivityManager() {
@@ -51,15 +52,14 @@ public class MyActivityManager {
         });
     }
 
-
-    public final static MyActivityManager getInstance() {
-        return ActivityManagerHolder.instance;
+    public static MyActivityManager getInstance() {
+        if (instance == null) {
+            synchronized (MyActivityManager.class) {
+                instance = new MyActivityManager();
+            }
+        }
+        return instance;
     }
-
-    private final static class ActivityManagerHolder {
-        private final static MyActivityManager instance = new MyActivityManager();
-    }
-
 
     public Activity getCurrentActivity() {
         Activity currentActivity = null;
@@ -70,7 +70,7 @@ public class MyActivityManager {
     }
 
     public void setCurrentActivity(Activity activity) {
-        sCurrentActivity = new WeakReference<Activity>(activity);
+        sCurrentActivity = new WeakReference<>(activity);
     }
 
 }

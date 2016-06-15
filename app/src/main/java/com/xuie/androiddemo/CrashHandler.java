@@ -6,7 +6,6 @@ import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Environment;
 import android.os.Process;
-import android.util.Log;
 
 import com.orhanobut.logger.Logger;
 import com.umeng.analytics.MobclickAgent;
@@ -22,7 +21,6 @@ import java.util.Date;
  * Created by xuie on 16-1-5.
  */
 public class CrashHandler implements Thread.UncaughtExceptionHandler {
-    static final String TAG = CrashHandler.class.getSimpleName();
     static final String PATH = Environment.getExternalStorageDirectory().getPath() + "/Android/data/";
     static final String FILE_NAME = "crash";
     static final String FILE_NAME_SUFFIX = ".trace";
@@ -61,7 +59,7 @@ public class CrashHandler implements Thread.UncaughtExceptionHandler {
         File dir = new File(PATH);
         if (!dir.exists()) {
             if (!dir.mkdirs()) {
-                Log.e(TAG, "create " + PATH + " fail");
+                Logger.e("create " + PATH + " fail");
                 return;
             }
         }
@@ -81,7 +79,7 @@ public class CrashHandler implements Thread.UncaughtExceptionHandler {
 
             pw.close();
         } catch (Exception e) {
-            Log.e(TAG, "dump crash info failed");
+            Logger.e("dump crash info failed " + e.getMessage());
         }
     }
 

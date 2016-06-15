@@ -18,17 +18,16 @@ import android.widget.TextView;
 import com.bumptech.glide.request.animation.GlideAnimation;
 import com.bumptech.glide.request.target.SimpleTarget;
 import com.mikepenz.iconics.IconicsDrawable;
-import com.orhanobut.logger.Logger;
 import com.xuie.androiddemo.App;
 import com.xuie.androiddemo.R;
 import com.xuie.androiddemo.bean.dribbble.Shot;
 import com.xuie.androiddemo.bean.dribbble.User;
 import com.xuie.androiddemo.model.ImageModelImpl;
 import com.xuie.androiddemo.presenter.ShotsPresenter;
+import com.xuie.androiddemo.util.PreferenceUtils;
 import com.xuie.androiddemo.util.ScreenUtils;
-import com.xuie.androiddemo.util.SpUtils;
-import com.xuie.androiddemo.view.fragment.IView.IShotsFragment;
 import com.xuie.androiddemo.view.activity.ShotActivity;
+import com.xuie.androiddemo.view.fragment.IView.IShotsFragment;
 import com.xuie.androiddemo.widget.CircleImageView;
 
 import java.util.ArrayList;
@@ -98,13 +97,11 @@ public class ShotsFragment extends BaseFragment<ShotsFragment, ShotsPresenter> i
     }
 
     @Override public void uploadUserInfo(User user) {
-        Logger.d("uploadUserInfo: xujie .!!!!!!!!!!!!!!!!!!!!!!");
-//        ((MainActivity) getActivity()).loadUerInfo(user);
     }
 
     @Override public void onResume() {
         super.onResume();
-        int position = (int) SpUtils.getParam(getActivity(), "current_position", -1);
+        int position = PreferenceUtils.getPrefInt(getActivity(), "current_position", -1);
         if (mShotAdapter != null && mShotAdapter.dataList != null && position != -1) {
             mShotAdapter.notifyDataSetChanged();
             mRecyclerView.scrollToPosition(position);
@@ -114,19 +111,10 @@ public class ShotsFragment extends BaseFragment<ShotsFragment, ShotsPresenter> i
     public class ShotAdapter extends RecyclerView.Adapter<ShotAdapter.ViewHolder> {
         private static final int TYPE_ITEM = 0;
         private static final int TYPE_FOOTER = 1;
-        //上拉加载更多
-        public static final int PULLUP_LOAD_MORE = 0;
-        //正在加载中
-        public static final int LOADING_MORE = 1;
-        //上拉加载更多状态-默认为0
-        private int load_more_status = 0;
 
         public List<Shot> dataList;
-
         private int pre_page = 1;
-
         private Activity activity;
-
 
         public ShotAdapter(List<Shot> dataList, Activity activity) {
             this.dataList = new ArrayList<>();
@@ -201,16 +189,6 @@ public class ShotsFragment extends BaseFragment<ShotsFragment, ShotsPresenter> i
                     Intent intent = new Intent(activity, ShotActivity.class);
                     intent.putExtra("position", position);
                     activity.startActivity(intent);
-                /*
-                想了半天，还是觉得不要这个动画...
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                    ActivityOptions options = ActivityOptions
-                            .makeSceneTransitionAnimation(activity, holder.shotImage, "shotImage");
-                    activity.startActivity(intent, options.toBundle());
-                } else {
-                    activity.startActivity(intent);
-                }
-                */
                 });
 
             }
@@ -220,9 +198,7 @@ public class ShotsFragment extends BaseFragment<ShotsFragment, ShotsPresenter> i
             return dataList.size() == 0 ? 0 : dataList.size() + 1;
         }
 
-
         public void addMoreData(List<Shot> datas, int current_page) {
-
             if (current_page == pre_page) {
                 dataList = datas;
             } else {
@@ -230,17 +206,6 @@ public class ShotsFragment extends BaseFragment<ShotsFragment, ShotsPresenter> i
             }
 
             notifyDataSetChanged();
-        }
-        public void changeMoreStatus(int status) {
-            load_more_status = status;
-            notifyDataSetChanged();
-        }
-
-        public List<Shot> removeDuplicateDataInOrder(List<Shot> newList, List<Shot> oldList) {
-            for (int i = 0; i < 10; i++) {
-                oldList.add(i, newList.get(i));
-            }
-            return oldList;
         }
 
         class ViewHolder extends RecyclerView.ViewHolder {

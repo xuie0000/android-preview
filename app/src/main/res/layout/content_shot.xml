@@ -5,14 +5,13 @@
     <data>
         <variable
             name="shot"
-            type="com.xuie.androiddemo.bean.Shot" />
+            type="com.xuie.androiddemo.bean.dribbble.Shot" />
     </data>
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fitsSystemWindows="true">
-
 
         <ProgressBar
             android:id="@+id/fragment_progressBar"
@@ -48,6 +47,4 @@
             android:layout_alignParentBottom="true"
             bind:shot="@{shot}" />
     </RelativeLayout>
-
-
 </layout>

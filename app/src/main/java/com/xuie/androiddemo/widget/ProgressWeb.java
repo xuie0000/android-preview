@@ -19,13 +19,7 @@ public class ProgressWeb extends SwipeRefreshLayout {
 
     public void initWebView() {
         setWebChromeClient(new ProgressWebChromeClient(this));
-        setOnRefreshListener(new OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-            mWebView.loadUrl(mWebView.getUrl());
-            }
-        });
-
+        setOnRefreshListener(() -> mWebView.loadUrl(mWebView.getUrl()));
     }
 
     public WebView getWebView() {

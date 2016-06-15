@@ -7,12 +7,12 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import com.orhanobut.logger.Logger;
 import com.xuie.androiddemo.R;
 import com.xuie.androiddemo.widget.IndicatorView;
 
@@ -24,8 +24,6 @@ import butterknife.ButterKnife;
  * http://blog.csdn.net/jxxfzgy/article/details/43813275
  */
 public class ViewPagerIndicatorFragment extends Fragment {
-    final static String TAG = ViewPagerIndicatorFragment.class.getSimpleName();
-
     @BindView(R.id.id_view_pager) ViewPager viewPager;
     @BindView(R.id.id_indicator) IndicatorView indicator;
 
@@ -33,7 +31,7 @@ public class ViewPagerIndicatorFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_view_pager_indicator, container, false);
         ButterKnife.bind(this, view);
 
-        Log.d(TAG, "onCreateView");
+        Logger.d("onCreateView");
         viewPager.setAdapter(new MyPagerAdapter(getChildFragmentManager()));
         indicator.setViewPager(viewPager);
         return view;

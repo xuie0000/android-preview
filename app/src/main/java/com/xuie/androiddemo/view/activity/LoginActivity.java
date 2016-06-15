@@ -75,6 +75,7 @@ public class LoginActivity extends BaseActivity<LoginActivity, LoginPresenter> i
                 }
             }
         });
+        Logger.d(OAuthUrl.getOAuthLoginUrl(getString(R.string.Client_ID)));
         webView.loadUrl(OAuthUrl.getOAuthLoginUrl(getString(R.string.Client_ID)));
     }
 

@@ -11,7 +11,7 @@ import com.xuie.androiddemo.R;
 import com.xuie.androiddemo.bean.dribbble.Shot;
 import com.xuie.androiddemo.bean.dribbble.User;
 import com.xuie.androiddemo.presenter.ShotPresenter;
-import com.xuie.androiddemo.util.SpUtils;
+import com.xuie.androiddemo.util.PreferenceUtils;
 import com.xuie.androiddemo.view.activity.IView.IShotActivity;
 import com.xuie.androiddemo.view.adapter.ViewPagerAdapter;
 
@@ -44,7 +44,7 @@ public class ShotActivity extends BaseActivity<ShotActivity, ShotPresenter> impl
 
     @Override protected void onPause() {
         super.onPause();
-        SpUtils.setParam(this, "current_position", currentPosition);
+        PreferenceUtils.setPref(this, "current_position", currentPosition);
     }
 
     @Override protected void attachBaseContext(Context newBase) {
