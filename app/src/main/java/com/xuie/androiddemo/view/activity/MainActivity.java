@@ -42,22 +42,22 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class MainActivity extends BaseActivity<MainActivity, MainPresenter> implements IMainActivity {
-    public static final int REQUEST_CODE = 1;
-    public final String KEY_FRAGMENT = "currentFragment";
+    private static final int REQUEST_CODE = 1;
+    private final String KEY_FRAGMENT = "currentFragment";
 
-    int mDayNightMode = AppCompatDelegate.MODE_NIGHT_AUTO;
-    ShareActionProvider shareActionProvider;
+    private int mDayNightMode = AppCompatDelegate.MODE_NIGHT_AUTO;
+    private ShareActionProvider shareActionProvider;
 
-    int currentFragmentId = -1;
+    private int currentFragmentId = -1;
 
-    @BindView(R.id.toolbar) Toolbar toolbar;
-    @BindView(R.id.nav_view) NavigationView navView;
-    @BindView(R.id.drawer_layout) DrawerLayout drawerLayout;
-    @BindView(R.id.fab) FloatingActionButton fab;
+    @BindView(R.id.toolbar) private Toolbar toolbar;
+    @BindView(R.id.nav_view) private NavigationView navView;
+    @BindView(R.id.drawer_layout) private DrawerLayout drawerLayout;
+    @BindView(R.id.fab) private FloatingActionButton fab;
 
-    ImageView userAvatar;
-    TextView userName;
-    TextView userDescribe;
+    private ImageView userAvatar;
+    private TextView userName;
+    private TextView userDescribe;
 
     @Override public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
