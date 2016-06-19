@@ -6,6 +6,7 @@ import android.animation.AnimatorListenerAdapter;
 import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.util.Pair;
@@ -17,6 +18,7 @@ import android.view.animation.AccelerateDecelerateInterpolator;
 import android.view.animation.AccelerateInterpolator;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 
 import com.orhanobut.logger.Logger;
 import com.xuie.androiddemo.R;
@@ -25,7 +27,6 @@ import com.xuie.androiddemo.view.activity.ShowActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -37,6 +38,11 @@ public class TransitionsFragment extends Fragment {
     @BindView(R.id.cir_reveal_dst) ImageView cirRevealDst;
     @BindView(R.id.cir_reveal_hypot) ImageView cirRevealHypot;
     @BindView(R.id.cir_reveal_normal) ImageView cirRevealNormal;
+    @BindView(R.id.explode) Button explode;
+    @BindView(R.id.slide) Button slide;
+    @BindView(R.id.fade) Button fade;
+    @BindView(R.id.cir_reveal_btn) Button cirRevealBtn;
+    @BindView(R.id.fragment_id) LinearLayout fragmentId;
 
     @Override public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_transitions, container, false);
@@ -44,110 +50,100 @@ public class TransitionsFragment extends Fragment {
         return view;
     }
 
-    @OnClick({R.id.make_scene_transition_animation, R.id.fab_button,
-            R.id.explode, R.id.slide, R.id.fade, R.id.over_shoot,
-            R.id.cir_reveal_btn, R.id.cir_reveal_normal, R.id.cir_reveal_hypot})
-    void onClick(View view) {
-        Intent intent;
-        ActivityOptions options;
-        switch (view.getId()) {
-            case R.id.make_scene_transition_animation:
-                Logger.d("make_scene_transition_animation");
-                intent = new Intent(getActivity(), ShowActivity.class);
-                options = ActivityOptions.makeSceneTransitionAnimation(getActivity(), makeSceneTransitionAnimation, "share01");
+    @Override public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
 
-                ActivityCompat.startActivity(getActivity(), intent, options.toBundle());
-                break;
-            case R.id.fab_button:
-                Logger.d("fab_button");
-                intent = new Intent(getActivity(), ShowActivity.class);
-                options = ActivityOptions.makeSceneTransitionAnimation(getActivity(),
-                        // 创建多个共享元素
-                        Pair.create((View) makeSceneTransitionAnimation, "share01"),
-                        Pair.create((View) fabButton, "share02")
-                );
+        makeSceneTransitionAnimation.setOnClickListener(v -> {
+            Intent intent = new Intent(getActivity(), ShowActivity.class);
+            ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(getActivity(), makeSceneTransitionAnimation, "share01");
+            ActivityCompat.startActivity(getActivity(), intent, options.toBundle());
+        });
 
-                ActivityCompat.startActivity(getActivity(), intent, options.toBundle());
-                break;
-            case R.id.explode:
-                Logger.d("explode");
-                makeSceneTransitionAnimationNoParameter(0);
-                break;
-            case R.id.slide:
-                Logger.d("slide");
-                makeSceneTransitionAnimationNoParameter(1);
-                break;
-            case R.id.fade:
-                Logger.d("fade");
-                makeSceneTransitionAnimationNoParameter(2);
-                break;
-            case R.id.over_shoot:
-                Logger.d("over_shoot");
-                intent = new Intent(getActivity(), Show2Activity.class);
-                options = ActivityOptions.makeSceneTransitionAnimation(getActivity(),
-                        overShoot, "shareOverShoot");
-                ActivityCompat.startActivity(getActivity(), intent, options.toBundle());
-                break;
-            case R.id.cir_reveal_btn:
-                // http://blog.jobbole.com/77015/ 圆形显示
-                if (cirRevealDst.getVisibility() != View.VISIBLE) {
-                    Animator anim = ViewAnimationUtils.createCircularReveal(
-                            cirRevealDst,
-                            cirRevealDst.getWidth() / 2,
-                            cirRevealDst.getHeight() / 2,
-                            0,
-                            Math.max(cirRevealDst.getWidth(), cirRevealDst.getHeight()));
+        fabButton.setOnClickListener(v -> {
+            Logger.d("fab_button");
+            Intent intent = new Intent(getActivity(), ShowActivity.class);
+            ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(getActivity(),
+                    // 创建多个共享元素
+                    Pair.create((View) makeSceneTransitionAnimation, "share01"),
+                    Pair.create((View) fabButton, "share02")
+            );
 
-//                    anim.setDuration(1000);
-                    anim.addListener(new AnimatorListenerAdapter() {
-                        @Override
-                        public void onAnimationStart(Animator animation) {
-                            super.onAnimationStart(animation);
-                            cirRevealDst.setVisibility(View.VISIBLE);
-                        }
-                    });
+            ActivityCompat.startActivity(getActivity(), intent, options.toBundle());
+        });
 
-                    anim.start();
-                } else {
-                    Animator anim = ViewAnimationUtils.createCircularReveal(
-                            cirRevealDst,
-                            cirRevealDst.getWidth() / 2,
-                            cirRevealDst.getHeight() / 2,
-                            Math.max(cirRevealDst.getWidth(), cirRevealDst.getHeight()),
-                            0);
+        explode.setOnClickListener(v -> makeSceneTransitionAnimationNoParameter(0));
+        slide.setOnClickListener(v -> makeSceneTransitionAnimationNoParameter(1));
+        fade.setOnClickListener(v -> makeSceneTransitionAnimationNoParameter(2));
 
-//                    anim.setDuration(1000);
-                    anim.addListener(new AnimatorListenerAdapter() {
-                        @Override
-                        public void onAnimationEnd(Animator animation) {
-                            super.onAnimationEnd(animation);
-                            cirRevealDst.setVisibility(View.INVISIBLE);
-                        }
-                    });
+        overShoot.setOnClickListener(v -> {
+            Logger.d("over_shoot");
+            Intent intent = new Intent(getActivity(), Show2Activity.class);
+            ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(getActivity(), overShoot, "shareOverShoot");
+            ActivityCompat.startActivity(getActivity(), intent, options.toBundle());
+        });
 
-                    anim.start();
-                }
-                break;
-            case R.id.cir_reveal_normal:
-                Animator mNormalAnimator = ViewAnimationUtils.createCircularReveal(
-                        cirRevealNormal,
-                        cirRevealNormal.getWidth() / 2,
-                        cirRevealNormal.getHeight() / 2,
+
+        cirRevealBtn.setOnClickListener(v -> {
+            // http://blog.jobbole.com/77015/ 圆形显示
+            if (cirRevealDst.getVisibility() != View.VISIBLE) {
+                Animator anim = ViewAnimationUtils.createCircularReveal(
+                        cirRevealDst,
+                        cirRevealDst.getWidth() / 2,
+                        cirRevealDst.getHeight() / 2,
                         0,
-                        Math.max(cirRevealNormal.getWidth(), cirRevealNormal.getHeight()));
-//                mNormalAnimator.setDuration(2000);
-                mNormalAnimator.setInterpolator(new AccelerateInterpolator());
-                mNormalAnimator.start();
-                break;
-            case R.id.cir_reveal_hypot:
-                float endRadius = (float) Math.hypot(cirRevealHypot.getWidth(),
-                        cirRevealHypot.getHeight());//勾股定理得到斜边长度
-                Animator mHypotAnimator = ViewAnimationUtils.createCircularReveal(cirRevealHypot,
-                        cirRevealHypot.getWidth(), 0, 0, endRadius);
-                mHypotAnimator.setInterpolator(new AccelerateDecelerateInterpolator());
-                mHypotAnimator.start();
-                break;
-        }
+                        Math.max(cirRevealDst.getWidth(), cirRevealDst.getHeight()));
+
+//                    anim.setDuration(1000);
+                anim.addListener(new AnimatorListenerAdapter() {
+                    @Override
+                    public void onAnimationStart(Animator animation) {
+                        super.onAnimationStart(animation);
+                        cirRevealDst.setVisibility(View.VISIBLE);
+                    }
+                });
+
+                anim.start();
+            } else {
+                Animator anim = ViewAnimationUtils.createCircularReveal(
+                        cirRevealDst,
+                        cirRevealDst.getWidth() / 2,
+                        cirRevealDst.getHeight() / 2,
+                        Math.max(cirRevealDst.getWidth(), cirRevealDst.getHeight()),
+                        0);
+
+//                    anim.setDuration(1000);
+                anim.addListener(new AnimatorListenerAdapter() {
+                    @Override
+                    public void onAnimationEnd(Animator animation) {
+                        super.onAnimationEnd(animation);
+                        cirRevealDst.setVisibility(View.INVISIBLE);
+                    }
+                });
+
+                anim.start();
+            }
+        });
+
+        cirRevealNormal.setOnClickListener(v -> {
+            Animator mNormalAnimator = ViewAnimationUtils.createCircularReveal(
+                    cirRevealNormal,
+                    cirRevealNormal.getWidth() / 2,
+                    cirRevealNormal.getHeight() / 2,
+                    0,
+                    Math.max(cirRevealNormal.getWidth(), cirRevealNormal.getHeight()));
+//            mNormalAnimator.setDuration(2000);
+            mNormalAnimator.setInterpolator(new AccelerateInterpolator());
+            mNormalAnimator.start();
+        });
+
+        cirRevealHypot.setOnClickListener(v -> {
+            float endRadius = (float) Math.hypot(cirRevealHypot.getWidth(),
+                    cirRevealHypot.getHeight());//勾股定理得到斜边长度
+            Animator mHypotAnimator = ViewAnimationUtils.createCircularReveal(cirRevealHypot,
+                    cirRevealHypot.getWidth(), 0, 0, endRadius);
+            mHypotAnimator.setInterpolator(new AccelerateDecelerateInterpolator());
+            mHypotAnimator.start();
+        });
     }
 
     private void makeSceneTransitionAnimationNoParameter(int flag) {
