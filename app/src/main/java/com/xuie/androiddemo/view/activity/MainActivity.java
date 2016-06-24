@@ -31,6 +31,7 @@ import com.umeng.update.UmengUpdateAgent;
 import com.xuie.androiddemo.R;
 import com.xuie.androiddemo.bean.dribbble.User;
 import com.xuie.androiddemo.presenter.MainPresenter;
+import com.xuie.androiddemo.util.PreferenceUtils;
 import com.xuie.androiddemo.view.activity.IView.IMainActivity;
 import com.xuie.androiddemo.view.fragment.PersonFragment;
 import com.xuie.androiddemo.widget.BottomSheetDialogView;
@@ -45,15 +46,15 @@ public class MainActivity extends BaseActivity<MainActivity, MainPresenter> impl
     private static final int REQUEST_CODE = 1;
     private final String KEY_FRAGMENT = "currentFragment";
 
-    private int mDayNightMode = AppCompatDelegate.MODE_NIGHT_AUTO;
+    private int mDayNightMode;
     private ShareActionProvider shareActionProvider;
 
     private int currentFragmentId = -1;
 
-    @BindView(R.id.toolbar) private Toolbar toolbar;
-    @BindView(R.id.nav_view) private NavigationView navView;
-    @BindView(R.id.drawer_layout) private DrawerLayout drawerLayout;
-    @BindView(R.id.fab) private FloatingActionButton fab;
+    @BindView(R.id.toolbar) Toolbar toolbar;
+    @BindView(R.id.nav_view) NavigationView navView;
+    @BindView(R.id.drawer_layout) DrawerLayout drawerLayout;
+    @BindView(R.id.fab) FloatingActionButton fab;
 
     private ImageView userAvatar;
     private TextView userName;
@@ -87,18 +88,16 @@ public class MainActivity extends BaseActivity<MainActivity, MainPresenter> impl
         userAvatar = ButterKnife.findById(navView.getHeaderView(0), R.id.nav_header_img);
         userName = ButterKnife.findById(navView.getHeaderView(0), R.id.nav_header_name);
         userDescribe = ButterKnife.findById(navView.getHeaderView(0), R.id.nav_header_describe);
-        //头像登录
         userAvatar.setOnClickListener(v -> {
-            Logger.d("userAvatar onClick");
             if (getPresenter().getCurrentUser() == null)
                 startActivityForResult(new Intent(MainActivity.this, LoginActivity.class), REQUEST_CODE);
-                //不关闭抽屉，便于登陆后直观看到效果
                 // mDrawerLayout.closeDrawers();
             else {
-                //如果已经登陆，就打开个人主页
                 switchFragment(PersonFragment.class.getName(), PersonFragment.class.getSimpleName());
             }
         });
+
+        mDayNightMode = PreferenceUtils.getPrefInt(this, "mode", AppCompatDelegate.MODE_NIGHT_NO);
 
         printVersion();
     }
@@ -176,12 +175,11 @@ public class MainActivity extends BaseActivity<MainActivity, MainPresenter> impl
         int uiMode = getResources().getConfiguration().uiMode;
         int dayNightUiMode = uiMode & Configuration.UI_MODE_NIGHT_MASK;
 
-        if (dayNightUiMode == Configuration.UI_MODE_NIGHT_NO) {
-            mDayNightMode = AppCompatDelegate.MODE_NIGHT_NO;
-        } else if (dayNightUiMode == Configuration.UI_MODE_NIGHT_YES) {
-            mDayNightMode = AppCompatDelegate.MODE_NIGHT_YES;
-        } else {
-            mDayNightMode = AppCompatDelegate.MODE_NIGHT_AUTO;
+        // enable the save mode
+        int defaultMode = PreferenceUtils.getPrefInt(this, "mode", AppCompatDelegate.MODE_NIGHT_NO);
+        Logger.d(defaultMode + ", " + mDayNightMode + ", " + dayNightUiMode + " .");
+        if (mDayNightMode != defaultMode) {
+            refreshDelegateMode(defaultMode);
         }
     }
 
@@ -199,12 +197,14 @@ public class MainActivity extends BaseActivity<MainActivity, MainPresenter> impl
             Fragment fragment = (Fragment) Class.forName(fragName).newInstance();
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_placeholder, fragment).commit();
         } catch (InstantiationException | IllegalAccessException | ClassNotFoundException e) {
-            e.printStackTrace();
+            Logger.e(e.getMessage());
         }
         toolbar.setTitle(fragTitle);
     }
 
     @Override public void refreshDelegateMode(int mode) {
+        mDayNightMode = mode;
+        PreferenceUtils.setPref(this, "mode", mode);
         getDelegate().setLocalNightMode(mode);
         recreate();
     }

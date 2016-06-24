@@ -5,9 +5,9 @@ import android.content.res.Configuration;
 import android.graphics.drawable.Animatable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
-import android.support.v7.app.AppCompatDelegate;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,7 +24,6 @@ import com.xuie.androiddemo.widget.SectorProgressView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -50,25 +49,14 @@ public class TestFragment extends Fragment {
         return view;
     }
 
-    @OnClick({R.id.circle_progress_1, R.id.circle_progress_2, R.id.crpv, R.id.spv, R.id.shake_view})
-    void onClick(View view) {
-        switch (view.getId()) {
-            case R.id.circle_progress_1:
-                circleProgress1.start();
-                break;
-            case R.id.circle_progress_2:
-                circleProgress2.start(30, 90, 1000);
-                break;
-            case R.id.crpv:
-                crpvAnimation();
-                break;
-            case R.id.spv:
-                spvAnimation();
-                break;
-            case R.id.shake_view:
-                shakeView.startAnimation(AnimationUtils.loadAnimation(getActivity(), R.anim.shake));
-                break;
-        }
+    @Override public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        circleProgress1.setOnClickListener(v -> circleProgress1.start());
+        circleProgress2.setOnClickListener(v -> circleProgress2.start(30, 90, 1000));
+        crpv.setOnClickListener(v -> crpvAnimation());
+        spv.setOnClickListener(v -> spvAnimation());
+        shakeView.setOnClickListener(v -> shakeView.startAnimation(AnimationUtils.loadAnimation(getActivity(), R.anim.shake)));
     }
 
     @Override public void onResume() {
@@ -81,15 +69,11 @@ public class TestFragment extends Fragment {
         int uiMode = getResources().getConfiguration().uiMode;
         int dayNightUiMode = uiMode & Configuration.UI_MODE_NIGHT_MASK;
 
-        int mDayNightMode = AppCompatDelegate.MODE_NIGHT_AUTO;
         if (dayNightUiMode == Configuration.UI_MODE_NIGHT_NO) {
-            mDayNightMode = AppCompatDelegate.MODE_NIGHT_NO;
             statusTextView.setText(R.string.text_for_day_night_mode_night_no);
         } else if (dayNightUiMode == Configuration.UI_MODE_NIGHT_YES) {
-            mDayNightMode = AppCompatDelegate.MODE_NIGHT_YES;
             statusTextView.setText(R.string.text_for_day_night_mode_night_yes);
         } else {
-            mDayNightMode = AppCompatDelegate.MODE_NIGHT_AUTO;
             statusTextView.setText(R.string.text_for_day_night_mode_night_auto);
         }
     }
