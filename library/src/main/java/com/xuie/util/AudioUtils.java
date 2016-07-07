@@ -60,8 +60,15 @@ public class AudioUtils {
         return false;
     }
 
+
     public static void setMute(Context context) {
-        AudioManager audioManager = getAudioManager(context);
-        audioManager.setStreamMute(AudioManager.STREAM_MUSIC, !isMute(context));
+        setMute(context, !isMute(context));
+    }
+
+    public static void setMute(Context context, boolean isMute) {
+        if (isMute(context) != isMute) {
+            AudioManager audioManager = getAudioManager(context.getApplicationContext());
+            audioManager.setStreamMute(AudioManager.STREAM_MUSIC, isMute);
+        }
     }
 }
