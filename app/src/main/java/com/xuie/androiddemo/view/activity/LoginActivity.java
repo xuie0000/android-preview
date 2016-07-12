@@ -27,7 +27,7 @@ public class LoginActivity extends BaseActivity<LoginActivity, LoginPresenter> i
     @BindView(R.id.toolbar) Toolbar mToolbar;
     @BindView(R.id.webView) ProgressWeb webView;
 
-    LoginPresenter mLoginPresenter;
+    private LoginPresenter mLoginPresenter;
 
     @Override public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
