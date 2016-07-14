@@ -13,10 +13,6 @@
         android:icon="@mipmap/ic_invert_colors"
         android:title="@string/recyclerview"/>
     <item
-        android:id="@+id/nav_indicator"
-        android:icon="@mipmap/ic_invert_colors"
-        android:title="@string/indicator"/>
-    <item
         android:id="@+id/nav_transitions"
         android:icon="@mipmap/ic_invert_colors"
         android:title="@string/transitions"/>

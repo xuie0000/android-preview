@@ -24,7 +24,6 @@ import com.xuie.androiddemo.ui.fragment.RecyclerViewFragment;
 import com.xuie.androiddemo.ui.fragment.shots.ShotsFragment;
 import com.xuie.androiddemo.ui.fragment.TestFragment;
 import com.xuie.androiddemo.ui.fragment.TransitionsFragment;
-import com.xuie.androiddemo.ui.fragment.ViewPagerIndicatorFragment;
 
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
@@ -57,9 +56,6 @@ public class MainPresenter extends BasePresenter<MainActivity> {
                 break;
             case R.id.nav_animation:
                 getView().switchFragment(AnimationFragment.class.getName(), getString(R.string.animation));
-                break;
-            case R.id.nav_indicator:
-                getView().switchFragment(ViewPagerIndicatorFragment.class.getName(), getString(R.string.indicator));
                 break;
         }
     }
