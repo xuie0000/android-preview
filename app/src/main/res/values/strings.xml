@@ -23,10 +23,10 @@
     <string name="app_derect_share">直接分享</string>
     <string name="test">测试页面</string>
     <string name="new_frame">图片</string>
-    <string name="recyclerview">RecyclerView示例</string>
-    <string name="indicator">ViewPager指示器</string>
-    <string name="transitions">5.0动画</string>
+    <string name="recycler_view">RecyclerView</string>
+    <string name="transitions">5.+动画</string>
     <string name="animation">动画</string>
+    <string name="palette">Palette</string>
     <string name="contentDescription">contentDescription</string>
 
     <string name="action_day_night_yes">Night Mode</string>

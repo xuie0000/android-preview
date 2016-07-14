@@ -30,12 +30,13 @@ import com.umeng.analytics.MobclickAgent;
 import com.umeng.update.UmengUpdateAgent;
 import com.xuie.androiddemo.R;
 import com.xuie.androiddemo.bean.dribbble.User;
-import com.xuie.androiddemo.ui.activity.main.presenter.MainPresenter;
 import com.xuie.androiddemo.ui.activity.BaseActivity;
-import com.xuie.androiddemo.ui.activity.weather.WeatherActivity;
+import com.xuie.androiddemo.ui.activity.PaletteActivity;
 import com.xuie.androiddemo.ui.activity.login.LoginActivity;
-import com.xuie.androiddemo.util.PreferenceUtils;
+import com.xuie.androiddemo.ui.activity.main.presenter.MainPresenter;
+import com.xuie.androiddemo.ui.activity.weather.WeatherActivity;
 import com.xuie.androiddemo.ui.fragment.person.PersonFragment;
+import com.xuie.androiddemo.util.PreferenceUtils;
 import com.xuie.androiddemo.widget.BottomSheetDialogView;
 import com.xuie.util.BitmapUtils;
 
@@ -223,6 +224,10 @@ public class MainActivity extends BaseActivity<MainActivity, MainPresenter> impl
 
     @Override public void startWeather() {
         startActivity(new Intent(this, WeatherActivity.class));
+    }
+
+    @Override public void startPalette() {
+        startActivity(new Intent(this, PaletteActivity.class));
     }
 
 }

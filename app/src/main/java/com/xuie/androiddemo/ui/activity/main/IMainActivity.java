@@ -11,4 +11,5 @@ public interface IMainActivity {
     void showBottomSheetDialog();
     void loadUerInfo(User user);
     void startWeather();
+    void startPalette();
 }

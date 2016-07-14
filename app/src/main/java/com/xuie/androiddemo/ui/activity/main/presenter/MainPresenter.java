@@ -15,15 +15,15 @@ import com.xuie.androiddemo.model.IModel.UserModel;
 import com.xuie.androiddemo.model.ImageModelImpl;
 import com.xuie.androiddemo.model.UserModelImpl;
 import com.xuie.androiddemo.presenter.BasePresenter;
-import com.xuie.androiddemo.util.Utils;
-import com.xuie.androiddemo.util.ToastUtils;
-import com.xuie.androiddemo.util.UserUtils;
 import com.xuie.androiddemo.ui.activity.main.MainActivity;
 import com.xuie.androiddemo.ui.fragment.AnimationFragment;
 import com.xuie.androiddemo.ui.fragment.RecyclerViewFragment;
-import com.xuie.androiddemo.ui.fragment.shots.ShotsFragment;
 import com.xuie.androiddemo.ui.fragment.TestFragment;
 import com.xuie.androiddemo.ui.fragment.TransitionsFragment;
+import com.xuie.androiddemo.ui.fragment.shots.ShotsFragment;
+import com.xuie.androiddemo.util.ToastUtils;
+import com.xuie.androiddemo.util.UserUtils;
+import com.xuie.androiddemo.util.Utils;
 
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
@@ -52,10 +52,13 @@ public class MainPresenter extends BasePresenter<MainActivity> {
                 getView().switchFragment(TransitionsFragment.class.getName(), getString(R.string.transitions));
                 break;
             case R.id.nav_recycler_view:
-                getView().switchFragment(RecyclerViewFragment.class.getName(), getString(R.string.recyclerview));
+                getView().switchFragment(RecyclerViewFragment.class.getName(), getString(R.string.recycler_view));
                 break;
             case R.id.nav_animation:
                 getView().switchFragment(AnimationFragment.class.getName(), getString(R.string.animation));
+                break;
+            case R.id.nav_palette:
+                getView().startPalette();
                 break;
         }
     }
