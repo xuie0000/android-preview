@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:transitionName="share01"
-    tools:context=".view.activity.ShowActivity">
+    tools:context=".ui.activity.ShowActivity">
 
     <RelativeLayout
         android:layout_width="match_parent"

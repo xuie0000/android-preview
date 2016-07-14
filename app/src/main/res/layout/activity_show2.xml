@@ -6,6 +6,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@mipmap/ic_detail_activity_bg"
-    tools:context=".view.activity.Show2Activity">
+    tools:context=".ui.activity.Show2Activity">
 
 </RelativeLayout>
