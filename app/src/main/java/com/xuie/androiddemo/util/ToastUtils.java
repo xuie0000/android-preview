@@ -2,7 +2,7 @@ package com.xuie.androiddemo.util;
 
 import android.widget.Toast;
 
-public class ToastUtil {
+public class ToastUtils {
 
     public static void Toast(String string) {
         Toast(string, Toast.LENGTH_SHORT);

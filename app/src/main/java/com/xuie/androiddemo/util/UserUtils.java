@@ -2,9 +2,9 @@ package com.xuie.androiddemo.util;
 
 import com.xuie.androiddemo.bean.dribbble.User;
 
-public class UserUtil {
+public class UserUtils {
 
-    public final static boolean enqual(User nUser, User mUser) {
+    public static boolean equals(User nUser, User mUser) {
         if (nUser == null || mUser == null) {
             return true;
         }

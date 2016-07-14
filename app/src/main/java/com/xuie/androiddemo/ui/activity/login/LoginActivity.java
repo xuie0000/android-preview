@@ -17,7 +17,7 @@ import com.xuie.androiddemo.OAuthUrl;
 import com.xuie.androiddemo.R;
 import com.xuie.androiddemo.ui.activity.login.presenter.LoginPresenter;
 import com.xuie.androiddemo.ui.activity.BaseActivity;
-import com.xuie.androiddemo.util.ToastUtil;
+import com.xuie.androiddemo.util.ToastUtils;
 import com.xuie.androiddemo.widget.ProgressWeb;
 
 import butterknife.BindView;
@@ -41,7 +41,7 @@ public class LoginActivity extends BaseActivity<LoginActivity, LoginPresenter> i
         setSupportActionBar(mToolbar);
         mToolbar.setNavigationIcon(new IconicsDrawable(this).icon("gmi_arrow_back").sizeDp(16).color(Color.WHITE));
         mToolbar.setNavigationOnClickListener(v -> {
-            ToastUtil.Toast(getString(R.string.login_failed));
+            ToastUtils.Toast(getString(R.string.login_failed));
             setResult(RESULT_CANCELED);
             LoginActivity.this.finish();
         });
@@ -56,7 +56,7 @@ public class LoginActivity extends BaseActivity<LoginActivity, LoginPresenter> i
 
             @Override public void onReceivedSslError(WebView view, SslErrorHandler handler, SslError error) {
                 super.onReceivedSslError(view, handler, error);
-                ToastUtil.Toast("登录失败请稍后重试\n" + error.toString());
+                ToastUtils.Toast("登录失败请稍后重试\n" + error.toString());
             }
 
             @Override public void onPageStarted(WebView view, String url, Bitmap favicon) {
@@ -68,7 +68,7 @@ public class LoginActivity extends BaseActivity<LoginActivity, LoginPresenter> i
                     authCode = uri.getQueryParameter("code");
                     Logger.d("code:" + authCode);
                     //选择动画处理还是直接结束
-                    ToastUtil.Toast("正在登陆,请稍后...");
+                    ToastUtils.Toast("正在登陆,请稍后...");
                     webView.getWebView().setVisibility(View.GONE);
                     webView.setRefreshing(true);
                     mLoginPresenter.getAccessToken(authCode);

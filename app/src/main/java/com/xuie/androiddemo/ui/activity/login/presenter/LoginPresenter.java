@@ -7,7 +7,7 @@ import com.xuie.androiddemo.model.UserModelImpl;
 import com.xuie.androiddemo.model.service.DribbbleAPI;
 import com.xuie.androiddemo.model.service.ServiceGenerator;
 import com.xuie.androiddemo.presenter.BasePresenter;
-import com.xuie.androiddemo.util.SPUtil;
+import com.xuie.androiddemo.util.Utils;
 import com.xuie.androiddemo.ui.activity.login.LoginActivity;
 
 import rx.android.schedulers.AndroidSchedulers;
@@ -27,7 +27,7 @@ public class LoginPresenter extends BasePresenter<LoginActivity> {
         userModel.Login2GetAccessToken(authCode)
                 .flatMap(s -> {
                     accessToken = s;
-                    SPUtil.putAccesToken(App.getContext(), s);
+                    Utils.putAccessToken(App.getContext(), s);
                     return userModel.getUseWithAccessToken(s);
                 })
                 .subscribeOn(Schedulers.newThread())

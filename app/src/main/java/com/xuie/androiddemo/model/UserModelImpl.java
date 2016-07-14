@@ -7,7 +7,7 @@ import com.xuie.androiddemo.bean.dribbble.User;
 import com.xuie.androiddemo.model.IModel.UserModel;
 import com.xuie.androiddemo.model.service.DribbbleAPI;
 import com.xuie.androiddemo.model.service.ServiceGenerator;
-import com.xuie.androiddemo.util.SPUtil;
+import com.xuie.androiddemo.util.Utils;
 
 import io.realm.Realm;
 import rx.Observable;
@@ -30,8 +30,8 @@ public class UserModelImpl implements UserModel {
     }
 
     @Override public Observable<User> getCurrentUser() {
-        final String accessToken = SPUtil.getAccessToken(App.getContext());
-        if (!accessToken.equals(SPUtil.NOACESSTOKEN)) {
+        final String accessToken = Utils.getAccessToken(App.getContext());
+        if (!accessToken.equals(Utils.NOACESSTOKEN)) {
             return queryUserFromRealm(accessToken);
         }
 
@@ -39,8 +39,8 @@ public class UserModelImpl implements UserModel {
     }
 
     @Override public Observable deleteCurrentUser() {
-        final String accessToken = SPUtil.getAccessToken(App.getContext());
-        if (!accessToken.equals(SPUtil.NOACESSTOKEN)) {
+        final String accessToken = Utils.getAccessToken(App.getContext());
+        if (!accessToken.equals(Utils.NOACESSTOKEN)) {
             return queryUserFromRealm(accessToken)
                     .map(user -> {
                         Realm realm = Realm.getDefaultInstance();

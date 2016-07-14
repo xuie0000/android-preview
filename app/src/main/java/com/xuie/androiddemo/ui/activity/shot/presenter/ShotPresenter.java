@@ -15,9 +15,9 @@ import com.xuie.androiddemo.model.ImageModelImpl;
 import com.xuie.androiddemo.model.ShotModelImpl;
 import com.xuie.androiddemo.model.UserModelImpl;
 import com.xuie.androiddemo.presenter.BasePresenter;
-import com.xuie.androiddemo.util.SPUtil;
-import com.xuie.androiddemo.util.ToastUtil;
-import com.xuie.androiddemo.util.UserUtil;
+import com.xuie.androiddemo.util.Utils;
+import com.xuie.androiddemo.util.ToastUtils;
+import com.xuie.androiddemo.util.UserUtils;
 import com.xuie.androiddemo.ui.activity.shot.ShotActivity;
 import com.xuie.androiddemo.widget.CircleImageView;
 
@@ -61,7 +61,7 @@ public class ShotPresenter extends BasePresenter<ShotActivity> {
                 .subscribe(shots -> {
                     closeProgress();
                     if (mShot != null && (mShot.getId().equals(shots.get(0).getId()) && isShow)) {
-                        ToastUtil.Toast("已经是最新的数据了");
+                        ToastUtils.Toast("已经是最新的数据了");
                     } else if (mShot != null && (!(mShot.getId().equals(shots.get(0).getId())) && isShow)) {
                         shotModel.clearShotsToRealm();
                         shotModel.saveShotsToRealm(shots);
@@ -80,7 +80,7 @@ public class ShotPresenter extends BasePresenter<ShotActivity> {
                     }
                 }, throwable -> {
                     closeProgress();
-                    ToastUtil.Toast("网络刷新出现了错误");
+                    ToastUtils.Toast("网络刷新出现了错误");
                     Logger.e(throwable.getMessage());
                 });
     }
@@ -95,11 +95,11 @@ public class ShotPresenter extends BasePresenter<ShotActivity> {
     }
 
     public void updateUserInfo() {
-        userModel.getUseWithAccessToken(SPUtil.getAccessToken(App.getContext()))
+        userModel.getUseWithAccessToken(Utils.getAccessToken(App.getContext()))
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
                 .map(user -> {
-                    if (!UserUtil.enqual(user, mCurrentUser)) {
+                    if (!UserUtils.equals(user, mCurrentUser)) {
                         user.setAccessToken(mCurrentUser.getAccessToken());
                         Logger.d("更新USER数据成功");
                         userModel.saveUserToRealm(user);
@@ -136,10 +136,10 @@ public class ShotPresenter extends BasePresenter<ShotActivity> {
                         getView().uploadUserInfo(mCurrentUser);
                         //从网络更新用户消息
                         updateUserInfo();
-                    } else ToastUtil.Toast("你还没登录哟\n登陆后会更加精彩哟");
+                    } else ToastUtils.Toast("你还没登录哟\n登陆后会更加精彩哟");
                 }, throwable -> {
                     Logger.e(throwable.getMessage());
-                    ToastUtil.Toast("出现了不可预计的错误...");
+                    ToastUtils.Toast("出现了不可预计的错误...");
                 });
     }
 
