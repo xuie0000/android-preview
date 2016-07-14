@@ -22,8 +22,8 @@ import android.widget.LinearLayout;
 
 import com.orhanobut.logger.Logger;
 import com.xuie.androiddemo.R;
-import com.xuie.androiddemo.ui.activity.Show2Activity;
-import com.xuie.androiddemo.ui.activity.ShowActivity;
+import com.xuie.androiddemo.ui.activity.TwoActivity;
+import com.xuie.androiddemo.ui.activity.OneActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -54,14 +54,14 @@ public class TransitionsFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         makeSceneTransitionAnimation.setOnClickListener(v -> {
-            Intent intent = new Intent(getActivity(), ShowActivity.class);
+            Intent intent = new Intent(getActivity(), OneActivity.class);
             ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(getActivity(), makeSceneTransitionAnimation, "share01");
             ActivityCompat.startActivity(getActivity(), intent, options.toBundle());
         });
 
         fabButton.setOnClickListener(v -> {
             Logger.d("fab_button");
-            Intent intent = new Intent(getActivity(), ShowActivity.class);
+            Intent intent = new Intent(getActivity(), OneActivity.class);
             ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(getActivity(),
                     // 创建多个共享元素
                     Pair.create((View) makeSceneTransitionAnimation, "share01"),
@@ -77,7 +77,7 @@ public class TransitionsFragment extends Fragment {
 
         overShoot.setOnClickListener(v -> {
             Logger.d("over_shoot");
-            Intent intent = new Intent(getActivity(), Show2Activity.class);
+            Intent intent = new Intent(getActivity(), TwoActivity.class);
             ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(getActivity(), overShoot, "shareOverShoot");
             ActivityCompat.startActivity(getActivity(), intent, options.toBundle());
         });
@@ -147,7 +147,7 @@ public class TransitionsFragment extends Fragment {
     }
 
     private void makeSceneTransitionAnimationNoParameter(int flag) {
-        Intent intent = new Intent(getActivity(), ShowActivity.class);
+        Intent intent = new Intent(getActivity(), OneActivity.class);
         intent.putExtra("flag", flag);
         ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(getActivity());
         ActivityCompat.startActivity(getActivity(), intent, options.toBundle());

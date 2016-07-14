@@ -7,7 +7,7 @@ import android.view.View;
 import com.umeng.analytics.MobclickAgent;
 import com.xuie.androiddemo.R;
 
-public class Show2Activity extends AppCompatActivity {
+public class TwoActivity extends AppCompatActivity {
 
     @Override protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -20,7 +20,7 @@ public class Show2Activity extends AppCompatActivity {
 //                | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
                 ;
         decorView.setSystemUiVisibility(uiOptions);
-        setContentView(R.layout.activity_show2);
+        setContentView(R.layout.activity_two);
     }
 
     @Override protected void onResume() {

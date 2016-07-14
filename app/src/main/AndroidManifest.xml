@@ -31,10 +31,10 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.activity.ShowActivity"
+            android:name=".ui.activity.OneActivity"
             android:theme="@style/AppTheme.DayNight.NoActionBar"/>
         <activity
-            android:name=".ui.activity.Show2Activity"
+            android:name=".ui.activity.TwoActivity"
             android:theme="@style/AppTheme.DayNight.NoActionBar"/>
         <activity
             android:name=".ui.activity.shot.ShotActivity"

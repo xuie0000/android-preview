@@ -16,7 +16,7 @@ import com.xuie.androiddemo.R;
 
 import butterknife.ButterKnife;
 
-public class ShowActivity extends AppCompatActivity {
+public class OneActivity extends AppCompatActivity {
 
     @Override protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,7 +52,7 @@ public class ShowActivity extends AppCompatActivity {
                 break;
         }
 
-        setContentView(R.layout.activity_show);
+        setContentView(R.layout.activity_one);
         ButterKnife.bind(this);
     }
 
