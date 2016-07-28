@@ -1,6 +1,7 @@
 package com.xuie.androiddemo.ui.fragment;
 
 
+import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.animation.PropertyValuesHolder;
 import android.os.Bundle;
@@ -140,12 +141,19 @@ public class AnimationFragment extends Fragment {
 //                rotateAnimation = AnimationUtils.loadAnimation(getActivity(), R.anim.rotate);
                 rotate.startAnimation(rotateAnimation);
             } else {
-                ObjectAnimator rotateAnimator;
-                // "rotation" "rotationX" "rotationY"
-                rotateAnimator = ObjectAnimator.ofFloat(rotate, "rotation", 0, 360);
-//                rotateAnimator = AnimatorInflater.loadAnimator(getActivity(), R.animator.rotate);
-//                rotateAnimator.setTarget(rotate);
-                rotateAnimator.start();
+//                ObjectAnimator rotateAnimator;
+//                // "rotation" "rotationX" "rotationY"
+//                rotateAnimator = ObjectAnimator.ofFloat(rotate, "rotation", 0, 360);
+////                rotateAnimator = AnimatorInflater.loadAnimator(getActivity(), R.animator.rotate);
+////                rotateAnimator.setTarget(rotate);
+//                rotateAnimator.start();
+
+                AnimatorSet rotateSet = new AnimatorSet();
+                rotateSet.playTogether(ObjectAnimator.ofFloat(rotate, "rotation", 0, 15), //
+                        ObjectAnimator.ofFloat(rotate, "pivotX", rotate.getHeight() / 2),//
+                        ObjectAnimator.ofFloat(rotate, "pivotY", rotate.getHeight() / 2)//
+                );
+                rotateSet.setDuration(1000).start();
             }
         });
 
