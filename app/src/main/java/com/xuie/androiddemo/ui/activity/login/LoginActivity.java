@@ -6,7 +6,7 @@ import android.net.Uri;
 import android.net.http.SslError;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
+import android.text.TextUtils;
 import android.webkit.SslErrorHandler;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -15,8 +15,8 @@ import com.mikepenz.iconics.IconicsDrawable;
 import com.orhanobut.logger.Logger;
 import com.xuie.androiddemo.OAuthUrl;
 import com.xuie.androiddemo.R;
-import com.xuie.androiddemo.ui.activity.login.presenter.LoginPresenter;
 import com.xuie.androiddemo.ui.activity.BaseActivity;
+import com.xuie.androiddemo.ui.activity.login.presenter.LoginPresenter;
 import com.xuie.androiddemo.util.ToastUtils;
 import com.xuie.androiddemo.widget.ProgressWeb;
 
@@ -47,6 +47,7 @@ public class LoginActivity extends BaseActivity<LoginActivity, LoginPresenter> i
         });
 
         webView.getWebView().setWebViewClient(new WebViewClient() {
+            private int index = 0;
             String authCode;
 
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
@@ -61,18 +62,30 @@ public class LoginActivity extends BaseActivity<LoginActivity, LoginPresenter> i
 
             @Override public void onPageStarted(WebView view, String url, Bitmap favicon) {
                 super.onPageStarted(view, url, favicon);
-                Logger.d(url);
+//                Logger.d(url);
 
-                if (url.contains("?code") && url.contains(OAuthUrl.OAUTH_STATE)) {
+
+                if (url.contains("http://xuie0000.com/?code=") && index == 0) {
+                    index++;
                     Uri uri = Uri.parse(url);
-                    authCode = uri.getQueryParameter("code");
-                    Logger.d("code:" + authCode);
-                    //选择动画处理还是直接结束
-                    ToastUtils.Toast("正在登陆,请稍后...");
-                    webView.getWebView().setVisibility(View.GONE);
-                    webView.setRefreshing(true);
-                    mLoginPresenter.getAccessToken(authCode);
+                    String code = uri.getQueryParameter("code");
+//                    Logger.d("onPageStarted: " + code);
+                    if (!TextUtils.isEmpty(code)){
+//                        mPresenter.loadToken(code);
+                        mLoginPresenter.getAccessToken(getString(R.string.Client_ID), getString(R.string.Client_Secret), code, "http://xuie0000.com/");
+                    }
                 }
+
+//                if (url.contains("?code") && url.contains(OAuthUrl.OAUTH_STATE)) {
+//                    Uri uri = Uri.parse(url);
+//                    authCode = uri.getQueryParameter("code");
+//                    Logger.d("code:" + authCode);
+//                    //选择动画处理还是直接结束
+//                    ToastUtils.Toast("正在登陆,请稍后...");
+//                    webView.getWebView().setVisibility(View.GONE);
+//                    webView.setRefreshing(true);
+//                    mLoginPresenter.getAccessToken(authCode);
+//                }
             }
         });
         Logger.d(OAuthUrl.getOAuthLoginUrl(getString(R.string.Client_ID)));

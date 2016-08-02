@@ -6,6 +6,8 @@ import com.xuie.androiddemo.bean.dribbble.Shot;
 import com.xuie.androiddemo.bean.dribbble.User;
 
 import retrofit2.http.Body;
+import retrofit2.http.Field;
+import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
@@ -26,6 +28,14 @@ public interface DribbbleAPI {
                                               @Query("per_page") int per_page);
 
     @POST("https://dribbble.com/oauth/token") Observable<AccessToken> getAccessToken(@Body AuthBody body);
+
+    @FormUrlEncoded
+    @POST("https://dribbble.com/oauth/token")
+    Observable<String> getDrToken(@Field("client_id")String client_id,
+                                         @Field("client_secret")String client_secret,
+                                         @Field("code")String code,
+                                         @Field("redirect_uri")String redirect_uri);
+
 
     @GET("user") Observable<User> getUserWithAccessToken(@Query("access_token") String accessToken);
 

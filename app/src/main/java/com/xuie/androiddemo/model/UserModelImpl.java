@@ -73,6 +73,10 @@ public class UserModelImpl implements UserModel {
                 .flatMap(accessToken -> Observable.just(accessToken.getAccess_token()));
     }
 
+    @Override public Observable<String> Login2GetAccessToken(String client_id, String client_secret, String code, String redirect_uri) {
+        return mServiceAPI.getDrToken(client_id, client_secret, code, redirect_uri);
+    }
+
     @Override public Observable<User> getUseWithAccessToken(String accessToken) {
         return mServiceAPI.getUserWithAccessToken(accessToken);
     }
