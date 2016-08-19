@@ -38,8 +38,10 @@ public class AudioUtils {
     public static void setVolume(Context context, int vol) {
         AudioManager audioManager = getAudioManager(context);
         int maxVol = getMaxVolume(context);
-        if (vol >= 0 || vol < maxVol)
-            audioManager.setStreamVolume(AudioManager.STREAM_MUSIC, vol, 0);
+        if (vol >= 0 || vol < maxVol) {
+            audioManager.setStreamVolume(AudioManager.STREAM_MUSIC, vol, AudioManager.FLAG_PLAY_SOUND|AudioManager.FLAG_SHOW_UI);
+//            audioManager.setStreamVolume(AudioManager.STREAM_MUSIC, vol, 0);
+        }
     }
 
     public static boolean isMute(Context context) {
