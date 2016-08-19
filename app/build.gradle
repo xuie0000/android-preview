@@ -16,7 +16,7 @@ android {
     }
 
     compileSdkVersion 24
-    buildToolsVersion "24.0.0"
+    buildToolsVersion "24.0.1"
 
     defaultConfig {
         applicationId "com.xuie.androiddemo"
@@ -106,7 +106,7 @@ def buildTime() {
 }
 
 ext {
-    supportLibVersion = '24.0.0'
+    supportLibVersion = '24.1.1'
 }
 
 dependencies {
@@ -139,7 +139,6 @@ dependencies {
     compile 'com.lsjwzh:materialloadingprogressbar:0.5.8-RELEASE'
     compile 'com.github.orhanobut:logger:1.12'
     compile 'com.zhy:okhttputils:2.6.1'
-    compile 'com.android.support:support-v4:24.0.0'
-    compile 'com.android.support.constraint:constraint-layout:1.0.0-alpha4'
+    compile 'com.android.support.constraint:constraint-layout:1.0.0-alpha5'
     testCompile 'junit:junit:4.12'
 }

@@ -13,9 +13,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import okhttp3.Call;
-import retrofit2.Retrofit;
-import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
-import retrofit2.converter.gson.GsonConverterFactory;
 import rx.Observable;
 
 /**
@@ -24,15 +21,10 @@ import rx.Observable;
 public class WeatherModelImpl implements WeatherModel {
 
     private static WeatherModelImpl instance;
-    private static Retrofit.Builder wthrcdnBuilder =
-            new Retrofit.Builder()
-                    .baseUrl(WthrcdnAPI.API)
-                    .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
-                    .addConverterFactory(GsonConverterFactory.create());
-    private static WthrcdnAPI wthrcdnAPI;
+    private WthrcdnAPI wthrcdnAPI;
 
     private WeatherModelImpl() {
-        wthrcdnAPI = ServiceGenerator.createService(WthrcdnAPI.class, wthrcdnBuilder, null);
+        wthrcdnAPI = ServiceGenerator.createService(WthrcdnAPI.class);
     }
 
     public static WeatherModelImpl getInstance() {

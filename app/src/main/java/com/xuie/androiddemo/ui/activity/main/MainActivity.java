@@ -21,21 +21,16 @@ import android.support.v7.widget.ShareActionProvider;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.orhanobut.logger.Logger;
 import com.tbruyelle.rxpermissions.RxPermissions;
 import com.umeng.analytics.MobclickAgent;
 import com.umeng.update.UmengUpdateAgent;
 import com.xuie.androiddemo.R;
-import com.xuie.androiddemo.bean.dribbble.User;
 import com.xuie.androiddemo.ui.activity.BaseActivity;
 import com.xuie.androiddemo.ui.activity.PaletteActivity;
-import com.xuie.androiddemo.ui.activity.login.LoginActivity;
 import com.xuie.androiddemo.ui.activity.main.presenter.MainPresenter;
 import com.xuie.androiddemo.ui.activity.weather.WeatherActivity;
-import com.xuie.androiddemo.ui.fragment.person.PersonFragment;
 import com.xuie.androiddemo.util.PreferenceUtils;
 import com.xuie.androiddemo.widget.BottomSheetDialogView;
 import com.xuie.util.BitmapUtils;
@@ -46,7 +41,6 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class MainActivity extends BaseActivity<MainActivity, MainPresenter> implements IMainActivity {
-    private static final int REQUEST_CODE = 1;
     private final String KEY_FRAGMENT = "currentFragment";
 
     private int mDayNightMode;
@@ -58,10 +52,6 @@ public class MainActivity extends BaseActivity<MainActivity, MainPresenter> impl
     @BindView(R.id.nav_view) NavigationView navView;
     @BindView(R.id.drawer_layout) DrawerLayout drawerLayout;
     @BindView(R.id.fab) FloatingActionButton fab;
-
-    private ImageView userAvatar;
-    private TextView userName;
-    private TextView userDescribe;
 
     @Override public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -86,18 +76,6 @@ public class MainActivity extends BaseActivity<MainActivity, MainPresenter> impl
             switchNavigation(item.getItemId());
             drawerLayout.closeDrawer(GravityCompat.START);
             return true;
-        });
-
-        userAvatar = ButterKnife.findById(navView.getHeaderView(0), R.id.nav_header_img);
-        userName = ButterKnife.findById(navView.getHeaderView(0), R.id.nav_header_name);
-        userDescribe = ButterKnife.findById(navView.getHeaderView(0), R.id.nav_header_describe);
-        userAvatar.setOnClickListener(v -> {
-            if (getPresenter().getCurrentUser() == null)
-                startActivityForResult(new Intent(MainActivity.this, LoginActivity.class), REQUEST_CODE);
-                // mDrawerLayout.closeDrawers();
-            else {
-                switchFragment(PersonFragment.class.getName(), PersonFragment.class.getSimpleName());
-            }
         });
 
         mDayNightMode = PreferenceUtils.getPrefInt(this, "mode", AppCompatDelegate.MODE_NIGHT_NO);
@@ -214,12 +192,6 @@ public class MainActivity extends BaseActivity<MainActivity, MainPresenter> impl
 
     @Override public void showBottomSheetDialog() {
         BottomSheetDialogView.show(this, mDayNightMode);
-    }
-
-    @Override public void loadUerInfo(User user) {
-        mPresenter.loadImageWithUrl(user.getAvatarUrl(), userAvatar);
-        userName.setText(user.getUsername());
-        userDescribe.setText(user.getHtmlUrl());
     }
 
     @Override public void startWeather() {
