@@ -1,9 +1,9 @@
 package com.xuie.androiddemo.ui.activity.weather.presenter;
 
 import com.orhanobut.logger.Logger;
-import com.xuie.androiddemo.model.IModel.IWeatherCallback;
-import com.xuie.androiddemo.model.IModel.WeatherModel;
-import com.xuie.androiddemo.model.WeatherModelImpl;
+import com.xuie.androiddemo.data.IModel.IWeatherCallback;
+import com.xuie.androiddemo.data.IModel.WeatherModel;
+import com.xuie.androiddemo.data.WeatherModelImpl;
 import com.xuie.androiddemo.presenter.BasePresenter;
 import com.xuie.androiddemo.ui.activity.weather.WeatherActivity;
 

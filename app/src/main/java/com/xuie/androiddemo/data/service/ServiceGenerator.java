@@ -1,18 +1,13 @@
-package com.xuie.androiddemo.model.service;
+package com.xuie.androiddemo.data.service;
 
 import com.google.gson.ExclusionStrategy;
 import com.google.gson.FieldAttributes;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.xuie.androiddemo.model.Injection;
-
-import java.io.IOException;
 
 import io.realm.RealmObject;
-import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
-import okhttp3.Response;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
@@ -63,23 +58,9 @@ public class ServiceGenerator {
         OkHttpClient client=new OkHttpClient
                 .Builder()
                 .addInterceptor(interceptor)
-                .addInterceptor(new DrTokenInterceptor())
                 .build();
 
         Retrofit retrofit = builder.client(client).build();
         return retrofit.create(serviceClass);
     }
-
-    private static class DrTokenInterceptor implements Interceptor {
-        @Override
-        public Response intercept(Chain chain) throws IOException {
-            Request request=chain.request();
-            request=request.newBuilder().addHeader("Authorization",new StringBuilder()
-                    .append("Bearer ")
-                    .append(Injection.provideTokenValue())
-                    .toString()).build();
-            return chain.proceed(request);
-        }
-    }
-
 }

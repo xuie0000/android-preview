@@ -1,4 +1,4 @@
-package com.xuie.androiddemo.model.IModel;
+package com.xuie.androiddemo.data.IModel;
 
 import com.xuie.androiddemo.bean.weather.Weather;
 

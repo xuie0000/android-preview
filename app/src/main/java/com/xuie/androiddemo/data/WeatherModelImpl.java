@@ -1,11 +1,11 @@
-package com.xuie.androiddemo.model;
+package com.xuie.androiddemo.data;
 
 import com.orhanobut.logger.Logger;
 import com.xuie.androiddemo.bean.weather.Weather;
-import com.xuie.androiddemo.model.IModel.IWeatherCallback;
-import com.xuie.androiddemo.model.IModel.WeatherModel;
-import com.xuie.androiddemo.model.service.ServiceGenerator;
-import com.xuie.androiddemo.model.service.WthrcdnAPI;
+import com.xuie.androiddemo.data.IModel.IWeatherCallback;
+import com.xuie.androiddemo.data.IModel.WeatherModel;
+import com.xuie.androiddemo.data.service.ServiceGenerator;
+import com.xuie.androiddemo.data.service.WthrcdnAPI;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
 

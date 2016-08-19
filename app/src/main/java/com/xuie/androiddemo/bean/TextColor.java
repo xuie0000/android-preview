@@ -4,8 +4,8 @@ package com.xuie.androiddemo.bean;
  * Created by xuie on 15-12-13.
  */
 public class TextColor {
-    String text;
-    int color;
+    private String text;
+    private int color;
 
     public TextColor(String text, int picture) {
         this.text = text;
