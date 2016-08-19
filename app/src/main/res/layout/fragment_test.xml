@@ -1,13 +1,13 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.fragment.TestFragment">
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:context=".ui.fragment.TestFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical">
 
         <TextView
@@ -15,26 +15,25 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="5dp"
-            android:textColor="?android:attr/textColorPrimary" />
+            android:textColor="?android:attr/textColorPrimary"/>
 
         <ImageView
             android:id="@+id/vector_drawable_cpu"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:srcCompat="@drawable/vector_drawable_cpu" />
+            app:srcCompat="@drawable/vector_drawable_cpu"/>
 
         <ImageView
             android:id="@+id/vector_drawable_cpu_ani"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
-            android:layout_toRightOf="@id/vector_drawable_cpu"
-            app:srcCompat="@drawable/animated_cpu" />
+            app:srcCompat="@drawable/animated_cpu"/>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="@string/app_name" />
+            android:text="@string/app_name"/>
 
         <android.support.design.widget.TextInputLayout
             android:id="@+id/email_text_input_layout"
@@ -47,7 +46,7 @@
                 android:layout_height="wrap_content"
                 android:hint="Email"
                 android:imeOptions="flagNoExtractUi"
-                android:singleLine="true" />
+                android:maxLines="1"/>
         </android.support.design.widget.TextInputLayout>
 
         <android.support.design.widget.TextInputLayout
@@ -65,14 +64,14 @@
                 android:imeActionLabel="Sign in"
                 android:imeOptions="flagNoFullscreen|actionUnspecified"
                 android:inputType="textPassword"
-                android:singleLine="true" />
+                android:maxLines="1"/>
         </android.support.design.widget.TextInputLayout>
 
         <com.xuie.androiddemo.widget.CircularProgress
             android:id="@+id/circle_progress_1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@mipmap/ic_launcher" />
+            android:src="@mipmap/ic_launcher"/>
 
         <com.xuie.androiddemo.widget.CircularProgress
             android:id="@+id/circle_progress_2"
@@ -81,7 +80,7 @@
             android:src="@mipmap/ic_launcher"
             app:cp_colorProgress="@android:color/holo_orange_light"
             app:cp_defaultProgress="20"
-            app:cp_paddingProgress="8dp" />
+            app:cp_paddingProgress="8dp"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -97,7 +96,7 @@
                 app:fgColorStart="#ffe400"
                 app:percent="75"
                 app:startAngle="0"
-                app:strokeWidth="21dp" />
+                app:strokeWidth="21dp"/>
 
             <com.xuie.androiddemo.widget.SectorProgressView
                 android:id="@+id/spv"
@@ -108,7 +107,7 @@
                 app:bgColor="#e5e5e5"
                 app:fgColor="#ff765c"
                 app:percent="25"
-                app:startAngle="0" />
+                app:startAngle="0"/>
         </LinearLayout>
 
         <ImageView
@@ -116,7 +115,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@mipmap/ic_launcher"
-            android:contentDescription="@string/contentDescription" />
+            android:contentDescription="@string/contentDescription"/>
 
     </LinearLayout>
 </ScrollView>

@@ -5,8 +5,8 @@ import android.view.View;
 
 public abstract class BaseAdapter<T extends BaseAdapter.ViewHolder> extends RecyclerView.Adapter<T> {
 
-    protected OnItemClickListener mOnItemClickListener;
-    protected OnItemLongClickListener mOnItemLongClickListener;
+    private OnItemClickListener mOnItemClickListener;
+    private OnItemLongClickListener mOnItemLongClickListener;
 
     public void setOnItemClickListener(OnItemClickListener onItemClickListener) {
         this.mOnItemClickListener = onItemClickListener;

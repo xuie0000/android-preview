@@ -37,12 +37,6 @@
             android:name=".ui.activity.TwoActivity"
             android:theme="@style/AppTheme.DayNight.NoActionBar"/>
         <activity
-            android:name=".ui.activity.shot.ShotActivity"
-            android:theme="@style/AppTheme.DayNight.NoActionBar"/>
-        <activity
-            android:name=".ui.activity.login.LoginActivity"
-            android:theme="@style/AppTheme.DayNight.NoActionBar"/>
-        <activity
             android:name="com.umeng.update.UpdateDialogActivity"
             android:theme="@style/AppTheme.DayNight.NoActionBar"/>
         <activity

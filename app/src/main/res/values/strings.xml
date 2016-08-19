@@ -5,10 +5,8 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
     <string name="action_weather">天气</string>
-    <string name="action_update">Update</string>
 
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="title_activity_detail">DetailActivity</string>
 
     <string name="element_text">Element</string>
     <string name="grid_layout_manager">Grid Layout Manager</string>
@@ -22,7 +20,6 @@
     <string name="app_btn4">无九宫格、无编辑页</string>
     <string name="app_derect_share">直接分享</string>
     <string name="test">测试页面</string>
-    <string name="new_frame">图片</string>
     <string name="recycler_view">RecyclerView</string>
     <string name="transitions">5.+动画</string>
     <string name="animation">动画</string>
@@ -35,7 +32,5 @@
     <string name="text_for_day_night_mode_night_no">NightMode: AppCompatDelegate.MODE_NIGHT_NO</string>
     <string name="text_for_day_night_mode_night_yes">NightMode: AppCompatDelegate.MODE_NIGHT_YES</string>
     <string name="text_for_day_night_mode_night_auto">NightMode: AppCompatDelegate.MODE_NIGHT_AUTO</string>
-
-    <string name="login_failed">你还没有成功登陆哟！！！</string>
 
 </resources>
