@@ -106,7 +106,7 @@ def buildTime() {
 }
 
 ext {
-    supportLibVersion = '24.1.1'
+    supportLibVersion = '24.2.0'
 }
 
 dependencies {
