@@ -28,12 +28,12 @@ import com.tbruyelle.rxpermissions.RxPermissions;
 import com.umeng.analytics.MobclickAgent;
 import com.umeng.update.UmengUpdateAgent;
 import com.xuie.androiddemo.R;
-import com.xuie.androiddemo.ui.palette.PaletteActivity;
-import com.xuie.androiddemo.ui.weather.WeatherActivity;
 import com.xuie.androiddemo.ui.fragment.AnimationFragment;
 import com.xuie.androiddemo.ui.fragment.RecyclerViewFragment;
 import com.xuie.androiddemo.ui.fragment.TestFragment;
 import com.xuie.androiddemo.ui.fragment.TransitionsFragment;
+import com.xuie.androiddemo.ui.palette.PaletteActivity;
+import com.xuie.androiddemo.ui.weather.WeatherActivity;
 import com.xuie.androiddemo.util.PreferenceUtils;
 import com.xuie.androiddemo.widget.BottomSheetDialogView;
 import com.xuie.util.BitmapUtils;
@@ -43,7 +43,7 @@ import java.io.File;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class MainActivity extends AppCompatActivity{
+public class MainActivity extends AppCompatActivity {
     private final String KEY_FRAGMENT = "currentFragment";
 
     private int mDayNightMode;
@@ -91,17 +91,14 @@ public class MainActivity extends AppCompatActivity{
             case R.id.nav_test:
                 switchFragment(TestFragment.class.getName(), getString(R.string.test));
                 break;
+            case R.id.nav_animation:
+                switchFragment(AnimationFragment.class.getName(), getString(R.string.animation));
+                break;
             case R.id.nav_transitions:
                 switchFragment(TransitionsFragment.class.getName(), getString(R.string.transitions));
                 break;
             case R.id.nav_recycler_view:
                 switchFragment(RecyclerViewFragment.class.getName(), getString(R.string.recycler_view));
-                break;
-            case R.id.nav_animation:
-                switchFragment(AnimationFragment.class.getName(), getString(R.string.animation));
-                break;
-            case R.id.nav_palette:
-                startPalette();
                 break;
         }
 
@@ -174,6 +171,8 @@ public class MainActivity extends AppCompatActivity{
             showBottomSheetDialog();
         } else if (item.getItemId() == R.id.action_weather) {
             startWeather();
+        } else if (item.getItemId() == R.id.action_palette) {
+            startPalette();
         }
         return super.onOptionsItemSelected(item);
     }
