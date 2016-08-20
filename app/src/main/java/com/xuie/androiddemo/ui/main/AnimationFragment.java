@@ -1,4 +1,4 @@
-package com.xuie.androiddemo.ui.fragment;
+package com.xuie.androiddemo.ui.main;
 
 
 import android.animation.AnimatorSet;

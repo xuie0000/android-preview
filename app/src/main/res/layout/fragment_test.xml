@@ -1,39 +1,14 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:app="http://schemas.android.com/apk/res-auto"
             xmlns:tools="http://schemas.android.com/tools"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            tools:context=".ui.fragment.TestFragment">
+            tools:context=".ui.main.TestFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="@dimen/activity_horizontal_margin"
         android:orientation="vertical">
-
-        <TextView
-            android:id="@+id/status_text_view"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="5dp"
-            android:textColor="?android:attr/textColorPrimary"/>
-
-        <ImageView
-            android:id="@+id/vector_drawable_cpu"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:srcCompat="@drawable/vector_drawable_cpu"/>
-
-        <ImageView
-            android:id="@+id/vector_drawable_cpu_ani"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            app:srcCompat="@drawable/animated_cpu"/>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="@string/app_name"/>
 
         <android.support.design.widget.TextInputLayout
             android:id="@+id/email_text_input_layout"
@@ -67,55 +42,26 @@
                 android:maxLines="1"/>
         </android.support.design.widget.TextInputLayout>
 
-        <com.xuie.androiddemo.widget.CircularProgress
-            android:id="@+id/circle_progress_1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@mipmap/ic_launcher"/>
-
-        <com.xuie.androiddemo.widget.CircularProgress
-            android:id="@+id/circle_progress_2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@mipmap/ic_launcher"
-            app:cp_colorProgress="@android:color/holo_orange_light"
-            app:cp_defaultProgress="20"
-            app:cp_paddingProgress="8dp"/>
-
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-            <com.xuie.androiddemo.widget.ColorfulRingProgressView
-                android:id="@+id/crpv"
-                android:layout_width="200dp"
-                android:layout_height="200dp"
-                app:bgColor="#e1e1e1"
-                app:fgColorEnd="#ff4800"
-                app:fgColorStart="#ffe400"
-                app:percent="75"
-                app:startAngle="0"
-                app:strokeWidth="21dp"/>
+            <ImageView
+                android:id="@+id/shake_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/contentDescription"
+                android:padding="8dp"
+                android:src="@mipmap/ic_launcher"/>
 
-            <com.xuie.androiddemo.widget.SectorProgressView
-                android:id="@+id/spv"
-                android:layout_width="200dp"
-                android:layout_height="200dp"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="40dp"
-                app:bgColor="#e5e5e5"
-                app:fgColor="#ff765c"
-                app:percent="25"
-                app:startAngle="0"/>
+            <com.xuie.androiddemo.widget.CircleImageView
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:padding="8dp"
+                android:src="@mipmap/four"/>
+
         </LinearLayout>
-
-        <ImageView
-            android:id="@+id/shake_view"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@mipmap/ic_launcher"
-            android:contentDescription="@string/contentDescription"/>
 
     </LinearLayout>
 </ScrollView>

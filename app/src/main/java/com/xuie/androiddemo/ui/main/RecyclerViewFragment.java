@@ -14,7 +14,7 @@
 * limitations under the License.
 */
 
-package com.xuie.androiddemo.ui.fragment;
+package com.xuie.androiddemo.ui.main;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
