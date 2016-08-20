@@ -2,10 +2,10 @@ package com.xuie.androiddemo.data;
 
 import com.orhanobut.logger.Logger;
 import com.xuie.androiddemo.bean.weather.Weather;
-import com.xuie.androiddemo.data.IModel.IWeatherCallback;
-import com.xuie.androiddemo.data.IModel.WeatherModel;
-import com.xuie.androiddemo.data.service.ServiceGenerator;
-import com.xuie.androiddemo.data.service.WthrcdnAPI;
+import com.xuie.androiddemo.data.source.IWeatherCallback;
+import com.xuie.androiddemo.data.source.WeatherSource;
+import com.xuie.androiddemo.data.api.ServiceGenerator;
+import com.xuie.androiddemo.data.api.WthrcdnAPI;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
 
@@ -18,19 +18,19 @@ import rx.Observable;
 /**
  * Created by xuie on 16-6-7.
  */
-public class WeatherModelImpl implements WeatherModel {
+public class WeatherRepository implements WeatherSource {
 
-    private static WeatherModelImpl instance;
+    private static WeatherRepository instance;
     private WthrcdnAPI wthrcdnAPI;
 
-    private WeatherModelImpl() {
+    private WeatherRepository() {
         wthrcdnAPI = ServiceGenerator.createService(WthrcdnAPI.class);
     }
 
-    public static WeatherModelImpl getInstance() {
+    public static WeatherRepository getInstance() {
         if (instance == null) {
-            synchronized (WeatherModelImpl.class) {
-                instance = new WeatherModelImpl();
+            synchronized (WeatherRepository.class) {
+                instance = new WeatherRepository();
             }
         }
         return instance;

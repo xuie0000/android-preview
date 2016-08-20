@@ -2,6 +2,7 @@ package com.xuie.androiddemo.ui.activity.weather;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
@@ -13,8 +14,7 @@ import com.mikepenz.iconics.context.IconicsContextWrapper;
 import com.orhanobut.logger.Logger;
 import com.xuie.androiddemo.R;
 import com.xuie.androiddemo.bean.weather.Weather;
-import com.xuie.androiddemo.ui.activity.weather.presenter.WeatherPresenter;
-import com.xuie.androiddemo.ui.activity.BaseActivity;
+import com.xuie.androiddemo.ui.Injection;
 import com.xuie.androiddemo.util.WeatherUtils;
 
 import java.util.List;
@@ -22,7 +22,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class WeatherActivity extends BaseActivity<WeatherActivity, WeatherPresenter> implements IWeatherActivity {
+public class WeatherActivity extends AppCompatActivity implements WeatherContracts.View {
 
     @BindView(R.id.city) TextView city;
     @BindView(R.id.today) TextView today;
@@ -32,6 +32,8 @@ public class WeatherActivity extends BaseActivity<WeatherActivity, WeatherPresen
     @BindView(R.id.weather) TextView weather;
     @BindView(R.id.weather_content) LinearLayout weatherContent;
 
+    private WeatherContracts.Presenter mPresenter;
+
     @Override protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
@@ -39,11 +41,10 @@ public class WeatherActivity extends BaseActivity<WeatherActivity, WeatherPresen
         setContentView(R.layout.activity_weather);
         ButterKnife.bind(this);
         Logger.d("onCreate");
-        mPresenter.loadCity();
-    }
 
-    @Override protected WeatherPresenter createPresenter() {
-        return new WeatherPresenter();
+        mPresenter = new WeatherPresenter(Injection.provideWeatherRepository(), this);
+
+        mPresenter.loadCity();
     }
 
     @Override protected void attachBaseContext(Context newBase) {
@@ -86,6 +87,10 @@ public class WeatherActivity extends BaseActivity<WeatherActivity, WeatherPresen
     }
 
     @Override public void hideProgress() {
+
+    }
+
+    @Override public void setPresenter(WeatherContracts.Presenter presenter) {
 
     }
 }

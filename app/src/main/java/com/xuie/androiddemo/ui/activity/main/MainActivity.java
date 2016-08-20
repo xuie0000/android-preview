@@ -16,6 +16,7 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.app.AppCompatDelegate;
 import android.support.v7.widget.ShareActionProvider;
 import android.support.v7.widget.Toolbar;
@@ -27,10 +28,12 @@ import com.tbruyelle.rxpermissions.RxPermissions;
 import com.umeng.analytics.MobclickAgent;
 import com.umeng.update.UmengUpdateAgent;
 import com.xuie.androiddemo.R;
-import com.xuie.androiddemo.ui.activity.BaseActivity;
 import com.xuie.androiddemo.ui.activity.PaletteActivity;
-import com.xuie.androiddemo.ui.activity.main.presenter.MainPresenter;
 import com.xuie.androiddemo.ui.activity.weather.WeatherActivity;
+import com.xuie.androiddemo.ui.fragment.AnimationFragment;
+import com.xuie.androiddemo.ui.fragment.RecyclerViewFragment;
+import com.xuie.androiddemo.ui.fragment.TestFragment;
+import com.xuie.androiddemo.ui.fragment.TransitionsFragment;
 import com.xuie.androiddemo.util.PreferenceUtils;
 import com.xuie.androiddemo.widget.BottomSheetDialogView;
 import com.xuie.util.BitmapUtils;
@@ -40,7 +43,7 @@ import java.io.File;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class MainActivity extends BaseActivity<MainActivity, MainPresenter> implements IMainActivity {
+public class MainActivity extends AppCompatActivity{
     private final String KEY_FRAGMENT = "currentFragment";
 
     private int mDayNightMode;
@@ -78,13 +81,30 @@ public class MainActivity extends BaseActivity<MainActivity, MainPresenter> impl
             return true;
         });
 
-        mDayNightMode = PreferenceUtils.getPrefInt(this, "mode", AppCompatDelegate.MODE_NIGHT_NO);
+        mDayNightMode = PreferenceUtils.getInt(this, "mode", AppCompatDelegate.MODE_NIGHT_NO);
 
         printVersion();
     }
 
     private void switchNavigation(int navId) {
-        mPresenter.switchNavigation(navId);
+        switch (navId) {
+            case R.id.nav_test:
+                switchFragment(TestFragment.class.getName(), getString(R.string.test));
+                break;
+            case R.id.nav_transitions:
+                switchFragment(TransitionsFragment.class.getName(), getString(R.string.transitions));
+                break;
+            case R.id.nav_recycler_view:
+                switchFragment(RecyclerViewFragment.class.getName(), getString(R.string.recycler_view));
+                break;
+            case R.id.nav_animation:
+                switchFragment(AnimationFragment.class.getName(), getString(R.string.animation));
+                break;
+            case R.id.nav_palette:
+                startPalette();
+                break;
+        }
+
         currentFragmentId = navId;
     }
 
@@ -146,7 +166,15 @@ public class MainActivity extends BaseActivity<MainActivity, MainPresenter> impl
     }
 
     @Override public boolean onOptionsItemSelected(MenuItem item) {
-        mPresenter.optionsItemSelected(item.getItemId());
+        if (item.getItemId() == R.id.action_day_night_yes) {
+            refreshDelegateMode(AppCompatDelegate.MODE_NIGHT_YES);
+        } else if (item.getItemId() == R.id.action_day_night_no) {
+            refreshDelegateMode(AppCompatDelegate.MODE_NIGHT_NO);
+        } else if (item.getItemId() == R.id.action_bottom_sheet_dialog) {
+            showBottomSheetDialog();
+        } else if (item.getItemId() == R.id.action_weather) {
+            startWeather();
+        }
         return super.onOptionsItemSelected(item);
     }
 
@@ -157,15 +185,11 @@ public class MainActivity extends BaseActivity<MainActivity, MainPresenter> impl
         int dayNightUiMode = uiMode & Configuration.UI_MODE_NIGHT_MASK;
 
         // enable the save mode
-        int defaultMode = PreferenceUtils.getPrefInt(this, "mode", AppCompatDelegate.MODE_NIGHT_NO);
+        int defaultMode = PreferenceUtils.getInt(this, "mode", AppCompatDelegate.MODE_NIGHT_NO);
         Logger.d(defaultMode + ", " + mDayNightMode + ", " + dayNightUiMode + " .");
         if (mDayNightMode != defaultMode) {
             refreshDelegateMode(defaultMode);
         }
-    }
-
-    @Override protected MainPresenter createPresenter() {
-        return new MainPresenter();
     }
 
     @Override protected void onPause() {
@@ -173,7 +197,7 @@ public class MainActivity extends BaseActivity<MainActivity, MainPresenter> impl
         MobclickAgent.onPause(this);
     }
 
-    @Override public void switchFragment(String fragName, String fragTitle) {
+    public void switchFragment(String fragName, String fragTitle) {
         try {
             Fragment fragment = (Fragment) Class.forName(fragName).newInstance();
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_placeholder, fragment).commit();
@@ -183,23 +207,22 @@ public class MainActivity extends BaseActivity<MainActivity, MainPresenter> impl
         toolbar.setTitle(fragTitle);
     }
 
-    @Override public void refreshDelegateMode(int mode) {
+    public void refreshDelegateMode(int mode) {
         mDayNightMode = mode;
-        PreferenceUtils.setPref(this, "mode", mode);
+        PreferenceUtils.setPreference(this, "mode", mode);
         getDelegate().setLocalNightMode(mode);
         recreate();
     }
 
-    @Override public void showBottomSheetDialog() {
+    public void showBottomSheetDialog() {
         BottomSheetDialogView.show(this, mDayNightMode);
     }
 
-    @Override public void startWeather() {
+    public void startWeather() {
         startActivity(new Intent(this, WeatherActivity.class));
     }
 
-    @Override public void startPalette() {
+    public void startPalette() {
         startActivity(new Intent(this, PaletteActivity.class));
     }
-
 }

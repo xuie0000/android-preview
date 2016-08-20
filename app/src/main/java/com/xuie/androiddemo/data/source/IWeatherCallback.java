@@ -1,4 +1,4 @@
-package com.xuie.androiddemo.data.IModel;
+package com.xuie.androiddemo.data.source;
 
 public interface IWeatherCallback {
 	void setCity(String city);

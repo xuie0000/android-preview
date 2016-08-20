@@ -55,7 +55,7 @@ public class App extends Application {
 
     @AppCompatDelegate.NightMode
     private int getNightMode() {
-        return PreferenceUtils.getPrefInt(this, "mode", AppCompatDelegate.MODE_NIGHT_NO);
+        return PreferenceUtils.getInt(this, "mode", AppCompatDelegate.MODE_NIGHT_NO);
     }
 
     public static App getContext() {

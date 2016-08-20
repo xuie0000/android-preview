@@ -1,4 +1,4 @@
-package com.xuie.androiddemo.data.service;
+package com.xuie.androiddemo.data.api;
 
 import com.google.gson.ExclusionStrategy;
 import com.google.gson.FieldAttributes;

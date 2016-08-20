@@ -8,36 +8,36 @@ import android.preference.PreferenceManager;
  * Created by xuie on 16-1-23.
  */
 public class PreferenceUtils {
-    public static SharedPreferences getPref(Context con) {
+    public static SharedPreferences getPreference(Context con) {
         return PreferenceManager.getDefaultSharedPreferences(con);
     }
 
-    public static boolean getPrefBoolean(Context con, String key) {
-        return getPrefBoolean(con, key, false);
+    public static boolean getBoolean(Context con, String key) {
+        return getBoolean(con, key, false);
     }
 
-    public static boolean getPrefBoolean(Context con, String key, boolean def) {
-        return getPref(con).getBoolean(key, def);
+    public static boolean getBoolean(Context con, String key, boolean def) {
+        return getPreference(con).getBoolean(key, def);
     }
 
-    public static int getPrefInt(Context con, String key, int def) {
-        return getPref(con).getInt(key, def);
+    public static int getInt(Context con, String key, int def) {
+        return getPreference(con).getInt(key, def);
     }
 
-    public static int getPrefInt(Context con, String key) {
-        return getPref(con).getInt(key, 0);
+    public static int getInt(Context con, String key) {
+        return getPreference(con).getInt(key, 0);
     }
 
-    public static String getPrefString(Context con, String key) {
-        return getPrefString(con, key, null);
+    public static String getString(Context con, String key) {
+        return getString(con, key, null);
     }
 
-    public static String getPrefString(Context con, String key, String defString) {
-        return getPref(con).getString(key, defString);
+    public static String getString(Context con, String key, String defString) {
+        return getPreference(con).getString(key, defString);
     }
 
-    public static void setPref(Context con, String key, Object object) {
-        SharedPreferences prefs = getPref(con);
+    public static void setPreference(Context con, String key, Object object) {
+        SharedPreferences prefs = getPreference(con);
         SharedPreferences.Editor editor = prefs.edit();
         if (object instanceof String) {
             editor.putString(key, (String) object);

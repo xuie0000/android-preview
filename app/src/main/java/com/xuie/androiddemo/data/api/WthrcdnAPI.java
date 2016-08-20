@@ -1,4 +1,4 @@
-package com.xuie.androiddemo.data.service;
+package com.xuie.androiddemo.data.api;
 
 import com.xuie.androiddemo.bean.weather.Wthrcdn;
 

@@ -1,4 +1,4 @@
-package com.xuie.androiddemo.data.IModel;
+package com.xuie.androiddemo.data.source;
 
 import com.xuie.androiddemo.bean.weather.Weather;
 
@@ -9,7 +9,7 @@ import rx.Observable;
 /**
  * Created by xuie on 16-6-7.
  */
-public interface WeatherModel {
+public interface WeatherSource {
     void getCity(IWeatherCallback weatherCallback);
 
     Observable<List<Weather>> getWeathers(String city);

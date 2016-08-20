@@ -121,8 +121,6 @@ dependencies {
 
     compile 'com.jakewharton:butterknife:8.2.0'
     apt 'com.jakewharton:butterknife-compiler:8.2.0'
-    compile 'com.squareup.picasso:picasso:2.5.2'
-    compile 'de.hdodenhof:circleimageview:2.0.0'
     compile 'com.umeng.analytics:analytics:latest.integration'
     compile 'com.mikepenz:iconics-core:2.5.11@aar'
     compile 'com.mikepenz:material-design-iconic-typeface:2.2.0.1@aar'
@@ -139,6 +137,5 @@ dependencies {
     compile 'com.lsjwzh:materialloadingprogressbar:0.5.8-RELEASE'
     compile 'com.github.orhanobut:logger:1.12'
     compile 'com.zhy:okhttputils:2.6.1'
-    compile 'com.android.support.constraint:constraint-layout:1.0.0-alpha5'
     testCompile 'junit:junit:4.12'
 }
