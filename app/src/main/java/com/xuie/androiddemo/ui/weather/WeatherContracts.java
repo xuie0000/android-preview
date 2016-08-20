@@ -1,4 +1,4 @@
-package com.xuie.androiddemo.ui.activity.weather;
+package com.xuie.androiddemo.ui.weather;
 
 import com.xuie.androiddemo.bean.weather.Weather;
 import com.xuie.androiddemo.ui.BasePresenter;

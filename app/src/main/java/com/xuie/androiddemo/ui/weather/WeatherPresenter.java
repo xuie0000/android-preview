@@ -1,4 +1,4 @@
-package com.xuie.androiddemo.ui.activity.weather;
+package com.xuie.androiddemo.ui.weather;
 
 import com.orhanobut.logger.Logger;
 import com.xuie.androiddemo.data.source.IWeatherCallback;
@@ -15,6 +15,7 @@ public class WeatherPresenter implements WeatherContracts.Presenter {
     public WeatherPresenter(WeatherRepository weatherRepository, WeatherContracts.View weatherView) {
         mWeatherRepository = weatherRepository;
         mWeatherView = weatherView;
+        mWeatherView.setPresenter(this);
     }
 
     public void loadWeathers(String city) {

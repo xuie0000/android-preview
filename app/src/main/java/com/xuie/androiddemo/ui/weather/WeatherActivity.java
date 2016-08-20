@@ -1,4 +1,4 @@
-package com.xuie.androiddemo.ui.activity.weather;
+package com.xuie.androiddemo.ui.weather;
 
 import android.content.Context;
 import android.os.Bundle;

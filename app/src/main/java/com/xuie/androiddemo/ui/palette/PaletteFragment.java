@@ -1,4 +1,4 @@
-package com.xuie.androiddemo.ui.fragment;
+package com.xuie.androiddemo.ui.palette;
 
 
 import android.os.Bundle;

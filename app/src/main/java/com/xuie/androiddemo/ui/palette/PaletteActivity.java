@@ -1,4 +1,4 @@
-package com.xuie.androiddemo.ui.activity;
+package com.xuie.androiddemo.ui.palette;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -17,7 +17,6 @@ import android.view.Window;
 
 import com.mikepenz.iconics.IconicsDrawable;
 import com.xuie.androiddemo.R;
-import com.xuie.androiddemo.ui.fragment.PaletteFragment;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

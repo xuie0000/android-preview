@@ -1,4 +1,4 @@
-package com.xuie.androiddemo.ui.activity.main;
+package com.xuie.androiddemo.ui.main;
 
 import android.Manifest;
 import android.content.Intent;
@@ -28,8 +28,8 @@ import com.tbruyelle.rxpermissions.RxPermissions;
 import com.umeng.analytics.MobclickAgent;
 import com.umeng.update.UmengUpdateAgent;
 import com.xuie.androiddemo.R;
-import com.xuie.androiddemo.ui.activity.PaletteActivity;
-import com.xuie.androiddemo.ui.activity.weather.WeatherActivity;
+import com.xuie.androiddemo.ui.palette.PaletteActivity;
+import com.xuie.androiddemo.ui.weather.WeatherActivity;
 import com.xuie.androiddemo.ui.fragment.AnimationFragment;
 import com.xuie.androiddemo.ui.fragment.RecyclerViewFragment;
 import com.xuie.androiddemo.ui.fragment.TestFragment;
