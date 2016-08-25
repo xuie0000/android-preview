@@ -1,16 +1,16 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:id="@+id/fragment_id"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:orientation="vertical"
-        tools:context="com.xuie.demo.fragment.TransitionsFragment">
+                  xmlns:tools="http://schemas.android.com/tools"
+                  android:id="@+id/fragment_id"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:gravity="center"
+                  android:orientation="vertical"
+                  tools:context="com.xuie.demo.fragment.TransitionsFragment">
 
         <!-- TODO: Update blank fragment layout -->
         <RelativeLayout
@@ -23,7 +23,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:background="@android:color/holo_blue_dark"
-                android:text="makeSceneTransitionAnimation" />
+                android:text="makeSceneTransitionAnimation"/>
 
             <Button
                 android:id="@+id/fab_button"
@@ -34,7 +34,7 @@
                 android:layout_margin="5dp"
                 android:background="@drawable/_ripple_round"
                 android:elevation="5dp"
-                android:transitionName="fab" />
+                android:transitionName="fab"/>
         </RelativeLayout>
 
 
@@ -44,7 +44,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:background="@android:color/holo_blue_dark"
-            android:text="Explode" />
+            android:text="Explode"/>
 
         <Button
             android:id="@+id/slide"
@@ -52,7 +52,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:background="@android:color/holo_blue_dark"
-            android:text="Slide" />
+            android:text="Slide"/>
 
         <Button
             android:id="@+id/fade"
@@ -60,7 +60,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:background="@android:color/holo_blue_dark"
-            android:text="Fade" />
+            android:text="Fade"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -72,7 +72,7 @@
                 android:id="@+id/over_shoot"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@mipmap/ic_trans_frag_bg" />
+                android:src="@mipmap/image_small"/>
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -85,13 +85,13 @@
                     android:id="@+id/cir_reveal_btn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="CircularReveal" />
+                    android:text="CircularReveal"/>
 
                 <ImageView
                     android:id="@+id/cir_reveal_dst"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@mipmap/ic_launcher" />
+                    android:src="@mipmap/ic_launcher"/>
             </LinearLayout>
 
             <LinearLayout
@@ -106,14 +106,14 @@
                     android:layout_width="64dp"
                     android:layout_height="64dp"
                     android:layout_margin="5dp"
-                    android:src="@android:color/holo_blue_bright" />
+                    android:src="@android:color/holo_blue_bright"/>
 
                 <ImageView
                     android:id="@+id/cir_reveal_hypot"
                     android:layout_width="64dp"
                     android:layout_height="64dp"
                     android:layout_margin="5dp"
-                    android:src="@android:color/holo_blue_bright" />
+                    android:src="@android:color/holo_blue_bright"/>
             </LinearLayout>
 
         </LinearLayout>
