@@ -32,5 +32,7 @@
     <string name="text_for_day_night_mode_night_no">NightMode: AppCompatDelegate.MODE_NIGHT_NO</string>
     <string name="text_for_day_night_mode_night_yes">NightMode: AppCompatDelegate.MODE_NIGHT_YES</string>
     <string name="text_for_day_night_mode_night_auto">NightMode: AppCompatDelegate.MODE_NIGHT_AUTO</string>
+    <string name="bottom_sheet_content">Bottom Sheet Content</string>
+    <string name="bottom_sheet_peek">Bottom Sheet Peek</string>
 
 </resources>

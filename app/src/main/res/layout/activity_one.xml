@@ -1,45 +1,92 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:transitionName="share01"
-    tools:context=".ui.activity.OneActivity">
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                                 xmlns:app="http://schemas.android.com/apk/res-auto"
+                                                 xmlns:tools="http://schemas.android.com/tools"
+                                                 android:layout_width="match_parent"
+                                                 android:layout_height="match_parent"
+                                                 android:fitsSystemWindows="true"
+                                                 tools:context="com.xuie.androiddemo.ui.activity.OneActivity">
 
-    <RelativeLayout
+    <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="300dp">
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay">
 
-        <Button
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:popupTheme="@style/AppTheme.PopupOverlay"/>
+    </android.support.design.widget.AppBarLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:transitionName="share01"
+        tools:context=".ui.activity.OneActivity">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="300dp">
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@android:color/holo_blue_dark"
+                android:text="makeSceneTransitionAnimation"/>
+
+            <Button
+                android:id="@+id/fab_button"
+                android:layout_width="56dp"
+                android:layout_height="56dp"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentRight="true"
+                android:layout_margin="10dp"
+                android:background="@drawable/_ripple_round"
+                android:elevation="5dp"
+                android:transitionName="share02"/>
+        </RelativeLayout>
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="@android:color/holo_orange_dark"
+            android:contentDescription="@string/app_name"/>
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:background="@android:color/holo_green_dark"
+            android:contentDescription="@string/app_name"/>
+    </LinearLayout>
+
+    <!-- include bottom sheet -->
+    <LinearLayout
+        android:id="@+id/bottom_sheet"
+        android:layout_width="match_parent"
+        android:layout_height="340dp"
+        android:layout_alignParentBottom="true"
+        android:background="@android:color/darker_gray"
+        android:orientation="vertical"
+        app:layout_behavior="android.support.design.widget.BottomSheetBehavior">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:background="@color/colorAccent"
+            android:gravity="center"
+            android:text="@string/bottom_sheet_peek"
+            android:textColor="@android:color/white"/>
+
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@android:color/holo_blue_dark"
-            android:text="makeSceneTransitionAnimation"/>
+            android:gravity="center"
+            android:text="@string/bottom_sheet_content"
+            android:textColor="@android:color/white"/>
 
-        <Button
-            android:id="@+id/fab_button"
-            android:layout_width="56dp"
-            android:layout_height="56dp"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentRight="true"
-            android:layout_margin="10dp"
-            android:background="@drawable/_ripple_round"
-            android:elevation="5dp"
-            android:transitionName="share02"/>
-    </RelativeLayout>
+    </LinearLayout>
 
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:background="@android:color/holo_orange_dark"
-        android:contentDescription="@string/app_name"/>
-
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:background="@android:color/holo_green_dark"
-        android:contentDescription="@string/app_name"/>
-</LinearLayout>
+</android.support.design.widget.CoordinatorLayout>

@@ -31,7 +31,6 @@ import com.xuie.androiddemo.R;
 import com.xuie.androiddemo.ui.palette.PaletteActivity;
 import com.xuie.androiddemo.ui.weather.WeatherActivity;
 import com.xuie.androiddemo.util.PreferenceUtils;
-import com.xuie.androiddemo.widget.BottomSheetDialogView;
 import com.xuie.util.BitmapUtils;
 
 import java.io.File;
@@ -163,8 +162,6 @@ public class MainActivity extends AppCompatActivity {
             refreshDelegateMode(AppCompatDelegate.MODE_NIGHT_YES);
         } else if (item.getItemId() == R.id.action_day_night_no) {
             refreshDelegateMode(AppCompatDelegate.MODE_NIGHT_NO);
-        } else if (item.getItemId() == R.id.action_bottom_sheet_dialog) {
-            showBottomSheetDialog();
         } else if (item.getItemId() == R.id.action_weather) {
             startWeather();
         } else if (item.getItemId() == R.id.action_palette) {
@@ -207,10 +204,6 @@ public class MainActivity extends AppCompatActivity {
         PreferenceUtils.setPreference(this, "mode", mode);
         getDelegate().setLocalNightMode(mode);
         recreate();
-    }
-
-    public void showBottomSheetDialog() {
-        BottomSheetDialogView.show(this, mDayNightMode);
     }
 
     public void startWeather() {
