@@ -8,6 +8,7 @@ import android.support.v7.widget.Toolbar;
 import android.transition.Explode;
 import android.transition.Fade;
 import android.transition.Slide;
+import android.util.Log;
 import android.view.View;
 import android.view.animation.OvershootInterpolator;
 import android.widget.Button;
@@ -21,21 +22,20 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class OneActivity extends AppCompatActivity {
+    private static final String TAG = "OneActivity";
 
     @BindView(R.id.fab_button) Button fabButton;
 
     @Override protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        // 设置不同的动画效果
-        switch (getIntent().getIntExtra("flag", -1)) {
+        switch (getIntent().getIntExtra("flag", 0)) {
             case 0:
                 getWindow().setEnterTransition(new Explode());
                 break;
             case 1:
                 Slide slide = new Slide();
                 slide.setInterpolator(new OvershootInterpolator());
-//                slide.setDuration(2000);
                 getWindow().setEnterTransition(slide);
                 break;
             case 2:
@@ -72,7 +72,7 @@ public class OneActivity extends AppCompatActivity {
         bottomSheetBehavior.setBottomSheetCallback(new BottomSheetBehavior.BottomSheetCallback() {
             @Override
             public void onStateChanged(@NonNull View bottomSheet, int newState) {
-
+                Log.d(TAG, "onStateChanged: " + newState);
             }
 
             @Override
