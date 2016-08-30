@@ -2,7 +2,6 @@ package com.xuie.androiddemo.ui.main;
 
 import android.Manifest;
 import android.content.Intent;
-import android.content.res.Configuration;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
@@ -178,12 +177,12 @@ public class MainActivity extends AppCompatActivity {
     @Override protected void onResume() {
         super.onResume();
         MobclickAgent.onResume(this);
-        int uiMode = getResources().getConfiguration().uiMode;
-        int dayNightUiMode = uiMode & Configuration.UI_MODE_NIGHT_MASK;
+//        int uiMode = getResources().getConfiguration().uiMode;
+//        int dayNightUiMode = uiMode & Configuration.UI_MODE_NIGHT_MASK;
 
         // enable the save mode
         int defaultMode = PreferenceUtils.getInt(this, "mode", AppCompatDelegate.MODE_NIGHT_NO);
-        Logger.d(defaultMode + ", " + mDayNightMode + ", " + dayNightUiMode + " .");
+//        Logger.d(defaultMode + ", " + mDayNightMode + ", " + dayNightUiMode + " .");
         if (mDayNightMode != defaultMode) {
             refreshDelegateMode(defaultMode);
         }
