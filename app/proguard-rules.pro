@@ -16,39 +16,73 @@
 #   public *;
 #}
 
-## 位于module下的proguard-rules.pro
-#####################################
-######### 主程序不能混淆的代码 #########
-#####################################
-#-dontwarn com.xuie.androiddemo.ui.**
--keep class com.xuie.androiddemo.ui.** { *; }
+-optimizationpasses 5
+# 混淆时不会产生形形色色的类名
+-dontusemixedcaseclassnames
+# 指定不去忽略非公共的类库
+-dontskipnonpubliclibraryclasses
+# 不预校验
+-dontpreverify
+-verbose
+-optimizations !code/simplification/arithmetic,!field/*,!class/merging/*//优化
+# 不进行混淆保持原样
+-keep public class * extends android.app.Activity
+-keep public class * extends android.app.Application
+-keep public class * extends android.app.Service
+-keep public class * extends android.content.BroadcastReceiver
+-keep public class * extends android.content.ContentProvider
+-keep public class * extends android.app.backup.BackupAgentHelper
+-keep public class * extends android.preference.Preference
+-keep public class com.android.vending.licensing.ILicensingService
+-libraryjars   libs/android-support-v4.jar
+-dontwarn android.support.v4.**
+-keep class android.support.v4.** { *; }
+-keep interface android.support.v4.app.** { *; }
+-keep public class * extends android.support.v4.**
+-keep public class * extends android.app.Fragment
+# 保护指定的类和类的成员的名称，如果所有指定的类成员出席
+-keepclasseswithmembernames class * {
+    native <methods>;
+}
+# 保护指定的类和类的成员，但条件是所有指定的类和类成员是要存在
+-keepclasseswithmembers class * {
+    public <init>(android.content.Context, android.util.AttributeSet);
+}
+-keepclasseswithmembers class * {
+    public <init>(android.content.Context, android.util.AttributeSet, int);
+}
+# 保护指定类的成员，如果此类受到保护他们会保护的更好
+-keepclassmembers class * extends android.app.Activity {
+   public void *(android.view.View);
+}
+-keepclassmembers enum * {
+    public static **[] values();
+    public static ** valueOf(java.lang.String);
+}
+# 保护指定的类文件和类成员
+-keep class * implements android.os.Parcelable {
+  public static final android.os.Parcelable$Creator *;
+}
+-keepclassmembers class * implements android.os.Parcelable {
+  public static final android.os.Parcelable$Creator *;
+}
 
--keep class com.xuie.androiddemo.ui.fragment.** { *; }
--keep class com.xuie.androiddemo.view.adapter.** { *; }
--keep class com.xuie.androiddemo.view.EnergyColumn
+# 不优化泛型和反射
+-keepattributes Signature
 
--dontwarn butterknife.**
--keep class butterknife.** { *; }
 
--dontwarn com.dd.**
--keep class com.dd.** { *; }
 
--dontwarn android.**
--keep class android.** { *; }
+# ButterKnife
+# Retain generated class which implement Unbinder.
+-keep public class * implements butterknife.Unbinder { public <init>(...); }
 
--dontwarn com.android.**
--keep class com.android.** { *; }
+# Prevent obfuscation of types which use ButterKnife annotations since the simple name
+# is used to reflectively look up the generated ViewBinding.
+-keep class butterknife.*
+-keepclasseswithmembernames class * { @butterknife.* <methods>; }
+-keepclasseswithmembernames class * { @butterknife.* <fields>; }
 
--dontwarn com.squareup.**
--keep class com.squareup.** { *; }
-
--dontwarn jp.wasabeef.**
--keep class jp.wasabeef.** { *; }
-
--dontwarn rx.**
--keep class rx.** { *; }
-
-# 友盟更新
+# umeng
 -keepclassmembers class * {
    public <init>(org.json.JSONObject);
 }
@@ -56,8 +90,60 @@
 -dontwarn com.umeng.**
 -keep class com.umeng.** { *; }
 
-#####################################
-########### 不优化泛型和反射 ##########
-#####################################
+# Rxandroid
+-keep class rx.schedulers.Schedulers {
+    public static <methods>;
+}
+-keep class rx.schedulers.ImmediateScheduler {
+    public <methods>;
+}
+-keep class rx.schedulers.TestScheduler {
+    public <methods>;
+}
+-keep class rx.schedulers.Schedulers {
+    public static ** test();
+}
+-keepclassmembers class rx.internal.util.unsafe.*ArrayQueue*Field* {
+    long producerIndex;
+    long consumerIndex;
+}
+-keepclassmembers class rx.internal.util.unsafe.BaseLinkedQueueProducerNodeRef {
+    long producerNode;
+    long consumerNode;
+}
+
+-keepclassmembers class rx.internal.util.unsafe.BaseLinkedQueueProducerNodeRef {
+    rx.internal.util.atomic.LinkedQueueNode producerNode;
+}
+-keepclassmembers class rx.internal.util.unsafe.BaseLinkedQueueConsumerNodeRef {
+    rx.internal.util.atomic.LinkedQueueNode consumerNode;
+}
+
+-dontwarn rx.internal.util.unsafe.**
+
+# Retrofit2
+# Platform calls Class.forName on types which do not exist on Android to determine platform.
+-dontnote retrofit2.Platform
+# Platform used when running on RoboVM on iOS. Will not be used at runtime.
+-dontnote retrofit2.Platform$IOS$MainThreadExecutor
+# Platform used when running on Java 8 VMs. Will not be used at runtime.
+-dontwarn retrofit2.Platform$Java8
+# Retain generic type information for use by reflection by converters and adapters.
 -keepattributes Signature
+# Retain declared checked exceptions for use by a Proxy instance.
+-keepattributes Exceptions
+
+# com.mikepenz:iconics-core
+-keep class .R
+-keep class **.R$* {
+    <fields>;
+}
+
+# Glide
+-keep public class * implements com.bumptech.glide.module.GlideModule
+-keep public enum com.bumptech.glide.load.resource.bitmap.ImageHeaderParser$** {
+  **[] $VALUES;
+  public *;
+}
+-keepresourcexmlelements manifest/application/meta-data@value=GlideModule
 
