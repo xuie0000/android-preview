@@ -84,4 +84,8 @@ public class TwoActivity extends AppCompatActivity {
         MobclickAgent.onPause(this);
     }
 
+    @Override public void onBackPressed() {
+        super.onBackPressed();
+        // startActivity(getParentActivityIntent());
+    }
 }

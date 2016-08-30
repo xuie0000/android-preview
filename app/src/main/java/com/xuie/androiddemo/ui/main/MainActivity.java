@@ -2,9 +2,8 @@ package com.xuie.androiddemo.ui.main;
 
 import android.Manifest;
 import android.content.Intent;
-import android.content.pm.PackageInfo;
-import android.content.pm.PackageManager;
 import android.content.res.Configuration;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -28,10 +27,12 @@ import com.tbruyelle.rxpermissions.RxPermissions;
 import com.umeng.analytics.MobclickAgent;
 import com.umeng.update.UmengUpdateAgent;
 import com.xuie.androiddemo.R;
+import com.xuie.androiddemo.ui.activity.TwoActivity;
 import com.xuie.androiddemo.ui.palette.PaletteActivity;
 import com.xuie.androiddemo.ui.weather.WeatherActivity;
 import com.xuie.androiddemo.util.PreferenceUtils;
 import com.xuie.util.BitmapUtils;
+import com.xuie.util.ShortcutUtils;
 
 import java.io.File;
 
@@ -78,7 +79,12 @@ public class MainActivity extends AppCompatActivity {
 
         mDayNightMode = PreferenceUtils.getInt(this, "mode", AppCompatDelegate.MODE_NIGHT_NO);
 
-        printVersion();
+        if (PreferenceUtils.getBoolean(this, "first_run", true)) {
+            PreferenceUtils.setPreference(this, "first_run", false);
+            Logger.d("create a shortcut");
+            // ShortcutUtils.addShortcutByPackageName(this, getPackageName());
+            ShortcutUtils.addShortcut(this, getShortCutIntent(), getString(R.string.app_name), false, BitmapFactory.decodeResource(getResources(), R.mipmap.image_small));
+        }
     }
 
     private void switchNavigation(int navId) {
@@ -107,13 +113,12 @@ public class MainActivity extends AppCompatActivity {
 //        MobclickAgent.setDebugMode(true);
     }
 
-    private void printVersion() {
-        try {
-            PackageInfo info = getPackageManager().getPackageInfo(getPackageName(), 0);
-            System.out.println("Current Version : [" + info.versionName + "," + info.versionCode + "]");
-        } catch (PackageManager.NameNotFoundException e) {
-            e.printStackTrace();
-        }
+    private Intent getShortCutIntent() {
+        // 使用MAIN，可以避免部分手机(比如华为、HTC部分机型)删除应用时无法删除快捷方式的问题
+        Intent intent = new Intent(Intent.ACTION_MAIN);
+        intent.addCategory(Intent.CATEGORY_DEFAULT);
+        intent.setClass(MainActivity.this, TwoActivity.class);
+        return intent;
     }
 
     @Override public void onBackPressed() {
