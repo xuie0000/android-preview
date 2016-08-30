@@ -13,7 +13,10 @@
      limitations under the License.
 -->
 <transitionSet xmlns:android="http://schemas.android.com/apk/res/android">
+<!--
     <changeBounds android:interpolator="@android:interpolator/overshoot" />
+-->
+    <changeBounds />
     <changeTransform />
     <changeClipBounds />
     <changeImageTransform />
