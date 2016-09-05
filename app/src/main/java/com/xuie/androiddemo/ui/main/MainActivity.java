@@ -27,6 +27,7 @@ import com.umeng.analytics.MobclickAgent;
 import com.umeng.update.UmengUpdateAgent;
 import com.xuie.androiddemo.R;
 import com.xuie.androiddemo.ui.activity.TwoActivity;
+import com.xuie.androiddemo.ui.coordinatorLayout.CoordinatorLayoutActivity;
 import com.xuie.androiddemo.ui.palette.PaletteActivity;
 import com.xuie.androiddemo.ui.weather.WeatherActivity;
 import com.xuie.androiddemo.util.PreferenceUtils;
@@ -170,6 +171,8 @@ public class MainActivity extends AppCompatActivity {
             startWeather();
         } else if (item.getItemId() == R.id.action_palette) {
             startPalette();
+        } else if (item.getItemId() == R.id.action_coordinatorLayout) {
+            startCoordinatorLayout();
         }
         return super.onOptionsItemSelected(item);
     }
@@ -216,5 +219,9 @@ public class MainActivity extends AppCompatActivity {
 
     public void startPalette() {
         startActivity(new Intent(this, PaletteActivity.class));
+    }
+
+    public void startCoordinatorLayout() {
+        startActivity(new Intent(this, CoordinatorLayoutActivity.class));
     }
 }

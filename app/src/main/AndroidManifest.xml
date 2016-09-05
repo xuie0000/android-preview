@@ -57,6 +57,11 @@
             android:value="Channel ID"/>
 
         <activity android:name=".ui.palette.PaletteActivity"/>
+        <activity
+            android:name=".ui.coordinatorLayout.CoordinatorLayoutActivity"
+            android:label="@string/title_activity_coordinator_layout"
+            android:theme="@style/AppTheme.DayNight.NoActionBar">
+        </activity>
     </application>
 
 </manifest>

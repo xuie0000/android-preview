@@ -1,4 +1,5 @@
 <resources>
+
     <style name="AppTheme.DayNight" parent="Theme.AppCompat.DayNight">
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
@@ -10,10 +11,15 @@
         <item name="windowNoTitle">true</item>
     </style>
 
-    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light"/>
     <!-- make the title in action bar always be white-->
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
         <item name="android:textColorPrimary">@color/abc_primary_text_material_dark</item>
     </style>
+
+    <style name="AppTheme.DayNight.NoActionBar.AppBarOverlay"
+           parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
+
+    <style name="AppTheme.DayNight.NoActionBar.PopupOverlay" parent="ThemeOverlay.AppCompat.Light"/>
 
 </resources>
