@@ -123,8 +123,8 @@ dependencies {
     testCompile 'junit:junit:4.12'
 
     // butterknife
-    compile 'com.jakewharton:butterknife:8.3.0'
-    apt 'com.jakewharton:butterknife-compiler:8.3.0'
+    compile 'com.jakewharton:butterknife:8.4.0'
+    apt 'com.jakewharton:butterknife-compiler:8.4.0'
     // umeng
     compile 'com.umeng.analytics:analytics:latest.integration'
     // material design icon
