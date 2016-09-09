@@ -144,7 +144,7 @@ dependencies {
     // 6.0 permissions
     compile 'com.tbruyelle.rxpermissions:rxpermissions:0.7.0@aar'
     // logger
-    compile 'com.github.orhanobut:logger:1.12'
+    compile 'com.orhanobut:logger:1.15'
     // okhttp
     compile 'com.zhy:okhttputils:2.6.1'
 }
