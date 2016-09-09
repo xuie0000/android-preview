@@ -6,7 +6,6 @@ import android.app.Application;
 import android.support.v7.app.AppCompatDelegate;
 
 import com.orhanobut.logger.Logger;
-import com.xuie.androiddemo.util.MyActivityManager;
 import com.xuie.androiddemo.util.PreferenceUtils;
 import com.zhy.http.okhttp.OkHttpUtils;
 
@@ -43,8 +42,6 @@ public class App extends Application {
         Realm.setDefaultConfiguration(configuration);
 
         Thread.setDefaultUncaughtExceptionHandler(new CrashHandler(this));
-
-        MyActivityManager.getInstance().init(this);
 
         OkHttpClient okHttpClient = new OkHttpClient.Builder()
                 .connectTimeout(10000L, TimeUnit.MILLISECONDS)
