@@ -19,7 +19,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
-    protected List<TextColor> textPictures;
+    List<TextColor> textPictures;
 
     public RecyclerViewAdapter(List<TextColor> textPictures) {
         this.textPictures = textPictures;
@@ -33,12 +33,15 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     @Override public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         TextColor textPicture = textPictures.get(position);
         RecyclerViewHolder vh = ((RecyclerViewHolder) holder);
-        ((CardView)holder.itemView).setCardBackgroundColor(textPicture.getColor());
+        vh.card.setCardBackgroundColor(textPicture.getColor());
         vh.title.setText(textPicture.getText());
+        startAnimation(vh.itemView);
+    }
 
+    protected void startAnimation(View view) {
         Animator[] anims = new Animator[]{
-                ObjectAnimator.ofFloat(holder.itemView, "scaleY", 1, 1.1f, 1),
-                ObjectAnimator.ofFloat(holder.itemView, "scaleX", 1, 1.1f, 1)
+                ObjectAnimator.ofFloat(view, "scaleY", 1, 1.1f, 1),
+                ObjectAnimator.ofFloat(view, "scaleX", 1, 1.1f, 1)
         };
 
         for (Animator anim : anims) {
@@ -50,11 +53,14 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         return textPictures.size();
     }
 
-    protected class RecyclerViewHolder extends RecyclerView.ViewHolder {
+    class RecyclerViewHolder extends RecyclerView.ViewHolder {
+        CardView card;
         @BindView(R.id.title) TextView title;
-        public RecyclerViewHolder(View view) {
-            super(view);
-            ButterKnife.bind(this, view);
+
+        RecyclerViewHolder(View itemView) {
+            super(itemView);
+            ButterKnife.bind(this, itemView);
+            card = (CardView) itemView;
             title.setOnClickListener(v -> Logger.d("Element " + getAdapterPosition() + " clicked."));
         }
     }

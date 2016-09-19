@@ -1,7 +1,5 @@
 package com.xuie.androiddemo.ui.adapter;
 
-import android.animation.Animator;
-import android.animation.ObjectAnimator;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -18,11 +16,8 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-/**
- * Created by xuie on 15-11-19.
- */
 public class RecyclerStaggeredViewAdapter extends RecyclerViewAdapter {
-    int ITEM_TYPE_NORMAL = 1, ITEM_TYPE_LARGER = 2;
+    private int ITEM_TYPE_NORMAL = 1, ITEM_TYPE_LARGER = 2;
 
     public RecyclerStaggeredViewAdapter(List<TextColor> textPictures) {
         super(textPictures);
@@ -46,35 +41,28 @@ public class RecyclerStaggeredViewAdapter extends RecyclerViewAdapter {
             TextColor textPicture = textPictures.get(position);
 
             RecyclerStaggeredViewHolder vh = ((RecyclerStaggeredViewHolder) holder);
-            ((CardView) holder.itemView).setCardBackgroundColor(textPicture.getColor());
+            vh.card.setCardBackgroundColor(textPicture.getColor());
             vh.title.setText(textPicture.getText());
             vh.subText.setText(textPicture.getText());
-
-            Animator[] anims = new Animator[]{
-                    ObjectAnimator.ofFloat(holder.itemView, "scaleY", 1, 1.1f, 1),
-                    ObjectAnimator.ofFloat(holder.itemView, "scaleX", 1, 1.1f, 1)
-            };
-
-            for (Animator anim : anims) {
-                anim.setDuration(300).start();
-            }
+            startAnimation(vh.itemView);
         }
     }
 
-    @Override
-    public int getItemViewType(int position) {
+    @Override public int getItemViewType(int position) {
         return position % 2 == 0 ? ITEM_TYPE_LARGER : ITEM_TYPE_NORMAL;
 //        return position == getTopPosition() ? ITEM_TYPE_LARGER : ITEM_TYPE_NORMAL;
     }
 
-    public class RecyclerStaggeredViewHolder extends RecyclerView.ViewHolder {
+    class RecyclerStaggeredViewHolder extends RecyclerView.ViewHolder {
+        CardView card;
         @BindView(R.id.title) TextView title;
         @BindView(R.id.subText) TextView subText;
 
-        public RecyclerStaggeredViewHolder(View view) {
-            super(view);
-            ButterKnife.bind(this, view);
-            view.setOnClickListener(v -> Logger.d("Element " + getAdapterPosition() + " clicked."));
+        RecyclerStaggeredViewHolder(View itemView) {
+            super(itemView);
+            ButterKnife.bind(this, itemView);
+            card = (CardView) itemView;
+            itemView.setOnClickListener(v -> Logger.d("Element " + getAdapterPosition() + " clicked."));
         }
     }
 
