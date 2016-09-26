@@ -29,7 +29,7 @@ import com.xuie.androiddemo.R;
 import com.xuie.androiddemo.ui.activity.TwoActivity;
 import com.xuie.androiddemo.ui.coordinatorLayout.CoordinatorLayoutActivity;
 import com.xuie.androiddemo.ui.palette.PaletteActivity;
-import com.xuie.androiddemo.ui.weather.WeatherActivity;
+import com.xuie.androiddemo.ui.weather.WeatherDataBindingActivity;
 import com.xuie.androiddemo.util.PreferenceUtils;
 import com.xuie.util.BitmapUtils;
 import com.xuie.util.ShortcutUtils;
@@ -214,7 +214,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void startWeather() {
-        startActivity(new Intent(this, WeatherActivity.class));
+        startActivity(new Intent(this, WeatherDataBindingActivity.class));
     }
 
     public void startPalette() {

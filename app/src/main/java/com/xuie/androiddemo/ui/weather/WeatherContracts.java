@@ -17,9 +17,7 @@ public interface WeatherContracts {
 
         void setWeather(List<Weather> weathers);
 
-        void showProgress();
-
-        void hideProgress();
+        void getWeatherFail();
     }
 
     interface Presenter extends BasePresenter {

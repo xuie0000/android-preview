@@ -31,7 +31,7 @@ public class WeatherPresenter implements WeatherContracts.Presenter {
     }
 
     @Override public void subscribe() {
-
+        loadCity();
     }
 
     @Override public void unsubscribe() {

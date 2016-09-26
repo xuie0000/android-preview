@@ -43,7 +43,6 @@
                 android:value=".ui.main.MainActivity"/>
         </activity>
         <activity android:name="com.umeng.update.UpdateDialogActivity"/>
-        <activity android:name=".ui.weather.WeatherActivity"/>
 
         <service
             android:name="com.umeng.update.net.DownloadingService"
@@ -57,11 +56,8 @@
             android:value="Channel ID"/>
 
         <activity android:name=".ui.palette.PaletteActivity"/>
-        <activity
-            android:name=".ui.coordinatorLayout.CoordinatorLayoutActivity"
-            android:label="@string/title_activity_coordinator_layout"
-            android:theme="@style/AppTheme.DayNight.NoActionBar">
-        </activity>
+        <activity android:name=".ui.coordinatorLayout.CoordinatorLayoutActivity"/>
+        <activity android:name=".ui.weather.WeatherDataBindingActivity"/>
     </application>
 
 </manifest>

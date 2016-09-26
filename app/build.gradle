@@ -16,7 +16,7 @@ android {
     }
 
     compileSdkVersion 24
-    buildToolsVersion "24.0.1"
+    buildToolsVersion "24.0.2"
 
     defaultConfig {
         applicationId "com.xuie.androiddemo"
@@ -41,8 +41,8 @@ android {
         debug {
             debuggable true
             minifyEnabled false
-            zipAlignEnabled true
-            shrinkResources true
+            zipAlignEnabled false
+            shrinkResources false
         }
     }
 
@@ -108,7 +108,7 @@ def buildTime() {
 }
 
 ext {
-    supportLibVersion = '24.2.0'
+    supportLibVersion = '24.2.1'
 }
 
 dependencies {
