@@ -36,5 +36,6 @@
     <string name="bottom_sheet_peek">Bottom Sheet Peek</string>
     <string name="title_activity_coordinator_layout">CoordinatorLayoutActivity</string>
     <string name="coordinatorlayout">CoordinatorLayout</string>
+    <string name="diff_util">DiffUtil</string>
 
 </resources>

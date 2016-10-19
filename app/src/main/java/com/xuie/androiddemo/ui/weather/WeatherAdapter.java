@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 
 import com.xuie.androiddemo.R;
 import com.xuie.androiddemo.bean.weather.Weather;
-import com.xuie.androiddemo.databinding.WeatherDataBindingItemBinding;
+import com.xuie.androiddemo.databinding.ItemWeatherDataBindingBinding;
 
 import java.util.List;
 
@@ -24,7 +24,7 @@ public class WeatherAdapter extends RecyclerView.Adapter<WeatherAdapter.MyViewHo
     }
 
     @Override public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.weather_data_binding_item, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_weather_data_binding, parent, false);
         return new MyViewHolder(view);
     }
 
@@ -37,16 +37,15 @@ public class WeatherAdapter extends RecyclerView.Adapter<WeatherAdapter.MyViewHo
     }
 
     class MyViewHolder extends RecyclerView.ViewHolder {
-
-        WeatherDataBindingItemBinding weatherDataBindingItemBinding;
+        ItemWeatherDataBindingBinding itemWeatherDataBindingBinding;
 
         MyViewHolder(View itemView) {
             super(itemView);
-            weatherDataBindingItemBinding = DataBindingUtil.bind(itemView);
+            itemWeatherDataBindingBinding = DataBindingUtil.bind(itemView);
         }
 
         public void bind(Weather weather) {
-            weatherDataBindingItemBinding.setWeather(weather);
+            itemWeatherDataBindingBinding.setWeather(weather);
         }
     }
 }

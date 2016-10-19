@@ -27,7 +27,7 @@ public class RecyclerStaggeredViewAdapter extends RecyclerViewAdapter {
         if (viewType == ITEM_TYPE_NORMAL) {
             return super.onCreateViewHolder(viewGroup, viewType);
         } else if (viewType == ITEM_TYPE_LARGER) {
-            View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.text_row_larger_item, viewGroup, false);
+            View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item_text_row_larger, viewGroup, false);
             return new RecyclerStaggeredViewHolder(v);
         } else {
             throw new IllegalArgumentException("viewType is ERROR, ITEM_TYPE_LARGER, ITEM_TYPE_NORMAL");

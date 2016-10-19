@@ -28,6 +28,7 @@ import com.umeng.update.UmengUpdateAgent;
 import com.xuie.androiddemo.R;
 import com.xuie.androiddemo.ui.activity.TwoActivity;
 import com.xuie.androiddemo.ui.coordinatorLayout.CoordinatorLayoutActivity;
+import com.xuie.androiddemo.ui.diffutil.DiffUtilFragment;
 import com.xuie.androiddemo.ui.palette.PaletteActivity;
 import com.xuie.androiddemo.ui.weather.WeatherDataBindingActivity;
 import com.xuie.androiddemo.util.PreferenceUtils;
@@ -100,6 +101,9 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case R.id.nav_recycler_view:
                 switchFragment(RecyclerViewFragment.class.getName(), getString(R.string.recycler_view));
+                break;
+            case R.id.nav_diff_util:
+                switchFragment(DiffUtilFragment.class.getName(), getString(R.string.diff_util));
                 break;
         }
 

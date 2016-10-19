@@ -16,5 +16,9 @@
         android:id="@+id/nav_transitions"
         android:icon="@mipmap/ic_invert_colors"
         android:title="@string/transitions"/>
+    <item
+        android:id="@+id/nav_diff_util"
+        android:icon="@mipmap/ic_invert_colors"
+        android:title="@string/diff_util"/>
 
 </menu>

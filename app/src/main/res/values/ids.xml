@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="sort_by_name" type="id"/>
+    <item name="sort_by_rating" type="id"/>
+    <item name="sort_by_birth" type="id"/>
+</resources>
