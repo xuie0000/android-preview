@@ -1,11 +1,11 @@
 package com.xuie.androiddemo;
 
 
-
 import android.app.Application;
 import android.support.v7.app.AppCompatDelegate;
 
 import com.orhanobut.logger.Logger;
+import com.umeng.socialize.UMShareAPI;
 import com.xuie.androiddemo.util.PreferenceUtils;
 import com.zhy.http.okhttp.OkHttpUtils;
 
@@ -26,6 +26,7 @@ public class App extends Application {
         super.onCreate();
         Logger.init();
         context = this;
+        UMShareAPI.get(this);
 
         System.out.println("mode:" + getNightMode());
         if (getNightMode() == 1) {
