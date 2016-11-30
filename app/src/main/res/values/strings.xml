@@ -38,4 +38,6 @@
     <string name="coordinatorlayout">CoordinatorLayout</string>
     <string name="diff_util">DiffUtil</string>
 
+    <string name="share_text">我的分享Android干货-http://xuie0000.com/</string>
+    <string name="action_share">分享</string>
 </resources>

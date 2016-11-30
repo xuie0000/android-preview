@@ -23,15 +23,15 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 
-import com.xuie.generalutils.R;
-
 /**
  * Created by drakeet on 8/17/15.
  */
 public class ShareUtils {
+    private static String shareText = "我的分享Android干货-http://xuie0000.com/";
+    private static String shareTitle = "分享";
 
     public static void share(Context context) {
-        share(context, context.getString(R.string.share_text));
+        share(context, shareText);
     }
 
     public static void shareImage(Context context, Uri uri, String title) {
@@ -46,10 +46,9 @@ public class ShareUtils {
     public static void share(Context context, String extraText) {
         Intent shareIntent = new Intent(Intent.ACTION_SEND);
         shareIntent.setType("text/plain");
-        shareIntent.putExtra(Intent.EXTRA_SUBJECT, context.getString(R.string.action_share));
+        shareIntent.putExtra(Intent.EXTRA_SUBJECT, shareTitle);
         shareIntent.putExtra(Intent.EXTRA_TEXT, extraText);
         shareIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        context.startActivity(
-                Intent.createChooser(shareIntent, context.getString(R.string.action_share)));
+        context.startActivity(Intent.createChooser(shareIntent, shareTitle));
     }
 }
