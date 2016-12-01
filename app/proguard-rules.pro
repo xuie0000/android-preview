@@ -34,7 +34,7 @@
 -keep public class * extends android.app.backup.BackupAgentHelper
 -keep public class * extends android.preference.Preference
 -keep public class com.android.vending.licensing.ILicensingService
--libraryjars   libs/android-support-v4.jar
+#-libraryjars   libs/android-support-v4.jar
 -dontwarn android.support.v4.**
 -keep class android.support.v4.** { *; }
 -keep interface android.support.v4.app.** { *; }
@@ -145,7 +145,7 @@
   **[] $VALUES;
   public *;
 }
--keepresourcexmlelements manifest/application/meta-data@value=GlideModule
+#-keepresourcexmlelements manifest/application/meta-data@value=GlideModule
 
 
 
@@ -222,3 +222,11 @@ public static final ** CREATOR;
 -keep class com.linkedin.** { *; }
 -keepattributes Signature
 
+# OKIO
+-dontwarn java.nio.file.*
+-dontwarn org.codehaus.mojo.animal_sniffer.IgnoreJRERequirement
+-dontwarn okio.**
+
+# okhttputils
+-dontwarn com.zhy.http.**
+-keep class com.zhy.http.**{*;}
