@@ -17,7 +17,7 @@ import android.widget.LinearLayout;
 
 import com.umeng.analytics.MobclickAgent;
 import com.xuie.androiddemo.R;
-import com.xuie.util.ScreenUtils;
+import com.xuie.androiddemo.util.ScreenUtils;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

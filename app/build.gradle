@@ -60,7 +60,7 @@ android {
     }
 
     productFlavors {
-        dev {
+        Canary {
             manifestPlaceholders = [channel: "Canary"]
         }
     }

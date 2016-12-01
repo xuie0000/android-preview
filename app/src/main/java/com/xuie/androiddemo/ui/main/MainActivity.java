@@ -24,16 +24,15 @@ import android.view.MenuItem;
 import com.orhanobut.logger.Logger;
 import com.tbruyelle.rxpermissions.RxPermissions;
 import com.umeng.analytics.MobclickAgent;
-import com.umeng.update.UmengUpdateAgent;
 import com.xuie.androiddemo.R;
 import com.xuie.androiddemo.ui.activity.TwoActivity;
 import com.xuie.androiddemo.ui.coordinatorLayout.CoordinatorLayoutActivity;
 import com.xuie.androiddemo.ui.diffutil.DiffUtilFragment;
 import com.xuie.androiddemo.ui.palette.PaletteActivity;
 import com.xuie.androiddemo.ui.weather.WeatherDataBindingActivity;
+import com.xuie.androiddemo.util.BitmapUtils;
 import com.xuie.androiddemo.util.PreferenceUtils;
-import com.xuie.util.BitmapUtils;
-import com.xuie.util.ShortcutUtils;
+import com.xuie.androiddemo.util.ShortcutUtils;
 
 import java.io.File;
 
@@ -110,13 +109,6 @@ public class MainActivity extends AppCompatActivity {
         currentFragmentId = navId;
     }
 
-    private void setupUmeng() {
-        UmengUpdateAgent.setDeltaUpdate(false);
-        UmengUpdateAgent.setUpdateOnlyWifi(false);
-        UmengUpdateAgent.update(this);
-//        MobclickAgent.setDebugMode(true);
-    }
-
     private Intent getShortCutIntent() {
         // 使用MAIN，可以避免部分手机(比如华为、HTC部分机型)删除应用时无法删除快捷方式的问题
         Intent intent = new Intent(Intent.ACTION_MAIN);
@@ -147,7 +139,6 @@ public class MainActivity extends AppCompatActivity {
                 .request(Manifest.permission.WRITE_EXTERNAL_STORAGE)
                 .subscribe(granted -> {
                     if (granted) {
-                        setupUmeng();
                         shareActionProvider.setShareIntent(getDefaultIntent());
                     } else {
                         finish();
