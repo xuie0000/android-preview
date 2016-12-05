@@ -9,7 +9,7 @@
 
         <variable
             name="weather"
-            type="com.xuie.androiddemo.bean.weather.Weather"/>
+            type="com.xuie.android.bean.weather.Weather"/>
     </data>
 
     <LinearLayout

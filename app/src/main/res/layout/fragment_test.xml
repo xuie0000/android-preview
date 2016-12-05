@@ -15,7 +15,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <com.xuie.androiddemo.widget.ClearableEditText
+            <com.xuie.android.widget.ClearableEditText
                 android:id="@+id/email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -29,7 +29,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <com.xuie.androiddemo.widget.ClearableEditText
+            <com.xuie.android.widget.ClearableEditText
                 android:id="@+id/password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -55,7 +55,7 @@
                 android:padding="8dp"
                 android:src="@mipmap/ic_launcher"/>
 
-            <com.xuie.androiddemo.widget.CircleImageView
+            <com.xuie.android.widget.CircleImageView
                 android:layout_width="64dp"
                 android:layout_height="64dp"
                 android:padding="8dp"
