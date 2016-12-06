@@ -10,27 +10,27 @@ import android.view.View;
 import com.mikepenz.iconics.context.IconicsContextWrapper;
 import com.xuie.android.R;
 import com.xuie.android.bean.weather.Weather;
-import com.xuie.android.databinding.ActivityWeatherDataBindingBinding;
+import com.xuie.android.databinding.ActivityWeatherBinding;
 import com.xuie.android.ui.Injection;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class WeatherDataBindingActivity extends AppCompatActivity implements WeatherContracts.View {
+public class WeatherActivity extends AppCompatActivity implements WeatherContracts.View {
     private WeatherContracts.Presenter mPresenter;
-    private ActivityWeatherDataBindingBinding weatherDataBindingBinding;
+    private ActivityWeatherBinding weatherBinding;
     private List<Weather> weathers = new ArrayList<>();
     private WeatherAdapter weatherAdapter = new WeatherAdapter(weathers);
 
     @Override protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_weather_data_binding);
+        setContentView(R.layout.activity_weather);
 
-        weatherDataBindingBinding = DataBindingUtil.setContentView(this, R.layout.activity_weather_data_binding);
+        weatherBinding = DataBindingUtil.setContentView(this, R.layout.activity_weather);
         new WeatherPresenter(Injection.provideWeatherRepository(), this);
 
-        weatherDataBindingBinding.recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
-        weatherDataBindingBinding.recyclerView.setAdapter(weatherAdapter);
+        weatherBinding.recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+        weatherBinding.recyclerView.setAdapter(weatherAdapter);
     }
 
     @Override protected void attachBaseContext(Context newBase) {
@@ -38,13 +38,13 @@ public class WeatherDataBindingActivity extends AppCompatActivity implements Wea
     }
 
     @Override public void setCity(String city) {
-        weatherDataBindingBinding.setCity(city);
+        weatherBinding.setCity(city);
         mPresenter.loadWeathers(city);
     }
 
     @Override public void setWeather(List<Weather> weathers) {
         Weather w = weathers.get(0);
-        weatherDataBindingBinding.setWeather(w);
+        weatherBinding.setWeather(w);
 
         this.weathers.clear();
         this.weathers.addAll(weathers);

@@ -2,10 +2,11 @@ package com.xuie.android.ui.main;
 
 import android.Manifest;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
+import android.provider.MediaStore;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
@@ -20,6 +21,7 @@ import android.support.v7.widget.ShareActionProvider;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.orhanobut.logger.Logger;
 import com.tbruyelle.rxpermissions.RxPermissions;
@@ -29,12 +31,9 @@ import com.xuie.android.ui.activity.TwoActivity;
 import com.xuie.android.ui.coordinatorLayout.CoordinatorLayoutActivity;
 import com.xuie.android.ui.diffutil.DiffUtilFragment;
 import com.xuie.android.ui.palette.PaletteActivity;
-import com.xuie.android.ui.weather.WeatherDataBindingActivity;
-import com.xuie.android.util.BitmapUtils;
+import com.xuie.android.ui.weather.WeatherActivity;
 import com.xuie.android.util.PreferenceUtils;
 import com.xuie.android.util.ShortcutUtils;
-
-import java.io.File;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -148,11 +147,26 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private Intent getDefaultIntent() {
-        File file = BitmapUtils.Drawable2File(this, R.mipmap.ic_launcher, Environment.getExternalStorageDirectory() + "/test.png");
-        Uri uri = BitmapUtils.File2Uri(file);
+        // 截屏
+        View dView = getWindow().getDecorView();
+        dView.setDrawingCacheEnabled(true);
+        dView.buildDrawingCache();
+        Bitmap bmp = dView.getDrawingCache();
+
+        // 将Bitmap转换为Uri
+        String pathOfBmp = MediaStore.Images.Media.insertImage(getContentResolver(), bmp, "title", null);
+        Uri bmpUri = Uri.parse(pathOfBmp);
+
+        // 清理截屏缓存
+        dView.setDrawingCacheEnabled(false);
+        dView.destroyDrawingCache();
+
+//        File file = BitmapUtils.Drawable2File(this, R.mipmap.ic_launcher, Environment.getExternalStorageDirectory() + "/test.png");
+//        Uri bmpUri = BitmapUtils.File2Uri(file);
+
         Intent shareIntent = new Intent();
         shareIntent.setAction(Intent.ACTION_SEND);
-        shareIntent.putExtra(Intent.EXTRA_STREAM, uri);
+        shareIntent.putExtra(Intent.EXTRA_STREAM, bmpUri);
         shareIntent.setType("image/*");
         return shareIntent;
     }
@@ -209,7 +223,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void startWeather() {
-        startActivity(new Intent(this, WeatherDataBindingActivity.class));
+        startActivity(new Intent(this, WeatherActivity.class));
     }
 
     public void startPalette() {

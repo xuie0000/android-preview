@@ -29,19 +29,16 @@ public class App extends Application {
         context = this;
         UMShareAPI.get(this);
 
-        System.out.println("mode:" + getNightMode());
-        if (getNightMode() == 1) {
+        if (getNightMode() == AppCompatDelegate.MODE_NIGHT_NO) {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         } else {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
         }
         Logger.d("onCreate");
 
-        RealmConfiguration configuration = new RealmConfiguration
-                .Builder(this)
-                .deleteRealmIfMigrationNeeded()
-                .build();
-        Realm.setDefaultConfiguration(configuration);
+        Realm.init(this);
+        RealmConfiguration config = new RealmConfiguration.Builder().build();
+        Realm.setDefaultConfiguration(config);
 
         Thread.setDefaultUncaughtExceptionHandler(new CrashHandler(this));
 
@@ -52,7 +49,6 @@ public class App extends Application {
         OkHttpUtils.initClient(okHttpClient);
     }
 
-    @AppCompatDelegate.NightMode
     private int getNightMode() {
         return PreferenceUtils.getInt(this, "mode", AppCompatDelegate.MODE_NIGHT_NO);
     }

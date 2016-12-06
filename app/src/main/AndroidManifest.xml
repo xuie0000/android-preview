@@ -107,7 +107,7 @@
 
         <activity android:name="com.xuie.android.ui.palette.PaletteActivity"/>
         <activity android:name="com.xuie.android.ui.coordinatorLayout.CoordinatorLayoutActivity"/>
-        <activity android:name="com.xuie.android.ui.weather.WeatherDataBindingActivity"/>
+        <activity android:name="com.xuie.android.ui.weather.WeatherActivity"/>
     </application>
 
     <!-- shortcut-->
