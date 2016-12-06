@@ -231,6 +231,7 @@ public static final ** CREATOR;
 -dontwarn com.zhy.http.**
 -keep class com.zhy.http.**{*;}
 
+# Gson
 ##---------------Begin: proguard configuration for Gson  ----------
 # Gson uses generic type information stored in a class file when working with fields. Proguard
 # removes such information by default, so configure it to keep all of it.
@@ -248,6 +249,5 @@ public static final ** CREATOR;
 
 ##---------------End: proguard configuration for Gson  ----------
 
+# 保留类成员 - gson时用到
 -keepclassmembers class com.xuie.android.bean.** { *; }
-#-dontwarn com.xuie.android.bean.**
-#-keep class com.xuie.android.bean.**{*;}
