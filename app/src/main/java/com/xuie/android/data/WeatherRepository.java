@@ -48,13 +48,16 @@ public class WeatherRepository implements WeatherSource {
                     return;
                 }
 
-                Logger.d("s:" + response + ", s.length:" + response.length());
-                if (response.equals("")) {
-                    callback.setCity("深圳");
+//                Logger.d("s:" + response + ", s.length:" + response.length());
+                String[] results = response.split("\t");
+                for (String s : results) {
+                    System.out.println("" + s);
                 }
-                String newData = response.substring(0, response.length() - 4);
-                int startIndex = newData.lastIndexOf('\t') + 1;
-                callback.setCity(newData.substring(startIndex, newData.length()));
+                String city = "深圳";
+                if (results.length >= 6)
+                    city = results[5];
+                Logger.d("city:" + city);
+                callback.setCity(city);
             }
         });
     }

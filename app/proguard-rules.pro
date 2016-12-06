@@ -247,3 +247,7 @@ public static final ** CREATOR;
 -keep class com.google.gson.examples.android.model.** { *; }
 
 ##---------------End: proguard configuration for Gson  ----------
+
+-keepclassmembers class com.xuie.android.bean.** { *; }
+#-dontwarn com.xuie.android.bean.**
+#-keep class com.xuie.android.bean.**{*;}
