@@ -11,6 +11,7 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.support.annotation.AnyRes;
+import android.support.v4.content.ContextCompat;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -232,5 +233,10 @@ public class BitmapUtils {
         // Decode bitmap with inSampleSize set
         options.inJustDecodeBounds = false;
         return BitmapFactory.decodeResource(res, resId, options);
+    }
+
+    // resource id to drawable
+    public static Drawable resourceId2Drawable(Context context, int resId) {
+        return ContextCompat.getDrawable(context, resId);
     }
 }
