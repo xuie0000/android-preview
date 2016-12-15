@@ -134,7 +134,7 @@ dependencies {
     compile 'com.squareup.retrofit2:adapter-rxjava:2.1.0'
     compile 'com.squareup.okhttp3:logging-interceptor:3.3.1'
     // 6.0 permissions
-    compile 'com.tbruyelle.rxpermissions:rxpermissions:0.8.0@aar'
+    compile 'com.tbruyelle.rxpermissions:rxpermissions:0.9.1@aar'
     // logger
     compile 'com.orhanobut:logger:1.15'
     // okhttp

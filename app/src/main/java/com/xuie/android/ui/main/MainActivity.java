@@ -134,8 +134,7 @@ public class MainActivity extends AppCompatActivity {
         MenuItem item = menu.findItem(R.id.action_share);
         shareActionProvider = (ShareActionProvider) MenuItemCompat.getActionProvider(item);
 
-        RxPermissions.getInstance(this)
-                .request(Manifest.permission.WRITE_EXTERNAL_STORAGE)
+        new RxPermissions(this).request(Manifest.permission.WRITE_EXTERNAL_STORAGE)
                 .subscribe(granted -> {
                     if (granted) {
                         shareActionProvider.setShareIntent(getDefaultIntent());
