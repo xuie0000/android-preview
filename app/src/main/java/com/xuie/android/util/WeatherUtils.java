@@ -5,12 +5,20 @@ import android.graphics.Color;
 
 import com.mikepenz.iconics.IconicsDrawable;
 import com.mikepenz.weather_icons_typeface_library.WeatherIcons;
+import com.orhanobut.logger.Logger;
+import com.xuie.android.App;
 
 /**
  * Created by xuie on 16-6-8.
  */
 public class WeatherUtils {
-    public static IconicsDrawable getDrawable(Context context, String weather) {
+    public static IconicsDrawable getDrawable(String weather) {
+        Context context = App.getContext();
+        if (weather == null) {
+            Logger.e("weather is null");
+            return null;
+        }
+
         switch (weather) {
             case "多云":
             case "多云转阴":
@@ -37,8 +45,6 @@ public class WeatherUtils {
                 return new IconicsDrawable(context, WeatherIcons.Icon.wic_rain).color(Color.BLACK).sizeDp(24);
             case "雷阵雨冰雹":
                 return new IconicsDrawable(context, WeatherIcons.Icon.wic_hail).color(Color.BLACK).sizeDp(24);
-            case "晴":
-                return new IconicsDrawable(context, WeatherIcons.Icon.wic_day_sunny).color(Color.BLACK).sizeDp(24);
             case "沙尘暴":
                 return new IconicsDrawable(context, WeatherIcons.Icon.wic_sandstorm).color(Color.BLACK).sizeDp(24);
             case "特大暴雨":
@@ -58,6 +64,7 @@ public class WeatherUtils {
                 return new IconicsDrawable(context, WeatherIcons.Icon.wic_rain_mix).color(Color.BLACK).sizeDp(24);
             case "中雪":
                 return new IconicsDrawable(context, WeatherIcons.Icon.wic_snow).color(Color.BLACK).sizeDp(24);
+            case "晴":
             default:
                 return new IconicsDrawable(context, WeatherIcons.Icon.wic_day_sunny).color(Color.BLACK).sizeDp(24);
         }

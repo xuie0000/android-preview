@@ -58,4 +58,15 @@ public class Weather {
     public void setDate(String date) {
         this.date = date;
     }
+
+    @Override public String toString() {
+        return "Weather{" +
+                "fengxiang='" + fengxiang + '\'' +
+                ", fengli='" + fengli + '\'' +
+                ", high='" + high + '\'' +
+                ", type='" + type + '\'' +
+                ", low='" + low + '\'' +
+                ", date='" + date + '\'' +
+                '}';
+    }
 }

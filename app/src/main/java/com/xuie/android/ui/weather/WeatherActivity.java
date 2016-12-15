@@ -1,13 +1,18 @@
 package com.xuie.android.ui.weather;
 
 import android.content.Context;
+import android.databinding.BindingAdapter;
 import android.databinding.DataBindingUtil;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.GridLayoutManager;
 import android.view.View;
+import android.widget.ImageView;
 
 import com.mikepenz.iconics.context.IconicsContextWrapper;
+import com.orhanobut.logger.Logger;
 import com.xuie.android.R;
 import com.xuie.android.bean.weather.Weather;
 import com.xuie.android.databinding.ActivityWeatherBinding;
@@ -29,7 +34,7 @@ public class WeatherActivity extends AppCompatActivity implements WeatherContrac
         weatherBinding = DataBindingUtil.setContentView(this, R.layout.activity_weather);
         new WeatherPresenter(Injection.provideWeatherRepository(), this);
 
-        weatherBinding.recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+        weatherBinding.recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
         weatherBinding.recyclerView.setAdapter(weatherAdapter);
     }
 
@@ -44,6 +49,8 @@ public class WeatherActivity extends AppCompatActivity implements WeatherContrac
 
     @Override public void setWeather(List<Weather> weathers) {
         Weather w = weathers.get(0);
+        Logger.d("-----------------------");
+        Logger.d(w.toString());
         weatherBinding.setWeather(w);
 
         this.weathers.clear();
@@ -51,8 +58,12 @@ public class WeatherActivity extends AppCompatActivity implements WeatherContrac
         weatherAdapter.notifyDataSetChanged();
     }
 
-    @Override public void getWeatherFail() {
+    @BindingAdapter("android:src") public static void setImageResource(ImageView imageView, Drawable drawable) {
+        imageView.setImageDrawable(drawable);
+    }
 
+    @Override public void getWeatherFail() {
+        new Handler(getMainLooper()).postDelayed(() -> mPresenter.loadCity(), 5000);
     }
 
     @Override protected void onResume() {

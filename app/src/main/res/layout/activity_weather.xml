@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:bind="http://schemas.android.com/tools">
 
     <data>
 
@@ -10,6 +11,10 @@
         <variable
             name="weather"
             type="com.xuie.android.bean.weather.Weather"/>
+
+        <import
+            alias="WeatherUtils"
+            type="com.xuie.android.util.WeatherUtils"/>
     </data>
 
     <LinearLayout
@@ -49,9 +54,9 @@
             android:padding="12dp">
 
             <ImageView
-                android:id="@+id/icon"
                 android:layout_width="72dp"
-                android:layout_height="72dp"/>
+                android:layout_height="72dp"
+                android:src="@{WeatherUtils.getDrawable(weather.type ?? '晴')}"/>
 
             <LinearLayout
                 android:layout_width="wrap_content"
