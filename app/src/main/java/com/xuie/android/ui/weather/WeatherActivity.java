@@ -12,7 +12,6 @@ import android.view.View;
 import android.widget.ImageView;
 
 import com.mikepenz.iconics.context.IconicsContextWrapper;
-import com.orhanobut.logger.Logger;
 import com.xuie.android.R;
 import com.xuie.android.bean.weather.Weather;
 import com.xuie.android.databinding.ActivityWeatherBinding;
@@ -34,8 +33,14 @@ public class WeatherActivity extends AppCompatActivity implements WeatherContrac
         weatherBinding = DataBindingUtil.setContentView(this, R.layout.activity_weather);
         new WeatherPresenter(Injection.provideWeatherRepository(), this);
 
-        weatherBinding.recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
+        final GridLayoutManager manager = new GridLayoutManager(this, 2);
+        weatherBinding.recyclerView.setLayoutManager(manager);
         weatherBinding.recyclerView.setAdapter(weatherAdapter);
+        manager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
+            @Override public int getSpanSize(int position) {
+                return weatherAdapter.isHeader(position) ? manager.getSpanCount() : 1;
+            }
+        });
     }
 
     @Override protected void attachBaseContext(Context newBase) {
@@ -49,13 +54,12 @@ public class WeatherActivity extends AppCompatActivity implements WeatherContrac
 
     @Override public void setWeather(List<Weather> weathers) {
         Weather w = weathers.get(0);
-        Logger.d("-----------------------");
-        Logger.d(w.toString());
         weatherBinding.setWeather(w);
 
         this.weathers.clear();
         this.weathers.addAll(weathers);
         weatherAdapter.notifyDataSetChanged();
+        new Handler(getMainLooper()).postDelayed(() -> mPresenter.loadCity(), 5000 * 10);
     }
 
     @BindingAdapter("android:src") public static void setImageResource(ImageView imageView, Drawable drawable) {

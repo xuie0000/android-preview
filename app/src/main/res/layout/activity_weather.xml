@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:bind="http://schemas.android.com/tools">
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
 
     <data>
 
@@ -17,24 +16,20 @@
             type="com.xuie.android.util.WeatherUtils"/>
     </data>
 
-    <LinearLayout
-        android:id="@+id/activity_weather_data_binding"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@android:color/holo_blue_dark"
         android:fitsSystemWindows="true"
-        android:gravity="center_horizontal"
-        android:orientation="vertical">
+        android:gravity="center">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
-            android:orientation="horizontal"
-            android:padding="12dp">
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical">
 
             <TextView
-                android:id="@+id/city"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@{city}"/>
@@ -42,52 +37,17 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
                 android:text="@{weather.date}"/>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:orientation="horizontal"
-            android:padding="12dp">
 
             <ImageView
                 android:layout_width="72dp"
                 android:layout_height="72dp"
-                android:src="@{WeatherUtils.getDrawable(weather.type ?? '晴')}"/>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:padding="4dp"
-                    android:text="@{weather.low + weather.high}"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:padding="4dp"
-                    android:text="@{weather.fengxiang}"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:padding="4dp"
-                    android:text="@{weather.type}"/>
-            </LinearLayout>
+                android:src="@{WeatherUtils.getDrawable(weather.type ?? String.valueOf('晴'))}"/>
         </LinearLayout>
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recycler_view"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-
-    </LinearLayout>
+            android:layout_height="match_parent"/>
+    </RelativeLayout>
 </layout>

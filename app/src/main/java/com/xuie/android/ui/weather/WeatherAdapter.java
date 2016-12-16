@@ -11,7 +11,8 @@ import android.widget.ImageView;
 
 import com.xuie.android.R;
 import com.xuie.android.bean.weather.Weather;
-import com.xuie.android.databinding.ItemWeatherDataBindingBinding;
+import com.xuie.android.databinding.ItemWeatherContentBinding;
+import com.xuie.android.databinding.ItemWeatherHeadBinding;
 
 import java.util.List;
 
@@ -19,46 +20,86 @@ import java.util.List;
  * Created by xuie on 16-9-26.
  */
 
-public class WeatherAdapter extends RecyclerView.Adapter<WeatherAdapter.MyViewHolder> {
+public class WeatherAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+    public static final int TYPE_HEADER = 0;
+    public static final int TYPE_FOOTER = 1;
+    public static final int TYPE_NORMAL = 2;
+
     private List<Weather> weathers;
 
     public WeatherAdapter(List<Weather> weathers) {
         this.weathers = weathers;
     }
 
-    @Override public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_weather_data_binding, parent, false);
-        return new MyViewHolder(view);
+    @Override public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View view;
+        switch (viewType) {
+            case TYPE_HEADER:
+            case TYPE_FOOTER:
+                view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_weather_head, parent, false);
+                return new HeadViewHolder(view);
+            case TYPE_NORMAL:
+            default:
+                view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_weather_content, parent, false);
+                return new ContentViewHolder(view);
+        }
     }
 
-    @Override public void onBindViewHolder(MyViewHolder holder, int position) {
-        holder.bind(weathers.get(position));
+    @Override public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+        switch (getItemViewType(position)) {
+            case TYPE_HEADER:
+            case TYPE_FOOTER:
+                ((HeadViewHolder) holder).bind(weathers.get(position));
+                break;
+            case TYPE_NORMAL:
+                ((ContentViewHolder) holder).bind(weathers.get(position));
+                break;
+        }
+    }
+
+    public boolean isHeader(int position) {
+        return position == 0;
     }
 
     @Override public int getItemCount() {
         return weathers != null ? weathers.size() : 0;
     }
 
-//    @BindingAdapter({"android:src"})
-//    public static void setImageResource(ImageView imageView, String weather) {
-//        imageView.setImageDrawable(WeatherUtils.getDrawable(App.getContext(), weather));
-//    }
+    @Override public int getItemViewType(int position) {
+//        if (position == getItemCount()-1){
+//            return TYPE_FOOTER;
+//        }
+        return isHeader(position) ? TYPE_HEADER : TYPE_NORMAL;
+    }
 
-    @BindingAdapter({"android:src"})
+    @BindingAdapter("android:src")
     public static void setImageResource(ImageView imageView, Drawable drawable) {
         imageView.setImageDrawable(drawable);
     }
 
-    class MyViewHolder extends RecyclerView.ViewHolder {
-        ItemWeatherDataBindingBinding itemWeatherDataBindingBinding;
+    private class ContentViewHolder extends RecyclerView.ViewHolder {
+        ItemWeatherContentBinding itemWeatherContentBinding;
 
-        MyViewHolder(View itemView) {
+        ContentViewHolder(View itemView) {
             super(itemView);
-            itemWeatherDataBindingBinding = DataBindingUtil.bind(itemView);
+            itemWeatherContentBinding = DataBindingUtil.bind(itemView);
         }
 
         public void bind(Weather weather) {
-            itemWeatherDataBindingBinding.setWeather(weather);
+            itemWeatherContentBinding.setWeather(weather);
+        }
+    }
+
+    private class HeadViewHolder extends RecyclerView.ViewHolder {
+        ItemWeatherHeadBinding itemWeatherHeadBinding;
+
+        HeadViewHolder(View itemView) {
+            super(itemView);
+            itemWeatherHeadBinding = DataBindingUtil.bind(itemView);
+        }
+
+        public void bind(Weather weather) {
+            itemWeatherHeadBinding.setWeather(weather);
         }
     }
 }
