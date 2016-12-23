@@ -152,6 +152,7 @@ public class RecyclerViewFragment extends Fragment {
 
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.scrollToPosition(firstPosition);
+        recyclerView.setNestedScrollingEnabled(false);
     }
 
     private int findMax(int[] lastPositions) {
