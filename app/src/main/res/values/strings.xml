@@ -22,7 +22,6 @@
     <string name="test">测试页面</string>
     <string name="recycler_view">RecyclerView</string>
     <string name="transitions">5.+动画</string>
-    <string name="animation">动画</string>
     <string name="palette">Palette</string>
     <string name="contentDescription">contentDescription</string>
 

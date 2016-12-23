@@ -91,9 +91,6 @@ public class MainActivity extends AppCompatActivity {
             case R.id.nav_test:
                 switchFragment(TestFragment.class.getName(), getString(R.string.test));
                 break;
-            case R.id.nav_animation:
-                switchFragment(AnimationFragment.class.getName(), getString(R.string.animation));
-                break;
             case R.id.nav_transitions:
                 switchFragment(TransitionsFragment.class.getName(), getString(R.string.transitions));
                 break;
