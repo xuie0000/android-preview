@@ -1,18 +1,24 @@
 package com.xuie.android.data;
 
+import android.os.Handler;
+import android.os.Looper;
+
 import com.orhanobut.logger.Logger;
 import com.xuie.android.bean.weather.Weather;
-import com.xuie.android.data.source.IWeatherCallback;
-import com.xuie.android.data.source.WeatherSource;
 import com.xuie.android.data.api.ServiceGenerator;
 import com.xuie.android.data.api.WthrcdnAPI;
-import com.zhy.http.okhttp.OkHttpUtils;
-import com.zhy.http.okhttp.callback.StringCallback;
+import com.xuie.android.data.source.IWeatherCallback;
+import com.xuie.android.data.source.WeatherSource;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 import rx.Observable;
 
 /**
@@ -22,9 +28,11 @@ public class WeatherRepository implements WeatherSource {
 
     private static WeatherRepository instance;
     private WthrcdnAPI wthrcdnAPI;
+    private OkHttpClient okHttpClient;
 
     private WeatherRepository() {
         wthrcdnAPI = ServiceGenerator.createService(WthrcdnAPI.class);
+        okHttpClient = new OkHttpClient();
     }
 
     public static WeatherRepository getInstance() {
@@ -37,29 +45,59 @@ public class WeatherRepository implements WeatherSource {
     }
 
     @Override public void getCity(IWeatherCallback callback) {
-        OkHttpUtils.get().url("http://int.dpool.sina.com.cn/iplookup/iplookup.php").build().execute(new StringCallback() {
-            @Override public void onError(Call call, Exception e, int id) {
-                Logger.e(e.getMessage());
+        Request request = new Request.Builder()
+                .url("http://int.dpool.sina.com.cn/iplookup/iplookup.php")
+                .build();
+
+        okHttpClient.newCall(request).enqueue(new Callback() {
+            @Override public void onFailure(Call call, IOException e) {
+                Logger.e("failure " + e.getMessage());
             }
 
-            @Override public void onResponse(String response, int id) {
+            @Override public void onResponse(Call call, Response response) throws IOException {
                 if (callback == null) {
                     Logger.e("callback is null");
                     return;
                 }
+                String body = response.body().string();
 
-//                Logger.d("s:" + response + ", s.length:" + response.length());
-                String[] results = response.split("\t");
+                Logger.d("s:" + body + ", s.length:" + body.length());
+                String[] results = body.split("\t");
                 for (String s : results) {
                     System.out.println("" + s);
                 }
                 String city = "深圳";
                 if (results.length >= 6)
                     city = results[5];
-                Logger.d("city:" + city);
-                callback.setCity(city);
+                Logger.d("city : " + city);
+                String finalCity = city;
+                new Handler(Looper.getMainLooper()).post(() -> callback.setCity(finalCity));
             }
         });
+//
+//        OkHttpUtils.get().url("http://int.dpool.sina.com.cn/iplookup/iplookup.php").build().execute(new StringCallback() {
+//            @Override public void onError(Call call, Exception e, int id) {
+//                Logger.e(e.getMessage());
+//            }
+//
+//            @Override public void onResponse(String response, int id) {
+//                if (callback == null) {
+//                    Logger.e("callback is null");
+//                    return;
+//                }
+//
+////                Logger.d("s:" + response + ", s.length:" + response.length());
+//                String[] results = response.split("\t");
+//                for (String s : results) {
+//                    System.out.println("" + s);
+//                }
+//                String city = "深圳";
+//                if (results.length >= 6)
+//                    city = results[5];
+//                Logger.d("city:" + city);
+//                callback.setCity(city);
+//            }
+//        });
     }
 
     @Override public Observable<List<Weather>> getWeathers(String city) {

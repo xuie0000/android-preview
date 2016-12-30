@@ -19,6 +19,7 @@ public class WeatherPresenter implements WeatherContracts.Presenter {
     }
 
     public void loadWeathers(String city) {
+        Logger.d(city);
         mWeatherRepository.getWeathers(city)
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
