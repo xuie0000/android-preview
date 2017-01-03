@@ -1,8 +1,5 @@
 package com.xuie.android.data;
 
-import android.os.Handler;
-import android.os.Looper;
-
 import com.orhanobut.logger.Logger;
 import com.xuie.android.bean.weather.Weather;
 import com.xuie.android.data.api.ServiceGenerator;
@@ -71,33 +68,10 @@ public class WeatherRepository implements WeatherSource {
                     city = results[5];
                 Logger.d("city : " + city);
                 String finalCity = city;
-                new Handler(Looper.getMainLooper()).post(() -> callback.setCity(finalCity));
+                callback.setCity(finalCity);
+//                new Handler(Looper.getMainLooper()).post(() -> callback.setCity(finalCity));
             }
         });
-//
-//        OkHttpUtils.get().url("http://int.dpool.sina.com.cn/iplookup/iplookup.php").build().execute(new StringCallback() {
-//            @Override public void onError(Call call, Exception e, int id) {
-//                Logger.e(e.getMessage());
-//            }
-//
-//            @Override public void onResponse(String response, int id) {
-//                if (callback == null) {
-//                    Logger.e("callback is null");
-//                    return;
-//                }
-//
-////                Logger.d("s:" + response + ", s.length:" + response.length());
-//                String[] results = response.split("\t");
-//                for (String s : results) {
-//                    System.out.println("" + s);
-//                }
-//                String city = "深圳";
-//                if (results.length >= 6)
-//                    city = results[5];
-//                Logger.d("city:" + city);
-//                callback.setCity(city);
-//            }
-//        });
     }
 
     @Override public Observable<List<Weather>> getWeathers(String city) {

@@ -8,13 +8,9 @@ import com.orhanobut.logger.Logger;
 import com.umeng.socialize.PlatformConfig;
 import com.umeng.socialize.UMShareAPI;
 import com.xuie.android.util.PreferenceUtils;
-import com.zhy.http.okhttp.OkHttpUtils;
-
-import java.util.concurrent.TimeUnit;
 
 import io.realm.Realm;
 import io.realm.RealmConfiguration;
-import okhttp3.OkHttpClient;
 
 /**
  * Created by xuie on 15-11-10.
@@ -41,12 +37,6 @@ public class App extends Application {
         Realm.setDefaultConfiguration(config);
 
         Thread.setDefaultUncaughtExceptionHandler(new CrashHandler(this));
-
-        OkHttpClient okHttpClient = new OkHttpClient.Builder()
-                .connectTimeout(10000L, TimeUnit.MILLISECONDS)
-                .readTimeout(10000L, TimeUnit.MILLISECONDS)
-                .build();
-        OkHttpUtils.initClient(okHttpClient);
     }
 
     private int getNightMode() {

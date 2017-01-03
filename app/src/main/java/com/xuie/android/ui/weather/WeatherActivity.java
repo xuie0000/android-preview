@@ -59,7 +59,9 @@ public class WeatherActivity extends AppCompatActivity implements WeatherContrac
         this.weathers.clear();
         this.weathers.addAll(weathers);
         weatherAdapter.notifyDataSetChanged();
-        new Handler(getMainLooper()).postDelayed(() -> mPresenter.loadCity(), 5000 * 10);
+
+        mPresenter.loadCity();
+//        new Handler(getMainLooper()).postDelayed(() -> mPresenter.loadCity(), 5000 * 10);
     }
 
     @BindingAdapter("android:src") public static void setImageResource(ImageView imageView, Drawable drawable) {

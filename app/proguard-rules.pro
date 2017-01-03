@@ -227,10 +227,6 @@ public static final ** CREATOR;
 -dontwarn org.codehaus.mojo.animal_sniffer.IgnoreJRERequirement
 -dontwarn okio.**
 
-# okhttputils
--dontwarn com.zhy.http.**
--keep class com.zhy.http.**{*;}
-
 # Gson
 ##---------------Begin: proguard configuration for Gson  ----------
 # Gson uses generic type information stored in a class file when working with fields. Proguard

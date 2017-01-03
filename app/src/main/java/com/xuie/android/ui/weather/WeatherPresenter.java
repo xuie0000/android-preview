@@ -1,8 +1,8 @@
 package com.xuie.android.ui.weather;
 
 import com.orhanobut.logger.Logger;
-import com.xuie.android.data.source.IWeatherCallback;
 import com.xuie.android.data.WeatherRepository;
+import com.xuie.android.data.source.IWeatherCallback;
 
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
