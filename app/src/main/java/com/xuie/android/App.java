@@ -5,8 +5,6 @@ import android.app.Application;
 import android.support.v7.app.AppCompatDelegate;
 
 import com.orhanobut.logger.Logger;
-import com.umeng.socialize.PlatformConfig;
-import com.umeng.socialize.UMShareAPI;
 import com.xuie.android.util.PreferenceUtils;
 
 import io.realm.Realm;
@@ -23,7 +21,6 @@ public class App extends Application {
         super.onCreate();
         Logger.init();
         context = this;
-        UMShareAPI.get(this);
 
         if (getNightMode() == AppCompatDelegate.MODE_NIGHT_NO) {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
@@ -39,17 +36,11 @@ public class App extends Application {
         Thread.setDefaultUncaughtExceptionHandler(new CrashHandler(this));
     }
 
-    private int getNightMode() {
-        return PreferenceUtils.getInt(this, "mode", AppCompatDelegate.MODE_NIGHT_NO);
-    }
-
     public static App getContext() {
         return context;
     }
 
-    {
-        PlatformConfig.setQQZone("100424468", "c7394704798a158208a74ab60104f0ba");
-        PlatformConfig.setWeixin("wxdc1e388c3822c80b", "3baf1193c85774b3fd9d18447d76cab0");
-        PlatformConfig.setSinaWeibo("3921700954", "04b48b094faeb16683c32669824ebdad");
+    private int getNightMode() {
+        return PreferenceUtils.getInt(this, "mode", AppCompatDelegate.MODE_NIGHT_NO);
     }
 }

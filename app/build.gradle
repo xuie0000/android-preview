@@ -114,7 +114,7 @@ dependencies {
     // butterknife
     compile 'com.jakewharton:butterknife:8.4.0'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.4.0'
-    // umeng
+    // umeng analytics
     compile 'com.umeng.analytics:analytics:latest.integration'
     // material design icon
     compile "com.mikepenz:iconics-core:2.8.1@aar"
