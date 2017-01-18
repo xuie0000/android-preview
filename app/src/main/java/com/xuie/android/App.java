@@ -34,6 +34,7 @@ public class App extends Application {
         Realm.setDefaultConfiguration(config);
 
         Thread.setDefaultUncaughtExceptionHandler(new CrashHandler(this));
+        PreferenceUtils.init(this);
     }
 
     public static App getContext() {
@@ -41,6 +42,6 @@ public class App extends Application {
     }
 
     private int getNightMode() {
-        return PreferenceUtils.getInt(this, "mode", AppCompatDelegate.MODE_NIGHT_NO);
+        return PreferenceUtils.getInt("mode", AppCompatDelegate.MODE_NIGHT_NO);
     }
 }

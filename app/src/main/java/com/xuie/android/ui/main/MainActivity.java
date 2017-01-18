@@ -72,7 +72,7 @@ public class MainActivity extends AppCompatActivity {
             return true;
         });
 
-        mDayNightMode = PreferenceUtils.getInt(this, "mode", AppCompatDelegate.MODE_NIGHT_NO);
+        mDayNightMode = PreferenceUtils.getInt("mode", AppCompatDelegate.MODE_NIGHT_NO);
     }
 
     private void switchNavigation(int navId) {
@@ -168,7 +168,7 @@ public class MainActivity extends AppCompatActivity {
 //        int dayNightUiMode = uiMode & Configuration.UI_MODE_NIGHT_MASK;
 
         // enable the save mode
-        int defaultMode = PreferenceUtils.getInt(this, "mode", AppCompatDelegate.MODE_NIGHT_NO);
+        int defaultMode = PreferenceUtils.getInt("mode", AppCompatDelegate.MODE_NIGHT_NO);
 //        Logger.d(defaultMode + ", " + mDayNightMode + ", " + dayNightUiMode + " .");
         if (mDayNightMode != defaultMode) {
             refreshDelegateMode(defaultMode);
@@ -192,7 +192,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void refreshDelegateMode(int mode) {
         mDayNightMode = mode;
-        PreferenceUtils.setPreference(this, "mode", mode);
+        PreferenceUtils.setPreference("mode", mode);
         getDelegate().setLocalNightMode(mode);
         recreate();
     }
