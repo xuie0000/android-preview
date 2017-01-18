@@ -3,22 +3,12 @@
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
-
-    <string name="action_weather">天气</string>
-
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-
     <string name="element_text">Element</string>
     <string name="grid_layout_manager">Grid Layout Manager</string>
     <string name="linear_layout_manager">Linear Layout Manager</string>
     <string name="linear_hor_manager">Linear Horizontal Manager</string>
     <string name="recycler_single">Single</string>
     <string name="recycler_stagger">Stagger</string>
-    <string name="app_btn1">有九宫格、有编辑页</string>
-    <string name="app_btn2">有九宫格、无编辑页</string>
-    <string name="app_btn3">无九宫格、有编辑页</string>
-    <string name="app_btn4">无九宫格、无编辑页</string>
-    <string name="app_derect_share">直接分享</string>
     <string name="test">测试页面</string>
     <string name="recycler_view">RecyclerView</string>
     <string name="transitions">5.+动画</string>
@@ -27,13 +17,8 @@
 
     <string name="action_day_night_yes">Night Mode</string>
     <string name="action_day_night_no">Day Mode</string>
-    <string name="action_bottom_sheet_dialog">Bottom Sheet Dialog</string>
-    <string name="text_for_day_night_mode_night_no">NightMode: AppCompatDelegate.MODE_NIGHT_NO</string>
-    <string name="text_for_day_night_mode_night_yes">NightMode: AppCompatDelegate.MODE_NIGHT_YES</string>
-    <string name="text_for_day_night_mode_night_auto">NightMode: AppCompatDelegate.MODE_NIGHT_AUTO</string>
     <string name="bottom_sheet_content">Bottom Sheet Content</string>
     <string name="bottom_sheet_peek">Bottom Sheet Peek</string>
-    <string name="title_activity_coordinator_layout">CoordinatorLayoutActivity</string>
     <string name="coordinatorlayout">CoordinatorLayout</string>
     <string name="diff_util">DiffUtil</string>
 

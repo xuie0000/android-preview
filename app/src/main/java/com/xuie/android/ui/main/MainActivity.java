@@ -3,7 +3,6 @@ package com.xuie.android.ui.main;
 import android.Manifest;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -27,13 +26,10 @@ import com.orhanobut.logger.Logger;
 import com.tbruyelle.rxpermissions.RxPermissions;
 import com.umeng.analytics.MobclickAgent;
 import com.xuie.android.R;
-import com.xuie.android.ui.activity.TwoActivity;
 import com.xuie.android.ui.coordinatorLayout.CoordinatorLayoutActivity;
 import com.xuie.android.ui.diffutil.DiffUtilFragment;
 import com.xuie.android.ui.palette.PaletteActivity;
-import com.xuie.android.ui.weather.WeatherActivity;
 import com.xuie.android.util.PreferenceUtils;
-import com.xuie.android.util.ShortcutUtils;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -77,13 +73,6 @@ public class MainActivity extends AppCompatActivity {
         });
 
         mDayNightMode = PreferenceUtils.getInt(this, "mode", AppCompatDelegate.MODE_NIGHT_NO);
-
-        if (PreferenceUtils.getBoolean(this, "first_run", true)) {
-            PreferenceUtils.setPreference(this, "first_run", false);
-            Logger.d("create a shortcut");
-            // ShortcutUtils.addShortcutByPackageName(this, getPackageName());
-            ShortcutUtils.addShortcut(this, getShortCutIntent(), getString(R.string.app_name), false, BitmapFactory.decodeResource(getResources(), R.mipmap.image_small));
-        }
     }
 
     private void switchNavigation(int navId) {
@@ -103,14 +92,6 @@ public class MainActivity extends AppCompatActivity {
         }
 
         currentFragmentId = navId;
-    }
-
-    private Intent getShortCutIntent() {
-        // 使用MAIN，可以避免部分手机(比如华为、HTC部分机型)删除应用时无法删除快捷方式的问题
-        Intent intent = new Intent(Intent.ACTION_MAIN);
-        intent.addCategory(Intent.CATEGORY_DEFAULT);
-        intent.setClass(MainActivity.this, TwoActivity.class);
-        return intent;
     }
 
     @Override public void onBackPressed() {
@@ -172,8 +153,6 @@ public class MainActivity extends AppCompatActivity {
             refreshDelegateMode(AppCompatDelegate.MODE_NIGHT_YES);
         } else if (item.getItemId() == R.id.action_day_night_no) {
             refreshDelegateMode(AppCompatDelegate.MODE_NIGHT_NO);
-        } else if (item.getItemId() == R.id.action_weather) {
-            startWeather();
         } else if (item.getItemId() == R.id.action_palette) {
             startPalette();
         } else if (item.getItemId() == R.id.action_coordinatorLayout) {
@@ -216,10 +195,6 @@ public class MainActivity extends AppCompatActivity {
         PreferenceUtils.setPreference(this, "mode", mode);
         getDelegate().setLocalNightMode(mode);
         recreate();
-    }
-
-    public void startWeather() {
-        startActivity(new Intent(this, WeatherActivity.class));
     }
 
     public void startPalette() {
