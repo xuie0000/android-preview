@@ -196,7 +196,7 @@ public class ShortcutUtils {
         queryIntent.addFlags(Intent.FLAG_ACTIVITY_LAUNCHED_FROM_HISTORY);
 
 //        List<ResolveInfo> list = pkgMag.queryIntentActivities(queryIntent, PackageManager.GET_ACTIVITIES);
-        List<ResolveInfo> list = pkgMag.queryIntentActivities(queryIntent, PackageManager.GET_ACTIVITIES);
+        List<ResolveInfo> list = pkgMag.queryIntentActivities(queryIntent, PackageManager.MATCH_DEFAULT_ONLY);
         for (int i = 0; i < list.size(); i++) {
             ResolveInfo info = list.get(i);
             if (info.activityInfo.packageName.equals(pkg)) {

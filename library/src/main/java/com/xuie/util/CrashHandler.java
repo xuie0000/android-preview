@@ -14,6 +14,7 @@ import java.io.FileWriter;
 import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 
 /**
  * Created by xuie on 16-1-5.
@@ -62,7 +63,7 @@ public class CrashHandler implements Thread.UncaughtExceptionHandler {
         }
 
         long current = System.currentTimeMillis();
-        String time = new SimpleDateFormat("yyyy-MM-dd HH-mm-ss").format(new Date(current));
+        String time = new SimpleDateFormat("yyyy-MM-dd HH-mm-ss", Locale.CHINA).format(new Date(current));
         File file = new File(PATH + FILE_NAME + time + FILE_NAME_SUFFIX);
 
         try {
