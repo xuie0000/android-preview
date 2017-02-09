@@ -2,14 +2,13 @@ package com.xuie.android.ui.main;
 
 import android.Manifest;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.net.Uri;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -20,9 +19,7 @@ import android.support.v7.widget.ShareActionProvider;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 
-import com.orhanobut.logger.Logger;
 import com.tbruyelle.rxpermissions.RxPermissions;
 import com.umeng.analytics.MobclickAgent;
 import com.xuie.android.R;
@@ -30,6 +27,7 @@ import com.xuie.android.ui.coordinatorLayout.CoordinatorLayoutActivity;
 import com.xuie.android.ui.diffutil.DiffUtilFragment;
 import com.xuie.android.ui.palette.PaletteActivity;
 import com.xuie.android.util.PreferenceUtils;
+import com.xuie.android.util.Utils;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -47,10 +45,22 @@ public class MainActivity extends AppCompatActivity {
     @BindView(R.id.drawer_layout) DrawerLayout drawerLayout;
     @BindView(R.id.fab) FloatingActionButton fab;
 
+    private FragmentManager fragmentManager;
+
+    private TestFragment testFragment;
+    private TransitionsFragment transitionsFragment;
+    private RecyclerViewFragment recyclerViewFragment;
+    private DiffUtilFragment diffUtilFragment;
+
+    protected Fragment currentFragment;
+
     @Override public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         ButterKnife.bind(this);
+
+        fragmentManager = getSupportFragmentManager();
 
         if (savedInstanceState != null) {
             currentFragmentId = (int) savedInstanceState.getSerializable(KEY_FRAGMENT);
@@ -78,28 +88,69 @@ public class MainActivity extends AppCompatActivity {
     private void switchNavigation(int navId) {
         switch (navId) {
             case R.id.nav_test:
-                switchFragment(TestFragment.class.getName(), getString(R.string.test));
+                if (testFragment == null) {
+                    testFragment = new TestFragment();
+                }
+                addOrShowFragment(testFragment);
                 break;
             case R.id.nav_transitions:
-                switchFragment(TransitionsFragment.class.getName(), getString(R.string.transitions));
+                if (transitionsFragment == null) {
+                    transitionsFragment = new TransitionsFragment();
+                }
+                addOrShowFragment(transitionsFragment);
                 break;
             case R.id.nav_recycler_view:
-                switchFragment(RecyclerViewFragment.class.getName(), getString(R.string.recycler_view));
+                if (recyclerViewFragment == null) {
+                    recyclerViewFragment = new RecyclerViewFragment();
+                }
+                addOrShowFragment(recyclerViewFragment);
                 break;
             case R.id.nav_diff_util:
-                switchFragment(DiffUtilFragment.class.getName(), getString(R.string.diff_util));
+                if (diffUtilFragment == null) {
+                    diffUtilFragment = new DiffUtilFragment();
+                }
+                addOrShowFragment(diffUtilFragment);
                 break;
         }
 
         currentFragmentId = navId;
     }
 
-    @Override public void onBackPressed() {
-        if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
-            drawerLayout.closeDrawer(GravityCompat.START);
+    protected void addOrShowFragment(Fragment fragment) {
+        if (currentFragment == fragment)
+            return;
+
+        if (fragment == null)
+            return;
+
+        FragmentTransaction transaction = fragmentManager.beginTransaction();
+
+        if (currentFragment == null) {
+            transaction.add(R.id.fragment_placeholder, fragment).commit();
+        } else if (!fragment.isAdded()) {
+            transaction.hide(currentFragment).add(R.id.fragment_placeholder, fragment).commit();
         } else {
-            super.onBackPressed();
+            transaction.hide(currentFragment).show(fragment).commit();
         }
+        currentFragment = fragment;
+
+        setToolbar();
+    }
+
+    private void setToolbar() {
+        if (currentFragment instanceof TestFragment) {
+            toolbar.setTitle(getString(R.string.test));
+        } else if (currentFragment instanceof TransitionsFragment) {
+            toolbar.setTitle(getString(R.string.transitions));
+        } else if (currentFragment instanceof RecyclerViewFragment) {
+            toolbar.setTitle(getString(R.string.recycler_view));
+        } else if (currentFragment instanceof DiffUtilFragment) {
+            toolbar.setTitle(getString(R.string.diff_util));
+        }
+    }
+
+    @Override public void onBackPressed() {
+        moveTaskToBack(true);
     }
 
     @Override public void onSaveInstanceState(Bundle savedInstanceState) {
@@ -115,37 +166,12 @@ public class MainActivity extends AppCompatActivity {
         new RxPermissions(this).request(Manifest.permission.WRITE_EXTERNAL_STORAGE)
                 .subscribe(granted -> {
                     if (granted) {
-                        shareActionProvider.setShareIntent(getDefaultIntent());
+                        shareActionProvider.setShareIntent(Utils.getDefaultIntent(this));
                     } else {
                         finish();
                     }
                 });
         return true;
-    }
-
-    private Intent getDefaultIntent() {
-        // 截屏
-        View dView = getWindow().getDecorView();
-        dView.setDrawingCacheEnabled(true);
-        dView.buildDrawingCache();
-        Bitmap bmp = dView.getDrawingCache();
-
-        // 将Bitmap转换为Uri
-        String pathOfBmp = MediaStore.Images.Media.insertImage(getContentResolver(), bmp, "title", null);
-        Uri bmpUri = Uri.parse(pathOfBmp);
-
-        // 清理截屏缓存
-        dView.setDrawingCacheEnabled(false);
-        dView.destroyDrawingCache();
-
-//        File file = BitmapUtils.Drawable2File(this, R.mipmap.ic_launcher, Environment.getExternalStorageDirectory() + "/test.png");
-//        Uri bmpUri = BitmapUtils.File2Uri(file);
-
-        Intent shareIntent = new Intent();
-        shareIntent.setAction(Intent.ACTION_SEND);
-        shareIntent.putExtra(Intent.EXTRA_STREAM, bmpUri);
-        shareIntent.setType("image/*");
-        return shareIntent;
     }
 
     @Override public boolean onOptionsItemSelected(MenuItem item) {
@@ -178,16 +204,6 @@ public class MainActivity extends AppCompatActivity {
     @Override protected void onPause() {
         super.onPause();
         MobclickAgent.onPause(this);
-    }
-
-    public void switchFragment(String fragName, String fragTitle) {
-        try {
-            Fragment fragment = (Fragment) Class.forName(fragName).newInstance();
-            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_placeholder, fragment).commit();
-        } catch (InstantiationException | IllegalAccessException | ClassNotFoundException e) {
-            Logger.e(e.getMessage());
-        }
-        toolbar.setTitle(fragTitle);
     }
 
     public void refreshDelegateMode(int mode) {

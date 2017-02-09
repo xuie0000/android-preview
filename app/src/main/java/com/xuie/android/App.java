@@ -21,6 +21,7 @@ public class App extends Application {
         super.onCreate();
         Logger.init();
         context = this;
+        PreferenceUtils.init(this);
 
         if (getNightMode() == AppCompatDelegate.MODE_NIGHT_NO) {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
@@ -34,7 +35,6 @@ public class App extends Application {
         Realm.setDefaultConfiguration(config);
 
         Thread.setDefaultUncaughtExceptionHandler(new CrashHandler(this));
-        PreferenceUtils.init(this);
     }
 
     public static App getContext() {
