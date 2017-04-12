@@ -54,7 +54,8 @@ public class MainActivity extends AppCompatActivity {
 
     protected Fragment currentFragment;
 
-    @Override public void onCreate(Bundle savedInstanceState) {
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
@@ -149,16 +150,19 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    @Override public void onBackPressed() {
+    @Override
+    public void onBackPressed() {
         moveTaskToBack(true);
     }
 
-    @Override public void onSaveInstanceState(Bundle savedInstanceState) {
+    @Override
+    public void onSaveInstanceState(Bundle savedInstanceState) {
         savedInstanceState.putSerializable(KEY_FRAGMENT, currentFragmentId);
         super.onSaveInstanceState(savedInstanceState);
     }
 
-    @Override public boolean onCreateOptionsMenu(Menu menu) {
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.main, menu);
         MenuItem item = menu.findItem(R.id.action_share);
         shareActionProvider = (ShareActionProvider) MenuItemCompat.getActionProvider(item);
@@ -174,7 +178,8 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 
-    @Override public boolean onOptionsItemSelected(MenuItem item) {
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.action_day_night_yes) {
             refreshDelegateMode(AppCompatDelegate.MODE_NIGHT_YES);
         } else if (item.getItemId() == R.id.action_day_night_no) {
@@ -187,7 +192,8 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    @Override protected void onResume() {
+    @Override
+    protected void onResume() {
         super.onResume();
         MobclickAgent.onResume(this);
 //        int uiMode = getResources().getConfiguration().uiMode;
@@ -201,7 +207,8 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    @Override protected void onPause() {
+    @Override
+    protected void onPause() {
         super.onPause();
         MobclickAgent.onPause(this);
     }

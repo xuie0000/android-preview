@@ -29,13 +29,15 @@ public class TestFragment extends Fragment {
     @BindView(R.id.password) ClearableEditText password;
     @BindView(R.id.password_text_input_layout) TextInputLayout passwordTextInputLayout;
 
-    @Override public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_test, container, false);
         ButterKnife.bind(this, view);
         return view;
     }
 
-    @Override public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         shakeView.setImageDrawable(new IconicsDrawable(getActivity(), MaterialDesignIconic.Icon.gmi_view_carousel).color(Color.BLUE).sizeDp(24));
         shakeView.setOnClickListener(v -> shakeView.startAnimation(AnimationUtils.loadAnimation(getActivity(), R.anim.shake)));

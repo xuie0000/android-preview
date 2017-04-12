@@ -46,14 +46,16 @@ public class TransitionsFragment extends Fragment {
     @BindView(R.id.cir_reveal_btn) Button cirRevealBtn;
     @BindView(R.id.fragment_id) LinearLayout fragmentId;
 
-    @Override public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_transitions, container, false);
         ButterKnife.bind(this, view);
         return view;
     }
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-    @Override public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
         makeSceneTransitionAnimation.setOnClickListener(v -> {

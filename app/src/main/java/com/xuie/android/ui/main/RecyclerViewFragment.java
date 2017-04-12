@@ -57,18 +57,21 @@ public class RecyclerViewFragment extends Fragment {
 
     List<TextColor> textPictures = new ArrayList<>();
 
-    @Override public void onCreate(Bundle savedInstanceState) {
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         initTextColor();
     }
 
-    @Override public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_recycler_view, container, false);
         ButterKnife.bind(this, rootView);
         return rootView;
     }
 
-    @Override public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         currentLayoutManagerType = LayoutManagerType.LINEAR_VER_MANAGER;
         if (savedInstanceState != null) {
@@ -165,7 +168,8 @@ public class RecyclerViewFragment extends Fragment {
         return max;
     }
 
-    @Override public void onSaveInstanceState(Bundle savedInstanceState) {
+    @Override
+    public void onSaveInstanceState(Bundle savedInstanceState) {
         savedInstanceState.putSerializable(KEY_LAYOUT_MANAGER, currentLayoutManagerType);
         super.onSaveInstanceState(savedInstanceState);
     }
