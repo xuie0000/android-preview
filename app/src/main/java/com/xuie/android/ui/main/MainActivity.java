@@ -85,6 +85,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         mDayNightMode = PreferenceUtils.getInt("mode", AppCompatDelegate.MODE_NIGHT_NO);
+        Utils.initColorProvider();
     }
 
     private void switchNavigation(int navId) {

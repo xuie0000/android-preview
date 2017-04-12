@@ -1,12 +1,10 @@
 package com.xuie.android.ui.recyclerView;
 
-import android.content.ContentValues;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager;
-import android.support.v4.content.ContextCompat;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
 import android.support.v7.widget.GridLayoutManager;
@@ -23,9 +21,6 @@ import android.view.ViewGroup;
 import com.xuie.android.R;
 import com.xuie.android.provider.ColorContract;
 import com.xuie.android.ui.adapter.MarginDecoration;
-import com.xuie.android.util.PreferenceUtils;
-
-import java.util.Random;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -33,8 +28,6 @@ import butterknife.ButterKnife;
 public class RecyclerViewFragment extends Fragment implements LoaderManager.LoaderCallbacks<Cursor> {
     private static final String TAG = "RecyclerViewFragment";
     public static final String KEY_LAYOUT_MANAGER = "layoutManager";
-    public static final int SPAN_COUNT = 2;
-    public static final int DATA_COUNT = 60;
 
     private enum LayoutManagerType {
         GRID_VER_MANAGER,
@@ -47,6 +40,8 @@ public class RecyclerViewFragment extends Fragment implements LoaderManager.Load
         STAGGERED,
     }
 
+    public static final int SPAN_COUNT = 2;
+
     @BindView(R.id.recyclerView) RecyclerView recyclerView;
 
     private LayoutManagerType currentLayoutManagerType = LayoutManagerType.GRID_VER_MANAGER;
@@ -58,7 +53,6 @@ public class RecyclerViewFragment extends Fragment implements LoaderManager.Load
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
-        initTextColor();
     }
 
     @Override
@@ -221,39 +215,6 @@ public class RecyclerViewFragment extends Fragment implements LoaderManager.Load
 
     private void refreshAdapter(RecyclerView.Adapter adapter) {
         recyclerView.setAdapter(adapter);
-    }
-
-    private void initTextColor() {
-        if (PreferenceUtils.getBoolean("run_data", false)) {
-            return;
-        }
-
-        int[] colors = {
-                ContextCompat.getColor(getActivity(), android.R.color.holo_blue_dark),
-                ContextCompat.getColor(getActivity(), android.R.color.holo_blue_bright),
-                ContextCompat.getColor(getActivity(), android.R.color.holo_blue_light),
-                ContextCompat.getColor(getActivity(), android.R.color.holo_green_light),
-                ContextCompat.getColor(getActivity(), android.R.color.holo_orange_dark),
-                ContextCompat.getColor(getActivity(), android.R.color.holo_purple),
-                ContextCompat.getColor(getActivity(), android.R.color.holo_red_dark),
-                ContextCompat.getColor(getActivity(), android.R.color.holo_red_light),
-        };
-
-        int per = -1, cur;
-        Random r = new Random();
-        for (int i = 0; i < DATA_COUNT; i++) {
-            do {
-                cur = r.nextInt(8);
-            } while (cur == per);
-            per = cur;
-//            textPictures.add(new TextColor("This is element #" + i, colors[cur]));
-            ContentValues contentValues = new ContentValues();
-            contentValues.put(ColorContract.ColorEntry.COLUMN_NAME, "element #" + cur);
-            contentValues.put(ColorContract.ColorEntry.COLUMN_COLOR, colors[cur]);
-            getActivity().getContentResolver().insert(ColorContract.ColorEntry.CONTENT_URI, contentValues);
-        }
-
-        PreferenceUtils.setBoolean("run_data", true);
     }
 
 }
