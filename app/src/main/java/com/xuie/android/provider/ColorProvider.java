@@ -128,7 +128,7 @@ public class ColorProvider extends ContentProvider {
                 dbConnection.setTransactionSuccessful();
                 break;
             case COLOR_ID:
-                deleteCount = dbConnection.delete(ColorContract.ColorEntry.TABLE_NAME, ColorContract.ColorEntry._ID, new String[]{uri.getLastPathSegment()});
+                deleteCount = dbConnection.delete(ColorContract.ColorEntry.TABLE_NAME, ColorContract.ColorEntry._ID + " = ?", new String[]{uri.getLastPathSegment()});
                 dbConnection.setTransactionSuccessful();
                 break;
         }

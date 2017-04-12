@@ -4,7 +4,9 @@ import android.animation.Animator;
 import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.database.Cursor;
+import android.support.annotation.NonNull;
 import android.support.v7.widget.CardView;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -21,8 +23,7 @@ import butterknife.ButterKnife;
  * Created by xuie on 2017/4/12 0012.
  */
 
-public class ColorAdapter extends RecyclerViewCursorAdapter<ColorAdapter.ColorViewHolder> {
-
+public class ColorAdapter extends RecyclerViewCursorAdapter<RecyclerViewCursorViewHolder> {
     /**
      * Column projection for the query to pull Colors from the database.
      */
@@ -32,24 +33,29 @@ public class ColorAdapter extends RecyclerViewCursorAdapter<ColorAdapter.ColorVi
             ColorContract.ColorEntry.COLUMN_COLOR
     };
 
-    private static final int NAME_INDEX = 1;
-    private static final int COLOR_INDEX = 2;
+    static final int NAME_INDEX = 1;
+    static final int COLOR_INDEX = 2;
 
     /**
      * Constructor.
      *
      * @param context The Context the Adapter is displayed in.
      */
-    public ColorAdapter(Context context) {
+    ColorAdapter(Context context) {
         super(context);
-        setupCursorAdapter(null, 0, R.layout.item_text_row, false);
+    }
+
+    @NonNull
+    @Override
+    public View onCreateView(Context context, Cursor cursor, ViewGroup parent, boolean attachToRoot) {
+        return LayoutInflater.from(context).inflate(R.layout.item_text_row, parent, attachToRoot);
     }
 
     /**
      * Returns the ViewHolder to use for this adapter.
      */
     @Override
-    public ColorViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public RecyclerViewCursorViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         return new ColorViewHolder(mCursorAdapter.newView(mContext, mCursorAdapter.getCursor(), parent));
     }
 
@@ -58,7 +64,7 @@ public class ColorAdapter extends RecyclerViewCursorAdapter<ColorAdapter.ColorVi
      * that item.
      */
     @Override
-    public void onBindViewHolder(ColorViewHolder holder, int position) {
+    public void onBindViewHolder(RecyclerViewCursorViewHolder holder, int position) {
         // Move cursor to this position
         mCursorAdapter.getCursor().moveToPosition(position);
 

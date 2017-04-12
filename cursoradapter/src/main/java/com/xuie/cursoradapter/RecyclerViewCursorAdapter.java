@@ -2,9 +2,9 @@ package com.xuie.cursoradapter;
 
 import android.content.Context;
 import android.database.Cursor;
+import android.support.annotation.NonNull;
 import android.support.v4.widget.CursorAdapter;
 import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -37,6 +37,7 @@ public abstract class RecyclerViewCursorAdapter<T extends RecyclerViewCursorView
      */
     protected RecyclerViewCursorAdapter(Context context) {
         this.mContext = context;
+        setupCursorAdapter(null, 0, false);
     }
 
     /**
@@ -44,15 +45,14 @@ public abstract class RecyclerViewCursorAdapter<T extends RecyclerViewCursorView
      *
      * @param cursor       The Cursor from which to get the data.
      * @param flags        Flags used to determine the behavior of the adapter.
-     * @param resource     Resource ID for an XML layout to be inflated.
      * @param attachToRoot Whether the inflated layout should be attached to the root view.
      */
     @SuppressWarnings("SameParameterValue")
-    protected void setupCursorAdapter(Cursor cursor, int flags, final int resource, final boolean attachToRoot) {
+    protected void setupCursorAdapter(Cursor cursor, int flags, final boolean attachToRoot) {
         this.mCursorAdapter = new CursorAdapter(mContext, cursor, flags) {
             @Override
             public View newView(Context context, Cursor cursor, ViewGroup parent) {
-                return LayoutInflater.from(context).inflate(resource, parent, attachToRoot);
+                return onCreateView(context, cursor, parent, attachToRoot);
             }
 
             @Override
@@ -90,4 +90,10 @@ public abstract class RecyclerViewCursorAdapter<T extends RecyclerViewCursorView
     protected void setViewHolder(T viewHolder) {
         this.mViewHolder = viewHolder;
     }
+
+    /**
+     * Binds a view to the UI elements of the ViewHolder.
+     */
+    @NonNull
+    protected abstract View onCreateView(Context context, Cursor cursor, ViewGroup parent, boolean attachToRoot);
 }
