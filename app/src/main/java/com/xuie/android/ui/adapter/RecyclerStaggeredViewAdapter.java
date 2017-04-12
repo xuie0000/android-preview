@@ -23,7 +23,8 @@ public class RecyclerStaggeredViewAdapter extends RecyclerViewAdapter {
         super(textPictures);
     }
 
-    @Override public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
+    @Override
+    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
         if (viewType == ITEM_TYPE_NORMAL) {
             return super.onCreateViewHolder(viewGroup, viewType);
         } else if (viewType == ITEM_TYPE_LARGER) {
@@ -34,7 +35,8 @@ public class RecyclerStaggeredViewAdapter extends RecyclerViewAdapter {
         }
     }
 
-    @Override public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+    @Override
+    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         if (holder instanceof RecyclerViewHolder) {
             super.onBindViewHolder(holder, position);
         } else if (holder instanceof RecyclerStaggeredViewHolder) {
@@ -48,7 +50,8 @@ public class RecyclerStaggeredViewAdapter extends RecyclerViewAdapter {
         }
     }
 
-    @Override public int getItemViewType(int position) {
+    @Override
+    public int getItemViewType(int position) {
         return position % 2 == 0 ? ITEM_TYPE_LARGER : ITEM_TYPE_NORMAL;
 //        return position == getTopPosition() ? ITEM_TYPE_LARGER : ITEM_TYPE_NORMAL;
     }

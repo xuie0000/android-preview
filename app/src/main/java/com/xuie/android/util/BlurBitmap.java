@@ -26,9 +26,9 @@ public class BlurBitmap {
     /**
      * 模糊图片的具体方法
      *
-     * @param context   上下文对象
-     * @param image     需要模糊的图片
-     * @return          模糊处理后的图片
+     * @param context 上下文对象
+     * @param image   需要模糊的图片
+     * @return 模糊处理后的图片
      */
     public static Bitmap blur(Context context, Bitmap image) {
         // 计算图片缩小后的长宽

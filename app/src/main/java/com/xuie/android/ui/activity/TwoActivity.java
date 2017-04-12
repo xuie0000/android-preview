@@ -24,13 +24,15 @@ public class TwoActivity extends AppCompatActivity {
     @BindView(R.id.seek_bar) SeekBar seekBar;
     @BindView(R.id.progress) TextView tv_progress;
 
-    @Override protected void onCreate(Bundle savedInstanceState) {
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_two);
         ButterKnife.bind(this);
     }
 
-    @Override protected void onPostCreate(@Nullable Bundle savedInstanceState) {
+    @Override
+    protected void onPostCreate(@Nullable Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
         Bitmap tempBitmap = BitmapFactory.decodeResource(getResources(), R.mipmap.image_big);
         Bitmap finalBitmap = BlurBitmap.blur(this, tempBitmap);
@@ -65,7 +67,8 @@ public class TwoActivity extends AppCompatActivity {
         });
     }
 
-    @Override protected void onResume() {
+    @Override
+    protected void onResume() {
         super.onResume();
         MobclickAgent.onResume(this);
         View decorView = getWindow().getDecorView();
@@ -79,12 +82,14 @@ public class TwoActivity extends AppCompatActivity {
         decorView.setSystemUiVisibility(uiOptions);
     }
 
-    @Override protected void onPause() {
+    @Override
+    protected void onPause() {
         super.onPause();
         MobclickAgent.onPause(this);
     }
 
-    @Override public void onBackPressed() {
+    @Override
+    public void onBackPressed() {
         super.onBackPressed();
         // startActivity(getParentActivityIntent());
     }

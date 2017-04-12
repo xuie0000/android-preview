@@ -27,7 +27,8 @@ public class PaletteActivity extends AppCompatActivity {
     @BindView(R.id.viewpager) ViewPager viewpager;
     @BindView(R.id.toolbar) Toolbar toolbar;
 
-    @Override protected void onCreate(Bundle savedInstanceState) {
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_palette);
         ButterKnife.bind(this);
@@ -43,14 +44,17 @@ public class PaletteActivity extends AppCompatActivity {
         tabLayout.setupWithViewPager(viewpager);
         changeTopBgColor(0);
         viewpager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-            @Override public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
             }
 
-            @Override public void onPageSelected(int position) {
+            @Override
+            public void onPageSelected(int position) {
                 changeTopBgColor(position);
             }
 
-            @Override public void onPageScrollStateChanged(int state) {
+            @Override
+            public void onPageScrollStateChanged(int state) {
             }
         });
     }
@@ -64,15 +68,18 @@ public class PaletteActivity extends AppCompatActivity {
             super(fm);
         }
 
-        @Override public Fragment getItem(int position) {
+        @Override
+        public Fragment getItem(int position) {
             return PaletteFragment.newInstance(position);
         }
 
-        @Override public int getCount() {
+        @Override
+        public int getCount() {
             return PAGE_COUNT;
         }
 
-        @Override public CharSequence getPageTitle(int position) {
+        @Override
+        public CharSequence getPageTitle(int position) {
             return tabTitles[position];
         }
     }

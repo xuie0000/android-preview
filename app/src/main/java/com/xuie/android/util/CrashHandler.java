@@ -1,4 +1,4 @@
-package com.xuie.android;
+package com.xuie.android.util;
 
 import android.content.Context;
 import android.content.pm.PackageInfo;
@@ -34,7 +34,8 @@ public class CrashHandler implements Thread.UncaughtExceptionHandler {
         this.context = context.getApplicationContext();
     }
 
-    @Override public void uncaughtException(Thread thread, Throwable ex) {
+    @Override
+    public void uncaughtException(Thread thread, Throwable ex) {
         System.out.println(ex.getMessage());
         Logger.d(ex.getMessage());
         MobclickAgent.reportError(context, ex.getMessage());

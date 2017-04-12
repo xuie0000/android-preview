@@ -5,6 +5,7 @@ import android.app.Application;
 import android.support.v7.app.AppCompatDelegate;
 
 import com.orhanobut.logger.Logger;
+import com.xuie.android.util.CrashHandler;
 import com.xuie.android.util.PreferenceUtils;
 
 import io.realm.Realm;
@@ -17,7 +18,8 @@ import io.realm.RealmConfiguration;
 public class App extends Application {
     private static App context;
 
-    @Override public void onCreate() {
+    @Override
+    public void onCreate() {
         super.onCreate();
         Logger.init();
         context = this;

@@ -19,18 +19,20 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
-    List<TextColor> textPictures;
+    private List<TextColor> textPictures;
 
     public RecyclerViewAdapter(List<TextColor> textPictures) {
         this.textPictures = textPictures;
     }
 
-    @Override public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
+    @Override
+    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
         View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item_text_row, viewGroup, false);
         return new RecyclerViewHolder(v);
     }
 
-    @Override public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+    @Override
+    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         TextColor textPicture = textPictures.get(position);
         RecyclerViewHolder vh = ((RecyclerViewHolder) holder);
         vh.card.setCardBackgroundColor(textPicture.getColor());
@@ -49,7 +51,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         }
     }
 
-    @Override public int getItemCount() {
+    @Override
+    public int getItemCount() {
         return textPictures.size();
     }
 

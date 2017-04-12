@@ -23,7 +23,8 @@ public abstract class BaseAdapter<T, V extends RecyclerView.ViewHolder> extends 
 
     protected abstract boolean areContentsTheSame(T oldItem, T newItem);
 
-    @Override public int getItemCount() {
+    @Override
+    public int getItemCount() {
         return oldItems.size();
     }
 
@@ -42,13 +43,15 @@ public abstract class BaseAdapter<T, V extends RecyclerView.ViewHolder> extends 
             itemView.setOnLongClickListener(this);
         }
 
-        @Override public void onClick(View v) {
+        @Override
+        public void onClick(View v) {
             if (mOnItemClickListener != null && getAdapterPosition() != -1) {
                 mOnItemClickListener.onItemClick(v, getAdapterPosition());
             }
         }
 
-        @Override public boolean onLongClick(View v) {
+        @Override
+        public boolean onLongClick(View v) {
             if (mOnItemLongClickListener != null && getAdapterPosition() != -1) {
                 mOnItemLongClickListener.onItemLongClick(v, getAdapterPosition());
                 return true;

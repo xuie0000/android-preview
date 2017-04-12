@@ -20,13 +20,15 @@ public class ActorAdapter extends RecyclerView.Adapter<ActorAdapter.ViewHolder> 
         this.actors.addAll(personList);
     }
 
-    @Override public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    @Override
+    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         final LayoutInflater inflater = LayoutInflater.from(parent.getContext());
         final View view = inflater.inflate(R.layout.item_actor, parent, false);
         return new ViewHolder(view);
     }
 
-    @Override public void onBindViewHolder(ViewHolder holder, int position) {
+    @Override
+    public void onBindViewHolder(ViewHolder holder, int position) {
         final Actor actor = actors.get(position);
         holder.name.setText(actor.getName());
     }
@@ -40,7 +42,8 @@ public class ActorAdapter extends RecyclerView.Adapter<ActorAdapter.ViewHolder> 
         diffResult.dispatchUpdatesTo(this);
     }
 
-    @Override public int getItemCount() {
+    @Override
+    public int getItemCount() {
         return actors.size();
     }
 

@@ -24,9 +24,9 @@ public class DividerOverDecoration extends RecyclerView.ItemDecoration {
 
         TypedValue typedValue = new TypedValue();
         if (context.getTheme()
-                   .resolveAttribute(android.R.attr.listDivider, typedValue, true) && typedValue.data != 0) {
+                .resolveAttribute(android.R.attr.listDivider, typedValue, true) && typedValue.data != 0) {
             this.mDivider = context.getResources()
-                                   .getDrawable(typedValue.resourceId);
+                    .getDrawable(typedValue.resourceId);
         }
     }
 
@@ -35,7 +35,8 @@ public class DividerOverDecoration extends RecyclerView.ItemDecoration {
         mDivider = ContextCompat.getDrawable(context, resId);
     }
 
-    @Override public void onDrawOver(Canvas c, RecyclerView parent, RecyclerView.State state) {
+    @Override
+    public void onDrawOver(Canvas c, RecyclerView parent, RecyclerView.State state) {
         int left = parent.getPaddingLeft() + context.getResources().getDimensionPixelOffset(R.dimen.material_24dp);
         int right = parent.getWidth() - parent.getPaddingRight() - context.getResources().getDimensionPixelOffset(R.dimen.material_24dp);
 

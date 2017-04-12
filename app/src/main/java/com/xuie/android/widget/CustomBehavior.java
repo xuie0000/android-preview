@@ -47,11 +47,13 @@ public class CustomBehavior extends CoordinatorLayout.Behavior<FloatingActionBut
 //        super.onNestedScroll(coordinatorLayout, child, target, dxConsumed, dyConsumed, dxUnconsumed, dyUnconsumed);
 //    }
 
-    @Override public boolean layoutDependsOn(CoordinatorLayout parent, FloatingActionButton child, View dependency) {
+    @Override
+    public boolean layoutDependsOn(CoordinatorLayout parent, FloatingActionButton child, View dependency) {
         return dependency instanceof NestedScrollView;
     }
 
-    @Override public boolean onDependentViewChanged(CoordinatorLayout parent, FloatingActionButton child, View dependency) {
+    @Override
+    public boolean onDependentViewChanged(CoordinatorLayout parent, FloatingActionButton child, View dependency) {
         float y = dependency.getY();
 //        Log.d(TAG, "onDependentViewChanged: " + y + ", " + previousY + ", " + (child.getVisibility() == View.VISIBLE));
         if (y - previousY > 0 && child.getVisibility() != View.VISIBLE) {
@@ -102,7 +104,8 @@ public class CustomBehavior extends CoordinatorLayout.Behavior<FloatingActionBut
                     button.setVisibility(View.GONE);
                 }
 
-                @Override public void onAnimationRepeat(final Animation animation) {
+                @Override
+                public void onAnimationRepeat(final Animation animation) {
                 }
             });
             button.startAnimation(anim);
