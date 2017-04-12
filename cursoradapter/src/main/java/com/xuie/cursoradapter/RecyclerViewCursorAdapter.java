@@ -37,22 +37,21 @@ public abstract class RecyclerViewCursorAdapter<T extends RecyclerViewCursorView
      */
     protected RecyclerViewCursorAdapter(Context context) {
         this.mContext = context;
-        setupCursorAdapter(null, 0, false);
+        setupCursorAdapter(null, 0);
     }
 
     /**
      * Default implementation of the CursorAdapter for the scenario when only one view type is used.
      *
-     * @param cursor       The Cursor from which to get the data.
-     * @param flags        Flags used to determine the behavior of the adapter.
-     * @param attachToRoot Whether the inflated layout should be attached to the root view.
+     * @param cursor The Cursor from which to get the data.
+     * @param flags  Flags used to determine the behavior of the adapter.
      */
     @SuppressWarnings("SameParameterValue")
-    protected void setupCursorAdapter(Cursor cursor, int flags, final boolean attachToRoot) {
+    public void setupCursorAdapter(Cursor cursor, int flags) {
         this.mCursorAdapter = new CursorAdapter(mContext, cursor, flags) {
             @Override
             public View newView(Context context, Cursor cursor, ViewGroup parent) {
-                return onCreateView(context, cursor, parent, attachToRoot);
+                return getCursorView(parent, 0);
             }
 
             @Override
@@ -61,6 +60,10 @@ public abstract class RecyclerViewCursorAdapter<T extends RecyclerViewCursorView
                 mViewHolder.bindCursor(cursor);
             }
         };
+    }
+
+    protected View getCursorView(ViewGroup parent, int viewType) {
+        return onCreateView(mContext, mCursorAdapter.getCursor(), parent, viewType);
     }
 
     /**
@@ -95,5 +98,5 @@ public abstract class RecyclerViewCursorAdapter<T extends RecyclerViewCursorView
      * Binds a view to the UI elements of the ViewHolder.
      */
     @NonNull
-    protected abstract View onCreateView(Context context, Cursor cursor, ViewGroup parent, boolean attachToRoot);
+    protected abstract View onCreateView(Context context, Cursor cursor, ViewGroup parent, int viewType);
 }

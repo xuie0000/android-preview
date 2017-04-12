@@ -6,6 +6,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.CardView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,6 +25,7 @@ import butterknife.ButterKnife;
  */
 
 public class ColorAdapter extends RecyclerViewCursorAdapter<RecyclerViewCursorViewHolder> {
+    private static final String TAG = "ColorAdapter";
     /**
      * Column projection for the query to pull Colors from the database.
      */
@@ -47,8 +49,9 @@ public class ColorAdapter extends RecyclerViewCursorAdapter<RecyclerViewCursorVi
 
     @NonNull
     @Override
-    public View onCreateView(Context context, Cursor cursor, ViewGroup parent, boolean attachToRoot) {
-        return LayoutInflater.from(context).inflate(R.layout.item_text_row, parent, attachToRoot);
+    public View onCreateView(Context context, Cursor cursor, ViewGroup parent, int viewType) {
+        Log.d(TAG, "onCreateView viewType:" + viewType);
+        return LayoutInflater.from(context).inflate(R.layout.item_text_row, parent, false);
     }
 
     /**
@@ -56,7 +59,8 @@ public class ColorAdapter extends RecyclerViewCursorAdapter<RecyclerViewCursorVi
      */
     @Override
     public RecyclerViewCursorViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        return new ColorViewHolder(mCursorAdapter.newView(mContext, mCursorAdapter.getCursor(), parent));
+        Log.d(TAG, "onCreateViewHolder viewType:" + viewType);
+        return new ColorViewHolder(getCursorView(parent, viewType));
     }
 
     /**
@@ -65,6 +69,7 @@ public class ColorAdapter extends RecyclerViewCursorAdapter<RecyclerViewCursorVi
      */
     @Override
     public void onBindViewHolder(RecyclerViewCursorViewHolder holder, int position) {
+        Log.d(TAG, "position:" + position);
         // Move cursor to this position
         mCursorAdapter.getCursor().moveToPosition(position);
 

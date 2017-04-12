@@ -39,7 +39,6 @@ public class RecyclerViewFragment extends Fragment implements LoaderManager.Load
 
     private enum LayoutManagerType {
         GRID_VER_MANAGER,
-        GRID_HOR_MANAGER,
         LINEAR_VER_MANAGER,
         LINEAR_HOR_MANAGER,
     }
@@ -53,10 +52,8 @@ public class RecyclerViewFragment extends Fragment implements LoaderManager.Load
 
     private LayoutManagerType currentLayoutManagerType = LayoutManagerType.LINEAR_VER_MANAGER;
     private ItemType currentItemType = ItemType.SINGLE;
-    //    private RecyclerViewAdapter recyclerViewAdapter;
-//    private RecyclerStaggeredViewAdapter recyclerStaggeredViewAdapter;
-//    private List<TextColor> textPictures = new ArrayList<>();
     private ColorAdapter colorAdapter;
+    private ColorAdapter colorStaggeredAdapter;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -79,28 +76,11 @@ public class RecyclerViewFragment extends Fragment implements LoaderManager.Load
             currentLayoutManagerType = (LayoutManagerType) savedInstanceState.getSerializable(KEY_LAYOUT_MANAGER);
         }
         setRecyclerViewLayoutManager(currentLayoutManagerType);
-
-//        recyclerViewAdapter = new RecyclerViewAdapter(textPictures);
-//        recyclerStaggeredViewAdapter = new RecyclerStaggeredViewAdapter(textPictures);
-//        refreshAdapter(recyclerViewAdapter);
         recyclerView.addItemDecoration(new MarginDecoration());
 
-        colorAdapter = new ColorAdapter(getActivity());
+        colorAdapter = new ColorAdapter(getContext());
+        colorStaggeredAdapter = new ColorStaggeredAdapter(getContext());
         recyclerView.setAdapter(colorAdapter);
-
-//        single.setOnClickListener(v -> {
-//            if (currentItemType != ItemType.SINGLE) {
-//                currentItemType = ItemType.SINGLE;
-//                refreshAdapter(recyclerViewAdapter);
-//            }
-//        });
-//
-//        stagger.setOnClickListener(v -> {
-//            if (currentItemType != ItemType.STAGGERED) {
-//                currentItemType = ItemType.STAGGERED;
-//                refreshAdapter(recyclerStaggeredViewAdapter);
-//            }
-//        });
     }
 
     @Override
@@ -113,9 +93,9 @@ public class RecyclerViewFragment extends Fragment implements LoaderManager.Load
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
         menu.add(Menu.NONE, R.id.linear_v_single, Menu.NONE, "Linear & Vertical & Single").setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER);
-        menu.add(Menu.NONE, R.id.linear_v_stagger, Menu.NONE, "Linear & Vertical & Stagger").setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER);
+        menu.add(Menu.NONE, R.id.linear_h_single, Menu.NONE, "Linear & Horizontal & Single").setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER);
         menu.add(Menu.NONE, R.id.grid_v_single, Menu.NONE, "Grid & Vertical & Single").setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER);
-        menu.add(Menu.NONE, R.id.grid_h_single, Menu.NONE, "Grid & Horizontal & Single").setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER);
+        menu.add(Menu.NONE, R.id.grid_h_stagger, Menu.NONE, "Grid & Horizontal & Stagger").setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER);
     }
 
     @Override
@@ -126,18 +106,23 @@ public class RecyclerViewFragment extends Fragment implements LoaderManager.Load
                 currentLayoutManagerType = LayoutManagerType.LINEAR_VER_MANAGER;
                 currentItemType = ItemType.SINGLE;
                 break;
-            case R.id.linear_v_stagger:
-                currentLayoutManagerType = LayoutManagerType.LINEAR_VER_MANAGER;
-                currentItemType = ItemType.STAGGERED;
+            case R.id.linear_h_single:
+                currentLayoutManagerType = LayoutManagerType.LINEAR_HOR_MANAGER;
+                currentItemType = ItemType.SINGLE;
                 break;
             case R.id.grid_v_single:
                 currentLayoutManagerType = LayoutManagerType.GRID_VER_MANAGER;
                 currentItemType = ItemType.SINGLE;
                 break;
-            case R.id.grid_h_single:
-                currentLayoutManagerType = LayoutManagerType.GRID_HOR_MANAGER;
-                currentItemType = ItemType.SINGLE;
+            case R.id.grid_h_stagger:
+                currentLayoutManagerType = LayoutManagerType.GRID_VER_MANAGER;
+                currentItemType = ItemType.STAGGERED;
                 break;
+        }
+        if (currentItemType == ItemType.SINGLE) {
+            refreshAdapter(colorAdapter);
+        } else if (currentItemType == ItemType.STAGGERED) {
+            refreshAdapter(colorStaggeredAdapter);
         }
         setRecyclerViewLayoutManager(currentLayoutManagerType);
         return super.onOptionsItemSelected(item);
