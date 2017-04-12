@@ -26,6 +26,7 @@ import com.xuie.android.R;
 import com.xuie.android.ui.coordinatorLayout.CoordinatorLayoutActivity;
 import com.xuie.android.ui.diffutil.DiffUtilFragment;
 import com.xuie.android.ui.palette.PaletteActivity;
+import com.xuie.android.ui.recyclerView.RecyclerViewFragment;
 import com.xuie.android.util.PreferenceUtils;
 import com.xuie.android.util.Utils;
 
