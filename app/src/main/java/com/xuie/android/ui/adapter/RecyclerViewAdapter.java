@@ -19,7 +19,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
-    private List<TextColor> textPictures;
+    List<TextColor> textPictures;
 
     public RecyclerViewAdapter(List<TextColor> textPictures) {
         this.textPictures = textPictures;
