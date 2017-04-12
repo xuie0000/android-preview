@@ -6,7 +6,6 @@ import android.content.Context;
 import android.database.Cursor;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.CardView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -50,7 +49,6 @@ public class ColorAdapter extends RecyclerViewCursorAdapter<RecyclerViewCursorVi
     @NonNull
     @Override
     public View onCreateView(Context context, Cursor cursor, ViewGroup parent, int viewType) {
-        Log.d(TAG, "onCreateView viewType:" + viewType);
         return LayoutInflater.from(context).inflate(R.layout.item_text_row, parent, false);
     }
 
@@ -59,7 +57,6 @@ public class ColorAdapter extends RecyclerViewCursorAdapter<RecyclerViewCursorVi
      */
     @Override
     public RecyclerViewCursorViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        Log.d(TAG, "onCreateViewHolder viewType:" + viewType);
         return new ColorViewHolder(getCursorView(parent, viewType));
     }
 
@@ -69,7 +66,6 @@ public class ColorAdapter extends RecyclerViewCursorAdapter<RecyclerViewCursorVi
      */
     @Override
     public void onBindViewHolder(RecyclerViewCursorViewHolder holder, int position) {
-        Log.d(TAG, "position:" + position);
         // Move cursor to this position
         mCursorAdapter.getCursor().moveToPosition(position);
 

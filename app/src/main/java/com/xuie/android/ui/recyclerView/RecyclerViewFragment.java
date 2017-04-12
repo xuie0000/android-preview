@@ -13,7 +13,6 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -50,8 +49,8 @@ public class RecyclerViewFragment extends Fragment implements LoaderManager.Load
 
     @BindView(R.id.recyclerView) RecyclerView recyclerView;
 
-    private LayoutManagerType currentLayoutManagerType = LayoutManagerType.LINEAR_VER_MANAGER;
-    private ItemType currentItemType = ItemType.SINGLE;
+    private LayoutManagerType currentLayoutManagerType = LayoutManagerType.GRID_VER_MANAGER;
+    private ItemType currentItemType = ItemType.STAGGERED;
     private ColorAdapter colorAdapter;
     private ColorAdapter colorStaggeredAdapter;
 
@@ -80,7 +79,7 @@ public class RecyclerViewFragment extends Fragment implements LoaderManager.Load
 
         colorAdapter = new ColorAdapter(getContext());
         colorStaggeredAdapter = new ColorStaggeredAdapter(getContext());
-        recyclerView.setAdapter(colorAdapter);
+        recyclerView.setAdapter(colorStaggeredAdapter);
     }
 
     @Override
@@ -100,7 +99,6 @@ public class RecyclerViewFragment extends Fragment implements LoaderManager.Load
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        Log.d(TAG, "onOptionsItemSelected ...");
         switch (item.getItemId()) {
             case R.id.linear_v_single:
                 currentLayoutManagerType = LayoutManagerType.LINEAR_VER_MANAGER;
@@ -119,12 +117,12 @@ public class RecyclerViewFragment extends Fragment implements LoaderManager.Load
                 currentItemType = ItemType.STAGGERED;
                 break;
         }
+        setRecyclerViewLayoutManager(currentLayoutManagerType);
         if (currentItemType == ItemType.SINGLE) {
             refreshAdapter(colorAdapter);
         } else if (currentItemType == ItemType.STAGGERED) {
             refreshAdapter(colorStaggeredAdapter);
         }
-        setRecyclerViewLayoutManager(currentLayoutManagerType);
         return super.onOptionsItemSelected(item);
     }
 
@@ -202,6 +200,7 @@ public class RecyclerViewFragment extends Fragment implements LoaderManager.Load
         switch (loader.getId()) {
             case 0:
                 colorAdapter.swapCursor(data);
+                colorStaggeredAdapter.swapCursor(data);
                 break;
             default:
                 throw new UnsupportedOperationException("Unknown loader id: " + loader.getId());
@@ -213,6 +212,7 @@ public class RecyclerViewFragment extends Fragment implements LoaderManager.Load
         switch (loader.getId()) {
             case 0:
                 colorAdapter.swapCursor(null);
+                colorStaggeredAdapter.swapCursor(null);
                 break;
             default:
                 throw new UnsupportedOperationException("Unknown loader id: " + loader.getId());

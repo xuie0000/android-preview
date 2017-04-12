@@ -4,7 +4,6 @@ import android.content.Context;
 import android.database.Cursor;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.CardView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,7 +35,6 @@ public class ColorStaggeredAdapter extends ColorAdapter {
     @NonNull
     @Override
     public View onCreateView(Context context, Cursor cursor, ViewGroup parent, int viewType) {
-        Log.d(TAG, "onCreateView viewType:" + viewType);
         if (viewType == ITEM_TYPE_LARGER) {
             return LayoutInflater.from(context).inflate(R.layout.item_text_row_larger, parent, false);
         }
@@ -45,7 +43,6 @@ public class ColorStaggeredAdapter extends ColorAdapter {
 
     @Override
     public RecyclerViewCursorViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        Log.d(TAG, "onCreateViewHolder viewType:" + viewType);
         if (viewType == ITEM_TYPE_LARGER) {
             return new ColorStaggeredViewHolder(getCursorView(parent, viewType));
         }
@@ -54,7 +51,6 @@ public class ColorStaggeredAdapter extends ColorAdapter {
 
     @Override
     public void onBindViewHolder(RecyclerViewCursorViewHolder holder, int position) {
-        Log.d(TAG, "position:" + position);
         super.onBindViewHolder(holder, position);
     }
 
