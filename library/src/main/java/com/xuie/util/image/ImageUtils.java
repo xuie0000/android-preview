@@ -9,19 +9,20 @@ import android.support.annotation.NonNull;
 import android.text.TextUtils;
 import android.util.Log;
 
+import com.xuie.util.config.FileConfig;
+
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
-import example.fussen.baselibrary.config.FileConfig;
 import rx.Observable;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action1;
 import rx.functions.Func1;
 import rx.schedulers.Schedulers;
 
-import static example.fussen.baselibrary.utils.image.Preconditions.checkNotNull;
+import static com.xuie.util.image.Preconditions.checkNotNull;
 
 public class ImageUtils {
 
