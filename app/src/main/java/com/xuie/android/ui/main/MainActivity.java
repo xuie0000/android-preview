@@ -124,7 +124,7 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
         currentFragmentId = navId;
     }
 
-    protected void addOrShowFragment(Fragment fragment) {
+    private void addOrShowFragment(Fragment fragment) {
         if (currentFragment == fragment)
             return;
 
