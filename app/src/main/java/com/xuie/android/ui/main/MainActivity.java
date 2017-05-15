@@ -3,6 +3,7 @@ package com.xuie.android.ui.main;
 import android.Manifest;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
@@ -20,7 +21,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.tbruyelle.rxpermissions.RxPermissions;
+import com.orhanobut.logger.Logger;
 import com.umeng.analytics.MobclickAgent;
 import com.xuie.android.R;
 import com.xuie.android.ui.coordinatorLayout.CoordinatorLayoutActivity;
@@ -30,10 +31,14 @@ import com.xuie.android.ui.recyclerView.RecyclerViewFragment;
 import com.xuie.android.util.PreferenceUtils;
 import com.xuie.android.util.Utils;
 
+import java.util.List;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import pub.devrel.easypermissions.AfterPermissionGranted;
+import pub.devrel.easypermissions.EasyPermissions;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements EasyPermissions.PermissionCallbacks {
     private final String KEY_FRAGMENT = "currentFragment";
 
     private int mDayNightMode;
@@ -164,20 +169,46 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        // Forward results to EasyPermissions
+        EasyPermissions.onRequestPermissionsResult(requestCode, permissions, grantResults, this);
+    }
+
+    @Override
+    public void onPermissionsGranted(int requestCode, List<String> perms) {
+        setShareIntent();
+    }
+
+    private void setShareIntent() {
+        shareActionProvider.setShareIntent(Utils.getDefaultIntent(this));
+    }
+
+    @Override
+    public void onPermissionsDenied(int requestCode, List<String> perms) {
+        Logger.d("onPermissionsDenied finish.");
+        finish();
+    }
+
+    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.main, menu);
         MenuItem item = menu.findItem(R.id.action_share);
         shareActionProvider = (ShareActionProvider) MenuItemCompat.getActionProvider(item);
-
-        new RxPermissions(this).request(Manifest.permission.WRITE_EXTERNAL_STORAGE)
-                .subscribe(granted -> {
-                    if (granted) {
-                        shareActionProvider.setShareIntent(Utils.getDefaultIntent(this));
-                    } else {
-                        finish();
-                    }
-                });
+        appTask();
         return true;
+    }
+
+    private static final int RC_STORAGE_PERM = 123;
+
+    @AfterPermissionGranted(RC_STORAGE_PERM)
+    private void appTask() {
+        String[] perms = {Manifest.permission.WRITE_EXTERNAL_STORAGE};
+        if (EasyPermissions.hasPermissions(this, perms)) {
+            setShareIntent();
+        } else {
+            EasyPermissions.requestPermissions(this, "需要重新申请分享权限", RC_STORAGE_PERM, perms);
+        }
     }
 
     @Override
