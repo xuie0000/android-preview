@@ -3,10 +3,13 @@ package com.xuie.android;
 
 import android.app.Application;
 import android.os.Handler;
+import android.os.Looper;
 import android.support.v7.app.AppCompatDelegate;
+import android.util.Log;
+import android.widget.Toast;
 
 import com.orhanobut.logger.Logger;
-import com.xuie.android.util.CrashHandler;
+import com.xuie.android.exception.Cockroach;
 import com.xuie.android.util.PreferenceUtils;
 
 import io.realm.Realm;
@@ -39,7 +42,15 @@ public class App extends Application {
         RealmConfiguration config = new RealmConfiguration.Builder().build();
         Realm.setDefaultConfiguration(config);
 
-        Thread.setDefaultUncaughtExceptionHandler(new CrashHandler(this));
+        Cockroach.install((thread, throwable) -> new Handler(Looper.getMainLooper()).post(() -> {
+            try {
+                Log.d("Cockroach", thread + "\n" + throwable.toString());
+                throwable.printStackTrace();
+                Toast.makeText(App.this, "Exception Happend\n" + thread + "\n" + throwable.toString(), Toast.LENGTH_SHORT).show();
+            } catch (Throwable e) {
+                Log.d("App", e.getMessage());
+            }
+        }));
     }
 
     public static App getContext() {
