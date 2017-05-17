@@ -2,6 +2,7 @@ package com.xuie.android;
 
 
 import android.app.Application;
+import android.os.Handler;
 import android.support.v7.app.AppCompatDelegate;
 
 import com.orhanobut.logger.Logger;
@@ -17,6 +18,8 @@ import io.realm.RealmConfiguration;
  */
 public class App extends Application {
     private static App context;
+    private static Handler handler;
+    private static int mainThreadId;
 
     @Override
     public void onCreate() {
@@ -45,5 +48,13 @@ public class App extends Application {
 
     private int getNightMode() {
         return PreferenceUtils.getInt("mode", AppCompatDelegate.MODE_NIGHT_NO);
+    }
+
+    public static Handler getHandler() {
+        return handler;
+    }
+
+    public static int getMainThreadId() {
+        return mainThreadId;
     }
 }
