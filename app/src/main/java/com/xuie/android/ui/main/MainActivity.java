@@ -134,11 +134,25 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
         FragmentTransaction transaction = fragmentManager.beginTransaction();
 
         if (currentFragment == null) {
-            transaction.add(R.id.fragment_placeholder, fragment).commit();
-        } else if (!fragment.isAdded()) {
-            transaction.hide(currentFragment).add(R.id.fragment_placeholder, fragment).commit();
+            transaction
+                    .add(R.id.fragment_placeholder, fragment)
+//                    .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                    .addToBackStack(null)
+                    .commit();
+        } else if (fragment.isAdded()) {
+            transaction
+                    .hide(currentFragment)
+                    .show(fragment)
+//                    .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                    .addToBackStack(null)
+                    .commit();
         } else {
-            transaction.hide(currentFragment).show(fragment).commit();
+            transaction
+                    .hide(currentFragment)
+                    .add(R.id.fragment_placeholder, fragment)
+//                    .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                    .addToBackStack(null)
+                    .commit();
         }
         currentFragment = fragment;
 

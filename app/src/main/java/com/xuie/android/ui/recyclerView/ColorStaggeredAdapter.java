@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.orhanobut.logger.Logger;
 import com.xuie.android.R;
 
 import butterknife.BindView;
@@ -20,7 +21,7 @@ import butterknife.ButterKnife;
 
 public class ColorStaggeredAdapter extends ColorAdapter {
     private static final String TAG = "ColorStaggeredAdapter";
-    private static final int ITEM_TYPE_NORMAL = 1, ITEM_TYPE_LARGER = 2;
+    private static final int ITEM_TYPE_NORMAL = 0, ITEM_TYPE_LARGER = 1;
 
     public ColorStaggeredAdapter(Context context, Cursor cursor) {
         super(context, cursor);
@@ -29,11 +30,23 @@ public class ColorStaggeredAdapter extends ColorAdapter {
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_text_row_larger, parent, false);
-        return new ColorStaggeredViewHolder(view);
+        switch (viewType) {
+            case ITEM_TYPE_NORMAL:
+                return super.onCreateViewHolder(parent, viewType);
+            case ITEM_TYPE_LARGER:
+            default:
+                return new ColorStaggeredViewHolder(view);
+        }
     }
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, Cursor cursor) {
+        int vt = getItemViewType(viewHolder.getAdapterPosition());
+        switch (vt) {
+            case ITEM_TYPE_NORMAL:
+                super.onBindViewHolder(viewHolder, cursor);
+                return;
+        }
         ColorStaggeredViewHolder vh = (ColorStaggeredViewHolder) viewHolder;
 
         vh.title.setText(cursor.getString(NAME_INDEX));

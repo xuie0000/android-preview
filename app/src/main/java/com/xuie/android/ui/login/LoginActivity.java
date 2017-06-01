@@ -30,6 +30,7 @@ import android.widget.EditText;
 import com.orhanobut.logger.Logger;
 import com.xuie.android.R;
 import com.xuie.android.ui.main.MainActivity;
+import com.xuie.android.util.PreferenceUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -100,6 +101,14 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     }
 
     private void initLoader() {
+        // first login
+        String user = PreferenceUtils.getString("user", "");
+        String password = PreferenceUtils.getString("password", "");
+        if (!TextUtils.isEmpty(user) && !TextUtils.isEmpty(password)) {
+            mAuthTask = new UserLoginTask(user, password);
+            mAuthTask.execute((Void) null);
+        }
+
         getLoaderManager().initLoader(0, null, this);
     }
 
@@ -324,6 +333,8 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             showProgress(false);
 
             if (success) {
+                PreferenceUtils.setString("user", mEmail);
+                PreferenceUtils.setString("password", mPassword);
                 new Handler().post(LoginActivity.this::go2Main);
             } else {
                 mPasswordView.setError(getString(R.string.error_incorrect_password));
