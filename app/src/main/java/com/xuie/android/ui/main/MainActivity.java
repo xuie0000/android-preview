@@ -90,7 +90,6 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
         });
 
         mDayNightMode = PreferenceUtils.getInt("mode", AppCompatDelegate.MODE_NIGHT_NO);
-        Utils.initColorProvider();
     }
 
     private void switchNavigation(int navId) {

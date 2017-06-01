@@ -10,6 +10,7 @@ import android.widget.Toast;
 
 import com.orhanobut.logger.Logger;
 import com.xuie.android.exception.Cockroach;
+import com.xuie.android.provider.ColorInitTask;
 import com.xuie.android.util.PreferenceUtils;
 
 import io.realm.Realm;
@@ -51,6 +52,8 @@ public class App extends Application {
                 Log.d("App", e.getMessage());
             }
         }));
+
+        new ColorInitTask().execute();
     }
 
     public static App getContext() {
