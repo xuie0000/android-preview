@@ -71,8 +71,8 @@ public class RecyclerViewFragment extends Fragment implements LoaderManager.Load
         setRecyclerViewLayoutManager(currentLayoutManagerType);
         recyclerView.addItemDecoration(new MarginDecoration());
 
-        colorAdapter = new ColorAdapter(getContext());
-        colorStaggeredAdapter = new ColorStaggeredAdapter(getContext());
+        colorAdapter = new ColorAdapter(getContext(), null);
+        colorStaggeredAdapter = new ColorStaggeredAdapter(getContext(), null);
         recyclerView.setAdapter(colorStaggeredAdapter);
     }
 

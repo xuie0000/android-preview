@@ -1,1 +1,1 @@
-include ':app', ':library', ':cursoradapter'
+include ':app', ':library'

@@ -130,6 +130,4 @@ dependencies {
     // material design icon
     compile 'com.mikepenz:iconics-core:2.8.2@aar'
     compile 'com.mikepenz:material-design-iconic-typeface:2.2.0.2@aar'
-
-    compile project(':cursoradapter')
 }

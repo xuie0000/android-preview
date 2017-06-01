@@ -2,15 +2,14 @@ package com.xuie.android.ui.recyclerView;
 
 import android.content.Context;
 import android.database.Cursor;
-import android.support.annotation.NonNull;
 import android.support.v7.widget.CardView;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.xuie.android.R;
-import com.xuie.cursoradapter.RecyclerViewCursorViewHolder;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -23,35 +22,24 @@ public class ColorStaggeredAdapter extends ColorAdapter {
     private static final String TAG = "ColorStaggeredAdapter";
     private static final int ITEM_TYPE_NORMAL = 1, ITEM_TYPE_LARGER = 2;
 
-    /**
-     * Constructor.
-     *
-     * @param context The Context the Adapter is displayed in.
-     */
-    public ColorStaggeredAdapter(Context context) {
-        super(context);
-    }
-
-    @NonNull
-    @Override
-    public View onCreateView(Context context, Cursor cursor, ViewGroup parent, int viewType) {
-        if (viewType == ITEM_TYPE_LARGER) {
-            return LayoutInflater.from(context).inflate(R.layout.item_text_row_larger, parent, false);
-        }
-        return super.onCreateView(context, cursor, parent, viewType);
+    public ColorStaggeredAdapter(Context context, Cursor cursor) {
+        super(context, cursor);
     }
 
     @Override
-    public RecyclerViewCursorViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        if (viewType == ITEM_TYPE_LARGER) {
-            return new ColorStaggeredViewHolder(getCursorView(parent, viewType));
-        }
-        return super.onCreateViewHolder(parent, viewType);
+    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_text_row_larger, parent, false);
+        return new ColorStaggeredViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(RecyclerViewCursorViewHolder holder, int position) {
-        super.onBindViewHolder(holder, position);
+    public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, Cursor cursor) {
+        ColorStaggeredViewHolder vh = (ColorStaggeredViewHolder) viewHolder;
+
+        vh.title.setText(cursor.getString(NAME_INDEX));
+        vh.subText.setText(cursor.getString(NAME_INDEX));
+        vh.card.setCardBackgroundColor(cursor.getInt(COLOR_INDEX));
+        startAnimation(vh.itemView);
     }
 
     @Override
@@ -59,7 +47,7 @@ public class ColorStaggeredAdapter extends ColorAdapter {
         return position % 2 == 0 ? ITEM_TYPE_LARGER : ITEM_TYPE_NORMAL;
     }
 
-    class ColorStaggeredViewHolder extends RecyclerViewCursorViewHolder {
+    class ColorStaggeredViewHolder extends RecyclerView.ViewHolder {
         CardView card;
         @BindView(R.id.title) TextView title;
         @BindView(R.id.subText) TextView subText;
@@ -69,14 +57,5 @@ public class ColorStaggeredAdapter extends ColorAdapter {
             ButterKnife.bind(this, view);
             card = (CardView) itemView;
         }
-
-        @Override
-        public void bindCursor(Cursor cursor) {
-            title.setText(cursor.getString(NAME_INDEX));
-            subText.setText(cursor.getString(NAME_INDEX));
-            card.setCardBackgroundColor(cursor.getInt(COLOR_INDEX));
-            startAnimation(itemView);
-        }
     }
-
 }
