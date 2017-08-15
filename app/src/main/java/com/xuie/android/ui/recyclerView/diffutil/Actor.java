@@ -1,4 +1,4 @@
-package com.xuie.android.ui.diffutil;
+package com.xuie.android.ui.recyclerView.diffutil;
 
 public class Actor {
 

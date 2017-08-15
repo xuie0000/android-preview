@@ -24,10 +24,12 @@ import android.view.MenuItem;
 import com.orhanobut.logger.Logger;
 import com.umeng.analytics.MobclickAgent;
 import com.xuie.android.R;
-import com.xuie.android.ui.coordinatorLayout.CoordinatorLayoutActivity;
-import com.xuie.android.ui.diffutil.DiffUtilFragment;
-import com.xuie.android.ui.palette.PaletteActivity;
 import com.xuie.android.ui.recyclerView.RecyclerViewFragment;
+import com.xuie.android.ui.recyclerView.axis.AxisFragment;
+import com.xuie.android.ui.coordinatorLayout.CoordinatorLayoutActivity;
+import com.xuie.android.ui.recyclerView.diffutil.DiffUtilFragment;
+import com.xuie.android.ui.palette.PaletteActivity;
+import com.xuie.android.ui.recyclerView.normal.NormalFragment;
 import com.xuie.android.util.PreferenceUtils;
 import com.xuie.android.util.Utils;
 
@@ -57,6 +59,7 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
     private TransitionsFragment transitionsFragment;
     private RecyclerViewFragment recyclerViewFragment;
     private DiffUtilFragment diffUtilFragment;
+    private AxisFragment axisFragment;
 
     protected Fragment currentFragment;
 
@@ -112,12 +115,6 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
                 }
                 addOrShowFragment(recyclerViewFragment);
                 break;
-            case R.id.nav_diff_util:
-                if (diffUtilFragment == null) {
-                    diffUtilFragment = new DiffUtilFragment();
-                }
-                addOrShowFragment(diffUtilFragment);
-                break;
         }
 
         currentFragmentId = navId;
@@ -163,16 +160,22 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
             toolbar.setTitle(getString(R.string.test));
         } else if (currentFragment instanceof TransitionsFragment) {
             toolbar.setTitle(getString(R.string.transitions));
-        } else if (currentFragment instanceof RecyclerViewFragment) {
+        } else if (currentFragment instanceof NormalFragment) {
             toolbar.setTitle(getString(R.string.recycler_view));
         } else if (currentFragment instanceof DiffUtilFragment) {
             toolbar.setTitle(getString(R.string.diff_util));
+        } else if (currentFragment instanceof AxisFragment) {
+            toolbar.setTitle(getString(R.string.axis));
         }
     }
 
     @Override
     public void onBackPressed() {
-        moveTaskToBack(true);
+        if (currentFragment != null && currentFragment.getChildFragmentManager().getBackStackEntryCount() > 0) {
+            currentFragment.getChildFragmentManager().popBackStack();
+        } else {
+            moveTaskToBack(true);
+        }
     }
 
     @Override

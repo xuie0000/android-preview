@@ -1,4 +1,4 @@
-package com.xuie.android.ui.recyclerView;
+package com.xuie.android.ui.recyclerView.normal;
 
 import android.content.Context;
 import android.database.Cursor;

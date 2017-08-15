@@ -21,6 +21,7 @@
     <string name="bottom_sheet_peek">Bottom Sheet Peek</string>
     <string name="coordinatorlayout">CoordinatorLayout</string>
     <string name="diff_util">DiffUtil</string>
+    <string name="axis">时间轴(ItemDecoration)</string>
     <string name="action_share">分享</string>
 
     <!-- Strings related to login -->
@@ -33,5 +34,8 @@
     <string name="error_incorrect_password">This password is incorrect</string>
     <string name="error_field_required">This field is required</string>
     <string name="permission_rationale">"Contacts permissions are needed for providing email completions."</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

@@ -1,4 +1,4 @@
-package com.xuie.android.ui.diffutil;
+package com.xuie.android.ui.recyclerView.diffutil;
 
 import android.support.annotation.Nullable;
 import android.support.v7.util.DiffUtil;

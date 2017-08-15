@@ -1,4 +1,4 @@
-package com.xuie.android.ui.diffutil;
+package com.xuie.android.ui.recyclerView.diffutil;
 
 
 import android.os.Bundle;
@@ -40,6 +40,7 @@ public class DiffUtilFragment extends Fragment {
         adapter = new ActorAdapter(ActorRepository.getActorListSortedByRating());
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setAdapter(adapter);
+        recyclerView.setNestedScrollingEnabled(false);
         return view;
     }
 

@@ -1,4 +1,4 @@
-package com.xuie.android.ui.diffutil;
+package com.xuie.android.ui.recyclerView.diffutil;
 
 import android.support.v7.util.DiffUtil;
 import android.support.v7.widget.RecyclerView;

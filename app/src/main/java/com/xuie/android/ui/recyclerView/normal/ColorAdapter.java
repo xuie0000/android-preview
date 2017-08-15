@@ -1,4 +1,4 @@
-package com.xuie.android.ui.recyclerView;
+package com.xuie.android.ui.recyclerView.normal;
 
 import android.animation.Animator;
 import android.animation.ObjectAnimator;

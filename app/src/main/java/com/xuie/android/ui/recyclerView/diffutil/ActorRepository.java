@@ -1,4 +1,4 @@
-package com.xuie.android.ui.diffutil;
+package com.xuie.android.ui.recyclerView.diffutil;
 
 import java.util.ArrayList;
 import java.util.Collections;
