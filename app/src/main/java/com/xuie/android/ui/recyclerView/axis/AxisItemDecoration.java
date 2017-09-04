@@ -9,6 +9,7 @@ import android.view.View;
 
 /**
  * Created by xuie on 17-8-9.
+ * http://www.jianshu.com/p/9a796bb23a47
  */
 
 public class AxisItemDecoration extends RecyclerView.ItemDecoration {
