@@ -24,11 +24,11 @@ import android.view.MenuItem;
 import com.orhanobut.logger.Logger;
 import com.umeng.analytics.MobclickAgent;
 import com.xuie.android.R;
+import com.xuie.android.ui.coordinatorLayout.CoordinatorLayoutActivity;
+import com.xuie.android.ui.palette.PaletteActivity;
 import com.xuie.android.ui.recyclerView.RecyclerViewFragment;
 import com.xuie.android.ui.recyclerView.axis.AxisFragment;
-import com.xuie.android.ui.coordinatorLayout.CoordinatorLayoutActivity;
 import com.xuie.android.ui.recyclerView.diffutil.DiffUtilFragment;
-import com.xuie.android.ui.palette.PaletteActivity;
 import com.xuie.android.ui.recyclerView.normal.NormalFragment;
 import com.xuie.android.util.PreferenceUtils;
 import com.xuie.android.util.Utils;
@@ -58,8 +58,6 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
     private TestFragment testFragment;
     private TransitionsFragment transitionsFragment;
     private RecyclerViewFragment recyclerViewFragment;
-    private DiffUtilFragment diffUtilFragment;
-    private AxisFragment axisFragment;
 
     protected Fragment currentFragment;
 
@@ -80,11 +78,13 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
         }
         setSupportActionBar(toolbar);
 
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar,
+                R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
 
-        fab.setOnClickListener(v -> Snackbar.make(v, "Replace with your own action", Snackbar.LENGTH_LONG).setAction("Action", null).show());
+        fab.setOnClickListener(v -> Snackbar.make(v, "Replace with your own action", Snackbar.LENGTH_LONG)
+                .setAction("Action", null).show());
 
         navView.setNavigationItemSelectedListener(item -> {
             switchNavigation(item.getItemId());
@@ -93,6 +93,15 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
         });
 
         mDayNightMode = PreferenceUtils.getInt("mode", AppCompatDelegate.MODE_NIGHT_NO);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main, menu);
+        MenuItem item = menu.findItem(R.id.action_share);
+        shareActionProvider = (ShareActionProvider) MenuItemCompat.getActionProvider(item);
+        appTask();
+        return true;
     }
 
     private void switchNavigation(int navId) {
@@ -196,23 +205,14 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
         setShareIntent();
     }
 
-    private void setShareIntent() {
-        shareActionProvider.setShareIntent(Utils.getDefaultIntent(this));
-    }
-
     @Override
     public void onPermissionsDenied(int requestCode, List<String> perms) {
         Logger.d("onPermissionsDenied finish.");
         finish();
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.main, menu);
-        MenuItem item = menu.findItem(R.id.action_share);
-        shareActionProvider = (ShareActionProvider) MenuItemCompat.getActionProvider(item);
-        appTask();
-        return true;
+    private void setShareIntent() {
+        shareActionProvider.setShareIntent(Utils.getDefaultIntent(this));
     }
 
     private static final int RC_STORAGE_PERM = 123;

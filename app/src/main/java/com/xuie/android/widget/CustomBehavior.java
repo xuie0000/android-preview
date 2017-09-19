@@ -14,6 +14,8 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.view.animation.Interpolator;
 
+import com.xuie.android.R;
+
 /**
  * Created by xuie on 16-9-6.
  * From Drakeet <drakeet.me@gmail.com> Meizhi
@@ -91,7 +93,7 @@ public class CustomBehavior extends CoordinatorLayout.Behavior<FloatingActionBut
                     })
                     .start();
         } else {
-            Animation anim = AnimationUtils.loadAnimation(button.getContext(), android.support.design.R.anim.design_fab_out);
+            Animation anim = AnimationUtils.loadAnimation(button.getContext(), R.anim.design_fab_out);
             anim.setInterpolator(INTERPOLATOR);
             anim.setDuration(200L);
             anim.setAnimationListener(new Animation.AnimationListener() {
@@ -125,7 +127,7 @@ public class CustomBehavior extends CoordinatorLayout.Behavior<FloatingActionBut
                     .setListener(null)
                     .start();
         } else {
-            Animation anim = AnimationUtils.loadAnimation(button.getContext(), android.support.design.R.anim.design_fab_in);
+            Animation anim = AnimationUtils.loadAnimation(button.getContext(), R.anim.design_fab_in);
             anim.setDuration(200L);
             anim.setInterpolator(INTERPOLATOR);
             button.startAnimation(anim);

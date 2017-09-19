@@ -15,13 +15,13 @@ android {
         }
     }
 
-    compileSdkVersion 25
-    buildToolsVersion "25.0.3"
+    compileSdkVersion 26
+    buildToolsVersion "26.0.1"
 
     defaultConfig {
         applicationId 'com.xuie.android'
         minSdkVersion 21
-        targetSdkVersion 25
+        targetSdkVersion 26
         versionCode 10
         versionName "1.3.0"
     }
@@ -98,29 +98,42 @@ def buildTime() {
 }
 
 dependencies {
-    compile fileTree(include: ['*.jar'], dir: 'libs')
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    testCompile 'junit:junit:4.12'
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    testCompile 'junit:junit:4.12'
-    compile 'com.android.support:appcompat-v7:25.3.1'
-    compile 'com.android.support:design:25.3.1'
-    compile 'com.android.support:cardview-v7:25.3.1'
-    compile 'com.android.support:support-vector-drawable:25.3.1'
-    compile 'com.android.support:animated-vector-drawable:25.3.1'
-    compile 'com.android.support:palette-v7:25.3.1'
-    compile 'com.jakewharton:butterknife:8.8.0'
-    compile 'com.umeng.analytics:analytics:latest.integration'
-    compile 'com.github.bumptech.glide:glide:3.7.0'
+
+
+    compile 'com.android.support:appcompat-v7:26.0.0'
+    compile 'com.android.support.constraint:constraint-layout:1.0.2'
+    compile 'com.android.support:support-v4:26.0.0'
+    compile 'com.android.support:appcompat-v7:26.0.0'
+    compile 'com.android.support:design:26.0.0'
+    compile 'com.android.support:cardview-v7:26.0.0'
+    compile 'com.android.support:support-vector-drawable:26.0.0'
+    compile 'com.android.support:animated-vector-drawable:26.0.0'
+    compile 'com.android.support:palette-v7:26.0.0'
+
+    compile 'com.jakewharton:butterknife:8.8.1'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
+
+    compile 'com.umeng.analytics:analytics:6.1.2'
+
+    compile 'com.github.bumptech.glide:glide:4.1.1'
     compile 'com.github.bumptech.glide:okhttp3-integration:1.4.0@aar'
+
     compile 'io.reactivex:rxandroid:1.2.1'
     compile 'io.reactivex:rxjava:1.1.6'
+
     compile 'pub.devrel:easypermissions:0.4.3'
+
     compile 'com.orhanobut:logger:1.15'
+
     compile 'com.mikepenz:iconics-core:2.8.2@aar'
     compile 'com.mikepenz:material-design-iconic-typeface:2.2.0.2@aar'
-    compile 'com.android.support:support-v4:25.3.1'
-    testCompile 'junit:junit:4.12'
-    annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.0'
-    compile 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.22'
+
+    compile 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.28'
+
+    compile 'com.yarolegovich:discrete-scrollview:1.3.0'
 }
