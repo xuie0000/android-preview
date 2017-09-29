@@ -37,5 +37,7 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="pref_key_transition_time" translatable="false">pref_key_transition_time</string>
+
 
 </resources>

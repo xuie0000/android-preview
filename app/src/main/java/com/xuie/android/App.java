@@ -8,9 +8,11 @@ import android.support.v7.app.AppCompatDelegate;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.gw.swipeback.tools.WxSwipeBackActivityManager;
 import com.orhanobut.logger.Logger;
 import com.xuie.android.exception.Cockroach;
 import com.xuie.android.provider.ColorInitTask;
+import com.xuie.android.ui.recyclerView.discrete.DiscreteScrollViewOptions;
 import com.xuie.android.util.PreferenceUtils;
 
 import io.realm.Realm;
@@ -54,6 +56,10 @@ public class App extends Application {
         }));
 
         new ColorInitTask().execute();
+
+        DiscreteScrollViewOptions.init(this);
+
+        WxSwipeBackActivityManager.getInstance().init(this);
     }
 
     public static App getContext() {

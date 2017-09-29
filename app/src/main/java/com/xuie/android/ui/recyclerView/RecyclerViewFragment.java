@@ -19,6 +19,7 @@ import com.chad.library.adapter.base.BaseViewHolder;
 import com.xuie.android.R;
 import com.xuie.android.ui.recyclerView.axis.AxisFragment;
 import com.xuie.android.ui.recyclerView.diffutil.DiffUtilFragment;
+import com.xuie.android.ui.recyclerView.discrete.DiscreteFragment;
 import com.xuie.android.ui.recyclerView.normal.NormalFragment;
 
 import java.util.ArrayList;
@@ -47,6 +48,7 @@ public class RecyclerViewFragment extends Fragment {
         members.add(new Member("样例", NormalFragment.class.getName()));
         members.add(new Member("DiffUtil", DiffUtilFragment.class.getName()));
         members.add(new Member("ItemDecoration(时间轴)", AxisFragment.class.getName()));
+        members.add(new Member("滑动缩放", DiscreteFragment.class.getName()));
     }
 
     @Override
