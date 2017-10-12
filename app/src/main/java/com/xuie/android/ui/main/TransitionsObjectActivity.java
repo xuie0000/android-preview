@@ -1,4 +1,4 @@
-package com.xuie.android.ui.activity;
+package com.xuie.android.ui.main;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -17,7 +17,7 @@ import com.xuie.android.util.BlurBitmap;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class TwoActivity extends AppCompatActivity {
+public class TransitionsObjectActivity extends AppCompatActivity {
 
     @BindView(R.id.blured_img) ImageView bluredImg;
     @BindView(R.id.origin_img) ImageView originImg;
@@ -27,7 +27,7 @@ public class TwoActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_two);
+        setContentView(R.layout.activity_transitions_object);
         ButterKnife.bind(this);
     }
 

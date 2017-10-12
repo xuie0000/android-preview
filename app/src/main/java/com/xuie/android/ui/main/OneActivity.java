@@ -1,4 +1,4 @@
-package com.xuie.android.ui.activity;
+package com.xuie.android.ui.main;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -26,6 +26,9 @@ public class OneActivity extends AppCompatActivity {
     private static final String TAG = "OneActivity";
 
     @BindView(R.id.fab_button) Button fabButton;
+    @BindView(R.id.toolbar) Toolbar toolbar;
+    @BindView(R.id.bottom_sheet) LinearLayout bottomSheet;
+    private BottomSheetBehavior bottomSheetBehavior;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,15 +52,12 @@ public class OneActivity extends AppCompatActivity {
         setContentView(R.layout.activity_one);
         ButterKnife.bind(this);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar.setTitle(OneActivity.class.getSimpleName());
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        // get the bottom sheet view
-        LinearLayout llBottomSheet = (LinearLayout) findViewById(R.id.bottom_sheet);
-
         // init the bottom sheet behavior
-        BottomSheetBehavior bottomSheetBehavior = BottomSheetBehavior.from(llBottomSheet);
+        bottomSheetBehavior = BottomSheetBehavior.from(bottomSheet);
 
         // change the state of the bottom sheet
         bottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);

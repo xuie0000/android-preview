@@ -37,7 +37,7 @@
             android:orientation="vertical"
             android:transitionName="share01"
             app:layout_behavior="@string/appbar_scrolling_view_behavior"
-            tools:context=".ui.activity.OneActivity">
+            tools:context=".ui.main.OneActivity">
 
             <RelativeLayout
                 android:layout_width="match_parent"

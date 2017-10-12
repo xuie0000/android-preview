@@ -24,8 +24,6 @@ import android.widget.LinearLayout;
 
 import com.orhanobut.logger.Logger;
 import com.xuie.android.R;
-import com.xuie.android.ui.activity.TwoActivity;
-import com.xuie.android.ui.activity.OneActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -82,7 +80,7 @@ public class TransitionsFragment extends Fragment {
 
         overShoot.setOnClickListener(v -> {
             Logger.d("over_shoot");
-            Intent intent = new Intent(getActivity(), TwoActivity.class);
+            Intent intent = new Intent(getActivity(), TransitionsObjectActivity.class);
             ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(getActivity(), overShoot, "shareOverShoot");
             ActivityCompat.startActivity(getActivity(), intent, options.toBundle());
         });

@@ -34,10 +34,10 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.activity.OneActivity"/>
+            android:name=".ui.main.OneActivity"/>
         <activity android:name=".ui.main.MainActivity"/>
         <activity
-            android:name=".ui.activity.TwoActivity"
+            android:name=".ui.main.TransitionsObjectActivity"
             android:parentActivityName=".ui.main.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.CREATE_SHORTCUT"/>
