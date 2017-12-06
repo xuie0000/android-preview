@@ -63,10 +63,11 @@ android {
             if (variant.buildType.name == "release") {
                 def outputFile = output.outputFile
                 if (outputFile != null && outputFile.name.endsWith('.apk')) {
-                    def fileName = outputFile.name.replace("app",
-                            """android-review-${variant.buildType.name}-v${variant.versionName}-${
-                                buildTime()
-                            }-${variant.productFlavors[0].name}.apk""".toLowerCase())
+//                    def fileName = outputFile.name.replace("app",
+//                            """android-review-${variant.buildType.name}-v${variant.versionName}-${
+//                                buildTime()
+//                            }-${variant.productFlavors[0].name}.apk""".toLowerCase())
+                    def fileName = outputFile.name.replace("app", "android-review-v${variant.versionName}-${buildTime()}".toLowerCase())
                     outputFileName = fileName
                 }
 

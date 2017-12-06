@@ -9,6 +9,7 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.gw.swipeback.tools.WxSwipeBackActivityManager;
+import com.orhanobut.logger.AndroidLogAdapter;
 import com.orhanobut.logger.Logger;
 import com.xuie.android.exception.Cockroach;
 import com.xuie.android.provider.ColorInitTask;
@@ -30,7 +31,7 @@ public class App extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        Logger.init();
+        Logger.addLogAdapter(new AndroidLogAdapter());
         context = this;
         PreferenceUtils.init(this);
 
