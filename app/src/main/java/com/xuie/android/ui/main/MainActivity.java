@@ -11,12 +11,10 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
-import android.support.v4.view.MenuItemCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.app.AppCompatDelegate;
-import android.support.v7.widget.ShareActionProvider;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -31,7 +29,6 @@ import com.xuie.android.ui.recyclerView.axis.AxisFragment;
 import com.xuie.android.ui.recyclerView.diffutil.DiffUtilFragment;
 import com.xuie.android.ui.recyclerView.normal.NormalFragment;
 import com.xuie.android.util.PreferenceUtils;
-import com.xuie.android.util.Utils;
 
 import java.util.List;
 
@@ -44,7 +41,7 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
     private final String KEY_FRAGMENT = "currentFragment";
 
     private int mDayNightMode;
-    private ShareActionProvider shareActionProvider;
+//    private ShareActionProvider shareActionProvider;
 
     private int currentFragmentId = -1;
 
@@ -98,8 +95,8 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.main, menu);
-        MenuItem item = menu.findItem(R.id.action_share);
-        shareActionProvider = (ShareActionProvider) MenuItemCompat.getActionProvider(item);
+//        MenuItem item = menu.findItem(R.id.action_share);
+//        shareActionProvider = (ShareActionProvider) MenuItemCompat.getActionProvider(item);
         appTask();
         return true;
     }
@@ -212,7 +209,7 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
     }
 
     private void setShareIntent() {
-        shareActionProvider.setShareIntent(Utils.getDefaultIntent(this));
+//        shareActionProvider.setShareIntent(Utils.getDefaultIntent(this));
     }
 
     private static final int RC_STORAGE_PERM = 123;

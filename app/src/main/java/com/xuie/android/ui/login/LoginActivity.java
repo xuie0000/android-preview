@@ -42,7 +42,8 @@ import pub.devrel.easypermissions.EasyPermissions;
 /**
  * A login screen that offers login via email/password.
  */
-public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<Cursor>, EasyPermissions.PermissionCallbacks {
+public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<Cursor>
+        , EasyPermissions.PermissionCallbacks {
 
     /**
      * A dummy authentication store containing known user names and passwords.
@@ -96,7 +97,8 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             initLoader();
         } else {
             // 当第一次运行失败后，再次打开，会有这串String
-            EasyPermissions.requestPermissions(this, "需要重新申请权限", RC_READ_CONTACTS_PERM, perms);
+            EasyPermissions.requestPermissions(this,
+                    "需要重新申请权限", RC_READ_CONTACTS_PERM, perms);
         }
     }
 
