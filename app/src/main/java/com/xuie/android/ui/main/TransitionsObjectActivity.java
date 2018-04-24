@@ -10,7 +10,6 @@ import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
-import com.umeng.analytics.MobclickAgent;
 import com.xuie.android.R;
 import com.xuie.android.util.BlurBitmap;
 
@@ -70,7 +69,6 @@ public class TransitionsObjectActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        MobclickAgent.onResume(this);
         View decorView = getWindow().getDecorView();
         // Hide the status bar.
         int uiOptions = View.SYSTEM_UI_FLAG_LAYOUT_STABLE
@@ -80,12 +78,6 @@ public class TransitionsObjectActivity extends AppCompatActivity {
 //                | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
                 ;
         decorView.setSystemUiVisibility(uiOptions);
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        MobclickAgent.onPause(this);
     }
 
     @Override

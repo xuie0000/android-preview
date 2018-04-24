@@ -20,7 +20,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.orhanobut.logger.Logger;
-import com.umeng.analytics.MobclickAgent;
+import com.tencent.bugly.crashreport.CrashReport;
 import com.xuie.android.R;
 import com.xuie.android.ui.coordinatorLayout.CoordinatorLayoutActivity;
 import com.xuie.android.ui.palette.PaletteActivity;
@@ -80,8 +80,11 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
 
-        fab.setOnClickListener(v -> Snackbar.make(v, "Replace with your own action", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show());
+        fab.setOnClickListener(v -> {
+            Snackbar.make(v, "Replace with your own action", Snackbar.LENGTH_LONG)
+                    .setAction("Action", null).show();
+            CrashReport.testJavaCrash();
+        });
 
         navView.setNavigationItemSelectedListener(item -> {
             switchNavigation(item.getItemId());
@@ -241,7 +244,6 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
     @Override
     protected void onResume() {
         super.onResume();
-        MobclickAgent.onResume(this);
 //        int uiMode = getResources().getConfiguration().uiMode;
 //        int dayNightUiMode = uiMode & Configuration.UI_MODE_NIGHT_MASK;
 
@@ -251,12 +253,6 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
         if (mDayNightMode != defaultMode) {
             refreshDelegateMode(defaultMode);
         }
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        MobclickAgent.onPause(this);
     }
 
     public void refreshDelegateMode(int mode) {

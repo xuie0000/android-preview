@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatDelegate;
 import com.gw.swipeback.tools.WxSwipeBackActivityManager;
 import com.orhanobut.logger.AndroidLogAdapter;
 import com.orhanobut.logger.Logger;
+import com.tencent.bugly.crashreport.CrashReport;
 import com.xuie.android.provider.ColorInitTask;
 import com.xuie.android.ui.recyclerView.discrete.DiscreteScrollViewOptions;
 import com.xuie.android.util.PreferenceUtils;
@@ -30,6 +31,7 @@ public class App extends Application {
         Logger.addLogAdapter(new AndroidLogAdapter());
         context = this;
         PreferenceUtils.init(this);
+        CrashReport.initCrashReport(getApplicationContext(), "bc342fcfab", false);
 
         if (getNightMode() == AppCompatDelegate.MODE_NIGHT_NO) {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
