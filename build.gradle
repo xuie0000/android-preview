@@ -11,7 +11,6 @@ buildscript {
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:3.1.2'
-        classpath 'me.tatarka:gradle-retrolambda:3.6.1'
         classpath "io.realm:realm-gradle-plugin:4.1.1"
 //        classpath 'com.jakewharton:butterknife-gradle-plugin:8.8.1'
         classpath 'com.jakewharton:butterknife-gradle-plugin:9.0.0-SNAPSHOT'
@@ -24,9 +23,6 @@ allprojects {
         jcenter()
         mavenCentral()
         maven { url "https://jitpack.io" }
-        maven {
-            url "https://oss.sonatype.org/content/repositories/snapshots"
-        }
     }
 }
 

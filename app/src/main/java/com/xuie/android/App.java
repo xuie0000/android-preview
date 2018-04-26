@@ -16,10 +16,6 @@ import com.xuie.android.util.PreferenceUtils;
 import io.realm.Realm;
 import io.realm.RealmConfiguration;
 
-/**
- * Created by xuie on 15-11-10.
- * MyApplication
- */
 public class App extends Application {
     private static App context;
     private static Handler handler;
