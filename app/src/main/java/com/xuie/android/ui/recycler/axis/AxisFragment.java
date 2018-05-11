@@ -1,7 +1,8 @@
-package com.xuie.android.ui.recyclerView.axis;
+package com.xuie.android.ui.recycler.axis;
 
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -18,6 +19,7 @@ import butterknife.Unbinder;
 /**
  * A simple {@link Fragment} subclass.
  * 这是一个时间轴的DEMO，添加的 {@link RecyclerView.ItemDecoration}样例
+ * @author xuie
  */
 public class AxisFragment extends Fragment {
 
@@ -25,8 +27,7 @@ public class AxisFragment extends Fragment {
     Unbinder unbinder;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_axis, container, false);
         unbinder = ButterKnife.bind(this, view);
 

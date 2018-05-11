@@ -1,10 +1,13 @@
-package com.xuie.android.ui.recyclerView.diffutil;
+package com.xuie.android.ui.recycler.diffutil;
 
 import android.support.annotation.Nullable;
 import android.support.v7.util.DiffUtil;
 
 import java.util.List;
 
+/**
+ * @author xuie
+ */
 public class ActorDiffCallback extends DiffUtil.Callback {
 
     private final List<Actor> oldList;

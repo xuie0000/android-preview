@@ -12,7 +12,9 @@ import android.support.annotation.Nullable;
 import android.text.TextUtils;
 
 /**
- * Created by xuie on 2017/4/12 0012.
+ *
+ * @author xuie
+ * @date 2017/4/12 0012
  * https://developer.android.google.cn/guide/topics/providers/content-provider-creating.html?hl=zh-cn
  */
 public class ColorProvider extends ContentProvider {

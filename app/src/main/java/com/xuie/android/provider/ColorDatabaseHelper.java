@@ -5,7 +5,9 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 /**
- * Created by xuie on 2017/4/12 0012.
+ *
+ * @author xuie
+ * @date 2017/4/12 0012
  */
 
 public class ColorDatabaseHelper extends SQLiteOpenHelper {

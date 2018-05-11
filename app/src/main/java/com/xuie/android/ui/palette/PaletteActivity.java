@@ -21,6 +21,9 @@ import com.xuie.android.R;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+/**
+ * @author xuie
+ */
 public class PaletteActivity extends AppCompatActivity {
 
     @BindView(R.id.tab_layout) TabLayout tabLayout;

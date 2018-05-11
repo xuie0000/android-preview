@@ -1,4 +1,4 @@
-package com.xuie.android.ui.coordinatorLayout;
+package com.xuie.android.ui.coordinator;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -12,6 +12,9 @@ import com.xuie.android.R;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+/**
+ * @author xuie
+ */
 public class CoordinatorLayoutActivity extends AppCompatActivity {
 
     @BindView(R.id.toolbar) Toolbar toolbar;

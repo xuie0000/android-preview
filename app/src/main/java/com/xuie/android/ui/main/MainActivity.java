@@ -22,12 +22,12 @@ import android.view.MenuItem;
 import com.orhanobut.logger.Logger;
 import com.tencent.bugly.crashreport.CrashReport;
 import com.xuie.android.R;
-import com.xuie.android.ui.coordinatorLayout.CoordinatorLayoutActivity;
+import com.xuie.android.ui.coordinator.CoordinatorLayoutActivity;
 import com.xuie.android.ui.palette.PaletteActivity;
-import com.xuie.android.ui.recyclerView.RecyclerViewFragment;
-import com.xuie.android.ui.recyclerView.axis.AxisFragment;
-import com.xuie.android.ui.recyclerView.diffutil.DiffUtilFragment;
-import com.xuie.android.ui.recyclerView.normal.NormalFragment;
+import com.xuie.android.ui.recycler.RecyclerViewFragment;
+import com.xuie.android.ui.recycler.axis.AxisFragment;
+import com.xuie.android.ui.recycler.diffutil.DiffUtilFragment;
+import com.xuie.android.ui.recycler.normal.NormalFragment;
 import com.xuie.android.util.PreferenceUtils;
 
 import java.util.List;
@@ -107,6 +107,7 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
     private void switchNavigation(int navId) {
         switch (navId) {
             case R.id.nav_test:
+            default:
                 if (testFragment == null) {
                     testFragment = new TestFragment();
                 }
@@ -201,12 +202,12 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
     }
 
     @Override
-    public void onPermissionsGranted(int requestCode, List<String> perms) {
+    public void onPermissionsGranted(int requestCode, @NonNull List<String> perms) {
         setShareIntent();
     }
 
     @Override
-    public void onPermissionsDenied(int requestCode, List<String> perms) {
+    public void onPermissionsDenied(int requestCode, @NonNull List<String> perms) {
         Logger.d("onPermissionsDenied finish.");
         finish();
     }
@@ -249,7 +250,6 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
 
         // enable the save mode
         int defaultMode = PreferenceUtils.getInt("mode", AppCompatDelegate.MODE_NIGHT_NO);
-//        Logger.d(defaultMode + ", " + mDayNightMode + ", " + dayNightUiMode + " .");
         if (mDayNightMode != defaultMode) {
             refreshDelegateMode(defaultMode);
         }

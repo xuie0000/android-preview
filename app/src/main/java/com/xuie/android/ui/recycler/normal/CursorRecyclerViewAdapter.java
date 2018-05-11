@@ -1,4 +1,4 @@
-package com.xuie.android.ui.recyclerView.normal;
+package com.xuie.android.ui.recycler.normal;
 
 import android.content.Context;
 import android.database.Cursor;
@@ -8,6 +8,7 @@ import android.support.v7.widget.RecyclerView;
 /**
  * https://github.com/AbhirojPanwar/Wallser
  *
+ * @author xuie
  * @param <VH> {@link android.support.v7.widget.RecyclerView.ViewHolder}
  */
 public abstract class CursorRecyclerViewAdapter<VH extends RecyclerView.ViewHolder> extends RecyclerView.Adapter<VH> {

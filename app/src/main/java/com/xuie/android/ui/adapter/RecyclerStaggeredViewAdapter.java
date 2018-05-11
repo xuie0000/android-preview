@@ -1,5 +1,6 @@
 package com.xuie.android.ui.adapter;
 
+import android.support.annotation.NonNull;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -16,13 +17,17 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+/**
+ * @author xuie
+ */
 public class RecyclerStaggeredViewAdapter extends RecyclerViewAdapter {
-    private int ITEM_TYPE_NORMAL = 1, ITEM_TYPE_LARGER = 2;
+    private static final int ITEM_TYPE_NORMAL = 1, ITEM_TYPE_LARGER = 2;
 
     public RecyclerStaggeredViewAdapter(List<TextColor> textPictures) {
         super(textPictures);
     }
 
+    @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
         if (viewType == ITEM_TYPE_NORMAL) {

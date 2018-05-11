@@ -1,7 +1,8 @@
-package com.xuie.android.ui.recyclerView.diffutil;
+package com.xuie.android.ui.recycler.diffutil;
 
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -20,6 +21,8 @@ import butterknife.ButterKnife;
 
 /**
  * https://github.com/mrmike/DiffUtil-sample
+ *
+ * @author xuie
  */
 public class DiffUtilFragment extends Fragment {
     private ActorAdapter adapter;
@@ -33,7 +36,7 @@ public class DiffUtilFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_diff_util, container, false);
         ButterKnife.bind(this, view);
 
@@ -56,6 +59,7 @@ public class DiffUtilFragment extends Fragment {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.sort_by_name:
+            default:
                 adapter.swapItems(ActorRepository.getActorListSortedByName());
                 break;
             case R.id.sort_by_rating:

@@ -1,7 +1,9 @@
 package com.xuie.android.exception;
 
 /**
- * Created by xuie on 2017/5/17 0017.
+ *
+ * @author xuie
+ * @date 2017/5/17 0017
  */
 
 public class QuitCockroachException extends RuntimeException {

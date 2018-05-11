@@ -1,7 +1,8 @@
-package com.xuie.android.ui.recyclerView.normal;
+package com.xuie.android.ui.recycler.normal;
 
 import android.database.Cursor;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager;
@@ -22,9 +23,14 @@ import com.xuie.android.R;
 import com.xuie.android.provider.ColorContract;
 import com.xuie.android.ui.adapter.MarginDecoration;
 
+import java.util.Objects;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+/**
+ * @author xuie
+ */
 public class NormalFragment extends Fragment implements LoaderManager.LoaderCallbacks<Cursor> {
     private static final String TAG = "NormalFragment";
     public static final String KEY_LAYOUT_MANAGER = "layoutManager";
@@ -56,14 +62,14 @@ public class NormalFragment extends Fragment implements LoaderManager.LoaderCall
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_normal, container, false);
         ButterKnife.bind(this, rootView);
         return rootView;
     }
 
     @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         if (savedInstanceState != null) {
             currentLayoutManagerType = (LayoutManagerType) savedInstanceState.getSerializable(KEY_LAYOUT_MANAGER);
@@ -95,6 +101,7 @@ public class NormalFragment extends Fragment implements LoaderManager.LoaderCall
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.linear_v_single:
+            default:
                 currentLayoutManagerType = LayoutManagerType.LINEAR_VER_MANAGER;
                 currentItemType = ItemType.SINGLE;
                 break;
@@ -126,8 +133,6 @@ public class NormalFragment extends Fragment implements LoaderManager.LoaderCall
         RecyclerView.LayoutManager layoutManager = recyclerView.getLayoutManager();
         if (layoutManager instanceof LinearLayoutManager) {
             firstPosition = ((LinearLayoutManager) recyclerView.getLayoutManager()).findFirstCompletelyVisibleItemPosition();
-        } else if (layoutManager instanceof GridLayoutManager) {
-            firstPosition = ((LinearLayoutManager) layoutManager).findLastVisibleItemPosition();
         } else if (layoutManager instanceof StaggeredGridLayoutManager) {
             int[] firstPositions = new int[((StaggeredGridLayoutManager) layoutManager).getSpanCount()];
             ((StaggeredGridLayoutManager) layoutManager).findFirstCompletelyVisibleItemPositions(firstPositions);
@@ -167,17 +172,18 @@ public class NormalFragment extends Fragment implements LoaderManager.LoaderCall
     }
 
     @Override
-    public void onSaveInstanceState(Bundle savedInstanceState) {
+    public void onSaveInstanceState(@NonNull Bundle savedInstanceState) {
         savedInstanceState.putSerializable(KEY_LAYOUT_MANAGER, currentLayoutManagerType);
         super.onSaveInstanceState(savedInstanceState);
     }
 
+    @NonNull
     @Override
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {
         switch (id) {
             case 0:
                 return new CursorLoader(
-                        getContext(),
+                        Objects.requireNonNull(getContext()),
                         ColorContract.ColorEntry.CONTENT_URI,
                         ColorAdapter.MOVIE_COLUMNS,
                         null,
@@ -190,7 +196,7 @@ public class NormalFragment extends Fragment implements LoaderManager.LoaderCall
     }
 
     @Override
-    public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
+    public void onLoadFinished(@NonNull Loader<Cursor> loader, Cursor data) {
         switch (loader.getId()) {
             case 0:
                 colorAdapter.swapCursor(data);
@@ -202,7 +208,7 @@ public class NormalFragment extends Fragment implements LoaderManager.LoaderCall
     }
 
     @Override
-    public void onLoaderReset(Loader<Cursor> loader) {
+    public void onLoaderReset(@NonNull Loader<Cursor> loader) {
         switch (loader.getId()) {
             case 0:
                 colorAdapter.swapCursor(null);

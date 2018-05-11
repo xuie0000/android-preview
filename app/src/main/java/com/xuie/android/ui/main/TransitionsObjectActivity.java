@@ -16,12 +16,15 @@ import com.xuie.android.util.BlurBitmap;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+/**
+ * @author xuie
+ */
 public class TransitionsObjectActivity extends AppCompatActivity {
 
     @BindView(R.id.blured_img) ImageView bluredImg;
     @BindView(R.id.origin_img) ImageView originImg;
     @BindView(R.id.seek_bar) SeekBar seekBar;
-    @BindView(R.id.progress) TextView tv_progress;
+    @BindView(R.id.progress) TextView tvProgress;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,7 +54,7 @@ public class TransitionsObjectActivity extends AppCompatActivity {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 originImg.setImageAlpha((int) (255 - progress * 2.55));
-                tv_progress.setText(String.valueOf(progress));
+                tvProgress.setText(String.valueOf(progress));
             }
 
             @Override

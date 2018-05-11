@@ -1,8 +1,9 @@
-package com.xuie.android.ui.recyclerView;
+package com.xuie.android.ui.recycler;
 
 
 import android.os.Bundle;
 import android.support.annotation.LayoutRes;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -17,10 +18,10 @@ import android.widget.FrameLayout;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.xuie.android.R;
-import com.xuie.android.ui.recyclerView.axis.AxisFragment;
-import com.xuie.android.ui.recyclerView.diffutil.DiffUtilFragment;
-import com.xuie.android.ui.recyclerView.discrete.DiscreteFragment;
-import com.xuie.android.ui.recyclerView.normal.NormalFragment;
+import com.xuie.android.ui.recycler.axis.AxisFragment;
+import com.xuie.android.ui.recycler.diffutil.DiffUtilFragment;
+import com.xuie.android.ui.recycler.discrete.DiscreteFragment;
+import com.xuie.android.ui.recycler.normal.NormalFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,6 +32,7 @@ import butterknife.Unbinder;
 
 /**
  * A simple {@link Fragment} subclass.
+ * @author xuie
  */
 public class RecyclerViewFragment extends Fragment {
 
@@ -52,7 +54,7 @@ public class RecyclerViewFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_recycler_view, container, false);
         unbinder = ButterKnife.bind(this, v);
 

@@ -13,6 +13,7 @@ import com.xuie.android.R;
 /**
  * 感谢http://stackoverflow.com/questions/24618829/how-to-add-dividers-and-spaces-
  * between-items-in-recyclerview/27037230#27037230
+ * @author xuie
  */
 public class DividerOverDecoration extends RecyclerView.ItemDecoration {
 

@@ -21,6 +21,9 @@ import com.xuie.android.util.ScreenUtils;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+/**
+ * @author xuie
+ */
 public class OneActivity extends AppCompatActivity {
     private static final String TAG = "OneActivity";
 
@@ -35,6 +38,7 @@ public class OneActivity extends AppCompatActivity {
 
         switch (getIntent().getIntExtra("flag", 0)) {
             case 0:
+            default:
                 getWindow().setEnterTransition(new Explode());
                 break;
             case 1:

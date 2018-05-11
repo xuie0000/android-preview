@@ -1,4 +1,4 @@
-package com.xuie.android.ui.recyclerView.discrete;
+package com.xuie.android.ui.recycler.discrete;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -11,7 +11,9 @@ import com.xuie.android.R;
 import java.util.List;
 
 /**
- * Created by yarolegovich on 07.03.2017.
+ *
+ * @author yarolegovich
+ * @date 07.03.2017
  */
 
 public class ShopAdapter extends RecyclerView.Adapter<ShopAdapter.ViewHolder> {
@@ -48,7 +50,7 @@ public class ShopAdapter extends RecyclerView.Adapter<ShopAdapter.ViewHolder> {
 
         public ViewHolder(View itemView) {
             super(itemView);
-            image = (ImageView) itemView.findViewById(R.id.image);
+            image = itemView.findViewById(R.id.image);
         }
     }
 }

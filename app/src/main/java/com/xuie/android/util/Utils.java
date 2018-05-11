@@ -8,7 +8,9 @@ import android.provider.MediaStore;
 import android.view.View;
 
 /**
- * Created by xuie on 17-2-9.
+ *
+ * @author xuie
+ * @date 17-2-9
  */
 
 public class Utils {

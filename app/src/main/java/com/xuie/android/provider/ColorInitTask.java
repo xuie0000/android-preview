@@ -9,7 +9,9 @@ import com.xuie.android.App;
 import java.util.Random;
 
 /**
- * Created by xuie on 2017/6/1 0001.
+ *
+ * @author xuie
+ * @date 2017/6/1 0001
  */
 
 public class ColorInitTask extends AsyncTask<Void, Integer, Boolean> {

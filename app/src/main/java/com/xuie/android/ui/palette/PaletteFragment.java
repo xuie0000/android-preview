@@ -2,6 +2,7 @@ package com.xuie.android.ui.palette;
 
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.util.TypedValue;
 import android.view.Gravity;
@@ -13,15 +14,18 @@ import android.widget.TextView;
 
 import com.xuie.android.R;
 
+import java.util.Objects;
+
 /**
  * A simple {@link Fragment} subclass.
+ *
+ * @author xuie
  */
 public class PaletteFragment extends Fragment {
     private static final String ARG_POSITION = "position";
 
     private int position;
-    private static final int[] drawables = {R.mipmap.one, R.mipmap.two, R.mipmap.four, R.mipmap
-            .three, R.mipmap.five};
+    private static int[] drawables = {R.mipmap.one, R.mipmap.two, R.mipmap.four, R.mipmap.three, R.mipmap.five};
 
     public static PaletteFragment newInstance(int position) {
         PaletteFragment f = new PaletteFragment();
@@ -39,13 +43,13 @@ public class PaletteFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle
             savedInstanceState) {
 
         FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams
                 .MATCH_PARENT);
 
-        FrameLayout fl = new FrameLayout(getActivity());
+        FrameLayout fl = new FrameLayout(Objects.requireNonNull(getActivity()));
         fl.setLayoutParams(params);
         fl.setBackgroundResource(drawables[position]);
         final int margin = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 8,

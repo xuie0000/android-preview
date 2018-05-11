@@ -1,4 +1,4 @@
-package com.xuie.android.ui.recyclerView.axis;
+package com.xuie.android.ui.recycler.axis;
 
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -8,12 +8,13 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 /**
- * Created by xuie on 17-8-9.
+ * @author xuie
+ * @date 17-8-9
  * http://www.jianshu.com/p/9a796bb23a47
  */
 
 public class AxisItemDecoration extends RecyclerView.ItemDecoration {
-    public static final int OUT_BOTTOM_HEIGHT = 2;
+    private static final int OUT_BOTTOM_HEIGHT = 2;
     private Paint mPaint;
 
     public AxisItemDecoration() {
@@ -74,7 +75,7 @@ public class AxisItemDecoration extends RecyclerView.ItemDecoration {
 
     @Override
     public void getItemOffsets(Rect outRect, View view, RecyclerView parent, RecyclerView.State state) {
-//        super.getItemOffsets(outRect, view, parent, state);
-        outRect.set(0, 0, 0, OUT_BOTTOM_HEIGHT);// default (0, 0, 0, 0)
+        // default (0, 0, 0, 0)
+        outRect.set(0, 0, 0, OUT_BOTTOM_HEIGHT);
     }
 }

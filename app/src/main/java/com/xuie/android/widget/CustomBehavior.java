@@ -17,7 +17,9 @@ import android.view.animation.Interpolator;
 import com.xuie.android.R;
 
 /**
- * Created by xuie on 16-9-6.
+ *
+ * @author xuie
+ * @date 16-9-6
  * From Drakeet <drakeet.me@gmail.com> Meizhi
  */
 public class CustomBehavior extends CoordinatorLayout.Behavior<FloatingActionButton> {

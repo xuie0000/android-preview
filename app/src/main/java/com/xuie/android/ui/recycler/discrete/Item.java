@@ -1,7 +1,9 @@
-package com.xuie.android.ui.recyclerView.discrete;
+package com.xuie.android.ui.recycler.discrete;
 
 /**
- * Created by yarolegovich on 07.03.2017.
+ *
+ * @author yarolegovich
+ * @date 07.03.2017
  */
 
 public class Item {

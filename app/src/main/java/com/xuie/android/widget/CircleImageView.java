@@ -12,6 +12,9 @@ import android.graphics.drawable.Drawable;
 import android.graphics.drawable.NinePatchDrawable;
 import android.util.AttributeSet;
 
+/**
+ * @author xuie
+ */
 public class CircleImageView extends android.support.v7.widget.AppCompatImageView {
     private int mBorderThickness = 0;
     private Context mContext;

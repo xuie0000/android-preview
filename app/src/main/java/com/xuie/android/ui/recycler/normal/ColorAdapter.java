@@ -1,9 +1,10 @@
-package com.xuie.android.ui.recyclerView.normal;
+package com.xuie.android.ui.recycler.normal;
 
 import android.animation.Animator;
 import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.database.Cursor;
+import android.support.annotation.NonNull;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -18,7 +19,8 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
- * Created by xuie on 2017/4/12 0012.
+ * @author xuie
+ * @date 2017/4/12 0012
  */
 
 public class ColorAdapter extends CursorRecyclerViewAdapter<RecyclerView.ViewHolder> {
@@ -39,15 +41,15 @@ public class ColorAdapter extends CursorRecyclerViewAdapter<RecyclerView.ViewHol
         super(context, cursor);
     }
 
+    @NonNull
     @Override
-    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_text_row, parent, false);
         return new ColorViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, Cursor cursor) {
-//        cursor.moveToPosition(viewHolder.getAdapterPosition());
         ColorViewHolder vh = (ColorViewHolder) viewHolder;
 
         vh.title.setText(cursor.getString(NAME_INDEX));
@@ -55,7 +57,7 @@ public class ColorAdapter extends CursorRecyclerViewAdapter<RecyclerView.ViewHol
         startAnimation(vh.itemView);
     }
 
-    protected void startAnimation(View view) {
+    void startAnimation(View view) {
         Animator[] animators = new Animator[]{
                 ObjectAnimator.ofFloat(view, "scaleY", 1, 1.1f, 1),
                 ObjectAnimator.ofFloat(view, "scaleX", 1, 1.1f, 1)

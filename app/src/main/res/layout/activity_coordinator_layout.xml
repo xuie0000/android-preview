@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context="com.xuie.android.ui.coordinatorLayout.CoordinatorLayoutActivity">
+    tools:context="com.xuie.android.ui.coordinator.CoordinatorLayoutActivity">
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/app_bar"

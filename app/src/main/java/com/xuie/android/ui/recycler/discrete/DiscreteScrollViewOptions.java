@@ -1,4 +1,4 @@
-package com.xuie.android.ui.recyclerView.discrete;
+package com.xuie.android.ui.recycler.discrete;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -17,7 +17,9 @@ import com.yarolegovich.discretescrollview.InfiniteScrollAdapter;
 import java.lang.ref.WeakReference;
 
 /**
- * Created by yarolegovich on 08.03.2017.
+ *
+ * @author yarolegovich
+ * @date 08.03.2017
  */
 
 public class DiscreteScrollViewOptions {

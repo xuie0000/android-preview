@@ -5,6 +5,9 @@ import android.graphics.Rect;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
+/**
+ * @author xuie
+ */
 public class MarginDecoration extends RecyclerView.ItemDecoration {
     private int margin;
 

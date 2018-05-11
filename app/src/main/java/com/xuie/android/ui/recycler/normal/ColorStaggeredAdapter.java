@@ -1,7 +1,8 @@
-package com.xuie.android.ui.recyclerView.normal;
+package com.xuie.android.ui.recycler.normal;
 
 import android.content.Context;
 import android.database.Cursor;
+import android.support.annotation.NonNull;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -15,7 +16,9 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
- * Created by xuie on 2017/4/12 0012.
+ *
+ * @author xuie
+ * @date 2017/4/12 0012
  */
 
 public class ColorStaggeredAdapter extends ColorAdapter {
@@ -26,8 +29,9 @@ public class ColorStaggeredAdapter extends ColorAdapter {
         super(context, cursor);
     }
 
+    @NonNull
     @Override
-    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_text_row_larger, parent, false);
         switch (viewType) {
             case ITEM_TYPE_NORMAL:
@@ -42,6 +46,7 @@ public class ColorStaggeredAdapter extends ColorAdapter {
     public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, Cursor cursor) {
         int vt = getItemViewType(viewHolder.getAdapterPosition());
         switch (vt) {
+            default:
             case ITEM_TYPE_NORMAL:
                 super.onBindViewHolder(viewHolder, cursor);
                 return;

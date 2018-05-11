@@ -10,12 +10,15 @@ import com.orhanobut.logger.AndroidLogAdapter;
 import com.orhanobut.logger.Logger;
 import com.tencent.bugly.crashreport.CrashReport;
 import com.xuie.android.provider.ColorInitTask;
-import com.xuie.android.ui.recyclerView.discrete.DiscreteScrollViewOptions;
+import com.xuie.android.ui.recycler.discrete.DiscreteScrollViewOptions;
 import com.xuie.android.util.PreferenceUtils;
 
 import io.realm.Realm;
 import io.realm.RealmConfiguration;
 
+/**
+ * @author xuie
+ */
 public class App extends Application {
     private static App context;
     private static Handler handler;

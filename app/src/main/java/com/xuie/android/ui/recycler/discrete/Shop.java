@@ -1,4 +1,4 @@
-package com.xuie.android.ui.recyclerView.discrete;
+package com.xuie.android.ui.recycler.discrete;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -10,7 +10,9 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
- * Created by yarolegovich on 07.03.2017.
+ *
+ * @author yarolegovich
+ * @date 07.03.2017
  */
 
 public class Shop {

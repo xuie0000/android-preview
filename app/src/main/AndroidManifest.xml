@@ -49,7 +49,7 @@
         </activity>
 
         <activity android:name=".ui.palette.PaletteActivity"/>
-        <activity android:name=".ui.coordinatorLayout.CoordinatorLayoutActivity"/>
+        <activity android:name=".ui.coordinator.CoordinatorLayoutActivity"/>
 
         <provider
             android:name=".provider.ColorProvider"

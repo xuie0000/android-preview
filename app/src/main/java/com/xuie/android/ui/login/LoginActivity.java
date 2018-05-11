@@ -41,6 +41,7 @@ import pub.devrel.easypermissions.EasyPermissions;
 
 /**
  * A login screen that offers login via email/password.
+ * @author xuie
  */
 public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<Cursor>
         , EasyPermissions.PermissionCallbacks {
@@ -56,7 +57,9 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
      */
     private UserLoginTask mAuthTask = null;
 
-    // UI references.
+    /**
+     * UI references.
+     */
     private AutoCompleteTextView mEmailView;
     private EditText mPasswordView;
     private View mProgressView;
@@ -121,13 +124,13 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     }
 
     @Override
-    public void onPermissionsGranted(int requestCode, List<String> perms) {
+    public void onPermissionsGranted(int requestCode, @NonNull List<String> perms) {
         Logger.d("onPermissionsGranted:" + requestCode + ":" + perms.size());
         initLoader();
     }
 
     @Override
-    public void onPermissionsDenied(int requestCode, List<String> perms) {
+    public void onPermissionsDenied(int requestCode, @NonNull List<String> perms) {
         Logger.d("onPermissionsDenied:" + requestCode + ":" + perms.size());
 
         // (Optional) Check whether the user denied any permissions and checked "NEVER ASK AGAIN."

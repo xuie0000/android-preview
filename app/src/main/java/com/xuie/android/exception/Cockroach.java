@@ -4,7 +4,9 @@ import android.os.Handler;
 import android.os.Looper;
 
 /**
- * Created by xuie on 2017/5/17 0017.
+ *
+ * @author xuie
+ * @date 2017/5/17 0017
  * 打不死的小强,永不crash的Android
  * https://github.com/android-notes/Cockroach
  */
@@ -21,7 +23,10 @@ public final class Cockroach {
 
     private static ExceptionHandler sExceptionHandler;
     private static Thread.UncaughtExceptionHandler sUncaughtExceptionHandler;
-    private static boolean sInstalled = false;//标记位，避免重复安装卸载
+    /**
+     * 标记位，避免重复安装卸载
+     */
+    private static boolean sInstalled = false;
 
     /**
      * 当主线程或子线程抛出异常时会调用exceptionHandler.handlerException(Thread thread, Throwable throwable)
@@ -47,7 +52,6 @@ public final class Cockroach {
                     try {
                         Looper.loop();
                     } catch (Throwable e) {
-//                        Binder.clearCallingIdentity();
                         if (e instanceof QuitCockroachException) {
                             return;
                         }
@@ -82,7 +86,10 @@ public final class Cockroach {
         new Handler(Looper.getMainLooper()).post(new Runnable() {
             @Override
             public void run() {
-                throw new QuitCockroachException("Quit Cockroach.....");//主线程抛出异常，迫使 while (true) {}结束
+                /*
+                 * 主线程抛出异常，迫使 while (true) {}结束
+                 */
+                throw new QuitCockroachException("Quit Cockroach.....");
             }
         });
 

@@ -1,10 +1,11 @@
-package com.xuie.android.ui.recyclerView.axis;
+package com.xuie.android.ui.recycler.axis;
 
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by xuie on 17-8-9.
+ * @author xuie
+ * @date 17-8-9
  */
 
 public class DataBean {
@@ -19,6 +20,7 @@ public class DataBean {
     }
 
     private static List<DataBean> dataBeen;
+
     static {
         dataBeen = new ArrayList<>();
         dataBeen.add(new DataBean("2017.05.07", "13.55", "北京市朝阳区酒仙桥公司 已签收 签收人：邮件收发章"));

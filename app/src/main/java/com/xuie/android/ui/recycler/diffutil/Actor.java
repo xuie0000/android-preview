@@ -1,5 +1,8 @@
-package com.xuie.android.ui.recyclerView.diffutil;
+package com.xuie.android.ui.recycler.diffutil;
 
+/**
+ * @author xuie
+ */
 public class Actor {
 
     private final int id;
@@ -32,15 +35,22 @@ public class Actor {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
 
         Actor actor = (Actor) o;
 
-        if (id != actor.id) return false;
-        if (rating != actor.rating) return false;
-        if (yearOfBirth != actor.yearOfBirth) return false;
-        return name != null ? name.equals(actor.name) : actor.name == null;
+        if (id != actor.id) {
+            return false;
+        }
+        if (rating != actor.rating) {
+            return false;
+        }
+        return yearOfBirth == actor.yearOfBirth && (name != null ? name.equals(actor.name) : actor.name == null);
 
     }
 

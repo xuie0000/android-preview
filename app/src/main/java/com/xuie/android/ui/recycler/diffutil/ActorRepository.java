@@ -1,10 +1,13 @@
-package com.xuie.android.ui.recyclerView.diffutil;
+package com.xuie.android.ui.recycler.diffutil;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
+/**
+ * @author xuie
+ */
 public class ActorRepository {
 
     private ActorRepository() {
@@ -31,12 +34,9 @@ public class ActorRepository {
     public static List<Actor> getActorListSortedByRating() {
         final List<Actor> actorList = getOriginalActorList();
 
-        Collections.sort(actorList, new Comparator<Actor>() {
-            @Override
-            public int compare(Actor a1, Actor a2) {
-                // Descending order
-                return a2.getRating() - a1.getRating();
-            }
+        Collections.sort(actorList, (a1, a2) -> {
+            // Descending order
+            return a2.getRating() - a1.getRating();
         });
 
         return actorList;
@@ -45,26 +45,14 @@ public class ActorRepository {
     public static List<Actor> getActorListSortedByName() {
         final List<Actor> actorList = getOriginalActorList();
 
-        Collections.sort(actorList, new Comparator<Actor>() {
-            @Override
-            public int compare(Actor a1, Actor a2) {
-                return a1.getName().compareTo(a2.getName());
-            }
-        });
-
+        Collections.sort(actorList, (a1, a2) -> a1.getName().compareTo(a2.getName()));
         return actorList;
     }
 
     public static List<Actor> getActorListSortedByYearOfBirth() {
         final List<Actor> actorList = getOriginalActorList();
 
-        Collections.sort(actorList, new Comparator<Actor>() {
-            @Override
-            public int compare(Actor a1, Actor a2) {
-                return a1.getYearOfBirth() - a2.getYearOfBirth();
-            }
-        });
-
+        Collections.sort(actorList, (a1, a2) -> a1.getYearOfBirth() - a2.getYearOfBirth());
         return actorList;
     }
 }

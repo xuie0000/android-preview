@@ -1,5 +1,6 @@
-package com.xuie.android.ui.recyclerView.diffutil;
+package com.xuie.android.ui.recycler.diffutil;
 
+import android.support.annotation.NonNull;
 import android.support.v7.util.DiffUtil;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -12,6 +13,9 @@ import com.xuie.android.R;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @author xuie
+ */
 public class ActorAdapter extends RecyclerView.Adapter<ActorAdapter.ViewHolder> {
 
     private List<Actor> actors = new ArrayList<>();
@@ -20,15 +24,16 @@ public class ActorAdapter extends RecyclerView.Adapter<ActorAdapter.ViewHolder> 
         this.actors.addAll(personList);
     }
 
+    @NonNull
     @Override
-    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         final LayoutInflater inflater = LayoutInflater.from(parent.getContext());
         final View view = inflater.inflate(R.layout.item_actor, parent, false);
         return new ViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         final Actor actor = actors.get(position);
         holder.name.setText(actor.getName());
     }
@@ -47,13 +52,13 @@ public class ActorAdapter extends RecyclerView.Adapter<ActorAdapter.ViewHolder> 
         return actors.size();
     }
 
-    public static class ViewHolder extends RecyclerView.ViewHolder {
+    static class ViewHolder extends RecyclerView.ViewHolder {
 
         private TextView name;
 
-        public ViewHolder(View itemView) {
+        ViewHolder(View itemView) {
             super(itemView);
-            name = (TextView) itemView.findViewById(R.id.actor_name);
+            name = itemView.findViewById(R.id.actor_name);
         }
     }
 }
