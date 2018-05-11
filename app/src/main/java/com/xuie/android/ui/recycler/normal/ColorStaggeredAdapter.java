@@ -16,7 +16,6 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
- *
  * @author xuie
  * @date 2017/4/12 0012
  */
@@ -45,11 +44,9 @@ public class ColorStaggeredAdapter extends ColorAdapter {
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, Cursor cursor) {
         int vt = getItemViewType(viewHolder.getAdapterPosition());
-        switch (vt) {
-            default:
-            case ITEM_TYPE_NORMAL:
-                super.onBindViewHolder(viewHolder, cursor);
-                return;
+        if (vt == ITEM_TYPE_NORMAL) {
+            super.onBindViewHolder(viewHolder, cursor);
+            return;
         }
         ColorStaggeredViewHolder vh = (ColorStaggeredViewHolder) viewHolder;
 
