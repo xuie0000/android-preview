@@ -5,7 +5,6 @@ import android.net.Uri;
 import android.provider.BaseColumns;
 
 /**
- *
  * @author xuie
  * @date 2017/4/12 0012
  */

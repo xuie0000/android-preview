@@ -5,7 +5,8 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 
 /**
- * Created by xuie on 16-8-30.
+ * @author xuie
+ * @date 16-8-30
  */
 public class VersionHelper {
     public static String getVersionName(Context context) {

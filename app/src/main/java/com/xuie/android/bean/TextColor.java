@@ -1,7 +1,8 @@
 package com.xuie.android.bean;
 
 /**
- * Created by xuie on 15-12-13.
+ * @author xuie
+ * @date 15-12-13
  */
 public class TextColor {
     private String text;

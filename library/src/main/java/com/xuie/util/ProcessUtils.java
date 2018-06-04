@@ -9,12 +9,13 @@ import java.io.FileReader;
 import java.util.List;
 
 /**
- * Created by xuie on 16-3-24.
+ * @author xuie
+ * @date 16-3-24
  */
 public class ProcessUtils {
     /**
      * String processName = getProcessName(this, android.os.Process.myPid());
-     *
+     * <p>
      * //判断进程名，保证只有主进程运行
      * if (!TextUtils.isEmpty(processName) && processName.equals(this.getPackageName())) {
      * //主进程初始化逻辑

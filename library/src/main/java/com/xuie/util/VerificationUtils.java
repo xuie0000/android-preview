@@ -6,19 +6,25 @@ import java.util.regex.Pattern;
 
 /**
  * 手机号，邮箱，身份证校验工具类
+ *
+ * @author xuie
  */
 public class VerificationUtils {
 
     private final static Pattern emailer = Pattern
             .compile("//w+([-+.]//w+)*@//w+([-.]//w+)*//.//w+([-.]//w+)*");
-    private static String _codeError;
-    // wi =2(n-1)(mod 11)
+    private static String codeError;
+    /**
+     * wi =2(n-1)(mod 11)
+     */
     final static int[] wi = {7, 9, 10, 5, 8, 4, 2, 1, 6, 3, 7, 9, 10, 5, 8, 4,
             2, 1};
-    // verify digit
+    /**
+     * verify digit
+     */
     final static int[] vi = {1, 0, 'X', 9, 8, 7, 6, 5, 4, 3, 2};
     private static int[] ai = new int[18];
-    private static String[] _areaCode = {"11", "12", "13", "14", "15", "21",
+    private static String[] areaCode = {"11", "12", "13", "14", "15", "21",
             "22", "23", "31", "32", "33", "34", "35", "36", "37", "41", "42",
             "43", "44", "45", "46", "50", "51", "52", "53", "54", "61", "62",
             "63", "64", "65", "71", "81", "82", "91"};
@@ -40,7 +46,7 @@ public class VerificationUtils {
         dateMap.put("11", 30);
         dateMap.put("12", 31);
         areaCodeMap = new HashMap<String, String>();
-        for (String code : _areaCode) {
+        for (String code : areaCode) {
             areaCodeMap.put(code, null);
         }
     }
@@ -53,7 +59,7 @@ public class VerificationUtils {
         Matcher m = null;
         boolean b = false;
         p = Pattern.compile("^[1][3,4,5,8,7][0-9]{9}$");
-        // p = Pattern.compile("^((13[0-9])|(15[^4,//D])|(18[0,5-9]))//d{8}$");
+        // p = Pattern.compile("^((13[0-9])|(15[^4,//D])|(18[0,5-9]))//d{8}$")
         m = p.matcher(str);
         b = m.matches();
         return b;

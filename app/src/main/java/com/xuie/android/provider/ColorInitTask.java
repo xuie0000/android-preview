@@ -9,7 +9,6 @@ import com.xuie.android.App;
 import java.util.Random;
 
 /**
- *
  * @author xuie
  * @date 2017/6/1 0001
  */

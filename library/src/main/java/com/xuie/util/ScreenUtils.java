@@ -10,7 +10,8 @@ import android.view.Display;
 import java.lang.reflect.Field;
 
 /**
- * Created by yf on 15-11-4.
+ * @author yf
+ * @date 15-11-4
  */
 public class ScreenUtils {
 

@@ -4,7 +4,6 @@ import android.os.Handler;
 import android.os.Looper;
 
 /**
- *
  * @author xuie
  * @date 2017/5/17 0017
  * 打不死的小强,永不crash的Android

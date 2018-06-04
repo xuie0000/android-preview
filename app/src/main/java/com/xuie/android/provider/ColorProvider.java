@@ -12,7 +12,6 @@ import android.support.annotation.Nullable;
 import android.text.TextUtils;
 
 /**
- *
  * @author xuie
  * @date 2017/4/12 0012
  * https://developer.android.google.cn/guide/topics/providers/content-provider-creating.html?hl=zh-cn
@@ -22,7 +21,7 @@ public class ColorProvider extends ContentProvider {
     private static final int COLOR_ID = 1;
 
     private ColorDatabaseHelper mOpenHelper;
-    private static final UriMatcher sUriMatcher = buildUriMatcher();
+    private static UriMatcher sUriMatcher = buildUriMatcher();
 
     private static UriMatcher buildUriMatcher() {
         String content = ColorContract.CONTENT_AUTHORITY;
@@ -58,12 +57,12 @@ public class ColorProvider extends ContentProvider {
                 );
                 break;
             case COLOR_ID:
-                long _id = ContentUris.parseId(uri);
+                long id = ContentUris.parseId(uri);
                 cursor = db.query(
                         ColorContract.ColorEntry.TABLE_NAME,
                         projection,
                         ColorContract.ColorEntry._ID + " = ?",
-                        new String[]{String.valueOf(_id)},
+                        new String[]{String.valueOf(id)},
                         null,
                         null,
                         sortOrder
@@ -97,16 +96,17 @@ public class ColorProvider extends ContentProvider {
     public Uri insert(@NonNull Uri uri, @Nullable ContentValues values) {
         final SQLiteDatabase dbConnection = mOpenHelper.getWritableDatabase();
         Uri returnUri;
-        long _id;
+        long id;
         dbConnection.beginTransaction();
         switch (buildUriMatcher().match(uri)) {
             case COLOR:
             case COLOR_ID:
-                _id = dbConnection.insert(ColorContract.ColorEntry.TABLE_NAME, null, values);
-                if (_id > 0)
-                    returnUri = ColorContract.ColorEntry.buildUri(_id);
-                else
+                id = dbConnection.insert(ColorContract.ColorEntry.TABLE_NAME, null, values);
+                if (id > 0) {
+                    returnUri = ColorContract.ColorEntry.buildUri(id);
+                } else {
                     throw new android.database.SQLException("Failed to insert row into " + uri);
+                }
                 getContext().getContentResolver().notifyChange(returnUri, null);
                 dbConnection.setTransactionSuccessful();
                 break;
