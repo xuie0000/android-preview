@@ -14,6 +14,7 @@ import java.util.List;
  * Function: LauncherUtil
  * Create date on 15/8/17.
  *
+ * @author xujie
  * @version 1.0
  */
 public final class LauncherUtils {
@@ -21,7 +22,7 @@ public final class LauncherUtils {
     private static String mBufferedValue = null;
 
     private LauncherUtils() throws InstantiationException {
-      throw new InstantiationException("This class is not for instantiation");
+        throw new InstantiationException("This class is not for instantiation");
     }
 
     /**

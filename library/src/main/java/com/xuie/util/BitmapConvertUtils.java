@@ -23,7 +23,8 @@ import java.io.InputStream;
 import java.io.OutputStream;
 
 /**
- * Created by xuie on 15-11-28.
+ * @author xuie
+ * @date 15-11-28
  */
 public class BitmapConvertUtils {
 

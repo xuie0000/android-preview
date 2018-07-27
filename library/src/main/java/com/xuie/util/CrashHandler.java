@@ -17,7 +17,8 @@ import java.util.Date;
 import java.util.Locale;
 
 /**
- * Created by xuie on 16-1-5.
+ * @author xuie
+ * @date 16-1-5
  */
 public class CrashHandler implements Thread.UncaughtExceptionHandler {
     static final String TAG = CrashHandler.class.getSimpleName();

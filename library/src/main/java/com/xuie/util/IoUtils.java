@@ -5,10 +5,12 @@ import java.io.IOException;
 
 /**
  * 关闭文件IO流
- * Created by xuie on 2017/5/17 0017.
+ *
+ * @author xuie
+ * @date 2017/5/17 0017
  */
 
-public class IOUtils {
+public class IoUtils {
     /**
      * 关闭流
      */

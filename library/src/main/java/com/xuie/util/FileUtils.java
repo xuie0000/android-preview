@@ -20,7 +20,8 @@ import java.util.List;
 import static java.util.Collections.sort;
 
 /**
- * Created by Dimorinny on 24.10.15.
+ * @author Dimorinny
+ * @date 24.10.15
  */
 public class FileUtils {
     public static List<File> getFileListByDirPath(String path) {

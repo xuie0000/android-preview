@@ -12,6 +12,9 @@ import com.xuie.util.config.FileConfig;
 import java.io.File;
 import java.io.FileOutputStream;
 
+/**
+ * @author xuie
+ */
 public class BitmapCompressUtil {
 
     private Bitmap.CompressFormat compressFormat = Bitmap.CompressFormat.JPEG;
@@ -68,7 +71,7 @@ public class BitmapCompressUtil {
         }
 
         private Exception compress(Bitmap bitmap) {
-//            File outDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
+//            File outDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES)
 
             File outDir = new File(FileConfig.COMPRESS_IMG_PATH);
             if (!outDir.exists()) {

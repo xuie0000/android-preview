@@ -7,7 +7,8 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
 /**
- * Created by xuie on 16-1-13.
+ * @author xuie
+ * @date 16-1-13
  */
 public class AudioUtils {
 
@@ -39,7 +40,7 @@ public class AudioUtils {
         AudioManager audioManager = getAudioManager(context);
         int maxVol = getMaxVolume(context);
         if (vol >= 0 || vol < maxVol) {
-            audioManager.setStreamVolume(AudioManager.STREAM_MUSIC, vol, AudioManager.FLAG_PLAY_SOUND|AudioManager.FLAG_SHOW_UI);
+            audioManager.setStreamVolume(AudioManager.STREAM_MUSIC, vol, AudioManager.FLAG_PLAY_SOUND | AudioManager.FLAG_SHOW_UI);
 //            audioManager.setStreamVolume(AudioManager.STREAM_MUSIC, vol, 0);
         }
     }

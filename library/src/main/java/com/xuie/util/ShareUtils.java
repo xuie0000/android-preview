@@ -24,7 +24,8 @@ import android.content.Intent;
 import android.net.Uri;
 
 /**
- * Created by drakeet on 8/17/15.
+ * @author drakeet
+ * @date 8/17/15
  */
 public class ShareUtils {
     private static String shareText = "我的分享Android干货-http://xuie0000.com/";

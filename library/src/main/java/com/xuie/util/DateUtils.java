@@ -3,7 +3,8 @@ package com.xuie.util;
 import android.text.format.Time;
 
 /**
- * Created by xuie on 16-3-23.
+ * @author xuie
+ * @date 16-3-23
  * @see android.text.format.DateUtils
  */
 public class DateUtils {

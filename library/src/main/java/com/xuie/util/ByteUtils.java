@@ -1,7 +1,8 @@
 package com.xuie.util;
 
 /**
- * Created by xuie on 16-1-14.
+ * @author xuie
+ * @date 16-1-14
  */
 public class ByteUtils {
     /**

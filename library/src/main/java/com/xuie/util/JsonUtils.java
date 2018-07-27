@@ -8,7 +8,8 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 
 /**
- * Created by xuie on 16-3-4.
+ * @author xuie
+ * @date 16-3-4
  */
 public class JsonUtils {
     public static <T> ArrayList<T> jsonToList(String json, Class<T> classOfT) {

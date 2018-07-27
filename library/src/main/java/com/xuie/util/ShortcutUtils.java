@@ -18,14 +18,19 @@ import java.io.IOException;
 import java.util.List;
 
 /**
- * Created by xuie on 16-8-30.
+ * @author xuie
+ * @date 16-8-30
  * https://github.com/xuyisheng/ShortcutHelper
  */
 
 public class ShortcutUtils {
-    // Action 添加Shortcut
+    /**
+     * Action 添加Shortcut
+     */
     public static final String ACTION_ADD_SHORTCUT = "com.android.launcher.action.INSTALL_SHORTCUT";
-    // Action 移除Shortcut
+    /**
+     * Action 移除Shortcut
+     */
     public static final String ACTION_REMOVE_SHORTCUT = "com.android.launcher.action.UNINSTALL_SHORTCUT";
 
     /**

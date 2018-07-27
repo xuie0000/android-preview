@@ -3,9 +3,9 @@ package com.xuie.util.config;
 import android.os.Environment;
 
 /**
- * Created by Fussen on 2017/1/3.
+ * @author Fussen
+ * @date 2017/1/3
  */
-
 public class FileConfig {
 
     //总路径名称

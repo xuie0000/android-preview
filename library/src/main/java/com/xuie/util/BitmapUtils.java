@@ -26,7 +26,7 @@ public class BitmapUtils {
     public static File saveUriToFile(Context context, Uri croppedFileUri) throws Exception {
         String path = FileConfig.SELETE_IMG_PATH;
 
-//        String name = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+//        String name = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date())
         String filename = String.format("%d_%s", Calendar.getInstance().getTimeInMillis(), croppedFileUri.getLastPathSegment()) + ".jpg";
         if (!new File(path).exists()) {
             new File(path).mkdirs();

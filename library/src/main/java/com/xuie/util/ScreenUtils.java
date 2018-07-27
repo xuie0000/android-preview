@@ -10,7 +10,7 @@ import android.view.Display;
 import java.lang.reflect.Field;
 
 /**
- * @author yf
+ * @author xuie
  * @date 15-11-4
  */
 public class ScreenUtils {

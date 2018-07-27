@@ -9,6 +9,8 @@ import java.math.BigDecimal;
 
 /**
  * 本应用数据清除管理器
+ *
+ * @author xujie
  */
 public class DataCleanManager {
     /**

@@ -46,12 +46,12 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     }
 
     protected void startAnimation(View view) {
-        Animator[] anims = new Animator[]{
+        Animator[] animators = new Animator[]{
                 ObjectAnimator.ofFloat(view, "scaleY", 1, 1.1f, 1),
                 ObjectAnimator.ofFloat(view, "scaleX", 1, 1.1f, 1)
         };
 
-        for (Animator anim : anims) {
+        for (Animator anim : animators) {
             anim.setDuration(300).start();
         }
     }

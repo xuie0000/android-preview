@@ -23,9 +23,9 @@ import java.io.InputStream;
 import java.io.OutputStream;
 
 /**
- * Created by xuie on 2017/5/10 0010.
+ * @author xuie
+ * @date 2017/5/10 0010
  */
-
 public class BmpUtils {
 
     public static File Drawable2File(Context context, int drawId, String path) {
