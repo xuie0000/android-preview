@@ -5,7 +5,6 @@ import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
 /**
- *
  * @author xuie
  * @date 17-1-18
  */

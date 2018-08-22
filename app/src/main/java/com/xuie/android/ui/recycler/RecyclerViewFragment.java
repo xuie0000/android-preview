@@ -32,12 +32,22 @@ import butterknife.Unbinder;
 
 /**
  * A simple {@link Fragment} subclass.
+ *
  * @author xuie
  */
 public class RecyclerViewFragment extends Fragment {
 
+    /**
+     * The Recycler view.
+     */
     @BindView(R.id.recycler_view) RecyclerView recyclerView;
+    /**
+     * The Unbinder.
+     */
     Unbinder unbinder;
+    /**
+     * The Frame layout.
+     */
     @BindView(R.id.frame_layout) FrameLayout frameLayout;
 
     private List<Member> members;
@@ -85,6 +95,11 @@ public class RecyclerViewFragment extends Fragment {
     }
 
     private class ListAdapter extends BaseQuickAdapter<Member, BaseViewHolder> {
+        /**
+         * Instantiates a new List adapter.
+         *
+         * @param layoutResId the layout res id
+         */
         ListAdapter(@LayoutRes int layoutResId) {
             super(layoutResId, members);
         }
@@ -96,9 +111,21 @@ public class RecyclerViewFragment extends Fragment {
     }
 
     private class Member {
+        /**
+         * The Name.
+         */
         public String name;
+        /**
+         * The Fragment.
+         */
         public String fragment;
 
+        /**
+         * Instantiates a new Member.
+         *
+         * @param name     the name
+         * @param fragment the fragment
+         */
         Member(String name, String fragment) {
             this.name = name;
             this.fragment = fragment;
