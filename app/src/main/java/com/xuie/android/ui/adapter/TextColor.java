@@ -1,4 +1,4 @@
-package com.xuie.android.bean;
+package com.xuie.android.ui.adapter;
 
 /**
  * @author xuie

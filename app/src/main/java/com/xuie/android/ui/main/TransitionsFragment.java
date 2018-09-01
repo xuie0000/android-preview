@@ -31,6 +31,7 @@ import butterknife.ButterKnife;
 
 /**
  * A simple {@link Fragment} subclass.
+ *
  * @author xuie
  */
 public class TransitionsFragment extends Fragment {
@@ -155,5 +156,4 @@ public class TransitionsFragment extends Fragment {
         ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(getActivity());
         ActivityCompat.startActivity(Objects.requireNonNull(getActivity()), intent, options.toBundle());
     }
-
 }

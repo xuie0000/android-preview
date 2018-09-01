@@ -10,7 +10,6 @@ import android.widget.TextView;
 
 import com.orhanobut.logger.Logger;
 import com.xuie.android.R;
-import com.xuie.android.bean.TextColor;
 
 import java.util.List;
 

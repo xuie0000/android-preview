@@ -5,6 +5,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -18,6 +19,8 @@ import android.view.Window;
 import com.mikepenz.iconics.IconicsDrawable;
 import com.xuie.android.R;
 
+import java.util.Objects;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -29,6 +32,7 @@ public class PaletteActivity extends AppCompatActivity {
     @BindView(R.id.tab_layout) TabLayout tabLayout;
     @BindView(R.id.viewpager) ViewPager viewpager;
     @BindView(R.id.toolbar) Toolbar toolbar;
+    @BindView(R.id.coordinator) CoordinatorLayout coordinator;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -99,10 +103,14 @@ public class PaletteActivity extends AppCompatActivity {
         builder.generate(palette -> {
             //获取到充满活力的这种色调
             Palette.Swatch vibrant = palette.getVibrantSwatch();
+            if (vibrant == null) {
+                return;
+            }
             //根据调色板Palette获取到图片中的颜色设置到toolbar和tab中背景，标题等，使整个UI界面颜色统一
-            tabLayout.setBackgroundColor(vibrant.getRgb());
+            tabLayout.setBackgroundColor(Objects.requireNonNull(vibrant).getRgb());
             tabLayout.setSelectedTabIndicatorColor(colorBurn(vibrant.getRgb()));
             toolbar.setBackgroundColor(vibrant.getRgb());
+            coordinator.setBackgroundColor(vibrant.getRgb());
 
             if (Build.VERSION.SDK_INT >= 21) {
                 Window window = getWindow();

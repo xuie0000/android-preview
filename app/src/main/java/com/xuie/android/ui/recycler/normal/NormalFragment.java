@@ -32,16 +32,22 @@ import butterknife.ButterKnife;
  * @author xuie
  */
 public class NormalFragment extends Fragment implements LoaderManager.LoaderCallbacks<Cursor> {
-    private static final String TAG = "NormalFragment";
     public static final String KEY_LAYOUT_MANAGER = "layoutManager";
 
     private enum LayoutManagerType {
+
+        /**
+         * Grid ver manager layout manager type.
+         */
         GRID_VER_MANAGER,
         LINEAR_VER_MANAGER,
         LINEAR_HOR_MANAGER,
     }
 
     private enum ItemType {
+        /**
+         * Single item type.
+         */
         SINGLE,
         STAGGERED,
     }
