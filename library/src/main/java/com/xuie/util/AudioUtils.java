@@ -37,11 +37,15 @@ public class AudioUtils {
     }
 
     public static void setVolume(Context context, int vol) {
+        // 填0的时候，不弹对话框
+        setVolume(context, vol, AudioManager.FLAG_PLAY_SOUND | AudioManager.FLAG_SHOW_UI);
+    }
+
+    public static void setVolume(Context context, int vol, int flags) {
         AudioManager audioManager = getAudioManager(context);
         int maxVol = getMaxVolume(context);
         if (vol >= 0 || vol < maxVol) {
-            audioManager.setStreamVolume(AudioManager.STREAM_MUSIC, vol, AudioManager.FLAG_PLAY_SOUND | AudioManager.FLAG_SHOW_UI);
-//            audioManager.setStreamVolume(AudioManager.STREAM_MUSIC, vol, 0);
+            audioManager.setStreamVolume(AudioManager.STREAM_MUSIC, vol, flags);
         }
     }
 
