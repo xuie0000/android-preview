@@ -1,3 +1,9 @@
+# 使用
+
+```groovy
+implementation 'com.xuie:util-tools:1.0.1'
+```
+
 
 # 部署依赖至服务器
 
