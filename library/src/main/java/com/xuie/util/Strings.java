@@ -35,6 +35,18 @@ public class Strings {
         return s;
     }
 
+    private static final String[] IMAGES_SUFFIX = {".png", ".jpg", ".gif", ".jpeg"};
+
+    public static boolean isImageFile(String imagePath) {
+        String image = imagePath.toLowerCase();
+        for (String s : IMAGES_SUFFIX) {
+            if (image.endsWith(s)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     static boolean startsWith(String[] array, String text) {
         for (String item : array)
             if (text.startsWith(item))
