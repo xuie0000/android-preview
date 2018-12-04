@@ -69,7 +69,7 @@ public class PaletteActivity extends AppCompatActivity {
     private class PaletteViewPagerAdapter extends FragmentPagerAdapter {
 
         final int PAGE_COUNT = 5;
-        private String tabTitles[] = new String[]{"主页", "分享", "收藏", "关注", "微博"};
+        private String[] tabTitles = new String[]{"主页", "分享", "收藏", "关注", "微博"};
 
         PaletteViewPagerAdapter(FragmentManager fm) {
             super(fm);
