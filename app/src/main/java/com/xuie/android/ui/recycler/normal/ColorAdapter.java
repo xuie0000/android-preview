@@ -22,7 +22,6 @@ import butterknife.ButterKnife;
  * @author xuie
  * @date 2017/4/12 0012
  */
-
 public class ColorAdapter extends CursorRecyclerViewAdapter<RecyclerView.ViewHolder> {
     private static final String TAG = "ColorAdapter";
     /**
