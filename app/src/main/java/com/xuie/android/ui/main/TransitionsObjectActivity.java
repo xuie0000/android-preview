@@ -13,24 +13,24 @@ import android.widget.TextView;
 import com.xuie.android.R;
 import com.xuie.android.util.BlurBitmap;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-
 /**
  * @author xuie
  */
 public class TransitionsObjectActivity extends AppCompatActivity {
 
-    @BindView(R.id.blured_img) ImageView bluredImg;
-    @BindView(R.id.origin_img) ImageView originImg;
-    @BindView(R.id.seek_bar) SeekBar seekBar;
-    @BindView(R.id.progress) TextView tvProgress;
+    private ImageView bluredImg;
+    private ImageView originImg;
+    private SeekBar seekBar;
+    private TextView tvProgress;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_transitions_object);
-        ButterKnife.bind(this);
+        bluredImg = findViewById(R.id.blured_img);
+        originImg = findViewById(R.id.origin_img);
+        seekBar = findViewById(R.id.seek_bar);
+        tvProgress = findViewById(R.id.progress);
     }
 
     @Override
@@ -46,7 +46,7 @@ public class TransitionsObjectActivity extends AppCompatActivity {
     }
 
     /**
-     * 处理seekbar滑动事件
+     * 处理seekBar滑动事件
      */
     private void setSeekBar() {
         seekBar.setMax(100);

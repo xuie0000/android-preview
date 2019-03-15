@@ -13,9 +13,6 @@ import com.xuie.android.R;
 
 import java.util.List;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-
 /**
  * @author xuie
  */
@@ -62,13 +59,14 @@ public class RecyclerStaggeredViewAdapter extends RecyclerViewAdapter {
 
     class RecyclerStaggeredViewHolder extends RecyclerView.ViewHolder {
         CardView card;
-        @BindView(R.id.title) TextView title;
-        @BindView(R.id.subText) TextView subText;
+        TextView title;
+        TextView subText;
 
         RecyclerStaggeredViewHolder(View itemView) {
             super(itemView);
-            ButterKnife.bind(this, itemView);
             card = (CardView) itemView;
+            title = itemView.findViewById(R.id.title);
+            subText = itemView.findViewById(R.id.subText);
             itemView.setOnClickListener(v -> Logger.d("Element " + getAdapterPosition() + " clicked."));
         }
     }

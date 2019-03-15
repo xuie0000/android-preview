@@ -18,25 +18,21 @@ import com.yarolegovich.discretescrollview.transform.ScaleTransformer;
 
 import java.util.List;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.Unbinder;
-
 /**
  * A simple {@link Fragment} subclass.
+ *
  * @author xuie
  */
 public class DiscreteFragment extends Fragment implements DiscreteScrollView.OnItemChangedListener<RecyclerView.ViewHolder> {
     private static final String TAG = "DiscreteFragment";
 
-    @BindView(R.id.item_picker) DiscreteScrollView itemPicker;
-    Unbinder unbinder;
     private InfiniteScrollAdapter infiniteAdapter;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_discrete, container, false);
-        unbinder = ButterKnife.bind(this, view);
+
+        DiscreteScrollView itemPicker = view.findViewById(R.id.item_picker);
 
         Shop shop = Shop.get();
         List<Item> data = shop.getData();
@@ -56,11 +52,5 @@ public class DiscreteFragment extends Fragment implements DiscreteScrollView.OnI
     @Override
     public void onCurrentItemChanged(@Nullable RecyclerView.ViewHolder viewHolder, int adapterPosition) {
         int positionInDataSet = infiniteAdapter.getRealPosition(adapterPosition);
-    }
-
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        unbinder.unbind();
     }
 }

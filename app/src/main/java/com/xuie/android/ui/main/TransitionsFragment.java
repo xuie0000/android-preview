@@ -26,30 +26,36 @@ import com.xuie.android.R;
 
 import java.util.Objects;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-
 /**
  * A simple {@link Fragment} subclass.
  *
  * @author xuie
  */
 public class TransitionsFragment extends Fragment {
-    @BindView(R.id.make_scene_transition_animation) Button makeSceneTransitionAnimation;
-    @BindView(R.id.fab_button) Button fabButton;
-    @BindView(R.id.over_shoot) ImageView overShoot;
-    @BindView(R.id.cir_reveal_dst) ImageView cirRevealDst;
-    @BindView(R.id.cir_reveal_hypot) ImageView cirRevealHypot;
-    @BindView(R.id.cir_reveal_normal) ImageView cirRevealNormal;
-    @BindView(R.id.explode) Button explode;
-    @BindView(R.id.slide) Button slide;
-    @BindView(R.id.fade) Button fade;
-    @BindView(R.id.cir_reveal_btn) Button cirRevealBtn;
+    private Button makeSceneTransitionAnimation;
+    private Button fabButton;
+    private ImageView overShoot;
+    private ImageView cirRevealDst;
+    private ImageView cirRevealHypot;
+    private ImageView cirRevealNormal;
+    private Button explode;
+    private Button slide;
+    private Button fade;
+    private Button cirRevealBtn;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_transitions, container, false);
-        ButterKnife.bind(this, view);
+        makeSceneTransitionAnimation = view.findViewById(R.id.make_scene_transition_animation);
+        fabButton = view.findViewById(R.id.fab_button);
+        overShoot = view.findViewById(R.id.over_shoot);
+        cirRevealDst = view.findViewById(R.id.cir_reveal_dst);
+        cirRevealHypot = view.findViewById(R.id.cir_reveal_hypot);
+        cirRevealNormal = view.findViewById(R.id.cir_reveal_normal);
+        explode = view.findViewById(R.id.explode);
+        slide = view.findViewById(R.id.slide);
+        fade = view.findViewById(R.id.fade);
+        cirRevealBtn = view.findViewById(R.id.cir_reveal_btn);
         return view;
     }
 

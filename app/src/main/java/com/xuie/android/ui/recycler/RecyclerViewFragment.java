@@ -13,7 +13,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.FrameLayout;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
@@ -26,29 +25,12 @@ import com.xuie.android.ui.recycler.normal.NormalFragment;
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.Unbinder;
-
 /**
  * A simple {@link Fragment} subclass.
  *
  * @author xuie
  */
 public class RecyclerViewFragment extends Fragment {
-
-    /**
-     * The Recycler view.
-     */
-    @BindView(R.id.recycler_view) RecyclerView recyclerView;
-    /**
-     * The Unbinder.
-     */
-    Unbinder unbinder;
-    /**
-     * The Frame layout.
-     */
-    @BindView(R.id.frame_layout) FrameLayout frameLayout;
 
     private List<Member> members;
     private FragmentManager fragmentManager;
@@ -66,8 +48,8 @@ public class RecyclerViewFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_recycler_view, container, false);
-        unbinder = ButterKnife.bind(this, v);
 
+        RecyclerView recyclerView = v.findViewById(R.id.recycler_view);
         fragmentManager = getChildFragmentManager();
 
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -86,12 +68,6 @@ public class RecyclerViewFragment extends Fragment {
         recyclerView.setAdapter(listAdapter);
 
         return v;
-    }
-
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        unbinder.unbind();
     }
 
     private class ListAdapter extends BaseQuickAdapter<Member, BaseViewHolder> {

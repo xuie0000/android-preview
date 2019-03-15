@@ -15,9 +15,6 @@ import com.xuie.android.R;
 
 import java.util.List;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-
 /**
  * @author xuie
  */
@@ -62,12 +59,12 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
 
     class RecyclerViewHolder extends RecyclerView.ViewHolder {
         CardView card;
-        @BindView(R.id.title) TextView title;
+        TextView title;
 
         RecyclerViewHolder(View itemView) {
             super(itemView);
-            ButterKnife.bind(this, itemView);
             card = (CardView) itemView;
+            title = itemView.findViewById(R.id.title);
             title.setOnClickListener(v -> Logger.d("Element " + getAdapterPosition() + " clicked."));
         }
     }

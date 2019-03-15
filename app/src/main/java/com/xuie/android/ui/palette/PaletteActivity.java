@@ -21,24 +21,24 @@ import com.xuie.android.R;
 
 import java.util.Objects;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-
 /**
  * @author xuie
  */
 public class PaletteActivity extends AppCompatActivity {
 
-    @BindView(R.id.tab_layout) TabLayout tabLayout;
-    @BindView(R.id.viewpager) ViewPager viewpager;
-    @BindView(R.id.toolbar) Toolbar toolbar;
-    @BindView(R.id.coordinator) CoordinatorLayout coordinator;
+    private TabLayout tabLayout;
+    private ViewPager viewpager;
+    private Toolbar toolbar;
+    private CoordinatorLayout coordinator;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_palette);
-        ButterKnife.bind(this);
+        tabLayout = findViewById(R.id.tab_layout);
+        viewpager = findViewById(R.id.viewpager);
+        toolbar = findViewById(R.id.toolbar);
+        coordinator = findViewById(R.id.coordinator);
 
         setSupportActionBar(toolbar);
         toolbar.setTitle(R.string.palette);

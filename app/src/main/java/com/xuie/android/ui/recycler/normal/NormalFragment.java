@@ -25,9 +25,6 @@ import com.xuie.android.ui.adapter.MarginDecoration;
 
 import java.util.Objects;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-
 /**
  * @author xuie
  */
@@ -54,8 +51,7 @@ public class NormalFragment extends Fragment implements LoaderManager.LoaderCall
 
     public static final int SPAN_COUNT = 2;
 
-    @BindView(R.id.recyclerView) RecyclerView recyclerView;
-
+    private RecyclerView recyclerView;
     private LayoutManagerType currentLayoutManagerType = LayoutManagerType.GRID_VER_MANAGER;
     private ItemType currentItemType = ItemType.STAGGERED;
     private ColorAdapter colorAdapter;
@@ -70,7 +66,7 @@ public class NormalFragment extends Fragment implements LoaderManager.LoaderCall
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_normal, container, false);
-        ButterKnife.bind(this, rootView);
+        recyclerView = rootView.findViewById(R.id.recyclerView);
         return rootView;
     }
 

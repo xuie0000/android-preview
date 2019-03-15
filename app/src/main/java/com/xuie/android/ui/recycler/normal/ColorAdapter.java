@@ -15,9 +15,6 @@ import android.widget.TextView;
 import com.xuie.android.R;
 import com.xuie.android.provider.ColorContract;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-
 /**
  * @author xuie
  * @date 2017/4/12 0012
@@ -69,12 +66,12 @@ public class ColorAdapter extends CursorRecyclerViewAdapter<RecyclerView.ViewHol
 
     class ColorViewHolder extends RecyclerView.ViewHolder {
         CardView card;
-        @BindView(R.id.title) TextView title;
+        TextView title;
 
         ColorViewHolder(View view) {
             super(view);
-            ButterKnife.bind(this, view);
             card = (CardView) itemView;
+            title = itemView.findViewById(R.id.title);
         }
     }
 }

@@ -16,9 +16,6 @@ import android.view.ViewGroup;
 
 import com.xuie.android.R;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-
 /**
  * https://github.com/mrmike/DiffUtil-sample
  *
@@ -26,8 +23,6 @@ import butterknife.ButterKnife;
  */
 public class DiffUtilFragment extends Fragment {
     private ActorAdapter adapter;
-
-    @BindView(R.id.recycler_view) RecyclerView recyclerView;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -38,8 +33,8 @@ public class DiffUtilFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_diff_util, container, false);
-        ButterKnife.bind(this, view);
 
+        RecyclerView recyclerView = view.findViewById(R.id.recycler_view);
         adapter = new ActorAdapter(ActorRepository.getActorListSortedByRating());
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setAdapter(adapter);

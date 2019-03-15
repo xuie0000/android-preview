@@ -18,18 +18,12 @@ import android.widget.LinearLayout;
 import com.xuie.android.R;
 import com.xuie.android.util.ScreenUtils;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-
 /**
  * @author xuie
  */
 public class OneActivity extends AppCompatActivity {
     private static final String TAG = "OneActivity";
 
-    @BindView(R.id.fab_button) Button fabButton;
-    @BindView(R.id.toolbar) Toolbar toolbar;
-    @BindView(R.id.bottom_sheet) LinearLayout bottomSheet;
     private BottomSheetBehavior bottomSheetBehavior;
 
     @Override
@@ -53,11 +47,16 @@ public class OneActivity extends AppCompatActivity {
         }
 
         setContentView(R.layout.activity_one);
-        ButterKnife.bind(this);
+
+        Button fabButton = findViewById(R.id.fab_button);
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        LinearLayout bottomSheet = findViewById(R.id.bottom_sheet);
 
         toolbar.setTitle(OneActivity.class.getSimpleName());
         setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }
 
         // init the bottom sheet behavior
         bottomSheetBehavior = BottomSheetBehavior.from(bottomSheet);

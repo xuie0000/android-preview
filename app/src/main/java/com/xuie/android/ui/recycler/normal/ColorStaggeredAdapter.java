@@ -12,9 +12,6 @@ import android.widget.TextView;
 
 import com.xuie.android.R;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-
 /**
  * @author xuie
  * @date 2017/4/12 0012
@@ -63,13 +60,14 @@ public class ColorStaggeredAdapter extends ColorAdapter {
 
     class ColorStaggeredViewHolder extends RecyclerView.ViewHolder {
         CardView card;
-        @BindView(R.id.title) TextView title;
-        @BindView(R.id.subText) TextView subText;
+        TextView title;
+        TextView subText;
 
         ColorStaggeredViewHolder(View view) {
             super(view);
-            ButterKnife.bind(this, view);
             card = (CardView) itemView;
+            title = view.findViewById(R.id.title);
+            subText = view.findViewById(R.id.subText);
         }
     }
 }

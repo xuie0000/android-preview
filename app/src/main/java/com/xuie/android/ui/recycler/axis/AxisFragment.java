@@ -12,10 +12,6 @@ import android.view.ViewGroup;
 
 import com.xuie.android.R;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.Unbinder;
-
 /**
  * A simple {@link Fragment} subclass.
  * 这是一个时间轴的DEMO，添加的 {@link RecyclerView.ItemDecoration}样例
@@ -23,25 +19,14 @@ import butterknife.Unbinder;
  */
 public class AxisFragment extends Fragment {
 
-    @BindView(R.id.recycler_view) RecyclerView recyclerView;
-    Unbinder unbinder;
-
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_axis, container, false);
-        unbinder = ButterKnife.bind(this, view);
-
+        RecyclerView recyclerView = view.findViewById(R.id.recycler_view);
         recyclerView.setAdapter(new AxisAdapter());
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.addItemDecoration(new AxisItemDecoration());
-
-
         return view;
     }
 
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        unbinder.unbind();
-    }
 }

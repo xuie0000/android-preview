@@ -36,8 +36,6 @@ import com.xuie.android.util.Utils;
 
 import java.util.List;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
 import pub.devrel.easypermissions.AfterPermissionGranted;
 import pub.devrel.easypermissions.EasyPermissions;
 
@@ -52,10 +50,8 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
 
     private int currentFragmentId = -1;
 
-    @BindView(R.id.toolbar) Toolbar toolbar;
-    @BindView(R.id.nav_view) NavigationView navView;
-    @BindView(R.id.drawer_layout) DrawerLayout drawerLayout;
-    @BindView(R.id.fab) FloatingActionButton fab;
+    private Toolbar toolbar;
+    private DrawerLayout drawerLayout;
 
     private FragmentManager fragmentManager;
 
@@ -70,7 +66,10 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        ButterKnife.bind(this);
+        toolbar = findViewById(R.id.toolbar);
+        drawerLayout = findViewById(R.id.drawer_layout);
+        NavigationView navView = findViewById(R.id.nav_view);
+        FloatingActionButton fab = findViewById(R.id.fab);
 
         fragmentManager = getSupportFragmentManager();
 
