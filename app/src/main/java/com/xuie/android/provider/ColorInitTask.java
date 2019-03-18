@@ -2,7 +2,8 @@ package com.xuie.android.provider;
 
 import android.content.ContentValues;
 import android.os.AsyncTask;
-import android.support.v4.content.ContextCompat;
+
+import androidx.core.content.ContextCompat;
 
 import com.xuie.android.App;
 

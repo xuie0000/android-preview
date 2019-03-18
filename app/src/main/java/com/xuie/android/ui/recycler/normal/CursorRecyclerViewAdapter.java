@@ -3,13 +3,14 @@ package com.xuie.android.ui.recycler.normal;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.DataSetObserver;
-import android.support.v7.widget.RecyclerView;
+
+import androidx.recyclerview.widget.RecyclerView;
 
 /**
  * https://github.com/AbhirojPanwar/Wallser
  *
+ * @param <VH> {@link RecyclerView.ViewHolder}
  * @author xuie
- * @param <VH> {@link android.support.v7.widget.RecyclerView.ViewHolder}
  */
 public abstract class CursorRecyclerViewAdapter<VH extends RecyclerView.ViewHolder> extends RecyclerView.Adapter<VH> {
 

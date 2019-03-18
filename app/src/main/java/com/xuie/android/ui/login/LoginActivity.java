@@ -16,8 +16,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.provider.ContactsContract;
-import android.support.annotation.NonNull;
-import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -26,6 +24,9 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.orhanobut.logger.Logger;
 import com.xuie.android.R;
@@ -41,6 +42,7 @@ import pub.devrel.easypermissions.EasyPermissions;
 
 /**
  * A login screen that offers login via email/password.
+ *
  * @author xuie
  */
 public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<Cursor>

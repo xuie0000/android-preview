@@ -10,7 +10,7 @@
         android:layout_margin="@dimen/activity_horizontal_margin"
         android:orientation="vertical">
 
-        <android.support.design.widget.TextInputLayout
+        <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/email_text_input_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -22,9 +22,9 @@
                 android:hint="Email"
                 android:imeOptions="flagNoExtractUi"
                 android:maxLines="1"/>
-        </android.support.design.widget.TextInputLayout>
+        </com.google.android.material.textfield.TextInputLayout>
 
-        <android.support.design.widget.TextInputLayout
+        <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/password_text_input_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -40,7 +40,7 @@
                 android:imeOptions="flagNoFullscreen|actionUnspecified"
                 android:inputType="textPassword"
                 android:maxLines="1"/>
-        </android.support.design.widget.TextInputLayout>
+        </com.google.android.material.textfield.TextInputLayout>
 
         <LinearLayout
             android:layout_width="wrap_content"

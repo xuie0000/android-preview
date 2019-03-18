@@ -2,8 +2,9 @@ package com.xuie.android.ui.adapter;
 
 import android.content.res.Resources;
 import android.graphics.Rect;
-import android.support.v7.widget.RecyclerView;
 import android.view.View;
+
+import androidx.recyclerview.widget.RecyclerView;
 
 /**
  * @author xuie

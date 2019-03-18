@@ -3,16 +3,18 @@ package com.xuie.android.ui.adapter;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.drawable.Drawable;
-import android.support.v4.content.ContextCompat;
-import android.support.v7.widget.RecyclerView;
 import android.util.TypedValue;
 import android.view.View;
+
+import androidx.core.content.ContextCompat;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.xuie.android.R;
 
 /**
  * 感谢http://stackoverflow.com/questions/24618829/how-to-add-dividers-and-spaces-
  * between-items-in-recyclerview/27037230#27037230
+ *
  * @author xuie
  */
 public class DividerOverDecoration extends RecyclerView.ItemDecoration {

@@ -3,11 +3,12 @@ package com.xuie.android.ui.recycler.discrete;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
-import android.support.v7.widget.PopupMenu;
-import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+
+import androidx.appcompat.widget.PopupMenu;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.xuie.android.App;
 import com.xuie.android.R;
@@ -17,7 +18,6 @@ import com.yarolegovich.discretescrollview.InfiniteScrollAdapter;
 import java.lang.ref.WeakReference;
 
 /**
- *
  * @author yarolegovich
  * @date 08.03.2017
  */

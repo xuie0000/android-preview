@@ -1,7 +1,8 @@
 package com.xuie.android;
 
 import android.app.Application;
-import android.support.v7.app.AppCompatDelegate;
+
+import androidx.appcompat.app.AppCompatDelegate;
 
 import com.gw.swipeback.tools.WxSwipeBackActivityManager;
 import com.orhanobut.logger.AndroidLogAdapter;
