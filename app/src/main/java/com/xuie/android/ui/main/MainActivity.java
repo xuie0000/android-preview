@@ -44,9 +44,7 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
     private int mDayNightMode;
     private ShareActionProvider shareActionProvider;
 
-    private Toolbar toolbar;
     private DrawerLayout drawerLayout;
-    private AppBarConfiguration appBarConfiguration;
     private NavController navController;
 
     @Override
@@ -54,18 +52,13 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        toolbar = findViewById(R.id.toolbar);
         navController = Navigation.findNavController(this, R.id.nav_host_fragment);
-        NavigationView navView = findViewById(R.id.nav_view);
+        drawerLayout = findViewById(R.id.drawer_layout);
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        NavigationView navigationView = findViewById(R.id.nav_view);
         FloatingActionButton fab = findViewById(R.id.fab);
 
         setSupportActionBar(toolbar);
-
-        drawerLayout = findViewById(R.id.drawer_layout);
-
-        appBarConfiguration = new AppBarConfiguration.Builder()
-                .setDrawerLayout(drawerLayout)
-                .build();
 
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar,
                 R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -79,11 +72,11 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
 //                CrashReport.testJavaCrash()
 //            }
         });
+
         // Calls onNavDestinationSelected(MenuItem, NavController) when menu item selected
-        NavigationUI.setupWithNavController(navView, navController);
+        NavigationUI.setupWithNavController(navigationView, navController);
         // Changes title, animates hamburger to back/up icon
         NavigationUI.setupActionBarWithNavController(this, navController, drawerLayout);
-//        navController.navigate(R.id.action_to_test)
 
         mDayNightMode = PreferenceUtils.getInt("mode", AppCompatDelegate.MODE_NIGHT_NO);
     }
@@ -151,12 +144,16 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.action_day_night_yes) {
             refreshDelegateMode(AppCompatDelegate.MODE_NIGHT_YES);
+            return true;
         } else if (item.getItemId() == R.id.action_day_night_no) {
             refreshDelegateMode(AppCompatDelegate.MODE_NIGHT_NO);
+            return true;
         } else if (item.getItemId() == R.id.action_palette) {
             startPalette();
+            return true;
         } else if (item.getItemId() == R.id.action_coordinatorLayout) {
             startCoordinatorLayout();
+            return true;
         }
         return NavigationUI.onNavDestinationSelected(item, navController) || super.onOptionsItemSelected(item);
     }

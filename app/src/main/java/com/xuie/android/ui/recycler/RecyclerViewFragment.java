@@ -9,8 +9,7 @@ import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -33,7 +32,7 @@ import java.util.List;
 public class RecyclerViewFragment extends Fragment {
 
     private List<Member> members;
-    private FragmentManager fragmentManager;
+    private View rootView;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -47,27 +46,31 @@ public class RecyclerViewFragment extends Fragment {
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.fragment_recycler_view, container, false);
+        rootView = inflater.inflate(R.layout.fragment_recycler_view, container, false);
 
-        RecyclerView recyclerView = v.findViewById(R.id.recycler_view);
-        fragmentManager = getChildFragmentManager();
-
+        RecyclerView recyclerView = rootView.findViewById(R.id.recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         ListAdapter listAdapter = new ListAdapter(android.R.layout.simple_list_item_1);
         listAdapter.setOnItemClickListener((adapter, view, position) -> {
-            FragmentTransaction transaction = fragmentManager.beginTransaction();
-            try {
-                Fragment fragment = (Fragment) Class.forName(((Member) adapter.getItem(position)).fragment).newInstance();
-                transaction.replace(R.id.frame_layout, fragment)
-                        .addToBackStack(null)
-                        .commit();
-            } catch (java.lang.InstantiationException | IllegalAccessException | ClassNotFoundException e) {
-                e.printStackTrace();
+            switch (position) {
+                case 0:
+                default:
+                    Navigation.findNavController(rootView).navigate(R.id.action_to_normal);
+                    break;
+                case 1:
+                    Navigation.findNavController(rootView).navigate(R.id.action_to_diff_util);
+                    break;
+                case 2:
+                    Navigation.findNavController(rootView).navigate(R.id.action_to_axis);
+                    break;
+                case 3:
+                    Navigation.findNavController(rootView).navigate(R.id.action_to_discrete);
+                    break;
             }
         });
         recyclerView.setAdapter(listAdapter);
 
-        return v;
+        return rootView;
     }
 
     private class ListAdapter extends BaseQuickAdapter<Member, BaseViewHolder> {
