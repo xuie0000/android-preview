@@ -15,9 +15,10 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.core.view.MenuItemCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
+import androidx.navigation.ui.AppBarConfiguration;
+import androidx.navigation.ui.NavigationUI;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
@@ -28,10 +29,6 @@ import com.xuie.android.BuildConfig;
 import com.xuie.android.R;
 import com.xuie.android.ui.coordinator.CoordinatorLayoutActivity;
 import com.xuie.android.ui.palette.PaletteActivity;
-import com.xuie.android.ui.recycler.RecyclerViewFragment;
-import com.xuie.android.ui.recycler.axis.AxisFragment;
-import com.xuie.android.ui.recycler.diffutil.DiffUtilFragment;
-import com.xuie.android.ui.recycler.normal.NormalFragment;
 import com.xuie.android.util.PreferenceUtils;
 import com.xuie.android.util.Utils;
 
@@ -44,23 +41,13 @@ import pub.devrel.easypermissions.EasyPermissions;
  * @author xuie
  */
 public class MainActivity extends AppCompatActivity implements EasyPermissions.PermissionCallbacks {
-    private final String KEY_FRAGMENT = "currentFragment";
-
     private int mDayNightMode;
     private ShareActionProvider shareActionProvider;
 
-    private int currentFragmentId = -1;
-
     private Toolbar toolbar;
     private DrawerLayout drawerLayout;
-
-    private FragmentManager fragmentManager;
-
-    private TestFragment testFragment;
-    private TransitionsFragment transitionsFragment;
-    private RecyclerViewFragment recyclerViewFragment;
-
-    protected Fragment currentFragment;
+    private AppBarConfiguration appBarConfiguration;
+    private NavController navController;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -68,19 +55,17 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
         setContentView(R.layout.activity_main);
 
         toolbar = findViewById(R.id.toolbar);
-        drawerLayout = findViewById(R.id.drawer_layout);
+        navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationView navView = findViewById(R.id.nav_view);
         FloatingActionButton fab = findViewById(R.id.fab);
 
-        fragmentManager = getSupportFragmentManager();
-
-        if (savedInstanceState != null) {
-            currentFragmentId = (int) savedInstanceState.getSerializable(KEY_FRAGMENT);
-            switchNavigation(currentFragmentId);
-        } else {
-            switchNavigation(R.id.nav_transitions);
-        }
         setSupportActionBar(toolbar);
+
+        drawerLayout = findViewById(R.id.drawer_layout);
+
+        appBarConfiguration = new AppBarConfiguration.Builder()
+                .setDrawerLayout(drawerLayout)
+                .build();
 
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar,
                 R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -90,16 +75,15 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
         fab.setOnClickListener(v -> {
             Snackbar.make(v, "Replace with your own action", Snackbar.LENGTH_LONG)
                     .setAction("Action", null).show();
-            if (BuildConfig.DEBUG) {
-                CrashReport.testJavaCrash();
-            }
+//            if (BuildConfig.DEBUG) {
+//                CrashReport.testJavaCrash()
+//            }
         });
-
-        navView.setNavigationItemSelectedListener(item -> {
-            switchNavigation(item.getItemId());
-            drawerLayout.closeDrawer(GravityCompat.START);
-            return true;
-        });
+        // Calls onNavDestinationSelected(MenuItem, NavController) when menu item selected
+        NavigationUI.setupWithNavController(navView, navController);
+        // Changes title, animates hamburger to back/up icon
+        NavigationUI.setupActionBarWithNavController(this, navController, drawerLayout);
+//        navController.navigate(R.id.action_to_test)
 
         mDayNightMode = PreferenceUtils.getInt("mode", AppCompatDelegate.MODE_NIGHT_NO);
     }
@@ -113,96 +97,20 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
         return true;
     }
 
-    private void switchNavigation(int navId) {
-        switch (navId) {
-            case R.id.nav_test:
-            default:
-                if (testFragment == null) {
-                    testFragment = new TestFragment();
-                }
-                addOrShowFragment(testFragment);
-                break;
-            case R.id.nav_transitions:
-                if (transitionsFragment == null) {
-                    transitionsFragment = new TransitionsFragment();
-                }
-                addOrShowFragment(transitionsFragment);
-                break;
-            case R.id.nav_recycler_view:
-                if (recyclerViewFragment == null) {
-                    recyclerViewFragment = new RecyclerViewFragment();
-                }
-                addOrShowFragment(recyclerViewFragment);
-                break;
-        }
-
-        currentFragmentId = navId;
-    }
-
-    private void addOrShowFragment(Fragment fragment) {
-        if (currentFragment == fragment) {
-            return;
-        }
-
-        if (fragment == null) {
-            return;
-        }
-
-        FragmentTransaction transaction = fragmentManager.beginTransaction();
-
-        if (currentFragment == null) {
-            transaction
-                    .add(R.id.fragment_placeholder, fragment)
-//                    .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-                    .addToBackStack(null)
-                    .commit();
-        } else if (fragment.isAdded()) {
-            transaction
-                    .hide(currentFragment)
-                    .show(fragment)
-//                    .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-                    .addToBackStack(null)
-                    .commit();
-        } else {
-            transaction
-                    .hide(currentFragment)
-                    .add(R.id.fragment_placeholder, fragment)
-//                    .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-                    .addToBackStack(null)
-                    .commit();
-        }
-        currentFragment = fragment;
-
-        setToolbar();
-    }
-
-    private void setToolbar() {
-        if (currentFragment instanceof TestFragment) {
-            toolbar.setTitle(getString(R.string.test));
-        } else if (currentFragment instanceof TransitionsFragment) {
-            toolbar.setTitle(getString(R.string.transitions));
-        } else if (currentFragment instanceof NormalFragment) {
-            toolbar.setTitle(getString(R.string.recycler_view));
-        } else if (currentFragment instanceof DiffUtilFragment) {
-            toolbar.setTitle(getString(R.string.diff_util));
-        } else if (currentFragment instanceof AxisFragment) {
-            toolbar.setTitle(getString(R.string.axis));
-        }
+    @Override
+    public boolean onSupportNavigateUp() {
+        // Ref: https://developer.android.com/reference/androidx/navigation/ui/NavigationUI
+        // This _should_ be correct for case w/nav drawer
+        return NavigationUI.navigateUp(navController, drawerLayout);
     }
 
     @Override
     public void onBackPressed() {
-        if (currentFragment != null && currentFragment.getChildFragmentManager().getBackStackEntryCount() > 0) {
-            currentFragment.getChildFragmentManager().popBackStack();
+        if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
+            drawerLayout.closeDrawer(GravityCompat.START);
         } else {
-            moveTaskToBack(true);
+            super.onBackPressed();
         }
-    }
-
-    @Override
-    public void onSaveInstanceState(Bundle savedInstanceState) {
-        savedInstanceState.putSerializable(KEY_FRAGMENT, currentFragmentId);
-        super.onSaveInstanceState(savedInstanceState);
     }
 
     @Override
@@ -250,7 +158,7 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
         } else if (item.getItemId() == R.id.action_coordinatorLayout) {
             startCoordinatorLayout();
         }
-        return super.onOptionsItemSelected(item);
+        return NavigationUI.onNavDestinationSelected(item, navController) || super.onOptionsItemSelected(item);
     }
 
     @Override

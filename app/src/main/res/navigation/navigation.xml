@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:startDestination="@+id/transitions">
+
+    <fragment
+        android:id="@+id/transitions"
+        android:name="com.xuie.android.ui.main.TransitionsFragment"
+        android:label="fragment_transitions"
+        tools:layout="@layout/fragment_transitions">
+        <action
+            android:id="@+id/action_to_test"
+            app:destination="@id/test"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+        <action
+            android:id="@+id/action_to_recycler"
+            app:destination="@id/recycler_view"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
+    <fragment
+        android:id="@+id/test"
+        android:name="com.xuie.android.ui.main.TestFragment"
+        android:label="fragment_test"
+        tools:layout="@layout/fragment_test" />
+    <fragment
+        android:id="@+id/recycler_view"
+        android:name="com.xuie.android.ui.recycler.RecyclerViewFragment"
+        android:label="fragment_recycler"
+        tools:layout="@layout/fragment_recycler_view">
+        <action
+            android:id="@+id/action_to_axis"
+            app:destination="@id/axis"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+        <action
+            android:id="@+id/action_to_diff_util"
+            app:destination="@id/diffutil"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+        <action
+            android:id="@+id/action_to_discrete"
+            app:destination="@id/discrete"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+        <action
+            android:id="@+id/action_to_normal"
+            app:destination="@id/normal"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
+    <fragment
+        android:id="@+id/axis"
+        android:name="com.xuie.android.ui.recycler.axis.AxisFragment"
+        android:label="fragment_axis"
+        tools:layout="@layout/fragment_axis" />
+    <fragment
+        android:id="@+id/diffutil"
+        android:name="com.xuie.android.ui.recycler.diffutil.DiffUtilFragment"
+        android:label="fragment_diffutil"
+        tools:layout="@layout/fragment_diff_util" />
+    <fragment
+        android:id="@+id/discrete"
+        android:name="com.xuie.android.ui.recycler.discrete.DiscreteFragment"
+        android:label="fragment_discrete"
+        tools:layout="@layout/fragment_discrete" />
+    <fragment
+        android:id="@+id/normal"
+        android:name="com.xuie.android.ui.recycler.normal.NormalFragment"
+        android:label="fragment_normal"
+        tools:layout="@layout/fragment_normal" />
+    <!--
+        <fragment
+                android:id="@+id/user_profile"
+                android:name="com.example.android.navigationsample.UserProfile"
+                android:label="fragment_user_profile"
+                tools:layout="@layout/fragment_user_profile">
+            <argument android:name="userName"
+                      android:defaultValue="name"/>
+            <deepLink app:uri="www.example.com/user/{userName}" />
+        </fragment>
+    -->
+</navigation>
