@@ -12,10 +12,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.BaseViewHolder
 import com.xuie.android.R
-import com.xuie.android.ui.recycler.axis.AxisFragment
-import com.xuie.android.ui.recycler.diffutil.DiffUtilFragment
-import com.xuie.android.ui.recycler.discrete.DiscreteFragment
-import com.xuie.android.ui.recycler.normal.NormalFragment
 import java.util.*
 
 /**
@@ -25,31 +21,33 @@ import java.util.*
  */
 class RecyclerViewFragment : Fragment() {
 
-  private var members: MutableList<Member>? = null
-  private var rootView: View? = null
+  private lateinit var members: MutableList<String>
+  private lateinit var rootView: View
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     members = ArrayList()
-    members!!.add(Member("样例", NormalFragment::class.java.name))
-    members!!.add(Member("DiffUtil", DiffUtilFragment::class.java.name))
-    members!!.add(Member("ItemDecoration(时间轴)", AxisFragment::class.java.name))
-    members!!.add(Member("滑动缩放", DiscreteFragment::class.java.name))
+    members.add("样例")
+    members.add("DiffUtil")
+    members.add("ItemDecoration(时间轴)")
+    members.add("滑动缩放")
+    members.add("分页Paging")
   }
 
   override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
     rootView = inflater.inflate(R.layout.fragment_recycler_view, container, false)
 
-    val recyclerView = rootView!!.findViewById<RecyclerView>(R.id.recycler_view)
+    val recyclerView = rootView.findViewById<RecyclerView>(R.id.recycler_view)
     recyclerView.layoutManager = LinearLayoutManager(context)
     val listAdapter = ListAdapter(android.R.layout.simple_list_item_1)
     listAdapter.setOnItemClickListener { _, _, position ->
       when (position) {
-        0 -> Navigation.findNavController(rootView!!).navigate(R.id.action_to_normal)
-        1 -> Navigation.findNavController(rootView!!).navigate(R.id.action_to_diff_util)
-        2 -> Navigation.findNavController(rootView!!).navigate(R.id.action_to_axis)
-        3 -> Navigation.findNavController(rootView!!).navigate(R.id.action_to_discrete)
-        else -> Navigation.findNavController(rootView!!).navigate(R.id.action_to_normal)
+        0 -> Navigation.findNavController(rootView).navigate(R.id.action_to_normal)
+        1 -> Navigation.findNavController(rootView).navigate(R.id.action_to_diff_util)
+        2 -> Navigation.findNavController(rootView).navigate(R.id.action_to_axis)
+        3 -> Navigation.findNavController(rootView).navigate(R.id.action_to_discrete)
+        4 -> Navigation.findNavController(rootView).navigate(R.id.action_to_paging)
+        else -> Navigation.findNavController(rootView).navigate(R.id.action_to_normal)
       }
     }
     recyclerView.adapter = listAdapter
@@ -63,28 +61,11 @@ class RecyclerViewFragment : Fragment() {
    *
    * @param layoutResId the layout res id
    */
-  internal constructor(@LayoutRes layoutResId: Int) : BaseQuickAdapter<Member, BaseViewHolder>(layoutResId, members) {
+  internal constructor(@LayoutRes layoutResId: Int) : BaseQuickAdapter<String, BaseViewHolder>(layoutResId, members) {
 
-    override fun convert(helper: BaseViewHolder, item: Member) {
-      helper.setText(android.R.id.text1, item.name)
+    override fun convert(helper: BaseViewHolder, item: String) {
+      helper.setText(android.R.id.text1, item)
     }
   }
-
-  private inner class Member
-  /**
-   * Instantiates a new Member.
-   *
-   * @param name     the name
-   * @param fragment the fragment
-   */
-  internal constructor(
-      /**
-       * The Name.
-       */
-      var name: String,
-      /**
-       * The Fragment.
-       */
-      var fragment: String)
 
 }
