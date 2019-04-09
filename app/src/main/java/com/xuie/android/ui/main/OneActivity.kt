@@ -47,7 +47,7 @@ class OneActivity : AppCompatActivity() {
     val toolbar = findViewById<Toolbar>(R.id.toolbar)
     val bottomSheet = findViewById<LinearLayout>(R.id.bottom_sheet)
 
-    toolbar.setTitle(OneActivity::class.java!!.getSimpleName())
+    toolbar.title = OneActivity::class.java.simpleName
     setSupportActionBar(toolbar)
     if (supportActionBar != null) {
       supportActionBar!!.setDisplayHomeAsUpEnabled(true)
@@ -99,7 +99,7 @@ class OneActivity : AppCompatActivity() {
   }
 
   companion object {
-    private val TAG = "OneActivity"
+    private const val TAG = "OneActivity"
   }
 
 }

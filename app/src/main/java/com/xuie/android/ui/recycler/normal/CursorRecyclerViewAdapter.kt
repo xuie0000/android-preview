@@ -10,9 +10,10 @@ import androidx.recyclerview.widget.RecyclerView
  * https://github.com/AbhirojPanwar/Wallser
  *
  * @param <VH> [RecyclerView.ViewHolder]
- * @author xuie
+ * @author Jie Xu
 </VH> */
-abstract class CursorRecyclerViewAdapter<VH : RecyclerView.ViewHolder>(private val mContext: Context, cursor: Cursor?) : RecyclerView.Adapter<VH>() {
+abstract class CursorRecyclerViewAdapter<VH : RecyclerView.ViewHolder>(
+    private val mContext: Context, cursor: Cursor?) : RecyclerView.Adapter<VH>() {
 
   var cursor: Cursor? = null
     private set
@@ -58,7 +59,7 @@ abstract class CursorRecyclerViewAdapter<VH : RecyclerView.ViewHolder>(private v
     if (!cursor!!.moveToPosition(position)) {
       throw IllegalStateException("couldn't move cursor to position $position")
     }
-    onBindViewHolder(viewHolder, cursor)
+    onBindViewHolder(viewHolder, cursor!!)
   }
 
   /**
@@ -75,7 +76,7 @@ abstract class CursorRecyclerViewAdapter<VH : RecyclerView.ViewHolder>(private v
    * [.changeCursor], the returned old Cursor is *not*
    * closed.
    */
-  fun swapCursor(newCursor: Cursor): Cursor? {
+  fun swapCursor(newCursor: Cursor?): Cursor? {
     if (newCursor === cursor) {
       return null
     }
@@ -88,7 +89,7 @@ abstract class CursorRecyclerViewAdapter<VH : RecyclerView.ViewHolder>(private v
       if (mDataSetObserver != null) {
         cursor!!.registerDataSetObserver(mDataSetObserver)
       }
-      mRowIdColumn = newCursor.getColumnIndexOrThrow("_id")
+      mRowIdColumn = newCursor!!.getColumnIndexOrThrow("_id")
       mDataValid = true
       notifyDataSetChanged()
     } else {

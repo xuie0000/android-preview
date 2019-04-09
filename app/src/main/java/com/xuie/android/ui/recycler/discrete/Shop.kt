@@ -13,7 +13,6 @@ import java.util.Arrays
  * @author yarolegovich
  * @date 07.03.2017
  */
-
 class Shop private constructor() {
 
   private val storage: SharedPreferences
@@ -41,7 +40,7 @@ class Shop private constructor() {
 
   companion object {
 
-    private val STORAGE = "shop"
+    private const val STORAGE = "shop"
 
     fun get(): Shop {
       return Shop()

@@ -3,12 +3,9 @@ package com.xuie.android.ui.recycler.discrete
 import android.content.Context
 import android.content.SharedPreferences
 import android.preference.PreferenceManager
-import android.view.Menu
-import android.view.MenuItem
 import android.view.View
 
 import androidx.appcompat.widget.PopupMenu
-import androidx.recyclerview.widget.RecyclerView
 
 import com.xuie.android.App
 import com.xuie.android.R
@@ -24,22 +21,14 @@ import java.lang.ref.WeakReference
 
 class DiscreteScrollViewOptions private constructor(context: Context) {
 
-  private val KEY_TRANSITION_TIME: String
-
-  init {
-    KEY_TRANSITION_TIME = context.getString(R.string.pref_key_transition_time)
-  }
+  private val keyTransitionTime = context.getString(R.string.pref_key_transition_time)
 
   private class TransitionTimeChangeListener(scrollView: DiscreteScrollView) : SharedPreferences.OnSharedPreferenceChangeListener {
 
-    private val scrollView: WeakReference<DiscreteScrollView>
-
-    init {
-      this.scrollView = WeakReference(scrollView)
-    }
+    private val scrollView: WeakReference<DiscreteScrollView> = WeakReference(scrollView)
 
     override fun onSharedPreferenceChanged(sharedPreferences: SharedPreferences, key: String) {
-      if (key == instance!!.KEY_TRANSITION_TIME) {
+      if (key == instance!!.keyTransitionTime) {
         val scrollView = this.scrollView.get()
         if (scrollView != null) {
           scrollView.setItemTransitionTimeMillis(sharedPreferences.getInt(key, 150))
@@ -78,7 +67,7 @@ class DiscreteScrollViewOptions private constructor(context: Context) {
     }
 
     val transitionTime: Int
-      get() = defaultPrefs().getInt(instance!!.KEY_TRANSITION_TIME, 150)
+      get() = defaultPrefs().getInt(instance!!.keyTransitionTime, 150)
 
     private fun defaultPrefs(): SharedPreferences {
 

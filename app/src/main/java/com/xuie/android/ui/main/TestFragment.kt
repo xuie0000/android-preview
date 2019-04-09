@@ -8,12 +8,11 @@ import android.view.ViewGroup
 import android.view.animation.AnimationUtils
 import android.widget.ImageView
 import androidx.fragment.app.Fragment
-
+import androidx.fragment.app.FragmentActivity
 import com.mikepenz.iconics.IconicsDrawable
 import com.mikepenz.material_design_iconic_typeface_library.MaterialDesignIconic
 import com.xuie.android.R
-
-import java.util.Objects
+import java.util.*
 
 /**
  * A simple [Fragment] subclass.

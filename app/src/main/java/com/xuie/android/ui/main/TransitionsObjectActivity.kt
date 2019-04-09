@@ -1,6 +1,5 @@
 package com.xuie.android.ui.main
 
-import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.view.View
@@ -8,7 +7,6 @@ import android.widget.ImageView
 import android.widget.SeekBar
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-
 import com.xuie.android.R
 import com.xuie.android.util.BlurBitmap
 
@@ -67,14 +65,12 @@ class TransitionsObjectActivity : AppCompatActivity() {
     super.onResume()
     val decorView = window.decorView
     // Hide the status bar.
-    val uiOptions = View.SYSTEM_UI_FLAG_LAYOUT_STABLE or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN//                | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
-    //                | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
-    //                | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
+    val uiOptions = View.SYSTEM_UI_FLAG_LAYOUT_STABLE or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+    // or View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+    // or View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+    // or View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+    // or View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
     decorView.systemUiVisibility = uiOptions
   }
 
-  override fun onBackPressed() {
-    super.onBackPressed()
-    // startActivity(getParentActivityIntent());
-  }
 }

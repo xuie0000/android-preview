@@ -15,21 +15,16 @@ import androidx.core.view.MenuItemCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
-import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
-
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.navigation.NavigationView
 import com.google.android.material.snackbar.Snackbar
 import com.orhanobut.logger.Logger
-import com.tencent.bugly.crashreport.CrashReport
-import com.xuie.android.BuildConfig
 import com.xuie.android.R
 import com.xuie.android.ui.coordinator.CoordinatorLayoutActivity
 import com.xuie.android.ui.palette.PaletteActivity
 import com.xuie.android.util.PreferenceUtils
 import com.xuie.android.util.Utils
-
 import pub.devrel.easypermissions.AfterPermissionGranted
 import pub.devrel.easypermissions.EasyPermissions
 
@@ -156,23 +151,22 @@ class MainActivity : AppCompatActivity(), EasyPermissions.PermissionCallbacks {
     }
   }
 
-  fun refreshDelegateMode(mode: Int) {
+  private fun refreshDelegateMode(mode: Int) {
     mDayNightMode = mode
     PreferenceUtils.setPreference("mode", mode)
     delegate.localNightMode = mode
     recreate()
   }
 
-  fun startPalette() {
+  private fun startPalette() {
     startActivity(Intent(this, PaletteActivity::class.java))
   }
 
-  fun startCoordinatorLayout() {
+  private fun startCoordinatorLayout() {
     startActivity(Intent(this, CoordinatorLayoutActivity::class.java))
   }
 
   companion object {
-
-    private val RC_STORAGE_PERM = 123
+    private const val RC_STORAGE_PERM = 123
   }
 }

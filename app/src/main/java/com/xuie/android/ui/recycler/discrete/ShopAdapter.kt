@@ -13,7 +13,6 @@ import com.xuie.android.R
  * @author yarolegovich
  * @date 07.03.2017
  */
-
 class ShopAdapter(private val data: List<Item>) : RecyclerView.Adapter<ShopAdapter.ViewHolder>() {
 
   override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -33,12 +32,7 @@ class ShopAdapter(private val data: List<Item>) : RecyclerView.Adapter<ShopAdapt
     return data.size
   }
 
-  internal inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-
-    private val image: ImageView
-
-    init {
-      image = itemView.findViewById(R.id.image)
-    }
+  inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    val image: ImageView = itemView.findViewById(R.id.image)
   }
 }

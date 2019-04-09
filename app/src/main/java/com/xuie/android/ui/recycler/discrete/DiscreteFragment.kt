@@ -16,7 +16,7 @@ import com.yarolegovich.discretescrollview.transform.ScaleTransformer
 /**
  * A simple [Fragment] subclass.
  *
- * @author xuie
+ * @author Jie Xu
  */
 class DiscreteFragment : Fragment(), DiscreteScrollView.OnItemChangedListener<RecyclerView.ViewHolder> {
 
@@ -31,7 +31,7 @@ class DiscreteFragment : Fragment(), DiscreteScrollView.OnItemChangedListener<Re
     val data = shop.data
     itemPicker.setOrientation(Orientation.HORIZONTAL)
     itemPicker.addOnItemChangedListener(this)
-    infiniteAdapter = InfiniteScrollAdapter.wrap<ViewHolder>(ShopAdapter(data))
+    infiniteAdapter = InfiniteScrollAdapter.wrap<ShopAdapter.ViewHolder>(ShopAdapter(data))
     itemPicker.adapter = infiniteAdapter
     itemPicker.setSlideOnFling(true)
     itemPicker.setItemTransitionTimeMillis(DiscreteScrollViewOptions.transitionTime)
@@ -47,6 +47,6 @@ class DiscreteFragment : Fragment(), DiscreteScrollView.OnItemChangedListener<Re
   }
 
   companion object {
-    private val TAG = "DiscreteFragment"
+    private const val TAG = "DiscreteFragment"
   }
 }

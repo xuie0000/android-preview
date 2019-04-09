@@ -3,7 +3,7 @@ package com.xuie.android.ui.recycler.diffutil
 import androidx.recyclerview.widget.DiffUtil
 
 /**
- * @author xuie
+ * @author Jie Xu
  */
 class ActorDiffCallback(private val oldList: List<Actor>, private val newList: List<Actor>) : DiffUtil.Callback() {
 

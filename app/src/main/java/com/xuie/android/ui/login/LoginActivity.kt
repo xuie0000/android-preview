@@ -40,7 +40,7 @@ import pub.devrel.easypermissions.EasyPermissions
 /**
  * A login screen that offers login via email/password.
  *
- * @author xuie
+ * @author Jie Xu
  */
 class LoginActivity : AppCompatActivity(), LoaderCallbacks<Cursor>, EasyPermissions.PermissionCallbacks {
   /**
@@ -65,16 +65,16 @@ class LoginActivity : AppCompatActivity(), LoaderCallbacks<Cursor>, EasyPermissi
     appTask()
 
     mPasswordView = findViewById(R.id.password)
-    mPasswordView!!.setOnEditorActionListener { textView, id, keyEvent ->
+    mPasswordView!!.setOnEditorActionListener { _, id, _ ->
       if (id == R.id.login || id == EditorInfo.IME_NULL) {
         attemptLogin()
-        return@mPasswordView.setOnEditorActionListener true
+        return@setOnEditorActionListener true
       }
       false
     }
 
     val mEmailSignInButton = findViewById<Button>(R.id.email_sign_in_button)
-    mEmailSignInButton.setOnClickListener { view -> attemptLogin() }
+    mEmailSignInButton.setOnClickListener { attemptLogin() }
 
     mLoginFormView = findViewById(R.id.login_form)
     mProgressView = findViewById(R.id.login_progress)
@@ -97,7 +97,7 @@ class LoginActivity : AppCompatActivity(), LoaderCallbacks<Cursor>, EasyPermissi
     // first login
     val user = PreferenceUtils.getString("user", "")
     val password = PreferenceUtils.getString("password", "")
-    if (!TextUtils.isEmpty(user) && !TextUtils.isEmpty(password)) {
+    if (!user.isNullOrEmpty() && !password.isNullOrEmpty()) {
       mAuthTask = UserLoginTask(user, password)
       mAuthTask!!.execute(null as Void?)
     }
@@ -268,7 +268,7 @@ class LoginActivity : AppCompatActivity(), LoaderCallbacks<Cursor>, EasyPermissi
     companion object {
       val PROJECTION = arrayOf(ContactsContract.CommonDataKinds.Email.ADDRESS, ContactsContract.CommonDataKinds.Email.IS_PRIMARY)
 
-      val ADDRESS = 0
+      const val ADDRESS = 0
     }
   }
 
@@ -321,7 +321,7 @@ class LoginActivity : AppCompatActivity(), LoaderCallbacks<Cursor>, EasyPermissi
      */
     private val DUMMY_CREDENTIALS = arrayOf("xuie@xuie.com:123456", "foo@example.com:hello", "bar@example.com:world")
 
-    private val RC_READ_CONTACTS_PERM = 123
+    private const val RC_READ_CONTACTS_PERM = 123
   }
 }
 

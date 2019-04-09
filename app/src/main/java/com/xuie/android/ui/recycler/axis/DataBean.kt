@@ -1,9 +1,9 @@
 package com.xuie.android.ui.recycler.axis
 
-import java.util.ArrayList
+import java.util.*
 
 /**
- * @author xuie
+ * @author Jie Xu
  * @date 17-8-9
  */
 

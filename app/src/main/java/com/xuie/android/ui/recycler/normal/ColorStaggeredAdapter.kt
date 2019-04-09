@@ -12,18 +12,17 @@ import androidx.recyclerview.widget.RecyclerView
 import com.xuie.android.R
 
 /**
- * @author xuie
+ * @author Jie Xu
  * @date 2017/4/12 0012
  */
-
-class ColorStaggeredAdapter(context: Context, cursor: Cursor) : ColorAdapter(context, cursor) {
+class ColorStaggeredAdapter(context: Context, cursor: Cursor?) : ColorAdapter(context, cursor) {
 
   override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
     val view = LayoutInflater.from(parent.context).inflate(R.layout.item_text_row_larger, parent, false)
-    when (viewType) {
-      ITEM_TYPE_NORMAL -> return super.onCreateViewHolder(parent, viewType)
-      ITEM_TYPE_LARGER -> return ColorStaggeredViewHolder(view)
-      else -> return ColorStaggeredViewHolder(view)
+    return when (viewType) {
+      ITEM_TYPE_NORMAL -> super.onCreateViewHolder(parent, viewType)
+      ITEM_TYPE_LARGER -> ColorStaggeredViewHolder(view)
+      else -> ColorStaggeredViewHolder(view)
     }
   }
 
@@ -46,20 +45,14 @@ class ColorStaggeredAdapter(context: Context, cursor: Cursor) : ColorAdapter(con
   }
 
   internal inner class ColorStaggeredViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-    var card: CardView
-    var title: TextView
-    var subText: TextView
-
-    init {
-      card = itemView as CardView
-      title = view.findViewById(R.id.title)
-      subText = view.findViewById(R.id.subText)
-    }
+    var card: CardView = itemView as CardView
+    var title: TextView = view.findViewById(R.id.title)
+    var subText: TextView = view.findViewById(R.id.subText)
   }
 
   companion object {
-    private val TAG = "ColorStaggeredAdapter"
-    private val ITEM_TYPE_NORMAL = 0
-    private val ITEM_TYPE_LARGER = 1
+    private const val TAG = "ColorStaggeredAdapter"
+    private const val ITEM_TYPE_NORMAL = 0
+    private const val ITEM_TYPE_LARGER = 1
   }
 }

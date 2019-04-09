@@ -19,11 +19,11 @@ object BlurBitmap {
   /**
    * 图片缩放比例
    */
-  private val BITMAP_SCALE = 0.4f
+  private const val BITMAP_SCALE = 0.4f
   /**
    * 最大模糊度(在0.0到25.0之间)
    */
-  private val BLUR_RADIUS = 25f
+  private const val BLUR_RADIUS = 25f
 
   /**
    * 模糊图片的具体方法

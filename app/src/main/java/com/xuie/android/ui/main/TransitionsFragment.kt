@@ -18,11 +18,10 @@ import android.widget.ImageView
 import androidx.annotation.RequiresApi
 import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
-
+import androidx.fragment.app.FragmentActivity
 import com.orhanobut.logger.Logger
 import com.xuie.android.R
-
-import java.util.Objects
+import java.util.*
 
 /**
  * A simple [Fragment] subclass.

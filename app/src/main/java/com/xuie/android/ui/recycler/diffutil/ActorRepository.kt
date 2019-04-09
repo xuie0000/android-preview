@@ -1,10 +1,9 @@
 package com.xuie.android.ui.recycler.diffutil
 
-import java.util.ArrayList
-import java.util.Collections
+import java.util.*
 
 /**
- * @author xuie
+ * @author Jie Xu
  */
 object ActorRepository {
 

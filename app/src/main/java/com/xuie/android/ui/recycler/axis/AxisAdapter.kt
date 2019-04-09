@@ -9,16 +9,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.xuie.android.R
 
 /**
- * @author xuie
+ * @author Jie Xu
  * @date 17-8-9
  */
-
 class AxisAdapter : RecyclerView.Adapter<AxisAdapter.MyViewHolder>() {
-  private val dataBeen: List<DataBean>?
-
-  init {
-    dataBeen = DataBean.getDataBeen()
-  }
+  private val dataBeen: List<DataBean>? = DataBean.getDataBeen()
 
   override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
     val v = LayoutInflater.from(parent.context).inflate(R.layout.item_axis, parent, false)
@@ -36,16 +31,9 @@ class AxisAdapter : RecyclerView.Adapter<AxisAdapter.MyViewHolder>() {
     return dataBeen!!.size
   }
 
-  internal inner class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-    private val time: TextView
-    private val date: TextView
-    private val information: TextView
-
-
-    init {
-      time = itemView.findViewById(R.id.tv_time)
-      date = itemView.findViewById(R.id.tv_date)
-      information = itemView.findViewById(R.id.information)
-    }
+  inner class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    val time: TextView = itemView.findViewById(R.id.tv_time)
+    val date: TextView = itemView.findViewById(R.id.tv_date)
+    val information: TextView = itemView.findViewById(R.id.information)
   }
 }

@@ -1,13 +1,9 @@
 package com.xuie.android.ui.recycler.normal
 
+import android.content.Context
 import android.database.Cursor
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.Menu
-import android.view.MenuInflater
-import android.view.MenuItem
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.loader.app.LoaderManager
 import androidx.loader.content.CursorLoader
@@ -16,15 +12,13 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
-
 import com.xuie.android.R
 import com.xuie.android.provider.ColorContract
 import com.xuie.android.ui.adapter.MarginDecoration
-
-import java.util.Objects
+import java.util.*
 
 /**
- * @author xuie
+ * @author Jie Xu
  */
 class NormalFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
 
@@ -71,8 +65,8 @@ class NormalFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
     setRecyclerViewLayoutManager(currentLayoutManagerType)
     recyclerView!!.addItemDecoration(MarginDecoration())
 
-    colorAdapter = ColorAdapter(context, null)
-    colorStaggeredAdapter = ColorStaggeredAdapter(context, null)
+    colorAdapter = ColorAdapter(context!!, null)
+    colorStaggeredAdapter = ColorStaggeredAdapter(context!!, null)
     recyclerView!!.adapter = colorStaggeredAdapter
   }
 
@@ -200,9 +194,9 @@ class NormalFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
   }
 
   companion object {
-    val KEY_LAYOUT_MANAGER = "layoutManager"
+    const val KEY_LAYOUT_MANAGER = "layoutManager"
 
-    val SPAN_COUNT = 2
+    const val SPAN_COUNT = 2
   }
 
 }

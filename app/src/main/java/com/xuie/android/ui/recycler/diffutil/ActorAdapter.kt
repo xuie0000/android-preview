@@ -46,12 +46,7 @@ class ActorAdapter(personList: List<Actor>) : RecyclerView.Adapter<ActorAdapter.
     return actors.size
   }
 
-  internal class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-
-    private val name: TextView
-
-    init {
-      name = itemView.findViewById(R.id.actor_name)
-    }
+  class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    val name: TextView = itemView.findViewById(R.id.actor_name)
   }
 }

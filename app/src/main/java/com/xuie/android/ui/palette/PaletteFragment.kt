@@ -10,10 +10,9 @@ import android.view.ViewGroup
 import android.widget.FrameLayout
 import android.widget.TextView
 import androidx.fragment.app.Fragment
-
+import androidx.fragment.app.FragmentActivity
 import com.xuie.android.R
-
-import java.util.Objects
+import java.util.*
 
 /**
  * A simple [Fragment] subclass.
@@ -53,7 +52,7 @@ class PaletteFragment : Fragment() {
   }
 
   companion object {
-    private val ARG_POSITION = "position"
+    private const val ARG_POSITION = "position"
     private val drawables = intArrayOf(R.mipmap.one, R.mipmap.two, R.mipmap.four, R.mipmap.three, R.mipmap.five)
 
     fun newInstance(position: Int): PaletteFragment {

@@ -4,6 +4,7 @@ import android.animation.Animator
 import android.animation.ObjectAnimator
 import android.content.Context
 import android.database.Cursor
+import android.provider.BaseColumns
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,10 +16,10 @@ import com.xuie.android.R
 import com.xuie.android.provider.ColorContract
 
 /**
- * @author xuie
+ * @author Jie Xu
  * @date 2017/4/12 0012
  */
-open class ColorAdapter(context: Context, cursor: Cursor) : CursorRecyclerViewAdapter<RecyclerView.ViewHolder>(context, cursor) {
+open class ColorAdapter(context: Context, cursor: Cursor?) : CursorRecyclerViewAdapter<RecyclerView.ViewHolder>(context, cursor) {
 
   override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
     val view = LayoutInflater.from(parent.context).inflate(R.layout.item_text_row, parent, false)
@@ -34,7 +35,10 @@ open class ColorAdapter(context: Context, cursor: Cursor) : CursorRecyclerViewAd
   }
 
   internal fun startAnimation(view: View) {
-    val animators = arrayOf<Animator>(ObjectAnimator.ofFloat(view, "scaleY", 1, 1.1f, 1), ObjectAnimator.ofFloat(view, "scaleX", 1, 1.1f, 1))
+    val animators = arrayOf<Animator>(
+        ObjectAnimator.ofFloat(view, "scaleY", 1f, 1.1f, 1f),
+        ObjectAnimator.ofFloat(view, "scaleX", 1f, 1.1f, 1f)
+    )
 
     for (anim in animators) {
       anim.setDuration(300).start()
@@ -42,23 +46,18 @@ open class ColorAdapter(context: Context, cursor: Cursor) : CursorRecyclerViewAd
   }
 
   internal inner class ColorViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-    var card: CardView
-    var title: TextView
-
-    init {
-      card = itemView as CardView
-      title = itemView.findViewById(R.id.title)
-    }
+    var card: CardView = itemView as CardView
+    var title: TextView = itemView.findViewById(R.id.title)
   }
 
   companion object {
-    private val TAG = "ColorAdapter"
+    private const val TAG = "ColorAdapter"
     /**
      * Column projection for the query to pull Colors from the database.
      */
-    val MOVIE_COLUMNS = arrayOf(ColorContract.ColorEntry._ID, ColorContract.ColorEntry.COLUMN_NAME, ColorContract.ColorEntry.COLUMN_COLOR)
+    val MOVIE_COLUMNS = arrayOf(BaseColumns._ID, ColorContract.ColorEntry.COLUMN_NAME, ColorContract.ColorEntry.COLUMN_COLOR)
 
-    internal val NAME_INDEX = 1
-    internal val COLOR_INDEX = 2
+    internal const val NAME_INDEX = 1
+    internal const val COLOR_INDEX = 2
   }
 }

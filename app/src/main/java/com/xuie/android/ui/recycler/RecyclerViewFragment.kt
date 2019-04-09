@@ -4,13 +4,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-
 import androidx.annotation.LayoutRes
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.BaseViewHolder
 import com.xuie.android.R
@@ -18,13 +16,12 @@ import com.xuie.android.ui.recycler.axis.AxisFragment
 import com.xuie.android.ui.recycler.diffutil.DiffUtilFragment
 import com.xuie.android.ui.recycler.discrete.DiscreteFragment
 import com.xuie.android.ui.recycler.normal.NormalFragment
-
-import java.util.ArrayList
+import java.util.*
 
 /**
  * A simple [Fragment] subclass.
  *
- * @author xuie
+ * @author Jie Xu
  */
 class RecyclerViewFragment : Fragment() {
 
@@ -34,10 +31,10 @@ class RecyclerViewFragment : Fragment() {
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     members = ArrayList()
-    members!!.add(Member("样例", NormalFragment::class.java!!.getName()))
-    members!!.add(Member("DiffUtil", DiffUtilFragment::class.java!!.getName()))
-    members!!.add(Member("ItemDecoration(时间轴)", AxisFragment::class.java!!.getName()))
-    members!!.add(Member("滑动缩放", DiscreteFragment::class.java!!.getName()))
+    members!!.add(Member("样例", NormalFragment::class.java.name))
+    members!!.add(Member("DiffUtil", DiffUtilFragment::class.java.name))
+    members!!.add(Member("ItemDecoration(时间轴)", AxisFragment::class.java.name))
+    members!!.add(Member("滑动缩放", DiscreteFragment::class.java.name))
   }
 
   override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -46,7 +43,7 @@ class RecyclerViewFragment : Fragment() {
     val recyclerView = rootView!!.findViewById<RecyclerView>(R.id.recycler_view)
     recyclerView.layoutManager = LinearLayoutManager(context)
     val listAdapter = ListAdapter(android.R.layout.simple_list_item_1)
-    listAdapter.setOnItemClickListener { adapter, view, position ->
+    listAdapter.setOnItemClickListener { _, _, position ->
       when (position) {
         0 -> Navigation.findNavController(rootView!!).navigate(R.id.action_to_normal)
         1 -> Navigation.findNavController(rootView!!).navigate(R.id.action_to_diff_util)

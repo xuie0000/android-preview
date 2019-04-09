@@ -15,14 +15,11 @@ import androidx.recyclerview.widget.RecyclerView
  */
 
 class AxisItemDecoration : RecyclerView.ItemDecoration() {
-  private val mPaint: Paint
+  private val mPaint: Paint = Paint()
 
   init {
-    mPaint = Paint()
     mPaint.color = Color.GREEN
     mPaint.strokeWidth = 6f
-    //        mPaint.setTextSize(12 * Resources.getSystem().getDisplayMetrics().density);
-    //        mPaint.setStyle(Paint.Style.STROKE);
   }
 
   override fun onDraw(c: Canvas, parent: RecyclerView, state: RecyclerView.State) {

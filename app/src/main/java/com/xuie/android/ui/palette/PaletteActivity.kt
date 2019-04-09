@@ -1,12 +1,9 @@
 package com.xuie.android.ui.palette
 
-import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
-import android.view.Window
-
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.coordinatorlayout.widget.CoordinatorLayout
@@ -15,12 +12,10 @@ import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 import androidx.palette.graphics.Palette
 import androidx.viewpager.widget.ViewPager
-
 import com.google.android.material.tabs.TabLayout
 import com.mikepenz.iconics.IconicsDrawable
 import com.xuie.android.R
-
-import java.util.Objects
+import java.util.*
 
 /**
  * @author xuie
@@ -63,7 +58,7 @@ class PaletteActivity : AppCompatActivity() {
 
   private inner class PaletteViewPagerAdapter internal constructor(fm: FragmentManager) : FragmentPagerAdapter(fm) {
 
-    internal val PAGE_COUNT = 5
+    internal val pageCount = 5
     private val tabTitles = arrayOf("主页", "分享", "收藏", "关注", "微博")
 
     override fun getItem(position: Int): Fragment {
@@ -71,7 +66,7 @@ class PaletteActivity : AppCompatActivity() {
     }
 
     override fun getCount(): Int {
-      return PAGE_COUNT
+      return pageCount
     }
 
     override fun getPageTitle(position: Int): CharSequence? {
@@ -90,13 +85,10 @@ class PaletteActivity : AppCompatActivity() {
     val builder = Palette.from(bitmap)
     builder.generate { palette ->
       //获取到充满活力的这种色调
-      val vibrant = palette.getVibrantSwatch()
-      if (vibrant == null) {
-        return@builder.generate
-      }
+      val vibrant = palette!!.vibrantSwatch ?: return@generate
       //根据调色板Palette获取到图片中的颜色设置到toolbar和tab中背景，标题等，使整个UI界面颜色统一
-      tabLayout!!.setBackgroundColor(Objects.requireNonNull<Swatch>(vibrant).getRgb())
-      tabLayout!!.setSelectedTabIndicatorColor(colorBurn(vibrant!!.rgb))
+      tabLayout!!.setBackgroundColor(Objects.requireNonNull<Palette.Swatch>(vibrant).rgb)
+      tabLayout!!.setSelectedTabIndicatorColor(colorBurn(vibrant.rgb))
       toolbar!!.setBackgroundColor(vibrant.rgb)
       coordinator!!.setBackgroundColor(vibrant.rgb)
 
