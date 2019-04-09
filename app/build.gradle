@@ -138,4 +138,9 @@ dependencies {
     implementation 'androidx.navigation:navigation-fragment:2.1.0-alpha01'
     implementation 'androidx.navigation:navigation-runtime:2.1.0-alpha01'
     implementation 'androidx.navigation:navigation-ui:2.1.0-alpha01'
+    compile "androidx.core:core-ktx:+"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+}
+repositories {
+    mavenCentral()
 }
