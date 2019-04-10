@@ -31,7 +31,10 @@ open class RecyclerViewAdapter(internal var textPictures: List<TextColor>) : Rec
   }
 
   protected fun startAnimation(view: View) {
-    val animators = arrayOf<Animator>(ObjectAnimator.ofFloat(view, "scaleY", 1, 1.1f, 1), ObjectAnimator.ofFloat(view, "scaleX", 1, 1.1f, 1))
+    val animators = arrayOf<Animator>(
+        ObjectAnimator.ofFloat(view, "scaleY", 1f, 1.1f, 1f),
+        ObjectAnimator.ofFloat(view, "scaleX", 1f, 1.1f, 1f)
+    )
 
     for (anim in animators) {
       anim.setDuration(300).start()
@@ -43,13 +46,11 @@ open class RecyclerViewAdapter(internal var textPictures: List<TextColor>) : Rec
   }
 
   internal inner class RecyclerViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-    var card: CardView
-    var title: TextView
+    var card: CardView = itemView as CardView
+    var title: TextView = itemView.findViewById(R.id.title)
 
     init {
-      card = itemView as CardView
-      title = itemView.findViewById(R.id.title)
-      title.setOnClickListener { v -> Logger.d("Element $adapterPosition clicked.") }
+      title.setOnClickListener { Logger.d("Element $adapterPosition clicked.") }
     }
   }
 
