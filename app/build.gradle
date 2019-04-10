@@ -57,7 +57,7 @@ android {
         Canary {
             manifestPlaceholders = [channel : "Canary",
                                     app_name: "AndroidReview测试版",
-                                    app_icon: "@drawable/ic_canary"]
+                                    app_icon: "@drawable/ic_launcher"]
         }
         Stage {
             manifestPlaceholders = [channel : "Stage",
