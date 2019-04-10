@@ -14,7 +14,7 @@ object ColorContract {
    * Content authority is a name for the entire content provider
    * similar to a domain and its website. This string is guaranteed to be unique.
    */
-  val CONTENT_AUTHORITY = "com.xuie.android.data.content.provider"
+  const val CONTENT_AUTHORITY = "com.xuie.android.data.content.provider"
 
   /**
    * Use the content authority to provide the base
@@ -25,7 +25,7 @@ object ColorContract {
   /**
    * Path for URI to a color
    */
-  val PATH_COLOR = "color"
+  const val PATH_COLOR = "color"
 
   /**
    * Class that defines the schema of the Color table.
@@ -35,7 +35,7 @@ object ColorContract {
       /**
        * Uri to access all movies
        */
-      val CONTENT_URI = BASE_CONTENT_URI.buildUpon().appendPath(PATH_COLOR).build()
+      val CONTENT_URI = BASE_CONTENT_URI.buildUpon().appendPath(PATH_COLOR).build()!!
 
       /**
        * MIME types of Color queries
@@ -48,9 +48,9 @@ object ColorContract {
       /**
        * Schema
        */
-      val TABLE_NAME = "color_database"
-      val COLUMN_NAME = "name"
-      val COLUMN_COLOR = "color"
+      const val TABLE_NAME = "color_database"
+      const val COLUMN_NAME = "name"
+      const val COLUMN_COLOR = "color"
 
       /**
        * Builds a URI for an individual movie.

@@ -1,2 +1,5 @@
-include ':app', ':library', ':javalib'
+include ':app'
+include ':library'
+include ':javalib'
+
 project(':library').name = 'util-tools'

@@ -29,14 +29,14 @@ import pub.devrel.easypermissions.AfterPermissionGranted
 import pub.devrel.easypermissions.EasyPermissions
 
 /**
- * @author xuie
+ * @author Jie Xu
  */
 class MainActivity : AppCompatActivity(), EasyPermissions.PermissionCallbacks {
   private var mDayNightMode: Int = 0
-  private var shareActionProvider: ShareActionProvider? = null
+  private lateinit var shareActionProvider: ShareActionProvider
 
-  private var drawerLayout: DrawerLayout? = null
-  private var navController: NavController? = null
+  private lateinit var drawerLayout: DrawerLayout
+  private lateinit var navController: NavController
 
   public override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
@@ -52,21 +52,21 @@ class MainActivity : AppCompatActivity(), EasyPermissions.PermissionCallbacks {
 
     val toggle = ActionBarDrawerToggle(this, drawerLayout, toolbar,
         R.string.navigation_drawer_open, R.string.navigation_drawer_close)
-    drawerLayout!!.addDrawerListener(toggle)
+    drawerLayout.addDrawerListener(toggle)
     toggle.syncState()
 
     fab.setOnClickListener { v ->
       Snackbar.make(v, "Replace with your own action", Snackbar.LENGTH_LONG)
           .setAction("Action", null).show()
-      //            if (BuildConfig.DEBUG) {
-      //                CrashReport.testJavaCrash()
-      //            }
+//      if (BuildConfig.DEBUG) {
+//        CrashReport.testJavaCrash()
+//      }
     }
 
     // Calls onNavDestinationSelected(MenuItem, NavController) when menu item selected
-    NavigationUI.setupWithNavController(navigationView, navController!!)
+    NavigationUI.setupWithNavController(navigationView, navController)
     // Changes title, animates hamburger to back/up icon
-    NavigationUI.setupActionBarWithNavController(this, navController!!, drawerLayout)
+    NavigationUI.setupActionBarWithNavController(this, navController, drawerLayout)
 
     mDayNightMode = PreferenceUtils.getInt("mode", AppCompatDelegate.MODE_NIGHT_NO)
   }
@@ -82,12 +82,12 @@ class MainActivity : AppCompatActivity(), EasyPermissions.PermissionCallbacks {
   override fun onSupportNavigateUp(): Boolean {
     // Ref: https://developer.android.com/reference/androidx/navigation/ui/NavigationUI
     // This _should_ be correct for case w/nav drawer
-    return NavigationUI.navigateUp(navController!!, drawerLayout)
+    return NavigationUI.navigateUp(navController, drawerLayout)
   }
 
   override fun onBackPressed() {
-    if (drawerLayout!!.isDrawerOpen(GravityCompat.START)) {
-      drawerLayout!!.closeDrawer(GravityCompat.START)
+    if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
+      drawerLayout.closeDrawer(GravityCompat.START)
     } else {
       super.onBackPressed()
     }
@@ -109,7 +109,7 @@ class MainActivity : AppCompatActivity(), EasyPermissions.PermissionCallbacks {
   }
 
   private fun setShareIntent() {
-    shareActionProvider!!.setShareIntent(Utils.getDefaultIntent(this))
+    shareActionProvider.setShareIntent(Utils.getDefaultIntent(this))
   }
 
   @AfterPermissionGranted(RC_STORAGE_PERM)
@@ -123,26 +123,31 @@ class MainActivity : AppCompatActivity(), EasyPermissions.PermissionCallbacks {
   }
 
   override fun onOptionsItemSelected(item: MenuItem): Boolean {
-    if (item.itemId == R.id.action_day_night_yes) {
-      refreshDelegateMode(AppCompatDelegate.MODE_NIGHT_YES)
-      return true
-    } else if (item.itemId == R.id.action_day_night_no) {
-      refreshDelegateMode(AppCompatDelegate.MODE_NIGHT_NO)
-      return true
-    } else if (item.itemId == R.id.action_palette) {
-      startPalette()
-      return true
-    } else if (item.itemId == R.id.action_coordinatorLayout) {
-      startCoordinatorLayout()
-      return true
+    when {
+      item.itemId == R.id.action_day_night_yes -> {
+        refreshDelegateMode(AppCompatDelegate.MODE_NIGHT_YES)
+        return true
+      }
+      item.itemId == R.id.action_day_night_no -> {
+        refreshDelegateMode(AppCompatDelegate.MODE_NIGHT_NO)
+        return true
+      }
+      item.itemId == R.id.action_palette -> {
+        startPalette()
+        return true
+      }
+      item.itemId == R.id.action_coordinatorLayout -> {
+        startCoordinatorLayout()
+        return true
+      }
+      else -> return NavigationUI.onNavDestinationSelected(item, navController) || super.onOptionsItemSelected(item)
     }
-    return NavigationUI.onNavDestinationSelected(item, navController!!) || super.onOptionsItemSelected(item)
   }
 
   override fun onResume() {
     super.onResume()
-    //        int uiMode = getResources().getConfiguration().uiMode;
-    //        int dayNightUiMode = uiMode & Configuration.UI_MODE_NIGHT_MASK;
+//    var uiMode = resources.configuration.uiMode
+//    var dayNightUiMode = uiMode and Configuration.UI_MODE_NIGHT_MASK
 
     // enable the save mode
     val defaultMode = PreferenceUtils.getInt("mode", AppCompatDelegate.MODE_NIGHT_NO)
