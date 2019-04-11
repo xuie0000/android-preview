@@ -24,8 +24,11 @@ class PagingFragment : Fragment() {
 
   override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                             savedInstanceState: Bundle?): View? {
-    // Inflate the layout for this fragment
-    val view = inflater.inflate(R.layout.fragment_paging, container, false)
+    return inflater.inflate(R.layout.fragment_paging, container, false)
+  }
+
+  override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+    super.onViewCreated(view, savedInstanceState)
     // Create adapter for the RecyclerView
     val adapter = CheeseAdapter()
     cheeseList.adapter = adapter
@@ -36,8 +39,6 @@ class PagingFragment : Fragment() {
 
     initAddButtonListener()
     initSwipeToDelete()
-
-    return view
   }
 
   private fun initSwipeToDelete() {
