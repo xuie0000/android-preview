@@ -190,4 +190,4 @@ private val CHEESE_DATA = arrayListOf(
     "Washed Rind Cheese (Australian)", "Waterloo", "Weichkaese", "Wellington",
     "Wensleydale", "White Stilton", "Whitestone Farmhouse", "Wigmore", "Woodside Cabecou",
     "Xanadu", "Xynotyro", "Yarg Cornish", "Yarra Valley Pyramid", "Yorkshire Blue",
-    "Zamorano", "Zanetti Grana Padano", "Zanetti Parmigiano Reggiano");
+    "Zamorano", "Zanetti Grana Padano", "Zanetti Parmigiano Reggiano")
