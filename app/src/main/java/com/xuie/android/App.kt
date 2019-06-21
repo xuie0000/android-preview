@@ -55,7 +55,7 @@ class App : Application() {
      *
      * @return the context
      */
-    var context: App? = null
+    lateinit var context: App
       private set
   }
 }
