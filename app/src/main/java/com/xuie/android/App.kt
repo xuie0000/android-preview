@@ -7,6 +7,7 @@ import com.tencent.bugly.crashreport.CrashReport
 import com.xuie.android.provider.ColorInitTask
 import com.xuie.android.ui.recycler.discrete.DiscreteScrollViewOptions
 import com.xuie.android.util.PreferenceUtils
+import com.xuie.android.util.initLogger
 import com.xuie.android.util.log
 
 /**
@@ -26,6 +27,9 @@ class App : Application() {
     super.onCreate()
     context = this
     PreferenceUtils.init(this)
+
+    initLogger(true)
+
     CrashReport.initCrashReport(applicationContext, "bc342fcfab", false)
 
     if (isNightMode) {
