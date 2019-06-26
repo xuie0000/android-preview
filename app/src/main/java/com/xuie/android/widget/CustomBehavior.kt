@@ -1,19 +1,17 @@
 package com.xuie.android.widget
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.os.Build
 import android.util.AttributeSet
 import android.view.View
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
-import android.view.animation.Interpolator
-
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.core.view.ViewCompat
 import androidx.core.view.ViewPropertyAnimatorListener
 import androidx.core.widget.NestedScrollView
 import androidx.interpolator.view.animation.FastOutSlowInInterpolator
-
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.xuie.android.R
 
@@ -23,6 +21,9 @@ import com.xuie.android.R
  * @date 16-9-6
  * From Drakeet <drakeet.me></drakeet.me>@gmail.com> Meizhi
  */
+val INTERPOLATOR = FastOutSlowInInterpolator()
+
+@SuppressLint("RestrictedApi")
 class CustomBehavior(context: Context, attrs: AttributeSet) : CoordinatorLayout.Behavior<FloatingActionButton>(context, attrs) {
   private var mIsAnimatingOut = false
   private val mIsScrollUp = false
@@ -108,10 +109,5 @@ class CustomBehavior(context: Context, attrs: AttributeSet) : CoordinatorLayout.
       anim.interpolator = INTERPOLATOR
       button.startAnimation(anim)
     }
-  }
-
-  companion object {
-    private val TAG = "CustomBefavior"
-    private val INTERPOLATOR = FastOutSlowInInterpolator()
   }
 }

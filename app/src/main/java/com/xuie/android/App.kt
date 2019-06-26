@@ -1,16 +1,13 @@
 package com.xuie.android
 
 import android.app.Application
-
 import androidx.appcompat.app.AppCompatDelegate
-
 import com.gw.swipeback.tools.WxSwipeBackActivityManager
-import com.orhanobut.logger.AndroidLogAdapter
-import com.orhanobut.logger.Logger
 import com.tencent.bugly.crashreport.CrashReport
 import com.xuie.android.provider.ColorInitTask
 import com.xuie.android.ui.recycler.discrete.DiscreteScrollViewOptions
 import com.xuie.android.util.PreferenceUtils
+import com.xuie.android.util.log
 
 /**
  * The type App.
@@ -27,7 +24,6 @@ class App : Application() {
 
   override fun onCreate() {
     super.onCreate()
-    Logger.addLogAdapter(AndroidLogAdapter())
     context = this
     PreferenceUtils.init(this)
     CrashReport.initCrashReport(applicationContext, "bc342fcfab", false)
@@ -38,7 +34,7 @@ class App : Application() {
       AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
     }
 
-    Logger.d("onCreate")
+    log { "onCreate" }
 
     if (!isInitColorTask) {
       ColorInitTask().execute()

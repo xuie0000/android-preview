@@ -19,12 +19,12 @@ import androidx.navigation.ui.NavigationUI
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.navigation.NavigationView
 import com.google.android.material.snackbar.Snackbar
-import com.orhanobut.logger.Logger
 import com.xuie.android.R
 import com.xuie.android.ui.coordinator.CoordinatorLayoutActivity
 import com.xuie.android.ui.palette.PaletteActivity
 import com.xuie.android.util.PreferenceUtils
 import com.xuie.android.util.Utils
+import com.xuie.android.util.log
 import pub.devrel.easypermissions.AfterPermissionGranted
 import pub.devrel.easypermissions.EasyPermissions
 
@@ -104,7 +104,8 @@ class MainActivity : AppCompatActivity(), EasyPermissions.PermissionCallbacks {
   }
 
   override fun onPermissionsDenied(requestCode: Int, perms: List<String>) {
-    Logger.d("onPermissionsDenied finish.")
+    log { "onPermissionsDenied finish." }
+
     finish()
   }
 

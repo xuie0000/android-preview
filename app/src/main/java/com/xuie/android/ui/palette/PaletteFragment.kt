@@ -1,6 +1,5 @@
 package com.xuie.android.ui.palette
 
-
 import android.os.Bundle
 import android.util.TypedValue
 import android.view.Gravity
@@ -17,7 +16,7 @@ import java.util.*
 /**
  * A simple [Fragment] subclass.
  *
- * @author xuie
+ * @author Jie Xu
  */
 class PaletteFragment : Fragment() {
 

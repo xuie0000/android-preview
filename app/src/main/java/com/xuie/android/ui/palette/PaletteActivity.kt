@@ -18,7 +18,7 @@ import com.xuie.android.R
 import java.util.*
 
 /**
- * @author xuie
+ * @author Jie Xu
  */
 class PaletteActivity : AppCompatActivity() {
 
@@ -87,7 +87,7 @@ class PaletteActivity : AppCompatActivity() {
       //获取到充满活力的这种色调
       val vibrant = palette!!.vibrantSwatch ?: return@generate
       //根据调色板Palette获取到图片中的颜色设置到toolbar和tab中背景，标题等，使整个UI界面颜色统一
-      tabLayout!!.setBackgroundColor(Objects.requireNonNull<Palette.Swatch>(vibrant).rgb)
+      tabLayout!!.setBackgroundColor(Objects.requireNonNull(vibrant).rgb)
       tabLayout!!.setSelectedTabIndicatorColor(colorBurn(vibrant.rgb))
       toolbar!!.setBackgroundColor(vibrant.rgb)
       coordinator!!.setBackgroundColor(vibrant.rgb)

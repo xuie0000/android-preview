@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.transition.Explode
 import android.transition.Fade
 import android.transition.Slide
-import android.util.Log
 import android.view.MenuItem
 import android.view.View
 import android.view.animation.OvershootInterpolator
@@ -12,10 +11,10 @@ import android.widget.Button
 import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
-
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.xuie.android.R
 import com.xuie.android.util.ScreenUtils
+import com.xuie.android.util.log
 
 /**
  * @author xuie
@@ -70,7 +69,7 @@ class OneActivity : AppCompatActivity() {
     // set callback for changes
     bottomSheetBehavior!!.setBottomSheetCallback(object : BottomSheetBehavior.BottomSheetCallback() {
       override fun onStateChanged(bottomSheet: View, newState: Int) {
-        Log.d(TAG, "onStateChanged: $newState")
+        log { "onStateChanged: $newState" }
       }
 
       override fun onSlide(bottomSheet: View, slideOffset: Float) {
@@ -97,9 +96,4 @@ class OneActivity : AppCompatActivity() {
     }
     return super.onOptionsItemSelected(item)
   }
-
-  companion object {
-    private const val TAG = "OneActivity"
-  }
-
 }

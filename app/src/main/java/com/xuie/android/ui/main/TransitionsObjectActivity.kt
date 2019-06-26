@@ -11,7 +11,7 @@ import com.xuie.android.R
 import com.xuie.android.util.BlurBitmap
 
 /**
- * @author xuie
+ * @author Jie Xu
  */
 class TransitionsObjectActivity : AppCompatActivity() {
 

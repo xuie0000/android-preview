@@ -9,6 +9,9 @@ import android.provider.BaseColumns
  * @author Jie Xu
  * @date 2017/4/12 0012
  */
+const val DATABASE_NAME = "color_database.db"
+const val DATABASE_VERSION = 1
+
 class ColorDatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION) {
 
   override fun onCreate(db: SQLiteDatabase) {
@@ -34,10 +37,5 @@ class ColorDatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE
   override fun onUpgrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
     db.execSQL("DROP TABLE IF EXISTS " + ColorContract.ColorEntry.TABLE_NAME)
     onCreate(db)
-  }
-
-  companion object {
-    private const val DATABASE_NAME = "color_database.db"
-    private const val DATABASE_VERSION = 1
   }
 }
