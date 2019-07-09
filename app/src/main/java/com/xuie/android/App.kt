@@ -13,7 +13,7 @@ import com.xuie.android.util.log
 /**
  * The type App.
  *
- * @author xuie
+ * @author Jie Xu
  */
 class App : Application() {
 
