@@ -69,6 +69,8 @@ public class FileUtils {
                 int index = cursor.getColumnIndexOrThrow(column);
                 return cursor.getString(index);
             }
+        } catch (Exception e) {
+            e.printStackTrace();
         } finally {
             if (cursor != null) {
                 cursor.close();
@@ -79,8 +81,6 @@ public class FileUtils {
 
     /**
      * get SDPath, if no sdcard, return null
-     *
-     * @return
      */
     public static String getSDPath() {
         if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
@@ -118,10 +118,6 @@ public class FileUtils {
 
     /**
      * loadFromAssets
-     *
-     * @param context
-     * @param fileName
-     * @return
      */
     public static String loadFromAssets(Context context, String fileName) {
         BufferedReader reader = null;
@@ -130,8 +126,8 @@ public class FileUtils {
             reader = new BufferedReader(new InputStreamReader(in));
 
             char[] buf = new char[1024];
-            int count = 0;
-            StringBuffer sb = new StringBuffer(in.available());
+            int count;
+            StringBuilder sb = new StringBuilder(in.available());
             while ((count = reader.read(buf)) != -1) {
                 String readData = String.valueOf(buf, 0, count);
                 sb.append(readData);
@@ -150,7 +146,7 @@ public class FileUtils {
     /**
      * 删除文件
      *
-     * @param filePath
+     * @param filePath 路径
      */
     public static void deleteFile(String filePath) {
         try {
@@ -162,7 +158,6 @@ public class FileUtils {
             e.printStackTrace();
         }
     }
-
 
     public static void deleteFiles(ArrayList<String> filePaths) {
         for (int i = 0; i < filePaths.size(); i++) {

@@ -19,69 +19,69 @@ public class PreferenceUtils {
     }
 
     public static void setString(String key, String value) {
-        checkNOTNull();
+        checkNotNull();
         mEditor = mSharedPreferences.edit();
         mEditor.putString(key, value);
         mEditor.apply();
     }
 
     public static String getString(String key, String defaultValue) {
-        checkNOTNull();
+        checkNotNull();
         return mSharedPreferences.getString(key, defaultValue);
     }
 
     public static void setInt(String key, int value) {
-        checkNOTNull();
+        checkNotNull();
         mEditor = mSharedPreferences.edit();
         mEditor.putInt(key, value);
         mEditor.apply();
     }
 
     public static int getInt(String key, int defaultValue) {
-        checkNOTNull();
+        checkNotNull();
         return mSharedPreferences.getInt(key, defaultValue);
     }
 
     public static void setLong(String key, long value) {
-        checkNOTNull();
+        checkNotNull();
         mEditor = mSharedPreferences.edit();
         mEditor.putLong(key, value);
         mEditor.apply();
     }
 
     public static long getLong(String key, long defaultValue) {
-        checkNOTNull();
+        checkNotNull();
         return mSharedPreferences.getLong(key, defaultValue);
     }
 
     public static void setBoolean(String key, boolean value) {
-        checkNOTNull();
+        checkNotNull();
         mEditor = mSharedPreferences.edit();
         mEditor.putBoolean(key, value);
         mEditor.apply();
     }
 
     public static Boolean getBoolean(String key, boolean defaultValue) {
-        checkNOTNull();
+        checkNotNull();
         return mSharedPreferences.getBoolean(key, defaultValue);
     }
 
     public static void removeKey(String key) {
-        checkNOTNull();
+        checkNotNull();
         mEditor = mSharedPreferences.edit();
         mEditor.remove(key);
         mEditor.apply();
     }
 
     public static void removeAll() {
-        checkNOTNull();
+        checkNotNull();
         mEditor = mSharedPreferences.edit();
         mEditor.clear();
         mEditor.apply();
     }
 
     public static void setPreference(String key, Object object) {
-        checkNOTNull();
+        checkNotNull();
         mEditor = mSharedPreferences.edit();
         if (object instanceof String) {
             mEditor.putString(key, (String) object);
@@ -99,7 +99,7 @@ public class PreferenceUtils {
         mEditor.apply();
     }
 
-    private static void checkNOTNull() {
+    private static void checkNotNull() {
         if (mSharedPreferences == null) {
             throw new RuntimeException("SharedPreferences unInit");
         }

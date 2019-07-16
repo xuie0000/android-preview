@@ -1,4 +1,4 @@
-package com.xuie.util;
+package com.xuie.util.bitmap;
 
 import android.content.ContentResolver;
 import android.content.Context;
@@ -10,8 +10,9 @@ import android.graphics.PixelFormat;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
-import android.support.annotation.AnyRes;
-import android.support.v4.content.ContextCompat;
+
+import androidx.annotation.AnyRes;
+import androidx.core.content.ContextCompat;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -61,6 +62,7 @@ public class BmpUtils {
     // InputStream stream = getContentResolver().openInputStream(uri);
     // 使用分享时不能用这个方法
     // You want to share an image from drawable resource. But other apps have no access to your resources. There are two ways to solve this. 1. Use a content provider. 2. Copy the file to external/public memory first.
+
     public static Uri Drawable2Uri(Context context, @AnyRes int drawId) {
         return Uri.parse(ContentResolver.SCHEME_ANDROID_RESOURCE +
                 "://" + context.getResources().getResourcePackageName(drawId)
@@ -73,18 +75,20 @@ public class BmpUtils {
             InputStream inputStream = context.getContentResolver().openInputStream(uri);
             return Drawable.createFromStream(inputStream, uri.toString());
         } catch (FileNotFoundException e) {
-//            return context.getResources().getDrawable(R.mipmap.ic_launcher);
             return null;
         }
     }
 
-    // 将byte[]转换成InputStream
+    /**
+     * 将byte[]转换成InputStream
+     */
     public static InputStream Byte2InputStream(byte[] b) {
-        ByteArrayInputStream bais = new ByteArrayInputStream(b);
-        return bais;
+        return new ByteArrayInputStream(b);
     }
 
-    // 将InputStream转换成byte[]
+    /**
+     * 将InputStream转换成byte[]
+     */
     public static byte[] InputStream2Bytes(InputStream is) {
         String str = "";
         byte[] readByte = new byte[1024];
@@ -100,7 +104,9 @@ public class BmpUtils {
         return null;
     }
 
-    // 将Bitmap转换成InputStream
+    /**
+     * 将Bitmap转换成InputStream
+     */
     public static InputStream Bitmap2InputStream(Bitmap bm) {
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         bm.compress(Bitmap.CompressFormat.JPEG, 100, baos);
@@ -108,7 +114,9 @@ public class BmpUtils {
         return is;
     }
 
-    // 将Bitmap转换成InputStream
+    /**
+     * 将Bitmap转换成InputStream
+     */
     public static InputStream Bitmap2InputStream(Bitmap bm, int quality) {
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         bm.compress(Bitmap.CompressFormat.PNG, quality, baos);
@@ -116,43 +124,57 @@ public class BmpUtils {
         return is;
     }
 
-    // 将InputStream转换成Bitmap
+    /**
+     * 将InputStream转换成Bitmap
+     */
     public static Bitmap InputStream2Bitmap(InputStream is) {
         return BitmapFactory.decodeStream(is);
     }
 
-    // Drawable转换成InputStream
+    /**
+     * Drawable转换成InputStream
+     */
     public static InputStream Drawable2InputStream(Drawable d) {
         Bitmap bitmap = drawable2Bitmap(d);
         return Bitmap2InputStream(bitmap);
     }
 
-    // InputStream转换成Drawable
+    /**
+     * InputStream转换成Drawable
+     */
     public static Drawable InputStream2Drawable(Context context, InputStream is) {
         Bitmap bitmap = InputStream2Bitmap(is);
         return bitmap2Drawable(context, bitmap);
     }
 
-    // Drawable转换成byte[]
+    /**
+     * Drawable转换成byte[]
+     */
     public static byte[] Drawable2Bytes(Drawable d) {
         Bitmap bitmap = drawable2Bitmap(d);
         return Bitmap2Bytes(bitmap);
     }
 
-    // byte[]转换成Drawable
+    /**
+     * byte[]转换成Drawable
+     */
     public static Drawable Bytes2Drawable(Context context, byte[] b) {
         Bitmap bitmap = Bytes2Bitmap(b);
         return bitmap2Drawable(context, bitmap);
     }
 
-    // Bitmap转换成byte[]
+    /**
+     * Bitmap转换成byte[]
+     */
     public static byte[] Bitmap2Bytes(Bitmap bm) {
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         bm.compress(Bitmap.CompressFormat.PNG, 100, baos);
         return baos.toByteArray();
     }
 
-    // byte[]转换成Bitmap
+    /**
+     * byte[]转换成Bitmap
+     */
     public static Bitmap Bytes2Bitmap(byte[] b) {
         if (b.length != 0) {
             return BitmapFactory.decodeByteArray(b, 0, b.length);
@@ -160,7 +182,9 @@ public class BmpUtils {
         return null;
     }
 
-    // Drawable转换成Bitmap
+    /**
+     * Drawable转换成Bitmap
+     */
     public static Bitmap drawable2Bitmap(Drawable drawable) {
         Bitmap bitmap = Bitmap.createBitmap(
                 drawable.getIntrinsicWidth(),
@@ -174,7 +198,9 @@ public class BmpUtils {
         return bitmap;
     }
 
-    // Bitmap转换成Drawable
+    /**
+     * Bitmap转换成Drawable
+     */
     public static Drawable bitmap2Drawable(Context context, Bitmap bitmap) {
         return new BitmapDrawable(context.getResources(), bitmap);
     }
@@ -220,7 +246,9 @@ public class BmpUtils {
         return inSampleSize;
     }
 
-    // 获取Bitmap
+    /**
+     * 获取Bitmap
+     */
     public static Bitmap decodeSampledBitmapFromResource(Resources res, int resId,
                                                          int reqWidth, int reqHeight) {
         // First decode with inJustDecodeBounds=true to check dimensions
@@ -236,7 +264,9 @@ public class BmpUtils {
         return BitmapFactory.decodeResource(res, resId, options);
     }
 
-    // resource id to drawable
+    /**
+     * resource id to drawable
+     */
     public static Drawable resourceId2Drawable(Context context, int resId) {
         return ContextCompat.getDrawable(context, resId);
     }

@@ -1,4 +1,4 @@
-package com.xuie.util;
+package com.xuie.util.bitmap;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -7,7 +7,7 @@ import android.os.AsyncTask;
 import android.util.DisplayMetrics;
 import android.view.WindowManager;
 
-import com.xuie.util.config.FileConfig;
+import com.xuie.util.bitmap.config.FileConfig;
 
 import java.io.File;
 import java.io.FileOutputStream;

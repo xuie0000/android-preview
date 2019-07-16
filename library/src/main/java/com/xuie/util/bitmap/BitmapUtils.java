@@ -1,4 +1,4 @@
-package com.xuie.util;
+package com.xuie.util.bitmap;
 
 import android.annotation.TargetApi;
 import android.content.ContentUris;
@@ -11,7 +11,7 @@ import android.os.Environment;
 import android.provider.DocumentsContract;
 import android.provider.MediaStore;
 
-import com.xuie.util.config.FileConfig;
+import com.xuie.util.bitmap.config.FileConfig;
 
 import java.io.File;
 import java.io.FileInputStream;

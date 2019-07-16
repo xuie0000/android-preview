@@ -1,4 +1,4 @@
-package com.xuie.util;
+package com.xuie.util.bitmap;
 
 import android.content.ContentResolver;
 import android.content.Context;
@@ -10,8 +10,9 @@ import android.graphics.PixelFormat;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
-import android.support.annotation.AnyRes;
-import android.support.v4.content.ContextCompat;
+
+import androidx.annotation.AnyRes;
+import androidx.core.content.ContextCompat;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;

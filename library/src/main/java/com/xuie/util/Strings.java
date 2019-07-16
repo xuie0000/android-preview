@@ -30,8 +30,9 @@ import java.util.Locale;
 public class Strings {
 
     public static String stripTrailingSlash(String s) {
-        if (s.endsWith("/") && s.length() > 1)
+        if (s.endsWith("/") && s.length() > 1) {
             return s.substring(0, s.length() - 1);
+        }
         return s;
     }
 

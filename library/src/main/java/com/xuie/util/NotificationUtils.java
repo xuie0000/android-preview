@@ -4,20 +4,21 @@ import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.content.Context;
 import android.os.Build;
-import android.support.v4.app.NotificationCompat;
-import android.support.v4.app.NotificationManagerCompat;
+
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 
 /**
  * @author xuie
  * @date 2018/7/27
  */
 public class NotificationUtils {
-    public static final String CHANNEL_ID = "VERBOSE_NOTIFICATION" ;
+    public static final String CHANNEL_ID = "VERBOSE_NOTIFICATION";
     public static final int NOTIFICATION_ID = 1;
 
     /**
      * Create a Notification that is shown as a heads-up notification if possible.
-     *
+     * <p>
      * For this codelab, this is used to show a notification so that you know when different steps
      * of the background work chain are starting
      *

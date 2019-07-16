@@ -1,9 +1,9 @@
 /*
  * Java Base64 - A pure Java library for reading and writing Base64
  *               encoded streams.
- * 
+ *
  * Copyright (C) 2007-2009 Carlo Pelliccia (www.sauronsoftware.it)
- * 
+ *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License version
  * 2.1, as published by the Free Software Foundation.
@@ -21,13 +21,13 @@ package com.xuie.util.secret;
 
 /**
  * Package related utilities.
- * 
+ *
  * @author Carlo Pelliccia
  */
 class Shared {
 
-	static String chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
+    static String chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
 
-	static char pad = '=';
+    static char pad = '=';
 
 }

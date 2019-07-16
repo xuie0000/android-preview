@@ -1,4 +1,7 @@
 package com.xuie.util.secret;
+/**
+ * @author xx
+ */
 public enum AESType {
 
 	ECB("ECB", "0"), CBC("CBC", "1"), CFB("CFB", "2"), OFB("OFB", "3");
@@ -22,8 +25,9 @@ public enum AESType {
 		AESType[] vs = AESType.values();
 		for (int i = 0; i < vs.length; i++) {
 			AESType d = vs[i];
-			if (d.key().equals(id))
+			if (d.key().equals(id)) {
 				return d;
+			}
 		}
 		return AESType.CBC;
 	}

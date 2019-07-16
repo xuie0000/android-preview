@@ -4,9 +4,14 @@ import javax.crypto.Cipher;
 import javax.crypto.spec.SecretKeySpec;
 
 public class MCrypt {
-    private String iv = "f3e00ec14c4cecba";//虚拟的 iv (需更改)
-    private String SecretKey = "f3e00ec14c4cecba";//虚拟的 密钥 (需更改）
-
+    /**
+     * 虚拟的 iv (需更改)
+     */
+    private String iv = "f3e00ec14c4cecba";
+    /**
+     * 虚拟的 密钥 (需更改）
+     */
+    private String SecretKey = "f3e00ec14c4cecba";
 
     public byte[] encrypt(String code) throws Exception {
         byte[] keyBytes = new byte[0];
@@ -15,8 +20,7 @@ public class MCrypt {
             SecretKeySpec skeySpec = new SecretKeySpec(keyBytes, "AES");
             Cipher cipher = Cipher.getInstance("AES/ECB/PKCS7Padding");
             cipher.init(Cipher.ENCRYPT_MODE, skeySpec);
-            byte[] encrypted = cipher.doFinal(code.getBytes("US-ASCII"));
-            return encrypted;//new String(encrypted,"UTF-8");
+            return cipher.doFinal(code.getBytes("US-ASCII"));
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -26,9 +30,6 @@ public class MCrypt {
 
     /**
      * 解密
-     * @param code
-     * @return
-     * @throws Exception
      */
     public byte[] decrypt(String code) throws Exception {
         byte[] keyBytes = new byte[0];
@@ -37,8 +38,7 @@ public class MCrypt {
             SecretKeySpec skeySpec = new SecretKeySpec(keyBytes, "AES");
             Cipher cipher = Cipher.getInstance("AES/ECB/PKCS7Padding");
             cipher.init(Cipher.DECRYPT_MODE, skeySpec);
-            byte[] encrypted = cipher.doFinal(hexToBytes(code));
-            return encrypted;//new String(encrypted,"UTF-8");
+            return cipher.doFinal(hexToBytes(code));
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -48,21 +48,19 @@ public class MCrypt {
 
     /**
      * 加密
-     * @param data
-     * @return
      */
     public static String bytesToHex(byte[] data) {
         if (data == null) {
             return null;
         }
 
-        int len = data.length;
         String str = "";
-        for (int i = 0; i < len; i++) {
-            if ((data[i] & 0xFF) < 16)
-                str = str + "0" + Integer.toHexString(data[i] & 0xFF);
-            else
-                str = str + Integer.toHexString(data[i] & 0xFF);
+        for (byte datum : data) {
+            if ((datum & 0xFF) < 16) {
+                str = str + "0" + Integer.toHexString(datum & 0xFF);
+            } else {
+                str = str + Integer.toHexString(datum & 0xFF);
+            }
         }
         return str;
     }

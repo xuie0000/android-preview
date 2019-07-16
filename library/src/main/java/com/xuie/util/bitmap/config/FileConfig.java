@@ -1,4 +1,4 @@
-package com.xuie.util.config;
+package com.xuie.util.bitmap.config;
 
 import android.os.Environment;
 
