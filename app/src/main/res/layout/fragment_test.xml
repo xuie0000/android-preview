@@ -1,8 +1,8 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:tools="http://schemas.android.com/tools"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            tools:context=".ui.main.TestFragment">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.main.TestFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -21,7 +21,7 @@
                 android:layout_height="wrap_content"
                 android:hint="Email"
                 android:imeOptions="flagNoExtractUi"
-                android:maxLines="1"/>
+                android:maxLines="1" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -35,11 +35,10 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif"
                 android:hint="password"
-                android:imeActionId="@+id/login"
                 android:imeActionLabel="Sign in"
                 android:imeOptions="flagNoFullscreen|actionUnspecified"
                 android:inputType="textPassword"
-                android:maxLines="1"/>
+                android:maxLines="1" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <LinearLayout
@@ -53,13 +52,13 @@
                 android:layout_height="wrap_content"
                 android:contentDescription="@string/contentDescription"
                 android:padding="8dp"
-                android:src="@mipmap/ic_launcher"/>
+                android:src="@mipmap/ic_launcher" />
 
             <com.xuie.android.widget.CircleImageView
                 android:layout_width="64dp"
                 android:layout_height="64dp"
                 android:padding="8dp"
-                android:src="@mipmap/four"/>
+                android:src="@mipmap/four" />
 
         </LinearLayout>
 
