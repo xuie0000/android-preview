@@ -11,7 +11,7 @@ import com.google.android.material.snackbar.Snackbar
 import com.xuie.android.R
 
 /**
- * @author xuie
+ * @author Jie Xu
  */
 class CoordinatorLayoutActivity : AppCompatActivity() {
 
@@ -22,9 +22,7 @@ class CoordinatorLayoutActivity : AppCompatActivity() {
     val toolbar = findViewById<Toolbar>(R.id.toolbar)
     val fab = findViewById<FloatingActionButton>(R.id.fab)
     setSupportActionBar(toolbar)
-    if (supportActionBar != null) {
-      supportActionBar!!.setDisplayHomeAsUpEnabled(true)
-    }
+    supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
     fab.setOnClickListener { view -> Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG).setAction("Action", null).show() }
   }

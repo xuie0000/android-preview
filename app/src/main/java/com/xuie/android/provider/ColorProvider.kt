@@ -10,22 +10,22 @@ import android.provider.BaseColumns
 import android.text.TextUtils
 
 /**
- * @author xuie
+ * @author Jie Xu
  * @date 2017/4/12 0012
  * https://developer.android.google.cn/guide/topics/providers/content-provider-creating.html?hl=zh-cn
  */
 class ColorProvider : ContentProvider() {
 
-  private var mOpenHelper: ColorDatabaseHelper? = null
+  private lateinit var mOpenHelper: ColorDatabaseHelper
 
   override fun onCreate(): Boolean {
-    mOpenHelper = ColorDatabaseHelper(context)
+    mOpenHelper = ColorDatabaseHelper()
     return true
   }
 
   override fun query(uri: Uri, projection: Array<String>?, selection: String?, selectionArgs: Array<String>?, sortOrder: String?): Cursor? {
     val cursor: Cursor
-    val db = mOpenHelper!!.readableDatabase
+    val db = mOpenHelper.readableDatabase
 
     when (sUriMatcher.match(uri)) {
       COLOR -> cursor = db.query(
@@ -63,7 +63,7 @@ class ColorProvider : ContentProvider() {
   }
 
   override fun insert(uri: Uri, values: ContentValues?): Uri? {
-    val dbConnection = mOpenHelper!!.writableDatabase
+    val dbConnection = mOpenHelper.writableDatabase
     val returnUri: Uri
     val id: Long
     dbConnection.beginTransaction()
@@ -75,7 +75,7 @@ class ColorProvider : ContentProvider() {
         } else {
           throw android.database.SQLException("Failed to insert row into $uri")
         }
-        context!!.contentResolver.notifyChange(returnUri, null)
+        context?.contentResolver?.notifyChange(returnUri, null)
         dbConnection.setTransactionSuccessful()
       }
       else -> throw android.database.SQLException("Unknown uri: $uri")
@@ -85,7 +85,7 @@ class ColorProvider : ContentProvider() {
   }
 
   override fun delete(uri: Uri, selection: String?, selectionArgs: Array<String>?): Int {
-    val dbConnection = mOpenHelper!!.writableDatabase
+    val dbConnection = mOpenHelper.writableDatabase
     var deleteCount = 0
 
     dbConnection.beginTransaction()
@@ -102,13 +102,13 @@ class ColorProvider : ContentProvider() {
     }
     dbConnection.endTransaction()
     if (deleteCount > 0) {
-      context!!.contentResolver.notifyChange(uri, null)
+      context?.contentResolver?.notifyChange(uri, null)
     }
     return deleteCount
   }
 
   override fun update(uri: Uri, values: ContentValues?, selection: String?, selectionArgs: Array<String>?): Int {
-    val dbConnection = mOpenHelper!!.writableDatabase
+    val dbConnection = mOpenHelper.writableDatabase
     var updateCount = 0
 
     dbConnection.beginTransaction()
@@ -128,7 +128,7 @@ class ColorProvider : ContentProvider() {
     }
     dbConnection.endTransaction()
     if (updateCount > 0) {
-      context!!.contentResolver.notifyChange(uri, null)
+      context?.contentResolver?.notifyChange(uri, null)
     }
     return updateCount
   }
