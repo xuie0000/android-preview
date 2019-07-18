@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.xuie.android">
+    package="xuk.android">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -26,14 +26,14 @@
         <activity
             android:name=".ui.main.TransitionsObjectActivity"
             android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"
-            android:parentActivityName=".ui.main.MainActivity">
+            android:parentActivityName="xuk.android.ui.main.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.CREATE_SHORTCUT" />
             </intent-filter>
             <!-- Parent activity meta-data to support 4.0 and lower -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.xuie.android.ui.main.MainActivity" />
+                android:value=".ui.main.MainActivity" />
         </activity>
         <activity android:name=".ui.palette.PaletteActivity" />
         <activity android:name=".ui.coordinator.CoordinatorLayoutActivity" />

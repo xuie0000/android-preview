@@ -6,7 +6,7 @@
 
     <fragment
         android:id="@+id/transitions"
-        android:name="com.xuie.android.ui.main.TransitionsFragment"
+        android:name="xuk.android.ui.main.TransitionsFragment"
         android:label="fragment_transitions"
         tools:layout="@layout/fragment_transitions">
         <action
@@ -26,12 +26,12 @@
     </fragment>
     <fragment
         android:id="@+id/test"
-        android:name="com.xuie.android.ui.main.TestFragment"
+        android:name="xuk.android.ui.main.TestFragment"
         android:label="fragment_test"
         tools:layout="@layout/fragment_test" />
     <fragment
         android:id="@+id/recycler_view"
-        android:name="com.xuie.android.ui.recycler.RecyclerViewFragment"
+        android:name="xuk.android.ui.recycler.RecyclerViewFragment"
         android:label="fragment_recycler"
         tools:layout="@layout/fragment_recycler_view">
         <action
@@ -72,27 +72,27 @@
     </fragment>
     <fragment
         android:id="@+id/axis"
-        android:name="com.xuie.android.ui.recycler.axis.AxisFragment"
+        android:name="xuk.android.ui.recycler.axis.AxisFragment"
         android:label="fragment_axis"
         tools:layout="@layout/fragment_axis" />
     <fragment
         android:id="@+id/diffutil"
-        android:name="com.xuie.android.ui.recycler.diffutil.DiffUtilFragment"
+        android:name="xuk.android.ui.recycler.diffutil.DiffUtilFragment"
         android:label="fragment_diffutil"
         tools:layout="@layout/fragment_diff_util" />
     <fragment
         android:id="@+id/discrete"
-        android:name="com.xuie.android.ui.recycler.discrete.DiscreteFragment"
+        android:name="xuk.android.ui.recycler.discrete.DiscreteFragment"
         android:label="fragment_discrete"
         tools:layout="@layout/fragment_discrete" />
     <fragment
         android:id="@+id/normal"
-        android:name="com.xuie.android.ui.recycler.normal.NormalFragment"
+        android:name="xuk.android.ui.recycler.normal.NormalFragment"
         android:label="fragment_normal"
         tools:layout="@layout/fragment_normal" />
     <fragment
         android:id="@+id/paging"
-        android:name="com.xuie.android.ui.recycler.paging.PagingFragment"
+        android:name="xuk.android.ui.recycler.paging.PagingFragment"
         android:label="fragment_paging"
         tools:layout="@layout/fragment_paging" />
     <!--
