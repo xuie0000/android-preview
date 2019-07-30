@@ -19,7 +19,7 @@ class ColorProvider : ContentProvider() {
   private lateinit var mOpenHelper: ColorDatabaseHelper
 
   override fun onCreate(): Boolean {
-    mOpenHelper = ColorDatabaseHelper()
+    mOpenHelper = ColorDatabaseHelper(context!!)
     return true
   }
 

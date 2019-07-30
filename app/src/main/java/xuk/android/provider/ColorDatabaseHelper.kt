@@ -1,5 +1,6 @@
 package xuk.android.provider
 
+import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 import android.provider.BaseColumns
@@ -12,7 +13,7 @@ import xuk.android.App
 const val DATABASE_NAME = "color_database.db"
 const val DATABASE_VERSION = 1
 
-class ColorDatabaseHelper : SQLiteOpenHelper(App.context, DATABASE_NAME, null, DATABASE_VERSION) {
+class ColorDatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION) {
 
   override fun onCreate(db: SQLiteDatabase) {
     /*

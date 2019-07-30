@@ -19,14 +19,14 @@ import androidx.navigation.ui.NavigationUI
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.navigation.NavigationView
 import com.google.android.material.snackbar.Snackbar
+import pub.devrel.easypermissions.AfterPermissionGranted
+import pub.devrel.easypermissions.EasyPermissions
 import xuk.android.R
 import xuk.android.ui.coordinator.CoordinatorLayoutActivity
 import xuk.android.ui.palette.PaletteActivity
 import xuk.android.util.PreferenceUtils
 import xuk.android.util.Utils
 import xuk.android.util.log
-import pub.devrel.easypermissions.AfterPermissionGranted
-import pub.devrel.easypermissions.EasyPermissions
 
 /**
  * @author Jie Xu
@@ -124,44 +124,17 @@ class MainActivity : AppCompatActivity(), EasyPermissions.PermissionCallbacks {
   }
 
   override fun onOptionsItemSelected(item: MenuItem): Boolean {
-    when {
-      item.itemId == R.id.action_day_night_yes -> {
-        refreshDelegateMode(AppCompatDelegate.MODE_NIGHT_YES)
-        return true
-      }
-      item.itemId == R.id.action_day_night_no -> {
-        refreshDelegateMode(AppCompatDelegate.MODE_NIGHT_NO)
-        return true
-      }
+    return when {
       item.itemId == R.id.action_palette -> {
         startPalette()
-        return true
+        true
       }
       item.itemId == R.id.action_coordinatorLayout -> {
         startCoordinatorLayout()
-        return true
+        true
       }
-      else -> return NavigationUI.onNavDestinationSelected(item, navController) || super.onOptionsItemSelected(item)
+      else -> NavigationUI.onNavDestinationSelected(item, navController) || super.onOptionsItemSelected(item)
     }
-  }
-
-  override fun onResume() {
-    super.onResume()
-//    var uiMode = resources.configuration.uiMode
-//    var dayNightUiMode = uiMode and Configuration.UI_MODE_NIGHT_MASK
-
-    // enable the save mode
-    val defaultMode = PreferenceUtils.getInt("mode", AppCompatDelegate.MODE_NIGHT_NO)
-    if (mDayNightMode != defaultMode) {
-      refreshDelegateMode(defaultMode)
-    }
-  }
-
-  private fun refreshDelegateMode(mode: Int) {
-    mDayNightMode = mode
-    PreferenceUtils.setPreference("mode", mode)
-    delegate.localNightMode = mode
-    recreate()
   }
 
   private fun startPalette() {

@@ -1,7 +1,6 @@
 package xuk.android
 
 import android.app.Application
-import androidx.appcompat.app.AppCompatDelegate
 import com.gw.swipeback.tools.WxSwipeBackActivityManager
 import com.tencent.bugly.crashreport.CrashReport
 import xuk.android.provider.ColorInitTask
@@ -17,9 +16,6 @@ import xuk.android.util.log
  */
 class App : Application() {
 
-  private val isNightMode: Boolean
-    get() = PreferenceUtils.getInt("mode", AppCompatDelegate.MODE_NIGHT_NO) == AppCompatDelegate.MODE_NIGHT_YES
-
   private val isInitColorTask: Boolean
     get() = PreferenceUtils.getBoolean("color_init", false)
 
@@ -31,12 +27,6 @@ class App : Application() {
     initLogger(true)
 
     CrashReport.initCrashReport(applicationContext, "bc342fcfab", false)
-
-    if (isNightMode) {
-      AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-    } else {
-      AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-    }
 
     log { "onCreate" }
 
