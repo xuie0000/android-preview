@@ -38,7 +38,7 @@ class PageFragment : Fragment() {
       container: ViewGroup?,
       savedInstanceState: Bundle?
   ): View? {
-    val root = inflater.inflate(R.layout.page_fragment, container, false)
+    val root = inflater.inflate(R.layout.fragment_page, container, false)
     val textView: TextView = root.findViewById(R.id.section_label)
     viewModel.text.observe(this, Observer<String> {
       textView.text = it
