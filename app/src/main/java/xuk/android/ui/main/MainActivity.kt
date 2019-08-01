@@ -7,7 +7,6 @@ import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.widget.ShareActionProvider
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.GravityCompat
@@ -24,7 +23,6 @@ import pub.devrel.easypermissions.EasyPermissions
 import xuk.android.R
 import xuk.android.ui.coordinator.CoordinatorLayoutActivity
 import xuk.android.ui.palette.PaletteActivity
-import xuk.android.util.PreferenceUtils
 import xuk.android.util.Utils
 import xuk.android.util.log
 
@@ -32,7 +30,6 @@ import xuk.android.util.log
  * @author Jie Xu
  */
 class MainActivity : AppCompatActivity(), EasyPermissions.PermissionCallbacks {
-  private var mDayNightMode: Int = 0
   private lateinit var shareActionProvider: ShareActionProvider
 
   private lateinit var drawerLayout: DrawerLayout
@@ -41,6 +38,7 @@ class MainActivity : AppCompatActivity(), EasyPermissions.PermissionCallbacks {
   public override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     setContentView(R.layout.activity_main)
+    log { "onCreate" }
 
     navController = Navigation.findNavController(this, R.id.nav_host_fragment)
     drawerLayout = findViewById(R.id.drawer_layout)
@@ -68,14 +66,15 @@ class MainActivity : AppCompatActivity(), EasyPermissions.PermissionCallbacks {
     // Changes title, animates hamburger to back/up icon
     NavigationUI.setupActionBarWithNavController(this, navController, drawerLayout)
 
-    mDayNightMode = PreferenceUtils.getInt("mode", AppCompatDelegate.MODE_NIGHT_NO)
+    appTask()
   }
 
   override fun onCreateOptionsMenu(menu: Menu): Boolean {
+    log { "onCreateOptionsMenu" }
     menuInflater.inflate(R.menu.main, menu)
     val item = menu.findItem(R.id.action_share)
     shareActionProvider = MenuItemCompat.getActionProvider(item) as ShareActionProvider
-    appTask()
+    shareActionProvider.setShareIntent(Utils.getDefaultIntent(this))
     return true
   }
 
@@ -100,7 +99,7 @@ class MainActivity : AppCompatActivity(), EasyPermissions.PermissionCallbacks {
   }
 
   override fun onPermissionsGranted(requestCode: Int, perms: List<String>) {
-    setShareIntent()
+    // init do something
   }
 
   override fun onPermissionsDenied(requestCode: Int, perms: List<String>) {
@@ -109,16 +108,13 @@ class MainActivity : AppCompatActivity(), EasyPermissions.PermissionCallbacks {
     finish()
   }
 
-  private fun setShareIntent() {
-    shareActionProvider.setShareIntent(Utils.getDefaultIntent(this))
-  }
-
   @AfterPermissionGranted(RC_STORAGE_PERM)
   private fun appTask() {
     val perms = arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE)
     if (EasyPermissions.hasPermissions(this, *perms)) {
-      setShareIntent()
+      log { "11111" }
     } else {
+      log { "2222" }
       EasyPermissions.requestPermissions(this, "需要重新申请分享权限", RC_STORAGE_PERM, *perms)
     }
   }
