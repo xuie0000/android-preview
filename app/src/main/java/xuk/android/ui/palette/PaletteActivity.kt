@@ -2,50 +2,39 @@ package xuk.android.ui.palette
 
 import android.graphics.BitmapFactory
 import android.graphics.Color
-import android.os.Build
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.Toolbar
-import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 import androidx.palette.graphics.Palette
 import androidx.viewpager.widget.ViewPager
-import com.google.android.material.tabs.TabLayout
 import com.mikepenz.iconics.IconicsDrawable
+import kotlinx.android.synthetic.main.activity_palette.*
 import xuk.android.R
 import java.util.*
+import kotlin.math.floor
 
 /**
  * @author Jie Xu
  */
 class PaletteActivity : AppCompatActivity() {
 
-  private var tabLayout: TabLayout? = null
-  private var viewpager: ViewPager? = null
-  private var toolbar: Toolbar? = null
-  private var coordinator: CoordinatorLayout? = null
-
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     setContentView(R.layout.activity_palette)
-    tabLayout = findViewById(R.id.tab_layout)
-    viewpager = findViewById(R.id.viewpager)
-    toolbar = findViewById(R.id.toolbar)
-    coordinator = findViewById(R.id.coordinator)
 
     setSupportActionBar(toolbar)
-    toolbar!!.setTitle(R.string.palette)
-    toolbar!!.setTitleTextColor(Color.WHITE)
-    toolbar!!.navigationIcon = IconicsDrawable(this, "gmi_chevron_left").sizeDp(24).color(Color.WHITE)
-    toolbar!!.setNavigationOnClickListener { view -> finish() }
+    toolbar.setTitle(R.string.palette)
+    toolbar.setTitleTextColor(Color.WHITE)
+    toolbar.navigationIcon = IconicsDrawable(this, "gmi_chevron_left").sizeDp(24).color(Color.WHITE)
+    toolbar.setNavigationOnClickListener { view -> finish() }
 
     val paletteViewPagerAdapter = PaletteViewPagerAdapter(supportFragmentManager)
-    viewpager!!.adapter = paletteViewPagerAdapter
-    tabLayout!!.setupWithViewPager(viewpager)
+    viewpager.adapter = paletteViewPagerAdapter
+    tab_layout.setupWithViewPager(viewpager)
     changeTopBgColor(0)
-    viewpager!!.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
+    viewpager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
       override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {}
 
       override fun onPageSelected(position: Int) {
@@ -85,18 +74,15 @@ class PaletteActivity : AppCompatActivity() {
     val builder = Palette.from(bitmap)
     builder.generate { palette ->
       //获取到充满活力的这种色调
-      val vibrant = palette!!.vibrantSwatch ?: return@generate
+      val vibrant = palette?.vibrantSwatch ?: return@generate
       //根据调色板Palette获取到图片中的颜色设置到toolbar和tab中背景，标题等，使整个UI界面颜色统一
-      tabLayout!!.setBackgroundColor(Objects.requireNonNull(vibrant).rgb)
-      tabLayout!!.setSelectedTabIndicatorColor(colorBurn(vibrant.rgb))
-      toolbar!!.setBackgroundColor(vibrant.rgb)
-      coordinator!!.setBackgroundColor(vibrant.rgb)
+      tab_layout.setBackgroundColor(Objects.requireNonNull(vibrant).rgb)
+      tab_layout.setSelectedTabIndicatorColor(colorBurn(vibrant.rgb))
+      toolbar.setBackgroundColor(vibrant.rgb)
+      coordinator.setBackgroundColor(vibrant.rgb)
 
-      if (Build.VERSION.SDK_INT >= 21) {
-        val window = window
-        window.statusBarColor = colorBurn(vibrant.rgb)
-        window.navigationBarColor = colorBurn(vibrant.rgb)
-      }
+      window.statusBarColor = colorBurn(vibrant.rgb)
+      window.navigationBarColor = colorBurn(vibrant.rgb)
     }
   }
 
@@ -114,9 +100,9 @@ class PaletteActivity : AppCompatActivity() {
     var red = rgbValues shr 16 and 0xFF
     var green = rgbValues shr 8 and 0xFF
     var blue = rgbValues and 0xFF
-    red = Math.floor(red * (1 - 0.1)).toInt()
-    green = Math.floor(green * (1 - 0.1)).toInt()
-    blue = Math.floor(blue * (1 - 0.1)).toInt()
+    red = floor(red * (1 - 0.1)).toInt()
+    green = floor(green * (1 - 0.1)).toInt()
+    blue = floor(blue * (1 - 0.1)).toInt()
     return Color.argb(alpha, red, green, blue)
   }
 }

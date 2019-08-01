@@ -6,11 +6,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AnimationUtils
-import android.widget.ImageView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import com.mikepenz.iconics.IconicsDrawable
 import com.mikepenz.material_design_iconic_typeface_library.MaterialDesignIconic
+import kotlinx.android.synthetic.main.fragment_test.*
 import xuk.android.R
 import java.util.*
 
@@ -19,18 +19,24 @@ import java.util.*
  * @author Jie Xu
  */
 class TestFragment : Fragment() {
-  private var shakeView: ImageView? = null
 
-  override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-    val view = inflater.inflate(R.layout.fragment_test, container, false)
-    shakeView = view.findViewById(R.id.shake_view)
-    return view
+  override fun onCreateView(
+      inflater: LayoutInflater,
+      container: ViewGroup?,
+      savedInstanceState: Bundle?
+  ): View? {
+    return inflater.inflate(R.layout.fragment_test, container, false)
   }
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     super.onViewCreated(view, savedInstanceState)
-    shakeView!!.setImageDrawable(IconicsDrawable(Objects.requireNonNull<FragmentActivity>(activity), MaterialDesignIconic.Icon.gmi_view_carousel).color(Color.BLUE).sizeDp(24))
-    shakeView!!.setOnClickListener { v -> shakeView!!.startAnimation(AnimationUtils.loadAnimation(activity, R.anim.shake)) }
+    shake_view.setImageDrawable(IconicsDrawable(
+        Objects.requireNonNull<FragmentActivity>(activity),
+        MaterialDesignIconic.Icon.gmi_view_carousel).color(Color.BLUE).sizeDp(24)
+    )
+    shake_view.setOnClickListener { v ->
+      shake_view.startAnimation(AnimationUtils.loadAnimation(activity, R.anim.shake))
+    }
   }
 
 }

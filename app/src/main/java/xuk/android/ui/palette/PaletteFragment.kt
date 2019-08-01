@@ -1,5 +1,6 @@
 package xuk.android.ui.palette
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.TypedValue
 import android.view.Gravity
@@ -28,8 +29,12 @@ class PaletteFragment : Fragment() {
     position = arguments!!.getInt(ARG_POSITION)
   }
 
-  override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-
+  @SuppressLint("SetTextI18n")
+  override fun onCreateView(
+      inflater: LayoutInflater,
+      container: ViewGroup?,
+      savedInstanceState: Bundle?
+  ): View? {
     val params = FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams
         .MATCH_PARENT)
 

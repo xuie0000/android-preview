@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/white"
     tools:context="xuk.android.ui.pager2.PageActivity">
 
     <com.google.android.material.appbar.AppBarLayout
@@ -13,7 +12,7 @@
         android:theme="@style/AppTheme.AppBarOverlay">
 
         <TextView
-            android:id="@+id/title"
+            android:id="@+id/bar_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"

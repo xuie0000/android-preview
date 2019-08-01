@@ -8,16 +8,14 @@ import android.view.MenuItem
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.ShareActionProvider
-import androidx.appcompat.widget.Toolbar
 import androidx.core.view.GravityCompat
 import androidx.core.view.MenuItemCompat
-import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.navigation.ui.NavigationUI
-import com.google.android.material.floatingactionbutton.FloatingActionButton
-import com.google.android.material.navigation.NavigationView
 import com.google.android.material.snackbar.Snackbar
+import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.app_bar_main.*
 import pub.devrel.easypermissions.AfterPermissionGranted
 import pub.devrel.easypermissions.EasyPermissions
 import xuk.android.R
@@ -33,7 +31,6 @@ import xuk.android.util.log
 class MainActivity : AppCompatActivity(), EasyPermissions.PermissionCallbacks {
   private lateinit var shareActionProvider: ShareActionProvider
 
-  private lateinit var drawerLayout: DrawerLayout
   private lateinit var navController: NavController
 
   public override fun onCreate(savedInstanceState: Bundle?) {
@@ -42,16 +39,12 @@ class MainActivity : AppCompatActivity(), EasyPermissions.PermissionCallbacks {
     log { "onCreate" }
 
     navController = Navigation.findNavController(this, R.id.nav_host_fragment)
-    drawerLayout = findViewById(R.id.drawer_layout)
-    val toolbar = findViewById<Toolbar>(R.id.toolbar)
-    val navigationView = findViewById<NavigationView>(R.id.nav_view)
-    val fab = findViewById<FloatingActionButton>(R.id.fab)
 
     setSupportActionBar(toolbar)
 
-    val toggle = ActionBarDrawerToggle(this, drawerLayout, toolbar,
+    val toggle = ActionBarDrawerToggle(this, drawer_layout, toolbar,
         R.string.navigation_drawer_open, R.string.navigation_drawer_close)
-    drawerLayout.addDrawerListener(toggle)
+    drawer_layout.addDrawerListener(toggle)
     toggle.syncState()
 
     fab.setOnClickListener { v ->
@@ -63,9 +56,9 @@ class MainActivity : AppCompatActivity(), EasyPermissions.PermissionCallbacks {
     }
 
     // Calls onNavDestinationSelected(MenuItem, NavController) when menu item selected
-    NavigationUI.setupWithNavController(navigationView, navController)
+    NavigationUI.setupWithNavController(nav_view, navController)
     // Changes title, animates hamburger to back/up icon
-    NavigationUI.setupActionBarWithNavController(this, navController, drawerLayout)
+    NavigationUI.setupActionBarWithNavController(this, navController, drawer_layout)
 
     appTask()
   }
@@ -82,12 +75,12 @@ class MainActivity : AppCompatActivity(), EasyPermissions.PermissionCallbacks {
   override fun onSupportNavigateUp(): Boolean {
     // Ref: https://developer.android.com/reference/androidx/navigation/ui/NavigationUI
     // This _should_ be correct for case w/nav drawer
-    return NavigationUI.navigateUp(navController, drawerLayout)
+    return NavigationUI.navigateUp(navController, drawer_layout)
   }
 
   override fun onBackPressed() {
-    if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
-      drawerLayout.closeDrawer(GravityCompat.START)
+    if (drawer_layout.isDrawerOpen(GravityCompat.START)) {
+      drawer_layout.closeDrawer(GravityCompat.START)
     } else {
       super.onBackPressed()
     }

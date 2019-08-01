@@ -3,10 +3,9 @@ package xuk.android.ui.main
 import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.view.View
-import android.widget.ImageView
 import android.widget.SeekBar
-import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import kotlinx.android.synthetic.main.activity_transitions_object.*
 import xuk.android.R
 import xuk.android.util.BlurBitmap
 
@@ -15,18 +14,9 @@ import xuk.android.util.BlurBitmap
  */
 class TransitionsObjectActivity : AppCompatActivity() {
 
-  private var bluredImg: ImageView? = null
-  private var originImg: ImageView? = null
-  private var seekBar: SeekBar? = null
-  private var tvProgress: TextView? = null
-
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     setContentView(R.layout.activity_transitions_object)
-    bluredImg = findViewById(R.id.blured_img)
-    originImg = findViewById(R.id.origin_img)
-    seekBar = findViewById(R.id.seek_bar)
-    tvProgress = findViewById(R.id.progress)
   }
 
   override fun onPostCreate(savedInstanceState: Bundle?) {
@@ -34,8 +24,8 @@ class TransitionsObjectActivity : AppCompatActivity() {
     val tempBitmap = BitmapFactory.decodeResource(resources, R.mipmap.image_big)
     val finalBitmap = BlurBitmap.blur(this, tempBitmap)
 
-    bluredImg!!.setImageBitmap(finalBitmap)
-    originImg!!.setImageBitmap(tempBitmap)
+    blured_img.setImageBitmap(finalBitmap)
+    origin_img.setImageBitmap(tempBitmap)
 
     setSeekBar()
   }
@@ -44,11 +34,11 @@ class TransitionsObjectActivity : AppCompatActivity() {
    * 处理seekBar滑动事件
    */
   private fun setSeekBar() {
-    seekBar!!.max = 100
-    seekBar!!.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
+    seek_bar.max = 100
+    seek_bar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
       override fun onProgressChanged(seekBar: SeekBar, progress: Int, fromUser: Boolean) {
-        originImg!!.imageAlpha = (255 - progress * 2.55).toInt()
-        tvProgress!!.text = progress.toString()
+        origin_img.imageAlpha = (255 - progress * 2.55).toInt()
+        tv_progress.text = progress.toString()
       }
 
       override fun onStartTrackingTouch(seekBar: SeekBar) {
