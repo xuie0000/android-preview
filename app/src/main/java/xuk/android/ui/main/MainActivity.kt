@@ -22,6 +22,7 @@ import pub.devrel.easypermissions.AfterPermissionGranted
 import pub.devrel.easypermissions.EasyPermissions
 import xuk.android.R
 import xuk.android.ui.coordinator.CoordinatorLayoutActivity
+import xuk.android.ui.pager2.PageActivity
 import xuk.android.ui.palette.PaletteActivity
 import xuk.android.util.Utils
 import xuk.android.util.log
@@ -125,8 +126,12 @@ class MainActivity : AppCompatActivity(), EasyPermissions.PermissionCallbacks {
         startPalette()
         true
       }
-      item.itemId == R.id.action_coordinatorLayout -> {
+      item.itemId == R.id.action_coordinator_layout -> {
         startCoordinatorLayout()
+        true
+      }
+      item.itemId == R.id.action_view_pager_2 -> {
+        startViewPager2()
         true
       }
       else -> NavigationUI.onNavDestinationSelected(item, navController) || super.onOptionsItemSelected(item)
@@ -139,6 +144,10 @@ class MainActivity : AppCompatActivity(), EasyPermissions.PermissionCallbacks {
 
   private fun startCoordinatorLayout() {
     startActivity(Intent(this, CoordinatorLayoutActivity::class.java))
+  }
+
+  private fun startViewPager2() {
+    startActivity(Intent(this, PageActivity::class.java))
   }
 
   companion object {

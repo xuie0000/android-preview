@@ -19,12 +19,16 @@
     <string name="action_day_night_no">Day Mode</string>
     <string name="bottom_sheet_content">Bottom Sheet Content</string>
     <string name="bottom_sheet_peek">Bottom Sheet Peek</string>
-    <string name="coordinatorlayout">CoordinatorLayout</string>
+    <string name="coordinator_layout">CoordinatorLayout</string>
+    <string name="view_pager_2">ViewPager2</string>
     <string name="diff_util">DiffUtil</string>
     <string name="axis">时间轴(ItemDecoration)</string>
     <string name="action_share">分享</string>
 
     <string name="pref_key_transition_time" translatable="false">pref_key_transition_time</string>
+
+    <string name="tab_text_1">Tab 1</string>
+    <string name="tab_text_2">Tab 2</string>
 
 
 </resources>

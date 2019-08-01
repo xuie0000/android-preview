@@ -15,6 +15,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.DayNight.NoActionBar">
+        <activity android:name=".ui.pager2.PageActivity"></activity>
         <activity
             android:name=".ui.main.MainActivity"
             android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize">
@@ -28,7 +29,7 @@
         <activity
             android:name=".ui.main.TransitionsObjectActivity"
             android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"
-            android:parentActivityName="xuk.android.ui.main.MainActivity">
+            android:parentActivityName=".ui.main.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.CREATE_SHORTCUT" />
             </intent-filter>
@@ -46,7 +47,6 @@
             android:authorities="com.xuie.android.data.content.provider"
             android:enabled="true"
             android:exported="false" />
-
     </application>
 
 </manifest>
