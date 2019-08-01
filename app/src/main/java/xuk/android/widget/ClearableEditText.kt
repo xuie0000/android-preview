@@ -13,7 +13,7 @@ import androidx.core.content.ContextCompat
 import androidx.core.graphics.drawable.DrawableCompat
 
 /**
- * @author xuie
+ * @author Jie Xu
  */
 class ClearableEditText : AppCompatEditText, View.OnTouchListener, View.OnFocusChangeListener, TextWatcher {
 

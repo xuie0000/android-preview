@@ -2,11 +2,8 @@ package xuk.android.ui.recycler.discrete
 
 import android.content.Context
 import android.content.SharedPreferences
-
 import xuk.android.App
 import xuk.android.R
-
-import java.util.Arrays
 
 /**
  *
@@ -18,7 +15,7 @@ class Shop private constructor() {
   private val storage: SharedPreferences
 
   val data: List<Item>
-    get() = Arrays.asList(
+    get() = listOf(
         Item(1, "Everyday Candle", "$12.00 USD", R.mipmap.one),
         Item(2, "Small Porcelain Bowl", "$50.00 USD", R.mipmap.two),
         Item(3, "Favourite Board", "$265.00 USD", R.mipmap.three),
@@ -27,7 +24,7 @@ class Shop private constructor() {
     )
 
   init {
-    storage = App.context!!.getSharedPreferences(STORAGE, Context.MODE_PRIVATE)
+    storage = App.context.getSharedPreferences(STORAGE, Context.MODE_PRIVATE)
   }
 
   fun isRated(itemId: Int): Boolean {

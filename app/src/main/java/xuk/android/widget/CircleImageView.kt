@@ -8,7 +8,7 @@ import android.util.AttributeSet
 import androidx.appcompat.widget.AppCompatImageView
 
 /**
- * @author xuie
+ * @author Jie Xu
  */
 class CircleImageView : AppCompatImageView {
   private val mBorderThickness = 0

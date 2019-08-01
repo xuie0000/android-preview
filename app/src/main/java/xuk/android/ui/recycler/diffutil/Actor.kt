@@ -1,7 +1,7 @@
 package xuk.android.ui.recycler.diffutil
 
 /**
- * @author xuie
+ * @author Jie Xu
  */
 class Actor(val id: Int, val name: String?, val rating: Int, val yearOfBirth: Int) {
 

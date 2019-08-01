@@ -12,7 +12,7 @@ import xuk.android.R
 import java.util.ArrayList
 
 /**
- * @author xuie
+ * @author Jie Xu
  */
 class ActorAdapter(personList: List<Actor>) : RecyclerView.Adapter<ActorAdapter.ViewHolder>() {
 

@@ -5,7 +5,7 @@ import android.content.SharedPreferences
 import android.preference.PreferenceManager
 
 /**
- * @author xuie
+ * @author Jie Xu
  * @date 17-1-18
  */
 object PreferenceUtils {

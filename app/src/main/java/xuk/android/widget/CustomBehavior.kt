@@ -17,7 +17,7 @@ import xuk.android.R
 
 /**
  *
- * @author xuie
+ * @author Jie Xu
  * @date 16-9-6
  * From Drakeet <drakeet.me></drakeet.me>@gmail.com> Meizhi
  */

@@ -6,10 +6,11 @@ import android.renderscript.Allocation
 import android.renderscript.Element
 import android.renderscript.RenderScript
 import android.renderscript.ScriptIntrinsicBlur
+import kotlin.math.roundToInt
 
 /**
  *
- * @author xuie
+ * @author Jie Xu
  * @date 16-8-25
  * http://www.jcodecraeer.com/a/anzhuokaifa/androidkaifa/2016/0816/6543.html
  * https://developer.android.com/guide/topics/renderscript/compute.html
@@ -34,8 +35,8 @@ object BlurBitmap {
    */
   fun blur(context: Context, image: Bitmap): Bitmap {
     // 计算图片缩小后的长宽
-    val width = Math.round(image.width * BITMAP_SCALE)
-    val height = Math.round(image.height * BITMAP_SCALE)
+    val width = (image.width * BITMAP_SCALE).roundToInt()
+    val height = (image.height * BITMAP_SCALE).roundToInt()
 
     // 将缩小后的图片做为预渲染的图片。
     val inputBitmap = Bitmap.createScaledBitmap(image, width, height, false)

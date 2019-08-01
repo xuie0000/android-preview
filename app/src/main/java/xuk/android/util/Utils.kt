@@ -7,7 +7,7 @@ import android.provider.MediaStore
 
 /**
  *
- * @author xuie
+ * @author Jie Xu
  * @date 17-2-9
  */
 

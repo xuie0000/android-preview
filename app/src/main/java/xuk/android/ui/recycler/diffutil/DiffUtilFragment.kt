@@ -17,7 +17,7 @@ import xuk.android.R
 /**
  * https://github.com/mrmike/DiffUtil-sample
  *
- * @author xuie
+ * @author Jie Xu
  */
 class DiffUtilFragment : Fragment() {
   private var adapter: ActorAdapter? = null

@@ -9,9 +9,10 @@ import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 
 /**
- * @author xuie
- * @date 17-8-9
  * http://www.jianshu.com/p/9a796bb23a47
+ *
+ * @author Jie Xu
+ * @date 17-8-9
  */
 
 class AxisItemDecoration : RecyclerView.ItemDecoration() {
