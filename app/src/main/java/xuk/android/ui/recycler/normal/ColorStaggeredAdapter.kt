@@ -34,9 +34,9 @@ class ColorStaggeredAdapter(context: Context, cursor: Cursor?) : ColorAdapter(co
     }
     val vh = viewHolder as ColorStaggeredViewHolder
 
-    vh.title.text = cursor.getString(ColorAdapter.NAME_INDEX)
-    vh.subText.text = cursor.getString(ColorAdapter.NAME_INDEX)
-    vh.card.setCardBackgroundColor(cursor.getInt(ColorAdapter.COLOR_INDEX))
+    vh.title.text = cursor.getString(NAME_INDEX)
+    vh.subText.text = cursor.getString(NAME_INDEX)
+    vh.card.setCardBackgroundColor(cursor.getInt(COLOR_INDEX))
     startAnimation(vh.itemView)
   }
 
@@ -51,7 +51,6 @@ class ColorStaggeredAdapter(context: Context, cursor: Cursor?) : ColorAdapter(co
   }
 
   companion object {
-    private const val TAG = "ColorStaggeredAdapter"
     private const val ITEM_TYPE_NORMAL = 0
     private const val ITEM_TYPE_LARGER = 1
   }

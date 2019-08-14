@@ -128,14 +128,13 @@ class NormalFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
     }
 
     when (type) {
-      NormalFragment.LayoutManagerType.GRID_VER_MANAGER -> if (currentItemType != ItemType.STAGGERED) {
+      LayoutManagerType.GRID_VER_MANAGER -> if (currentItemType != ItemType.STAGGERED) {
         layoutManager = GridLayoutManager(activity, SPAN_COUNT)
       } else {
         layoutManager = StaggeredGridLayoutManager(SPAN_COUNT, StaggeredGridLayoutManager.VERTICAL)
       }
-      NormalFragment.LayoutManagerType.LINEAR_VER_MANAGER -> layoutManager = LinearLayoutManager(activity)
-      NormalFragment.LayoutManagerType.LINEAR_HOR_MANAGER -> layoutManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
-      else -> layoutManager = LinearLayoutManager(activity)
+      LayoutManagerType.LINEAR_VER_MANAGER -> layoutManager = LinearLayoutManager(activity)
+      LayoutManagerType.LINEAR_HOR_MANAGER -> layoutManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
     }
 
     recyclerView!!.layoutManager = layoutManager
