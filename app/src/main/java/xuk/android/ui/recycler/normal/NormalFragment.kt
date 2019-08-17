@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
+import kotlinx.android.synthetic.main.fragment_normal.*
 import xuk.android.R
 import xuk.android.provider.ColorContract
 import xuk.android.ui.adapter.MarginDecoration
@@ -22,26 +23,24 @@ import java.util.*
  */
 class NormalFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
 
-  private var recyclerView: RecyclerView? = null
   private var currentLayoutManagerType = LayoutManagerType.GRID_VER_MANAGER
   private var currentItemType = ItemType.STAGGERED
-  private var colorAdapter: ColorAdapter? = null
-  private var colorStaggeredAdapter: ColorAdapter? = null
+  private lateinit var colorAdapter: ColorAdapter
+  private lateinit var colorStaggeredAdapter: ColorAdapter
 
+  /**
+   * Grid ver manager layout manager type.
+   */
   private enum class LayoutManagerType {
-
-    /**
-     * Grid ver manager layout manager type.
-     */
     GRID_VER_MANAGER,
     LINEAR_VER_MANAGER,
     LINEAR_HOR_MANAGER
   }
 
+  /**
+   * Single item type.
+   */
   private enum class ItemType {
-    /**
-     * Single item type.
-     */
     SINGLE,
     STAGGERED
   }
@@ -51,10 +50,12 @@ class NormalFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
     setHasOptionsMenu(true)
   }
 
-  override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-    val rootView = inflater.inflate(R.layout.fragment_normal, container, false)
-    recyclerView = rootView.findViewById(R.id.recyclerView)
-    return rootView
+  override fun onCreateView(
+      inflater: LayoutInflater,
+      container: ViewGroup?,
+      savedInstanceState: Bundle?
+  ): View? {
+    return inflater.inflate(R.layout.fragment_normal, container, false)
   }
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -62,12 +63,12 @@ class NormalFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
     if (savedInstanceState != null) {
       currentLayoutManagerType = savedInstanceState.getSerializable(KEY_LAYOUT_MANAGER) as LayoutManagerType
     }
-    setRecyclerViewLayoutManager(currentLayoutManagerType)
-    recyclerView!!.addItemDecoration(MarginDecoration())
-
     colorAdapter = ColorAdapter(context!!, null)
     colorStaggeredAdapter = ColorStaggeredAdapter(context!!, null)
-    recyclerView!!.adapter = colorStaggeredAdapter
+
+    setRecyclerViewLayoutManager(currentLayoutManagerType)
+    recyclerView.addItemDecoration(MarginDecoration())
+    recyclerView.adapter = colorStaggeredAdapter
   }
 
   override fun onResume() {
@@ -118,9 +119,9 @@ class NormalFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
   private fun setRecyclerViewLayoutManager(type: LayoutManagerType) {
     // 记录切换前第一个可视视图位置
     var firstPosition = 0
-    var layoutManager: RecyclerView.LayoutManager? = recyclerView!!.layoutManager
+    var layoutManager: RecyclerView.LayoutManager? = recyclerView.layoutManager
     if (layoutManager is LinearLayoutManager) {
-      firstPosition = (recyclerView!!.layoutManager as LinearLayoutManager).findFirstCompletelyVisibleItemPosition()
+      firstPosition = (recyclerView.layoutManager as LinearLayoutManager).findFirstCompletelyVisibleItemPosition()
     } else if (layoutManager is StaggeredGridLayoutManager) {
       val firstPositions = IntArray(layoutManager.spanCount)
       layoutManager.findFirstCompletelyVisibleItemPositions(firstPositions)
@@ -137,9 +138,9 @@ class NormalFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
       LayoutManagerType.LINEAR_HOR_MANAGER -> layoutManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
     }
 
-    recyclerView!!.layoutManager = layoutManager
-    recyclerView!!.scrollToPosition(firstPosition)
-    recyclerView!!.isNestedScrollingEnabled = false
+    recyclerView.layoutManager = layoutManager
+    recyclerView.scrollToPosition(firstPosition)
+    recyclerView.isNestedScrollingEnabled = false
   }
 
   private fun findMax(lastPositions: IntArray): Int {
@@ -189,7 +190,7 @@ class NormalFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
   }
 
   private fun refreshAdapter(adapter: RecyclerView.Adapter<*>?) {
-    recyclerView!!.adapter = adapter
+    recyclerView.adapter = adapter
   }
 
   companion object {

@@ -30,7 +30,7 @@ class AxisFragment : Fragment() {
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     super.onViewCreated(view, savedInstanceState)
 
-    recycler_view.apply {
+    recyclerView.apply {
       adapter = AxisAdapter()
       layoutManager = LinearLayoutManager(context)
       addItemDecoration(AxisItemDecoration())

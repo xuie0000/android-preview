@@ -18,7 +18,7 @@
             app:popExitAnim="@anim/slide_out_right" />
         <action
             android:id="@+id/action_to_recycler"
-            app:destination="@id/recycler_view"
+            app:destination="@id/recyclerView"
             app:enterAnim="@anim/slide_in_right"
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
@@ -30,7 +30,7 @@
         android:label="fragment_test"
         tools:layout="@layout/fragment_test" />
     <fragment
-        android:id="@+id/recycler_view"
+        android:id="@+id/recyclerView"
         android:name="xuk.android.ui.recycler.RecyclerViewFragment"
         android:label="fragment_recycler"
         tools:layout="@layout/fragment_recycler_view">
