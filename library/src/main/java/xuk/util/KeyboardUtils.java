@@ -114,6 +114,15 @@ public final class KeyboardUtils {
     }
 
     /**
+     * 隐藏输入法软盘
+     *
+     * @param activity current atc
+     */
+    public static void quitHideSoftInput(Activity activity) {
+        activity.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
+    }
+
+    /**
      * Hide the soft input.
      *
      * @param activity The activity.
