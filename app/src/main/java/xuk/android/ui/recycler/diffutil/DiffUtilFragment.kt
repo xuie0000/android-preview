@@ -1,17 +1,10 @@
 package xuk.android.ui.recycler.diffutil
 
-
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.Menu
-import android.view.MenuInflater
-import android.view.MenuItem
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-
+import kotlinx.android.synthetic.main.fragment_diff_util.*
 import xuk.android.R
 
 /**
@@ -20,22 +13,29 @@ import xuk.android.R
  * @author Jie Xu
  */
 class DiffUtilFragment : Fragment() {
-  private var adapter: ActorAdapter? = null
+  private lateinit var actorAdapter: ActorAdapter
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     setHasOptionsMenu(true)
   }
 
-  override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-    val view = inflater.inflate(R.layout.fragment_diff_util, container, false)
+  override fun onCreateView(
+      inflater: LayoutInflater,
+      container: ViewGroup?,
+      savedInstanceState: Bundle?
+  ): View? {
+    return inflater.inflate(R.layout.fragment_diff_util, container, false)
+  }
 
-    val recyclerView = view.findViewById<RecyclerView>(R.id.recycler_view)
-    adapter = ActorAdapter(ActorRepository.actorListSortedByRating)
-    recyclerView.layoutManager = LinearLayoutManager(activity)
-    recyclerView.adapter = adapter
-    recyclerView.isNestedScrollingEnabled = false
-    return view
+  override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+    super.onViewCreated(view, savedInstanceState)
+    val actorAdapter = ActorAdapter(ActorRepository.actorListSortedByRating)
+    recyclerView.apply {
+      layoutManager = LinearLayoutManager(activity)
+      adapter = actorAdapter
+      isNestedScrollingEnabled = false
+    }
   }
 
   override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -47,10 +47,9 @@ class DiffUtilFragment : Fragment() {
 
   override fun onOptionsItemSelected(item: MenuItem): Boolean {
     when (item.itemId) {
-      R.id.sort_by_name -> adapter!!.swapItems(ActorRepository.actorListSortedByName)
-      R.id.sort_by_rating -> adapter!!.swapItems(ActorRepository.actorListSortedByRating)
-      R.id.sort_by_birth -> adapter!!.swapItems(ActorRepository.actorListSortedByYearOfBirth)
-      else -> adapter!!.swapItems(ActorRepository.actorListSortedByName)
+      R.id.sort_by_name -> actorAdapter.swapItems(ActorRepository.actorListSortedByName)
+      R.id.sort_by_rating -> actorAdapter.swapItems(ActorRepository.actorListSortedByRating)
+      R.id.sort_by_birth -> actorAdapter.swapItems(ActorRepository.actorListSortedByYearOfBirth)
     }
     return super.onOptionsItemSelected(item)
   }
