@@ -22,8 +22,8 @@ import xuk.android.R
 import xuk.android.ui.coordinator.CoordinatorLayoutActivity
 import xuk.android.ui.pager2.PageActivity
 import xuk.android.ui.palette.PaletteActivity
-import xuk.android.util.Utils
 import xuk.android.util.log
+import xuk.android.util.screenShotToUri
 
 /**
  * @author Jie Xu
@@ -68,7 +68,11 @@ class MainActivity : AppCompatActivity(), EasyPermissions.PermissionCallbacks {
     menuInflater.inflate(R.menu.main, menu)
     val item = menu.findItem(R.id.action_share)
     shareActionProvider = MenuItemCompat.getActionProvider(item) as ShareActionProvider
-    shareActionProvider.setShareIntent(Utils.getDefaultIntent(this))
+    shareActionProvider.setShareIntent( Intent().apply {
+      action = Intent.ACTION_SEND
+      putExtra(Intent.EXTRA_STREAM, this@MainActivity.screenShotToUri())
+      type = "image/*"
+    })
     return true
   }
 

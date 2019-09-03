@@ -13,7 +13,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import xuk.android.R
-import xuk.android.util.ScreenUtils
+import xuk.android.util.dp2px
 import xuk.android.util.log
 
 /**
@@ -61,7 +61,7 @@ class OneActivity : AppCompatActivity() {
     bottomSheetBehavior!!.state = BottomSheetBehavior.STATE_HIDDEN
 
     // set the peek height
-    bottomSheetBehavior!!.peekHeight = ScreenUtils.dpToPx(80f).toInt()
+    bottomSheetBehavior!!.peekHeight = dp2px(80f)
 
     // set hideable or not
     bottomSheetBehavior!!.isHideable = false
@@ -77,14 +77,12 @@ class OneActivity : AppCompatActivity() {
       }
     })
 
-    fabButton.setOnClickListener { v ->
+    fabButton.setOnClickListener {
       bottomSheetBehavior!!.isHideable = true
-      if (bottomSheetBehavior!!.state == BottomSheetBehavior.STATE_EXPANDED) {
-        bottomSheetBehavior!!.setState(BottomSheetBehavior.STATE_COLLAPSED)
-      } else if (bottomSheetBehavior!!.state == BottomSheetBehavior.STATE_COLLAPSED) {
-        bottomSheetBehavior!!.setState(BottomSheetBehavior.STATE_HIDDEN)
-      } else if (bottomSheetBehavior!!.state == BottomSheetBehavior.STATE_HIDDEN) {
-        bottomSheetBehavior!!.state = BottomSheetBehavior.STATE_COLLAPSED
+      when (bottomSheetBehavior!!.state) {
+        BottomSheetBehavior.STATE_EXPANDED -> bottomSheetBehavior!!.setState(BottomSheetBehavior.STATE_COLLAPSED)
+        BottomSheetBehavior.STATE_COLLAPSED -> bottomSheetBehavior!!.setState(BottomSheetBehavior.STATE_HIDDEN)
+        BottomSheetBehavior.STATE_HIDDEN -> bottomSheetBehavior!!.state = BottomSheetBehavior.STATE_COLLAPSED
       }
       bottomSheetBehavior!!.setHideable(false)
     }

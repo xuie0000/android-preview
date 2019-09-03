@@ -4,10 +4,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import kotlinx.android.synthetic.main.fragment_page.*
 import xuk.android.R
 
 class PageFragment : Fragment() {
@@ -26,30 +26,22 @@ class PageFragment : Fragment() {
 
   private lateinit var viewModel: PageViewModel
 
-  override fun onCreate(savedInstanceState: Bundle?) {
-    super.onCreate(savedInstanceState)
-    viewModel = ViewModelProviders.of(this).get(PageViewModel::class.java).apply {
-      setIndex(arguments?.getInt(ARG_SECTION_NUMBER) ?: 1)
-    }
-  }
-
   override fun onCreateView(
       inflater: LayoutInflater,
       container: ViewGroup?,
       savedInstanceState: Bundle?
   ): View? {
-    val root = inflater.inflate(R.layout.fragment_page, container, false)
-    val textView: TextView = root.findViewById(R.id.section_label)
-    viewModel.text.observe(this, Observer<String> {
-      textView.text = it
-    })
-    return root
+    return inflater.inflate(R.layout.fragment_page, container, false)
   }
 
-  override fun onActivityCreated(savedInstanceState: Bundle?) {
-    super.onActivityCreated(savedInstanceState)
+  override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+    super.onViewCreated(view, savedInstanceState)
     viewModel = ViewModelProviders.of(this).get(PageViewModel::class.java).apply {
       setIndex(arguments?.getInt(ARG_SECTION_NUMBER) ?: 1)
     }
+    viewModel.text.observe(this, Observer<String> {
+      section_label.text = it
+    })
   }
+
 }
