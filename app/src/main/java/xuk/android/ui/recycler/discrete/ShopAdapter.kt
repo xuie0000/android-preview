@@ -22,9 +22,6 @@ class ShopAdapter(private val data: List<Item>) : RecyclerView.Adapter<ShopAdapt
   }
 
   override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-    //        Glide.with(holder.itemView.getContext())
-    //                .load(data.get(position).getImage())
-    //                .into(holder.image);
     holder.image.setImageResource(data[position].image)
   }
 

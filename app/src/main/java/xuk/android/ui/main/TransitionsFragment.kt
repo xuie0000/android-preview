@@ -21,6 +21,8 @@ import kotlinx.android.synthetic.main.fragment_transitions.*
 import xuk.android.R
 import xuk.android.util.log
 import java.util.*
+import kotlin.math.hypot
+import kotlin.math.max
 
 /**
  * A simple [Fragment] subclass.
@@ -41,13 +43,13 @@ class TransitionsFragment : Fragment() {
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     super.onViewCreated(view, savedInstanceState)
 
-    make_scene_transition_animation.setOnClickListener { v ->
+    make_scene_transition_animation.setOnClickListener {
       val intent = Intent(activity, OneActivity::class.java)
       val options = ActivityOptions.makeSceneTransitionAnimation(activity, make_scene_transition_animation, "share01")
       ActivityCompat.startActivity(Objects.requireNonNull<FragmentActivity>(activity), intent, options.toBundle())
     }
 
-    fab_button.setOnClickListener { v ->
+    fab_button.setOnClickListener {
       log { "fab_button" }
       val intent = Intent(activity, OneActivity::class.java)
       val options = ActivityOptions.makeSceneTransitionAnimation(activity,
@@ -59,18 +61,18 @@ class TransitionsFragment : Fragment() {
       ActivityCompat.startActivity(Objects.requireNonNull<FragmentActivity>(activity), intent, options.toBundle())
     }
 
-    explode!!.setOnClickListener { v -> makeSceneTransitionAnimationNoParameter(0) }
-    slide!!.setOnClickListener { v -> makeSceneTransitionAnimationNoParameter(1) }
-    fade!!.setOnClickListener { v -> makeSceneTransitionAnimationNoParameter(2) }
+    explode!!.setOnClickListener { makeSceneTransitionAnimationNoParameter(0) }
+    slide!!.setOnClickListener { makeSceneTransitionAnimationNoParameter(1) }
+    fade!!.setOnClickListener { makeSceneTransitionAnimationNoParameter(2) }
 
-    over_shoot.setOnClickListener { v ->
+    over_shoot.setOnClickListener {
       log { "over_shoot" }
       val intent = Intent(activity, TransitionsObjectActivity::class.java)
       val options = ActivityOptions.makeSceneTransitionAnimation(activity, over_shoot, "shareOverShoot")
       ActivityCompat.startActivity(Objects.requireNonNull<FragmentActivity>(activity), intent, options.toBundle())
     }
 
-    cir_reveal_btn.setOnClickListener { v ->
+    cir_reveal_btn.setOnClickListener {
       // http://blog.jobbole.com/77015/ 圆形显示
       if (cir_reveal_dst.visibility != View.VISIBLE) {
         val anim = ViewAnimationUtils.createCircularReveal(
@@ -78,7 +80,7 @@ class TransitionsFragment : Fragment() {
             cir_reveal_dst.width / 2,
             cir_reveal_dst.height / 2,
             0f,
-            Math.max(cir_reveal_dst.width, cir_reveal_dst.height).toFloat())
+            max(cir_reveal_dst.width, cir_reveal_dst.height).toFloat())
 
         anim.addListener(object : AnimatorListenerAdapter() {
           override fun onAnimationStart(animation: Animator) {
@@ -93,7 +95,7 @@ class TransitionsFragment : Fragment() {
             cir_reveal_dst,
             cir_reveal_dst.width / 2,
             cir_reveal_dst.height / 2,
-            Math.max(cir_reveal_dst.width, cir_reveal_dst.height).toFloat(),
+            max(cir_reveal_dst.width, cir_reveal_dst.height).toFloat(),
             0f)
 
         anim.addListener(object : AnimatorListenerAdapter() {
@@ -107,21 +109,20 @@ class TransitionsFragment : Fragment() {
       }
     }
 
-    cir_reveal_normal.setOnClickListener { v ->
+    cir_reveal_normal.setOnClickListener {
       val mNormalAnimator = ViewAnimationUtils.createCircularReveal(
           cir_reveal_normal,
           cir_reveal_normal.width / 2,
           cir_reveal_normal.height / 2,
           0f,
-          Math.max(cir_reveal_normal.width, cir_reveal_normal.height).toFloat())
+          max(cir_reveal_normal.width, cir_reveal_normal.height).toFloat())
       mNormalAnimator.interpolator = AccelerateInterpolator()
       mNormalAnimator.start()
     }
 
-    cir_reveal_hypot.setOnClickListener { v ->
+    cir_reveal_hypot.setOnClickListener {
       //勾股定理得到斜边长度
-      val endRadius = Math.hypot(cir_reveal_hypot.width.toDouble(),
-          cir_reveal_hypot.height.toDouble()).toFloat()
+      val endRadius = hypot(cir_reveal_hypot.width.toDouble(), cir_reveal_hypot.height.toDouble()).toFloat()
       val mHypotAnimator = ViewAnimationUtils.createCircularReveal(cir_reveal_hypot,
           cir_reveal_hypot.width, 0, 0f, endRadius)
       mHypotAnimator.interpolator = AccelerateDecelerateInterpolator()

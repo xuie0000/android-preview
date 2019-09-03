@@ -75,6 +75,6 @@ class AxisItemDecoration : RecyclerView.ItemDecoration() {
   }
 
   companion object {
-    private val OUT_BOTTOM_HEIGHT = 2
+    private const val OUT_BOTTOM_HEIGHT = 2
   }
 }

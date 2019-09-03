@@ -34,7 +34,7 @@ class TestFragment : Fragment() {
         Objects.requireNonNull<FragmentActivity>(activity),
         MaterialDesignIconic.Icon.gmi_view_carousel).color(Color.BLUE).sizeDp(24)
     )
-    shake_view.setOnClickListener { v ->
+    shake_view.setOnClickListener {
       shake_view.startAnimation(AnimationUtils.loadAnimation(activity, R.anim.shake))
     }
   }
