@@ -1,9 +1,7 @@
 package xuk.android.ui.recycler
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.annotation.LayoutRes
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
@@ -18,7 +16,7 @@ import xuk.android.R
  *
  * @author Jie Xu
  */
-class RecyclerViewFragment : Fragment() {
+class RecyclerViewFragment : Fragment(R.layout.fragment_recycler_view) {
 
   private var members: List<String> = arrayListOf(
       "样例",
@@ -28,8 +26,8 @@ class RecyclerViewFragment : Fragment() {
       "分页Paging"
   )
 
-  override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-    val view = inflater.inflate(R.layout.fragment_recycler_view, container, false)
+  override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+    super.onViewCreated(view, savedInstanceState)
 
     val listAdapter = ListAdapter(android.R.layout.simple_list_item_1)
     listAdapter.setOnItemClickListener { _, _, position ->
@@ -46,8 +44,6 @@ class RecyclerViewFragment : Fragment() {
       layoutManager = LinearLayoutManager(context)
       adapter = listAdapter
     }
-
-    return view
   }
 
   private inner class ListAdapter
