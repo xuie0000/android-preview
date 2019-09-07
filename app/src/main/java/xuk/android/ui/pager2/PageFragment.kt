@@ -10,7 +10,7 @@ import androidx.lifecycle.ViewModelProviders
 import kotlinx.android.synthetic.main.fragment_page.*
 import xuk.android.R
 
-class PageFragment : Fragment() {
+class PageFragment : Fragment(R.layout.fragment_page) {
 
   companion object {
     private const val ARG_SECTION_NUMBER = "section_number"
@@ -25,14 +25,6 @@ class PageFragment : Fragment() {
   }
 
   private lateinit var viewModel: PageViewModel
-
-  override fun onCreateView(
-      inflater: LayoutInflater,
-      container: ViewGroup?,
-      savedInstanceState: Bundle?
-  ): View? {
-    return inflater.inflate(R.layout.fragment_page, container, false)
-  }
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     super.onViewCreated(view, savedInstanceState)

@@ -12,20 +12,12 @@ import xuk.android.R
  *
  * @author Jie Xu
  */
-class DiffUtilFragment : Fragment() {
+class DiffUtilFragment : Fragment(R.layout.fragment_diff_util) {
   private lateinit var actorAdapter: ActorAdapter
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     setHasOptionsMenu(true)
-  }
-
-  override fun onCreateView(
-      inflater: LayoutInflater,
-      container: ViewGroup?,
-      savedInstanceState: Bundle?
-  ): View? {
-    return inflater.inflate(R.layout.fragment_diff_util, container, false)
   }
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

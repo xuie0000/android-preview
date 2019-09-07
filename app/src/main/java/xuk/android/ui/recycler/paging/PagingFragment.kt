@@ -17,17 +17,9 @@ import kotlinx.android.synthetic.main.fragment_paging.*
 /**
  * A simple [Fragment] subclass.
  */
-class PagingFragment : Fragment() {
+class PagingFragment : Fragment(R.layout.fragment_paging) {
   private val viewModel by lazy(LazyThreadSafetyMode.NONE) {
     ViewModelProviders.of(this).get(CheeseViewModel::class.java)
-  }
-
-  override fun onCreateView(
-      inflater: LayoutInflater,
-      container: ViewGroup?,
-      savedInstanceState: Bundle?
-  ): View? {
-    return inflater.inflate(R.layout.fragment_paging, container, false)
   }
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

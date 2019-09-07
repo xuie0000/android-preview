@@ -18,15 +18,8 @@ import xuk.android.R
  *
  * @author Jie Xu
  */
-class DiscreteFragment : Fragment(), DiscreteScrollView.OnItemChangedListener<RecyclerView.ViewHolder> {
-
-  override fun onCreateView(
-      inflater: LayoutInflater,
-      container: ViewGroup?,
-      savedInstanceState: Bundle?
-  ): View? {
-    return inflater.inflate(R.layout.fragment_discrete, container, false)
-  }
+class DiscreteFragment : Fragment(R.layout.fragment_discrete),
+    DiscreteScrollView.OnItemChangedListener<RecyclerView.ViewHolder> {
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     super.onViewCreated(view, savedInstanceState)
