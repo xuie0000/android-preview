@@ -4,7 +4,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.annotation.LayoutRes
 import androidx.fragment.app.Fragment
-import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.BaseViewHolder
@@ -32,12 +32,12 @@ class RecyclerViewFragment : Fragment(R.layout.fragment_recycler_view) {
     val listAdapter = ListAdapter(android.R.layout.simple_list_item_1)
     listAdapter.setOnItemClickListener { _, _, position ->
       when (position) {
-        0 -> Navigation.findNavController(view).navigate(R.id.action_to_normal)
-        1 -> Navigation.findNavController(view).navigate(R.id.action_to_diff_util)
-        2 -> Navigation.findNavController(view).navigate(R.id.action_to_axis)
-        3 -> Navigation.findNavController(view).navigate(R.id.action_to_discrete)
-        4 -> Navigation.findNavController(view).navigate(R.id.action_to_paging)
-        else -> Navigation.findNavController(view).navigate(R.id.action_to_normal)
+        0 -> findNavController().navigate(R.id.action_to_normal)
+        1 -> findNavController().navigate(R.id.action_to_diff_util)
+        2 -> findNavController().navigate(R.id.action_to_axis)
+        3 -> findNavController().navigate(R.id.action_to_discrete)
+        4 -> findNavController().navigate(R.id.action_to_paging)
+        else -> throw Exception("no position")
       }
     }
     recyclerView.apply {
