@@ -12,12 +12,7 @@ import xuk.android.util.BlurBitmap
 /**
  * @author Jie Xu
  */
-class TransitionsObjectActivity : AppCompatActivity() {
-
-  override fun onCreate(savedInstanceState: Bundle?) {
-    super.onCreate(savedInstanceState)
-    setContentView(R.layout.activity_transitions_object)
-  }
+class TransitionsObjectActivity : AppCompatActivity(R.layout.activity_transitions_object) {
 
   override fun onPostCreate(savedInstanceState: Bundle?) {
     super.onPostCreate(savedInstanceState)

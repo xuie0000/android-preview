@@ -21,7 +21,7 @@ import java.util.*
 /**
  * @author Jie Xu
  */
-class NormalFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
+class NormalFragment : Fragment(R.layout.fragment_normal), LoaderManager.LoaderCallbacks<Cursor> {
 
   private var currentLayoutManagerType = LayoutManagerType.GRID_VER_MANAGER
   private var currentItemType = ItemType.STAGGERED
@@ -48,14 +48,6 @@ class NormalFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     setHasOptionsMenu(true)
-  }
-
-  override fun onCreateView(
-      inflater: LayoutInflater,
-      container: ViewGroup?,
-      savedInstanceState: Bundle?
-  ): View? {
-    return inflater.inflate(R.layout.fragment_normal, container, false)
   }
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

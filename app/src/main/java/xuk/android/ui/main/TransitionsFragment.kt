@@ -29,15 +29,7 @@ import kotlin.math.max
  *
  * @author Jie Xu
  */
-class TransitionsFragment : Fragment() {
-
-  override fun onCreateView(
-      inflater: LayoutInflater,
-      container: ViewGroup?,
-      savedInstanceState: Bundle?
-  ): View? {
-    return inflater.inflate(R.layout.fragment_transitions, container, false)
-  }
+class TransitionsFragment : Fragment(R.layout.fragment_transitions) {
 
   @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
