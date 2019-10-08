@@ -1,5 +1,4 @@
 include ':app', ':ktx'
 include ':library'
-include ':javalib'
 
 project(':library').name = 'util-tools'
