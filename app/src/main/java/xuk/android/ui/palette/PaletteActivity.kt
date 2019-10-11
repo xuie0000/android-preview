@@ -28,7 +28,7 @@ class PaletteActivity : AppCompatActivity() {
     toolbar.setTitle(R.string.palette)
     toolbar.setTitleTextColor(Color.WHITE)
     toolbar.navigationIcon = IconicsDrawable(this, "gmi_chevron_left").sizeDp(24).color(Color.WHITE)
-    toolbar.setNavigationOnClickListener { view -> finish() }
+    toolbar.setNavigationOnClickListener { finish() }
 
     val paletteViewPagerAdapter = PaletteViewPagerAdapter(supportFragmentManager)
     viewpager.adapter = paletteViewPagerAdapter
@@ -45,7 +45,8 @@ class PaletteActivity : AppCompatActivity() {
     })
   }
 
-  private inner class PaletteViewPagerAdapter internal constructor(fm: FragmentManager) : FragmentPagerAdapter(fm) {
+  private inner class PaletteViewPagerAdapter internal constructor(fm: FragmentManager)
+    : FragmentPagerAdapter(fm) {
 
     internal val pageCount = 5
     private val tabTitles = arrayOf("主页", "分享", "收藏", "关注", "微博")

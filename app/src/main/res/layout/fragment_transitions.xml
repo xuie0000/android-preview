@@ -28,7 +28,7 @@
                 android:id="@+id/fab_button"
                 android:layout_width="56dp"
                 android:layout_height="56dp"
-                android:layout_alignLeft="@+id/make_scene_transition_animation"
+                android:layout_alignStart="@+id/make_scene_transition_animation"
                 android:layout_centerVertical="true"
                 android:layout_margin="5dp"
                 android:background="@drawable/_ripple_round"

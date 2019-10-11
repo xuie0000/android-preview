@@ -28,26 +28,16 @@ object ActorRepository {
   // Descending order
   val actorListSortedByRating: List<Actor>
     get() {
-      val actorList = originalActorList
-
-      Collections.sort(actorList) { a1, a2 -> a2.rating - a1.rating }
-
-      return actorList
+      return originalActorList.sortedBy { it.rating }
     }
 
   val actorListSortedByName: List<Actor>
     get() {
-      val actorList = originalActorList
-
-      Collections.sort(actorList) { a1, a2 -> a1.name!!.compareTo(a2.name!!) }
-      return actorList
+      return originalActorList.sortedBy { it.name }
     }
 
   val actorListSortedByYearOfBirth: List<Actor>
     get() {
-      val actorList = originalActorList
-
-      Collections.sort(actorList) { a1, a2 -> a1.yearOfBirth - a2.yearOfBirth }
-      return actorList
+      return originalActorList.sortedBy { it.yearOfBirth }
     }
 }// nop
