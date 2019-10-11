@@ -18,11 +18,7 @@
             app:popExitAnim="@anim/slide_out_right" />
         <action
             android:id="@+id/action_to_recycler"
-            app:destination="@id/recyclerView"
-            app:enterAnim="@anim/slide_in_right"
-            app:exitAnim="@anim/slide_out_left"
-            app:popEnterAnim="@anim/slide_in_left"
-            app:popExitAnim="@anim/slide_out_right" />
+            app:destination="@id/recyclerView" />
     </fragment>
     <fragment
         android:id="@+id/test"
@@ -36,39 +32,16 @@
         tools:layout="@layout/fragment_recycler_view">
         <action
             android:id="@+id/action_to_axis"
-            app:destination="@id/axis"
-            app:enterAnim="@anim/slide_in_right"
-            app:exitAnim="@anim/slide_out_left"
-            app:popEnterAnim="@anim/slide_in_left"
-            app:popExitAnim="@anim/slide_out_right" />
+            app:destination="@id/axis" />
         <action
             android:id="@+id/action_to_diff_util"
-            app:destination="@id/diffutil"
-            app:enterAnim="@anim/slide_in_right"
-            app:exitAnim="@anim/slide_out_left"
-            app:popEnterAnim="@anim/slide_in_left"
-            app:popExitAnim="@anim/slide_out_right" />
+            app:destination="@id/diff_util" />
         <action
             android:id="@+id/action_to_discrete"
-            app:destination="@id/discrete"
-            app:enterAnim="@anim/slide_in_right"
-            app:exitAnim="@anim/slide_out_left"
-            app:popEnterAnim="@anim/slide_in_left"
-            app:popExitAnim="@anim/slide_out_right" />
-        <action
-            android:id="@+id/action_to_normal"
-            app:destination="@id/normal"
-            app:enterAnim="@anim/slide_in_right"
-            app:exitAnim="@anim/slide_out_left"
-            app:popEnterAnim="@anim/slide_in_left"
-            app:popExitAnim="@anim/slide_out_right" />
+            app:destination="@id/discrete" />
         <action
             android:id="@+id/action_to_paging"
-            app:destination="@id/paging"
-            app:enterAnim="@anim/slide_in_right"
-            app:exitAnim="@anim/slide_out_left"
-            app:popEnterAnim="@anim/slide_in_left"
-            app:popExitAnim="@anim/slide_out_right" />
+            app:destination="@id/paging" />
     </fragment>
     <fragment
         android:id="@+id/axis"
@@ -76,7 +49,7 @@
         android:label="fragment_axis"
         tools:layout="@layout/fragment_axis" />
     <fragment
-        android:id="@+id/diffutil"
+        android:id="@+id/diff_util"
         android:name="xuk.android.ui.recycler.diffutil.DiffUtilFragment"
         android:label="fragment_diffutil"
         tools:layout="@layout/fragment_diff_util" />
@@ -85,11 +58,6 @@
         android:name="xuk.android.ui.recycler.discrete.DiscreteFragment"
         android:label="fragment_discrete"
         tools:layout="@layout/fragment_discrete" />
-    <fragment
-        android:id="@+id/normal"
-        android:name="xuk.android.ui.recycler.normal.NormalFragment"
-        android:label="fragment_normal"
-        tools:layout="@layout/fragment_normal" />
     <fragment
         android:id="@+id/paging"
         android:name="xuk.android.ui.recycler.paging.PagingFragment"

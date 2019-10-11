@@ -19,7 +19,6 @@ import xuk.android.R
 class RecyclerViewFragment : Fragment(R.layout.fragment_recycler_view) {
 
   private var members: List<String> = arrayListOf(
-      "样例",
       "DiffUtil",
       "ItemDecoration(时间轴)",
       "滑动缩放",
@@ -32,11 +31,10 @@ class RecyclerViewFragment : Fragment(R.layout.fragment_recycler_view) {
     val listAdapter = ListAdapter(android.R.layout.simple_list_item_1)
     listAdapter.setOnItemClickListener { _, _, position ->
       when (position) {
-        0 -> findNavController().navigate(R.id.action_to_normal)
-        1 -> findNavController().navigate(R.id.action_to_diff_util)
-        2 -> findNavController().navigate(R.id.action_to_axis)
-        3 -> findNavController().navigate(R.id.action_to_discrete)
-        4 -> findNavController().navigate(R.id.action_to_paging)
+        0 -> findNavController().navigate(R.id.action_to_diff_util)
+        1 -> findNavController().navigate(R.id.action_to_axis)
+        2 -> findNavController().navigate(R.id.action_to_discrete)
+        3 -> findNavController().navigate(R.id.action_to_paging)
         else -> throw Exception("no position")
       }
     }

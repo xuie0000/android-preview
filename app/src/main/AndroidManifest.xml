@@ -15,7 +15,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.DayNight.NoActionBar">
-        <activity android:name=".ui.pager2.PageActivity"></activity>
         <activity
             android:name=".ui.main.MainActivity"
             android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize">
@@ -41,12 +40,7 @@
         <activity android:name=".ui.palette.PaletteActivity" />
         <activity android:name=".ui.coordinator.CoordinatorLayoutActivity" />
         <activity android:name=".ui.main.OneActivity" />
-
-        <provider
-            android:name=".provider.ColorProvider"
-            android:authorities="com.xuie.android.data.content.provider"
-            android:enabled="true"
-            android:exported="false" />
+        <activity android:name=".ui.pager2.PageActivity" />
     </application>
 
 </manifest>
