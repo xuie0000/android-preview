@@ -60,12 +60,12 @@ android {
     productFlavors {
         Canary {
             manifestPlaceholders = [channel : "Canary",
-                                    app_name: "AndroidReview测试版",
+                                    app_name: "Review Debug",
                                     app_icon: "@mipmap/ic_launcher"]
         }
         Stage {
             manifestPlaceholders = [channel : "Stage",
-                                    app_name: "AndroidReview标准版",
+                                    app_name: "Review Release",
                                     app_icon: "@drawable/ic_stage"]
         }
     }

@@ -14,7 +14,7 @@ class PageActivity : AppCompatActivity() {
     setContentView(R.layout.activity_page)
 
     val sectionsPagerAdapter = SectionsPagerAdapter(this)
-    bar_title.text = resources.getString(R.string.app_name)
+    bar_title.text = getString(R.string.page2_title)
     view_pager.apply {
       adapter = sectionsPagerAdapter
       orientation = ViewPager2.ORIENTATION_HORIZONTAL
