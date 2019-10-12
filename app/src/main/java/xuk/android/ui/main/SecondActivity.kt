@@ -66,7 +66,7 @@ class SecondActivity : AppCompatActivity() {
     // set the peek height
     bottomSheetBehavior.peekHeight = dp2px(80f)
 
-    // set hideable or not
+    // set hide or not
     bottomSheetBehavior.isHideable = false
 
     // set callback for changes

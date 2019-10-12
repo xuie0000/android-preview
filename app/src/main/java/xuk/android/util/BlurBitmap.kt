@@ -9,9 +9,6 @@ import android.renderscript.ScriptIntrinsicBlur
 import kotlin.math.roundToInt
 
 /**
- *
- * @author Jie Xu
- * @date 16-8-25
  * http://www.jcodecraeer.com/a/anzhuokaifa/androidkaifa/2016/0816/6543.html
  * https://developer.android.com/guide/topics/renderscript/compute.html
  */

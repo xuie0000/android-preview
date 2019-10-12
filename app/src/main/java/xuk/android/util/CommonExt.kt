@@ -8,11 +8,6 @@ import android.net.Uri
 import android.provider.MediaStore
 import android.view.View
 
-/**
- * Created by luyao
- * on 2019/6/14 14:23
- */
-
 fun Context.dp2px(dp: Float): Int {
   val scale = resources.displayMetrics.density
   return (dp * scale + 0.5f).toInt()
@@ -39,12 +34,6 @@ val Context.screenWidth
 
 val Context.screenHeight
   get() = resources.displayMetrics.heightPixels
-
-fun Context.copyToClipboard(label: String, text: String) {
-  val cm = getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
-  val clipData = ClipData.newPlainText(label, text)
-  cm.primaryClip = clipData
-}
 
 fun Activity.screenShotToUri(): Uri {
   // https://medium.com/@shiveshmehta09/taking-screenshot-programmatically-using-pixelcopy-api-83c84643b02a

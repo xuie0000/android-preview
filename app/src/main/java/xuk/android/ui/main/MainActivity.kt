@@ -5,14 +5,14 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.ShareActionProvider
-import androidx.core.view.GravityCompat
 import androidx.core.view.MenuItemCompat
-import androidx.navigation.NavController
-import androidx.navigation.Navigation
-import androidx.navigation.ui.NavigationUI
+import androidx.navigation.findNavController
+import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.navigateUp
+import androidx.navigation.ui.setupActionBarWithNavController
+import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
@@ -29,23 +29,15 @@ import xuk.android.util.screenShotToUri
  * @author Jie Xu
  */
 class MainActivity : AppCompatActivity(), EasyPermissions.PermissionCallbacks {
-  private lateinit var shareActionProvider: ShareActionProvider
 
-  private lateinit var navController: NavController
+  private lateinit var appBarConfiguration: AppBarConfiguration
+  private lateinit var shareActionProvider: ShareActionProvider
 
   public override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     setContentView(R.layout.activity_main)
     log { "onCreate" }
-
-    navController = Navigation.findNavController(this, R.id.nav_host_fragment)
-
     setSupportActionBar(toolbar)
-
-    val toggle = ActionBarDrawerToggle(this, drawer_layout, toolbar,
-        R.string.navigation_drawer_open, R.string.navigation_drawer_close)
-    drawer_layout.addDrawerListener(toggle)
-    toggle.syncState()
 
     fab.setOnClickListener { v ->
       Snackbar.make(v, "Replace with your own action", Snackbar.LENGTH_LONG)
@@ -55,10 +47,13 @@ class MainActivity : AppCompatActivity(), EasyPermissions.PermissionCallbacks {
 //      }
     }
 
-    // Calls onNavDestinationSelected(MenuItem, NavController) when menu item selected
-    NavigationUI.setupWithNavController(nav_view, navController)
-    // Changes title, animates hamburger to back/up icon
-    NavigationUI.setupActionBarWithNavController(this, navController, drawer_layout)
+    val navController = findNavController(R.id.nav_host_fragment)
+    // Passing each menu ID as a set of Ids because each
+    // menu should be considered as top level destinations.
+    appBarConfiguration = AppBarConfiguration(setOf(
+        R.id.nav_transitions, R.id.nav_test, R.id.nav_recycler), drawer_layout)
+    setupActionBarWithNavController(navController, appBarConfiguration)
+    nav_view.setupWithNavController(navController)
 
     appTask()
   }
@@ -68,7 +63,7 @@ class MainActivity : AppCompatActivity(), EasyPermissions.PermissionCallbacks {
     menuInflater.inflate(R.menu.main, menu)
     val item = menu.findItem(R.id.action_share)
     shareActionProvider = MenuItemCompat.getActionProvider(item) as ShareActionProvider
-    shareActionProvider.setShareIntent( Intent().apply {
+    shareActionProvider.setShareIntent(Intent().apply {
       action = Intent.ACTION_SEND
       putExtra(Intent.EXTRA_STREAM, this@MainActivity.screenShotToUri())
       type = "image/*"
@@ -77,17 +72,8 @@ class MainActivity : AppCompatActivity(), EasyPermissions.PermissionCallbacks {
   }
 
   override fun onSupportNavigateUp(): Boolean {
-    // Ref: https://developer.android.com/reference/androidx/navigation/ui/NavigationUI
-    // This _should_ be correct for case w/nav drawer
-    return NavigationUI.navigateUp(navController, drawer_layout)
-  }
-
-  override fun onBackPressed() {
-    if (drawer_layout.isDrawerOpen(GravityCompat.START)) {
-      drawer_layout.closeDrawer(GravityCompat.START)
-    } else {
-      super.onBackPressed()
-    }
+    val navController = findNavController(R.id.nav_host_fragment)
+    return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
   }
 
   override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
@@ -110,9 +96,8 @@ class MainActivity : AppCompatActivity(), EasyPermissions.PermissionCallbacks {
   private fun appTask() {
     val perms = arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE)
     if (EasyPermissions.hasPermissions(this, *perms)) {
-      log { "11111" }
+      log { "request permissions failed!" }
     } else {
-      log { "2222" }
       EasyPermissions.requestPermissions(this, "需要重新申请分享权限", RC_STORAGE_PERM, *perms)
     }
   }
@@ -131,7 +116,7 @@ class MainActivity : AppCompatActivity(), EasyPermissions.PermissionCallbacks {
         startViewPager2()
         true
       }
-      else -> NavigationUI.onNavDestinationSelected(item, navController) || super.onOptionsItemSelected(item)
+      else -> super.onOptionsItemSelected(item)
     }
   }
 
