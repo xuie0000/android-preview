@@ -85,7 +85,7 @@ android {
     }
 }
 
-def Properties props = new Properties()
+Properties props = new Properties()
 def propFile = file('../local.properties')
 if (propFile.canRead()) {
     props.load(new FileInputStream(propFile))

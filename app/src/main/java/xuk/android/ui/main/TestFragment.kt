@@ -2,9 +2,7 @@ package xuk.android.ui.main
 
 import android.graphics.Color
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.view.animation.AnimationUtils
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
@@ -14,10 +12,6 @@ import kotlinx.android.synthetic.main.fragment_test.*
 import xuk.android.R
 import java.util.*
 
-/**
- * A simple [Fragment] subclass.
- * @author Jie Xu
- */
 class TestFragment : Fragment(R.layout.fragment_test) {
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

@@ -12,9 +12,6 @@ import androidx.appcompat.widget.AppCompatEditText
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.drawable.DrawableCompat
 
-/**
- * @author Jie Xu
- */
 class ClearableEditText : AppCompatEditText, View.OnTouchListener, View.OnFocusChangeListener, TextWatcher {
 
   private var mClearTextIcon: Drawable? = null

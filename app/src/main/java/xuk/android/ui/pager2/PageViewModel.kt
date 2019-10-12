@@ -13,6 +13,6 @@ class PageViewModel : ViewModel() {
   }
 
   fun setIndex(index: Int) {
-    _index.value = index
+    _index.postValue(index)
   }
 }

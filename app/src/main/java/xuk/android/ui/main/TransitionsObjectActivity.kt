@@ -9,9 +9,6 @@ import kotlinx.android.synthetic.main.activity_transitions_object.*
 import xuk.android.R
 import xuk.android.util.BlurBitmap
 
-/**
- * @author Jie Xu
- */
 class TransitionsObjectActivity : AppCompatActivity(R.layout.activity_transitions_object) {
 
   override fun onPostCreate(savedInstanceState: Bundle?) {
