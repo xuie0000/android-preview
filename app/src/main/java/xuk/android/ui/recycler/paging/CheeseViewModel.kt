@@ -25,7 +25,7 @@ import androidx.paging.toLiveData
  * A simple ViewModel that provides a paged list of delicious Cheeses.
  */
 class CheeseViewModel(app: Application) : AndroidViewModel(app) {
-  val dao = CheeseDb.get(app).cheeseDao()
+  private val dao = CheeseDb.get(app).cheeseDao()
 
   /**
    * We use -ktx Kotlin extension functions here, otherwise you would use LivePagedListBuilder(),

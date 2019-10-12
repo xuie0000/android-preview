@@ -42,9 +42,6 @@ class MainActivity : AppCompatActivity(), EasyPermissions.PermissionCallbacks {
     fab.setOnClickListener { v ->
       Snackbar.make(v, "Replace with your own action", Snackbar.LENGTH_LONG)
           .setAction("Action", null).show()
-//      if (BuildConfig.DEBUG) {
-//        CrashReport.testJavaCrash()
-//      }
     }
 
     val navController = findNavController(R.id.nav_host_fragment)
@@ -59,7 +56,6 @@ class MainActivity : AppCompatActivity(), EasyPermissions.PermissionCallbacks {
   }
 
   override fun onCreateOptionsMenu(menu: Menu): Boolean {
-    log { "onCreateOptionsMenu" }
     menuInflater.inflate(R.menu.main, menu)
     val item = menu.findItem(R.id.action_share)
     shareActionProvider = MenuItemCompat.getActionProvider(item) as ShareActionProvider
@@ -105,31 +101,23 @@ class MainActivity : AppCompatActivity(), EasyPermissions.PermissionCallbacks {
   override fun onOptionsItemSelected(item: MenuItem): Boolean {
     return when {
       item.itemId == R.id.action_palette -> {
-        startPalette()
+        startActivity(PaletteActivity::class.java)
         true
       }
       item.itemId == R.id.action_coordinator_layout -> {
-        startCoordinatorLayout()
+        startActivity(CoordinatorLayoutActivity::class.java)
         true
       }
       item.itemId == R.id.action_view_pager_2 -> {
-        startViewPager2()
+        startActivity(PageActivity::class.java)
         true
       }
       else -> super.onOptionsItemSelected(item)
     }
   }
 
-  private fun startPalette() {
-    startActivity(Intent(this, PaletteActivity::class.java))
-  }
-
-  private fun startCoordinatorLayout() {
-    startActivity(Intent(this, CoordinatorLayoutActivity::class.java))
-  }
-
-  private fun startViewPager2() {
-    startActivity(Intent(this, PageActivity::class.java))
+  private fun startActivity(cls: Class<*>) {
+    startActivity(Intent(this, cls))
   }
 
   companion object {

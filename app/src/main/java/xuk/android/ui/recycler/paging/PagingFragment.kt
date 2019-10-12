@@ -2,25 +2,21 @@ package xuk.android.ui.recycler.paging
 
 import android.os.Bundle
 import android.view.KeyEvent
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
-import xuk.android.R
 import kotlinx.android.synthetic.main.fragment_paging.*
+import xuk.android.R
 
 /**
  * A simple [Fragment] subclass.
  */
 class PagingFragment : Fragment(R.layout.fragment_paging) {
-  private val viewModel by lazy(LazyThreadSafetyMode.NONE) {
-    ViewModelProviders.of(this).get(CheeseViewModel::class.java)
-  }
+  private val viewModel : CheeseViewModel by viewModels()
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     super.onViewCreated(view, savedInstanceState)
