@@ -21,7 +21,7 @@ class DataBean(var date: String, var time: String, var information: String) {
       dataBeen.add(DataBean("2017.05.06", "21.55", "北京转运中心 已收入"))
     }
 
-    fun getDataBeen(): List<DataBean>? {
+    fun getDataBeen(): List<DataBean> {
       return dataBeen
     }
   }

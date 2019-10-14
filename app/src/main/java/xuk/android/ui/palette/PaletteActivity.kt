@@ -24,11 +24,13 @@ class PaletteActivity : AppCompatActivity() {
     super.onCreate(savedInstanceState)
     setContentView(R.layout.activity_palette)
 
-    setSupportActionBar(toolbar)
-    toolbar.setTitle(R.string.palette)
-    toolbar.setTitleTextColor(Color.WHITE)
-    toolbar.navigationIcon = IconicsDrawable(this, "gmi_chevron_left").sizeDp(24).color(Color.WHITE)
-    toolbar.setNavigationOnClickListener { finish() }
+    toolbar.apply {
+      setSupportActionBar(this)
+      setTitle(R.string.palette)
+      setTitleTextColor(Color.WHITE)
+      navigationIcon = IconicsDrawable(context, "gmi_chevron_left").sizeDp(24).color(Color.WHITE)
+      setNavigationOnClickListener { finish() }
+    }
 
     val paletteViewPagerAdapter = PaletteViewPagerAdapter(supportFragmentManager)
     viewpager.adapter = paletteViewPagerAdapter

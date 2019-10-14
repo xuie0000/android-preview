@@ -13,7 +13,7 @@ import xuk.android.R
  * @date 17-8-9
  */
 class AxisAdapter : RecyclerView.Adapter<AxisAdapter.MyViewHolder>() {
-  private val dataBeen: List<DataBean>? = DataBean.getDataBeen()
+  private val dataBeen: List<DataBean> = DataBean.getDataBeen()
 
   override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
     val v = LayoutInflater.from(parent.context).inflate(R.layout.item_axis, parent, false)
@@ -21,14 +21,16 @@ class AxisAdapter : RecyclerView.Adapter<AxisAdapter.MyViewHolder>() {
   }
 
   override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-    val d = dataBeen!![position]
-    holder.time.text = d.time
-    holder.date.text = d.date
-    holder.information.text = d.information
+    val d = dataBeen[position]
+    with(holder) {
+      time.text = d.time
+      date.text = d.date
+      information.text = d.information
+    }
   }
 
   override fun getItemCount(): Int {
-    return dataBeen!!.size
+    return dataBeen.size
   }
 
   inner class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {

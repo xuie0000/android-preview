@@ -29,7 +29,7 @@ class TransitionsFragment : Fragment(R.layout.fragment_transitions) {
     make_scene_transition_animation.setOnClickListener {
       val intent = Intent(activity, SecondActivity::class.java)
       val options = ActivityOptions.makeSceneTransitionAnimation(activity, make_scene_transition_animation, "share01")
-      ActivityCompat.startActivity(Objects.requireNonNull<FragmentActivity>(activity), intent, options.toBundle())
+      ActivityCompat.startActivity(activity!!, intent, options.toBundle())
     }
 
     fab_button.setOnClickListener {

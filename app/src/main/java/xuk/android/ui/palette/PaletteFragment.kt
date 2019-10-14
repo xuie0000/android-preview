@@ -10,15 +10,8 @@ import android.view.ViewGroup
 import android.widget.FrameLayout
 import android.widget.TextView
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentActivity
 import xuk.android.R
-import java.util.*
 
-/**
- * A simple [Fragment] subclass.
- *
- * @author Jie Xu
- */
 class PaletteFragment : Fragment() {
 
   private var position: Int = 0
@@ -34,24 +27,25 @@ class PaletteFragment : Fragment() {
       container: ViewGroup?,
       savedInstanceState: Bundle?
   ): View? {
-    val params = FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams
-        .MATCH_PARENT)
-
-    val fl = FrameLayout(Objects.requireNonNull<FragmentActivity>(activity))
-    fl.layoutParams = params
-    fl.setBackgroundResource(drawables[position])
     val margin = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 8f,
         resources.displayMetrics).toInt()
 
-    val v = TextView(activity)
-    params.setMargins(margin, margin, margin, margin)
-    v.layoutParams = params
-    v.layoutParams = params
-    v.gravity = Gravity.BOTTOM
-    v.text = "CARD " + (position + 1)
+    val params = FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams
+        .MATCH_PARENT).apply {
+      setMargins(margin, margin, margin, margin)
+    }
 
-    fl.addView(v)
-    return fl
+    val v = TextView(activity).apply {
+      layoutParams = params
+      gravity = Gravity.BOTTOM
+      text = "CARD " + (position + 1)
+    }
+
+    return FrameLayout(activity!!).apply {
+      layoutParams = params
+      setBackgroundResource(drawables[position])
+      addView(v)
+    }
   }
 
   companion object {
@@ -59,11 +53,11 @@ class PaletteFragment : Fragment() {
     private val drawables = intArrayOf(R.mipmap.one, R.mipmap.two, R.mipmap.four, R.mipmap.three, R.mipmap.five)
 
     fun newInstance(position: Int): PaletteFragment {
-      val f = PaletteFragment()
-      val b = Bundle()
-      b.putInt(ARG_POSITION, position)
-      f.arguments = b
-      return f
+      return PaletteFragment().apply {
+        arguments = Bundle().apply {
+          putInt(ARG_POSITION, position)
+        }
+      }
     }
 
     fun getBackgroundBitmapPosition(selectViewPagerItem: Int): Int {
