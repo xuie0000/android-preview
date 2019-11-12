@@ -14,7 +14,10 @@ import xuk.android.R
  * @author Jie Xu
  * @date 2019/11/12
  */
-class NormalHolder(view: View) : BaseHolder(view) {
+class NormalHolder(
+    view: View,
+    private val clickCallback: ((view: View, position: Int, item: GridItem) -> Unit)?)
+  : BaseHolder(view) {
 
   private val head: ImageView = view.findViewById(R.id.iv_head)
   private val title: TextView = view.findViewById(R.id.tv_title)
@@ -26,12 +29,15 @@ class NormalHolder(view: View) : BaseHolder(view) {
         .into(head)
     title.text = item.name
     desc.text = item.other
+    itemView.setOnClickListener {
+      clickCallback?.invoke(it, adapterPosition, item)
+    }
   }
 
   companion object {
-    fun create(parent: ViewGroup): NormalHolder {
+    fun create(parent: ViewGroup, clickCallback: ((view: View, position: Int, item: GridItem) -> Unit)?): NormalHolder {
       val view = LayoutInflater.from(parent.context).inflate(R.layout.grid_normal_recycle_item, parent, false)
-      return NormalHolder(view)
+      return NormalHolder(view, clickCallback)
     }
   }
 

@@ -3,6 +3,7 @@ package xuk.android.ui.recycler.gridpage
 import android.graphics.Color
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import kotlinx.android.synthetic.main.fragment_gird_page.*
@@ -14,9 +15,15 @@ import java.util.*
  */
 class GridPageFragment : Fragment(R.layout.fragment_gird_page) {
 
-  private var values: MutableList<GridItem>? = null
-  private var itemDecoration: GridItemDecoration? = null
-  private val mAdapter: GridPageAdapter? = null
+  private val values: MutableList<GridItem> by lazy { initData() }
+  private val itemDecoration: GridItemDecoration by lazy {
+    GridItemDecoration.Builder(context!!, values, 3)
+        .setTitleTextColor(Color.parseColor("#4e5864"))
+        //.setTitleBgColor(Color.parseColor("#008577"))
+        .setTitleFontSize(22)
+        .setTitleHeight(52)
+        .build()
+  }
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     super.onViewCreated(view, savedInstanceState)
@@ -24,25 +31,22 @@ class GridPageFragment : Fragment(R.layout.fragment_gird_page) {
   }
 
   private fun initWidget() {
-    val gll = GridLayoutManager(context, 3)
-    gll.spanSizeLookup = SpecialSpanSizeLookup()
 
-    values = initData()
-    val pageAdapter = GridPageAdapter()
+    val grid = GridPageAdapter()
 
-    rv_content.apply {
-      layoutManager = gll
-      adapter = pageAdapter
+    recyclerView.apply {
+      layoutManager = GridLayoutManager(context, 3).apply {
+        spanSizeLookup = SpecialSpanSizeLookup()
+      }
+      adapter = grid
     }
-    pageAdapter.submitList(values)
 
-    itemDecoration = GridItemDecoration.Builder(context!!, values, 3)
-        .setTitleTextColor(Color.parseColor("#4e5864"))
-        //.setTitleBgColor(Color.parseColor("#008577"))
-        .setTitleFontSize(22)
-        .setTitleHeight(52)
-        .build()
-    rv_content.addItemDecoration(itemDecoration!!)
+    grid.setOnItemClickListener { _, position, _ ->
+      Toast.makeText(context, "Click Position $position", Toast.LENGTH_SHORT).show()
+    }
+    grid.submitList(values)
+
+    recyclerView.addItemDecoration(itemDecoration)
   }
 
   private fun initData(): MutableList<GridItem> {
@@ -60,15 +64,10 @@ class GridPageFragment : Fragment(R.layout.fragment_gird_page) {
     values.add(GridItem("油管周杰伦热门单曲Top20", "「周杰伦」的这些哥，你听了吗", R.drawable.grid_normal_5, "更多为你推荐", 3, GridItem.TYPE_NORMAL))
 
     return values
-
   }
 
-  internal inner class SpecialSpanSizeLookup : GridLayoutManager.SpanSizeLookup() {
-
-    override fun getSpanSize(i: Int): Int {
-      val gridItem = values!![i]
-      return gridItem.spanSize
-    }
+  inner class SpecialSpanSizeLookup : GridLayoutManager.SpanSizeLookup() {
+    override fun getSpanSize(position: Int): Int = values[position].spanSize
   }
 
 }

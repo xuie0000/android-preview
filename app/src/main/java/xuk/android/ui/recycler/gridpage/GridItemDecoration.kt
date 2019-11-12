@@ -94,7 +94,7 @@ private constructor(config: Config, private val mContext: Context)
   }
 
 
-  fun remove() {
+  private fun remove() {
     this.gridItems!!.clear()
     this.offsetPositions.clear()
   }
@@ -110,14 +110,14 @@ private constructor(config: Config, private val mContext: Context)
       val params = child.layoutParams as RecyclerView.LayoutParams
       val pos = params.viewLayoutPosition
       val item = gridItems!![pos]
-      if (item == null || !item.isShow)
+      if (!item.isShow)
         continue
 
       if (i == 0) {
         drawTitle(c, paddingLeft, paddingRight, child, child.layoutParams as RecyclerView.LayoutParams, pos, parent)
       } else {
         val lastItem = gridItems!![pos - 1]
-        if (lastItem != null && item.tag != lastItem.tag) {
+        if (item.tag != lastItem.tag) {
           drawTitle(c, paddingLeft, paddingRight, child,
               child.layoutParams as RecyclerView.LayoutParams, pos, parent)
         }
@@ -137,7 +137,6 @@ private constructor(config: Config, private val mContext: Context)
    * @param pos    位置
    */
   private fun drawTitle(canvas: Canvas, pl: Int, pr: Int, child: View, params: RecyclerView.LayoutParams, pos: Int, parent: RecyclerView) {
-    val prentLayoutParams = parent.layoutParams
     if (isDrawTitleBg) {
       mTitlePaint.color = mTitleBgColor
       canvas.drawRect(pl.toFloat(), (child.top - params.topMargin - mTitleHeight).toFloat(), (parent.right - parent.paddingEnd).toFloat(), (child.top - params.topMargin).toFloat(), mTitlePaint)
@@ -159,11 +158,9 @@ private constructor(config: Config, private val mContext: Context)
 
   override fun getItemOffsets(outRect: Rect, view: View, parent: RecyclerView, state: RecyclerView.State) {
     super.getItemOffsets(outRect, view, parent, state)
-
-
     val position = parent.getChildAdapterPosition(view)
     val item = gridItems!![position]
-    if (item == null || !item.isShow)
+    if (!item.isShow)
       return
     if (position == 0) {
       outRect.set(0, mTitleHeight, 0, 0)
