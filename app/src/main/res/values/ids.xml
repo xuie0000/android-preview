@@ -1,14 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Diff Util-->
-    <item name="sort_by_name" type="id" />
-    <item name="sort_by_rating" type="id" />
-    <item name="sort_by_birth" type="id" />
+
     <!-- RecyclerView Fragment-->
     <item name="linear_v_single" type="id" />
     <item name="linear_h_single" type="id" />
     <item name="grid_v_single" type="id" />
     <item name="grid_h_stagger" type="id" />
 
+    <item name="recycler_view_holder" type="id" />
 
 </resources>

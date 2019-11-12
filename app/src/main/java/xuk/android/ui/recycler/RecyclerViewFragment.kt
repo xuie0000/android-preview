@@ -19,10 +19,10 @@ import xuk.android.R
 class RecyclerViewFragment : Fragment(R.layout.fragment_recycler_view) {
 
   private var members: List<String> = arrayListOf(
-      "DiffUtil",
       "ItemDecoration(时间轴)",
       "滑动缩放",
-      "分页Paging"
+      "分页Paging",
+      "Grid Page"
   )
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -31,11 +31,11 @@ class RecyclerViewFragment : Fragment(R.layout.fragment_recycler_view) {
     val listAdapter = ListAdapter(android.R.layout.simple_list_item_1)
     listAdapter.setOnItemClickListener { _, _, position ->
       when (position) {
-        0 -> findNavController().navigate(R.id.action_to_diff_util)
-        1 -> findNavController().navigate(R.id.action_to_axis)
-        2 -> findNavController().navigate(R.id.action_to_discrete)
-        3 -> findNavController().navigate(R.id.action_to_paging)
-        else -> throw Exception("no position")
+        0 -> findNavController().navigate(R.id.action_to_axis)
+        1 -> findNavController().navigate(R.id.action_to_discrete)
+        2 -> findNavController().navigate(R.id.action_to_paging)
+        3 -> findNavController().navigate(R.id.action_to_grid_page)
+        else -> throw IllegalArgumentException("no position")
       }
     }
     recyclerView.apply {
@@ -44,13 +44,8 @@ class RecyclerViewFragment : Fragment(R.layout.fragment_recycler_view) {
     }
   }
 
-  private inner class ListAdapter
-  /**
-   * Instantiates a new List adapter.
-   *
-   * @param layoutResId the layout res id
-   */
-  internal constructor(@LayoutRes layoutResId: Int) : BaseQuickAdapter<String, BaseViewHolder>(layoutResId, members) {
+  private inner class ListAdapter internal constructor(@LayoutRes layoutResId: Int)
+    : BaseQuickAdapter<String, BaseViewHolder>(layoutResId, members) {
 
     override fun convert(helper: BaseViewHolder, item: String) {
       helper.setText(android.R.id.text1, item)

@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context
+import android.content.res.Resources
 import android.net.Uri
 import android.provider.MediaStore
 import android.view.View
@@ -26,6 +27,11 @@ fun View.dp2px(dp: Float): Int {
 fun View.px2dp(px: Float): Int {
   val scale = resources.displayMetrics.density
   return (px / scale + 0.5f).toInt()
+}
+
+fun sp2px(spValue: Float): Int {
+  val fontScale = Resources.getSystem().displayMetrics.scaledDensity
+  return (spValue * fontScale + 0.5f).toInt()
 }
 
 

@@ -30,14 +30,14 @@
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right" />
         <action
-            android:id="@+id/action_to_diff_util"
-            app:destination="@id/diff_util" />
-        <action
             android:id="@+id/action_to_discrete"
             app:destination="@id/discrete" />
         <action
             android:id="@+id/action_to_paging"
             app:destination="@id/paging" />
+        <action
+            android:id="@+id/action_to_grid_page"
+            app:destination="@id/grid_page" />
     </fragment>
 
     <fragment
@@ -45,11 +45,6 @@
         android:name="xuk.android.ui.recycler.axis.AxisFragment"
         android:label="fragment_axis"
         tools:layout="@layout/fragment_axis" />
-    <fragment
-        android:id="@+id/diff_util"
-        android:name="xuk.android.ui.recycler.diffutil.DiffUtilFragment"
-        android:label="fragment_diffutil"
-        tools:layout="@layout/fragment_diff_util" />
 
     <fragment
         android:id="@+id/discrete"
@@ -62,15 +57,11 @@
         android:name="xuk.android.ui.recycler.paging.PagingFragment"
         android:label="fragment_paging"
         tools:layout="@layout/fragment_paging" />
-    <!--
-        <fragment
-                android:id="@+id/user_profile"
-                android:name="com.example.android.navigationsample.UserProfile"
-                android:label="fragment_user_profile"
-                tools:layout="@layout/fragment_user_profile">
-            <argument android:name="userName"
-                      android:defaultValue="name"/>
-            <deepLink app:uri="www.example.com/user/{userName}" />
-        </fragment>
-    -->
+
+    <fragment
+        android:id="@+id/grid_page"
+        android:name="xuk.android.ui.recycler.gridpage.GridPageFragment"
+        android:label="fragment_grid_page"
+        tools:layout="@layout/fragment_gird_page" />
+
 </navigation>

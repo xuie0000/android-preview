@@ -18,7 +18,6 @@
     <string name="bottom_sheet_content">Bottom Sheet Content</string>
     <string name="bottom_sheet_peek">Bottom Sheet Peek</string>
     <string name="coordinator_layout">CoordinatorLayout</string>
-    <string name="diff_util">DiffUtil</string>
     <string name="axis">时间轴(ItemDecoration)</string>
     <string name="action_share">分享</string>
 

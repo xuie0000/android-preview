@@ -4,20 +4,12 @@ import android.content.Context
 import android.content.SharedPreferences
 import android.preference.PreferenceManager
 import android.view.View
-
 import androidx.appcompat.widget.PopupMenu
-
-import xuk.android.App
-import xuk.android.R
 import com.yarolegovich.discretescrollview.DiscreteScrollView
 import com.yarolegovich.discretescrollview.InfiniteScrollAdapter
-
+import xuk.android.App
+import xuk.android.R
 import java.lang.ref.WeakReference
-
-/**
- * @author yarolegovich
- * @date 08.03.2017
- */
 
 class DiscreteScrollViewOptions private constructor(context: Context) {
 
