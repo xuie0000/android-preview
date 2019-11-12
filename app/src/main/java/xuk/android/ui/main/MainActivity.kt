@@ -20,7 +20,6 @@ import pub.devrel.easypermissions.AfterPermissionGranted
 import pub.devrel.easypermissions.EasyPermissions
 import xuk.android.R
 import xuk.android.ui.coordinator.CoordinatorLayoutActivity
-import xuk.android.ui.pager2.PageActivity
 import xuk.android.ui.palette.PaletteActivity
 import xuk.android.util.log
 import xuk.android.util.screenShotToUri
@@ -106,10 +105,6 @@ class MainActivity : AppCompatActivity(), EasyPermissions.PermissionCallbacks {
       }
       item.itemId == R.id.action_coordinator_layout -> {
         startActivity(CoordinatorLayoutActivity::class.java)
-        true
-      }
-      item.itemId == R.id.action_view_pager_2 -> {
-        startActivity(PageActivity::class.java)
         true
       }
       else -> super.onOptionsItemSelected(item)

@@ -4,20 +4,15 @@ import android.graphics.BitmapFactory
 import android.graphics.Color
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.FragmentPagerAdapter
 import androidx.palette.graphics.Palette
-import androidx.viewpager.widget.ViewPager
+import androidx.viewpager2.widget.ViewPager2
+import com.google.android.material.tabs.TabLayoutMediator
 import com.mikepenz.iconics.IconicsDrawable
 import kotlinx.android.synthetic.main.activity_palette.*
 import xuk.android.R
 import java.util.*
 import kotlin.math.floor
 
-/**
- * @author Jie Xu
- */
 class PaletteActivity : AppCompatActivity() {
 
   override fun onCreate(savedInstanceState: Bundle?) {
@@ -32,38 +27,22 @@ class PaletteActivity : AppCompatActivity() {
       setNavigationOnClickListener { finish() }
     }
 
-    val paletteViewPagerAdapter = PaletteViewPagerAdapter(supportFragmentManager)
-    viewpager.adapter = paletteViewPagerAdapter
-    tab_layout.setupWithViewPager(viewpager)
-    changeTopBgColor(0)
-    viewpager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
-      override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {}
-
+    val sectionsPagerAdapter = SectionsPagerAdapter(this)
+    viewpager.apply {
+      adapter = sectionsPagerAdapter
+      orientation = ViewPager2.ORIENTATION_HORIZONTAL
+    }
+    TabLayoutMediator(tab_layout, viewpager, true) { tab, position ->
+      tab.text = sectionsPagerAdapter.getPageTitle(position)
+    }.attach()
+    viewpager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
       override fun onPageSelected(position: Int) {
         changeTopBgColor(position)
       }
-
-      override fun onPageScrollStateChanged(state: Int) {}
     })
-  }
 
-  private inner class PaletteViewPagerAdapter internal constructor(fm: FragmentManager)
-    : FragmentPagerAdapter(fm) {
+    changeTopBgColor(0)
 
-    internal val pageCount = 5
-    private val tabTitles = arrayOf("主页", "分享", "收藏", "关注", "微博")
-
-    override fun getItem(position: Int): Fragment {
-      return PaletteFragment.newInstance(position)
-    }
-
-    override fun getCount(): Int {
-      return pageCount
-    }
-
-    override fun getPageTitle(position: Int): CharSequence? {
-      return tabTitles[position]
-    }
   }
 
 

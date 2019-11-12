@@ -18,9 +18,5 @@
         android:id="@+id/action_coordinator_layout"
         android:orderInCategory="100"
         android:title="@string/coordinator_layout" />
-    <item
-        android:id="@+id/action_view_pager_2"
-        android:orderInCategory="100"
-        android:title="@string/view_pager_2" />
 
 </menu>
