@@ -20,4 +20,6 @@
     <dimen name="material_112dp">112dip</dimen>
     <dimen name="material_128dp">128dip</dimen>
 
+    <dimen name="small_component_top_left_radius">28dp</dimen>
+
 </resources>
