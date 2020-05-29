@@ -89,7 +89,7 @@ class MainActivity : AppCompatActivity(), EasyPermissions.PermissionCallbacks {
 
   @AfterPermissionGranted(RC_STORAGE_PERM)
   private fun appTask() {
-    val perms = arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE)
+    val perms = arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE)
     if (EasyPermissions.hasPermissions(this, *perms)) {
       log { "request permissions failed!" }
     } else {
