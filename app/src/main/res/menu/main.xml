@@ -18,5 +18,9 @@
         android:id="@+id/action_coordinator_layout"
         android:orderInCategory="100"
         android:title="@string/coordinator_layout" />
+    <item
+        android:id="@+id/action_coordinator_motion_layout"
+        android:orderInCategory="100"
+        android:title="@string/motion_layout" />
 
 </menu>
