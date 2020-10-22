@@ -17,7 +17,7 @@ class GridPageFragment : Fragment(R.layout.fragment_gird_page) {
 
   private val values: MutableList<GridItem> by lazy { initData() }
   private val itemDecoration: GridItemDecoration by lazy {
-    GridItemDecoration.Builder(context!!, values, 3)
+    GridItemDecoration.Builder(requireContext(), values, 3)
         .setTitleTextColor(Color.parseColor("#4e5864"))
         //.setTitleBgColor(Color.parseColor("#008577"))
         .setTitleFontSize(22)
