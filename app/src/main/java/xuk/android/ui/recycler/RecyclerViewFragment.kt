@@ -44,7 +44,7 @@ class RecyclerViewFragment : Fragment(R.layout.fragment_recycler_view) {
     }
   }
 
-  private inner class ListAdapter internal constructor(@LayoutRes layoutResId: Int)
+  private inner class ListAdapter(@LayoutRes layoutResId: Int)
     : BaseQuickAdapter<String, BaseViewHolder>(layoutResId, members) {
 
     override fun convert(helper: BaseViewHolder, item: String) {
