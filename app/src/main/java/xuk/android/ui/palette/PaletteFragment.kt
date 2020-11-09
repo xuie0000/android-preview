@@ -18,7 +18,7 @@ class PaletteFragment : Fragment() {
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
-    position = arguments!!.getInt(ARG_POSITION)
+    position = requireArguments().getInt(ARG_POSITION)
   }
 
   @SuppressLint("SetTextI18n")
@@ -41,7 +41,7 @@ class PaletteFragment : Fragment() {
       text = "CARD " + (position + 1)
     }
 
-    return FrameLayout(activity!!).apply {
+    return FrameLayout(requireActivity()).apply {
       layoutParams = params
       setBackgroundResource(drawables[position])
       addView(v)
@@ -50,7 +50,12 @@ class PaletteFragment : Fragment() {
 
   companion object {
     private const val ARG_POSITION = "position"
-    private val drawables = intArrayOf(R.mipmap.one, R.mipmap.two, R.mipmap.four, R.mipmap.three, R.mipmap.five)
+    private val drawables = intArrayOf(
+        R.mipmap.one,
+        R.mipmap.two,
+        R.mipmap.four,
+        R.mipmap.three,
+        R.mipmap.five)
 
     fun newInstance(position: Int): PaletteFragment {
       return PaletteFragment().apply {

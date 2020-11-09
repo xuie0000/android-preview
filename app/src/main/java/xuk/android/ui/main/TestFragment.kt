@@ -5,6 +5,7 @@ import android.graphics.Color
 import android.os.Bundle
 import android.view.View
 import android.view.animation.AnimationUtils
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.mikepenz.iconics.IconicsDrawable
 import com.mikepenz.material_design_iconic_typeface_library.MaterialDesignIconic
@@ -34,15 +35,15 @@ class TestFragment : Fragment(R.layout.fragment_test) {
   }
 
   private fun selectDrawableSample() {
-    val selectedTint = context!!.getColor(R.color.select_tint)
-    val selectedTopLeftCornerRadius =
-        context!!.resources.getDimensionPixelSize(R.dimen.small_component_top_left_radius)
-    val selectedDrawable = context!!.getDrawable(R.drawable.ic_checkmark)!!
+    val selectedTint = requireContext().getColor(R.color.select_tint)
+    val selectedTopLeftCornerRadius = requireContext().resources
+        .getDimensionPixelSize(R.dimen.small_component_top_left_radius)
+    val selectedDrawable = ContextCompat.getDrawable(requireContext(), R.drawable.ic_checkmark)
 
     val drawable = TopicThumbnailDrawable(
         selectedTint,
         selectedTopLeftCornerRadius,
-        selectedDrawable
+        selectedDrawable!!
     ).apply {
       bitmap = BitmapFactory.decodeResource(resources, R.mipmap.image_small)
     }

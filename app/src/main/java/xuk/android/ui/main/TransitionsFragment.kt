@@ -9,11 +9,9 @@ import android.view.View
 import androidx.annotation.RequiresApi
 import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentActivity
 import kotlinx.android.synthetic.main.fragment_transitions.*
 import xuk.android.R
 import xuk.android.util.log
-import java.util.*
 
 /**
  * A simple [Fragment] subclass.
@@ -29,7 +27,7 @@ class TransitionsFragment : Fragment(R.layout.fragment_transitions) {
     make_scene_transition_animation.setOnClickListener {
       val intent = Intent(activity, SecondActivity::class.java)
       val options = ActivityOptions.makeSceneTransitionAnimation(activity, make_scene_transition_animation, "share01")
-      ActivityCompat.startActivity(activity!!, intent, options.toBundle())
+      ActivityCompat.startActivity(requireActivity(), intent, options.toBundle())
     }
 
     fab_button.setOnClickListener {
@@ -37,11 +35,10 @@ class TransitionsFragment : Fragment(R.layout.fragment_transitions) {
       val intent = Intent(activity, SecondActivity::class.java)
       val options = ActivityOptions.makeSceneTransitionAnimation(activity,
           // 创建多个共享元素
-          Pair.create<View, String>(make_scene_transition_animation, "share01"),
-          Pair.create<View, String>(fab_button, "share02")
-      )
+          Pair.create(make_scene_transition_animation, "share01"),
+          Pair.create(fab_button, "share02"))
 
-      ActivityCompat.startActivity(Objects.requireNonNull<FragmentActivity>(activity), intent, options.toBundle())
+      ActivityCompat.startActivity(requireActivity(), intent, options.toBundle())
     }
 
     explode.setOnClickListener { makeSceneTransitionAnimationNoParameter(0) }
@@ -52,7 +49,7 @@ class TransitionsFragment : Fragment(R.layout.fragment_transitions) {
       log { "over_shoot" }
       val intent = Intent(activity, TransitionsObjectActivity::class.java)
       val options = ActivityOptions.makeSceneTransitionAnimation(activity, over_shoot, "shareOverShoot")
-      ActivityCompat.startActivity(Objects.requireNonNull<FragmentActivity>(activity), intent, options.toBundle())
+      ActivityCompat.startActivity(requireActivity(), intent, options.toBundle())
     }
   }
 
@@ -60,6 +57,6 @@ class TransitionsFragment : Fragment(R.layout.fragment_transitions) {
     val intent = Intent(activity, SecondActivity::class.java)
     intent.putExtra("flag", flag)
     val options = ActivityOptions.makeSceneTransitionAnimation(activity)
-    ActivityCompat.startActivity(Objects.requireNonNull<FragmentActivity>(activity), intent, options.toBundle())
+    ActivityCompat.startActivity(requireActivity(), intent, options.toBundle())
   }
 }
