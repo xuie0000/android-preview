@@ -17,7 +17,7 @@
 package xuk.android.ui.recycler.paging
 
 import android.view.ViewGroup
-import androidx.paging.PagedListAdapter
+import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 
 /**
@@ -31,7 +31,7 @@ import androidx.recyclerview.widget.DiffUtil
  * If you want to use your own Adapter base class, try using a PagedListAdapterHelper inside your
  * adapter instead.
  */
-class CheeseAdapter : PagedListAdapter<Cheese, CheeseViewHolder>(diffCallback) {
+class CheeseAdapter : PagingDataAdapter<Cheese, CheeseViewHolder>(diffCallback) {
   override fun onBindViewHolder(holder: CheeseViewHolder, position: Int) {
     holder.bindTo(getItem(position))
   }

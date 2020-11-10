@@ -6,17 +6,16 @@ import android.view.View
 import android.view.inputmethod.EditorInfo
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.fragment_paging.*
+import kotlinx.coroutines.flow.collectLatest
 import xuk.android.R
 
-/**
- * A simple [Fragment] subclass.
- */
 class PagingFragment : Fragment(R.layout.fragment_paging) {
-  private val viewModel : CheeseViewModel by viewModels()
+
+  private val viewModel: CheeseViewModel by viewModels()
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     super.onViewCreated(view, savedInstanceState)
@@ -24,9 +23,11 @@ class PagingFragment : Fragment(R.layout.fragment_paging) {
     val adapter = CheeseAdapter()
     cheeseList.adapter = adapter
 
-    // Subscribe the adapter to the ViewModel, so the items in the adapter are refreshed
-    // when the list changes
-    viewModel.allCheeses.observe(this, Observer(adapter::submitList))
+    lifecycleScope.launchWhenCreated {
+      viewModel.allCheeses.collectLatest {
+        adapter.submitData(it)
+      }
+    }
 
     initAddButtonListener()
     initSwipeToDelete()
