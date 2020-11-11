@@ -10,8 +10,8 @@ class CheeseViewModel(app: Application) : AndroidViewModel(app) {
 
   val allCheeses = Pager(
       config = PagingConfig(
-          pageSize = 10,
-          prefetchDistance = 10,
+          pageSize = 100,
+          prefetchDistance = 100,
           enablePlaceholders = false
       ),
       pagingSourceFactory = { dao.allCheesesByName() }

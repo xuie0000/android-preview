@@ -19,16 +19,16 @@ import xuk.android.R
 class RecyclerViewFragment : Fragment(R.layout.fragment_recycler_view) {
 
   private var members: List<String> = arrayListOf(
-      "ItemDecoration(时间轴)",
-      "滑动缩放",
-      "分页Paging",
-      "Grid Page"
+      "ItemDecoration(时间轴) ",
+      "滑动缩放 ",
+      "分页Paging ",
+      "Grid Page "
   )
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     super.onViewCreated(view, savedInstanceState)
 
-    val listAdapter = ListAdapter(android.R.layout.simple_list_item_1)
+    val listAdapter = ListAdapter(R.layout.item_recycler_view)
     listAdapter.setOnItemClickListener { _, _, position ->
       when (position) {
         0 -> findNavController().navigate(R.id.action_to_axis)
@@ -48,7 +48,7 @@ class RecyclerViewFragment : Fragment(R.layout.fragment_recycler_view) {
     : BaseQuickAdapter<String, BaseViewHolder>(layoutResId, members) {
 
     override fun convert(helper: BaseViewHolder, item: String) {
-      helper.setText(android.R.id.text1, item)
+      helper.setText(R.id.text, item)
     }
   }
 
