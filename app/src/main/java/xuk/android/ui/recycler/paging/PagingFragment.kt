@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.fragment_paging.*
 import kotlinx.coroutines.flow.collectLatest
+import timber.log.Timber
 import xuk.android.R
 
 class PagingFragment : Fragment(R.layout.fragment_paging) {
@@ -25,6 +26,7 @@ class PagingFragment : Fragment(R.layout.fragment_paging) {
 
     lifecycleScope.launchWhenCreated {
       viewModel.allCheeses.collectLatest {
+        Timber.d("add item $it")
         adapter.submitData(it)
       }
     }
