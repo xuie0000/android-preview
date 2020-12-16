@@ -26,7 +26,7 @@ class PaletteFragment : Fragment() {
       inflater: LayoutInflater,
       container: ViewGroup?,
       savedInstanceState: Bundle?
-  ): View? {
+  ): View {
     val margin = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 8f,
         resources.displayMetrics).toInt()
 

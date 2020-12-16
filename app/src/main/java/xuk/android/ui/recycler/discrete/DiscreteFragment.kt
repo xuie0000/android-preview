@@ -13,11 +13,6 @@ import com.yarolegovich.discretescrollview.transform.ScaleTransformer
 import kotlinx.android.synthetic.main.fragment_discrete.*
 import xuk.android.R
 
-/**
- * A simple [Fragment] subclass.
- *
- * @author Jie Xu
- */
 class DiscreteFragment : Fragment(R.layout.fragment_discrete),
     DiscreteScrollView.OnItemChangedListener<RecyclerView.ViewHolder> {
 

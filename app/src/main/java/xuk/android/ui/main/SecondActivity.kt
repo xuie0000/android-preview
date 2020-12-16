@@ -49,6 +49,12 @@ class SecondActivity : AppCompatActivity() {
         BottomSheetBehavior.STATE_EXPANDED -> bottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED)
         BottomSheetBehavior.STATE_COLLAPSED -> bottomSheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN)
         BottomSheetBehavior.STATE_HIDDEN -> bottomSheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
+        BottomSheetBehavior.STATE_DRAGGING -> {
+        }
+        BottomSheetBehavior.STATE_HALF_EXPANDED -> {
+        }
+        BottomSheetBehavior.STATE_SETTLING -> {
+        }
       }
       bottomSheetBehavior.setHideable(false)
     }

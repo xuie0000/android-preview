@@ -5,11 +5,6 @@ import android.content.SharedPreferences
 import xuk.android.App
 import xuk.android.R
 
-/**
- *
- * @author yarolegovich
- * @date 07.03.2017
- */
 class Shop private constructor() {
 
   private val storage: SharedPreferences

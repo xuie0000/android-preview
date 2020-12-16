@@ -13,11 +13,6 @@ import kotlinx.android.synthetic.main.fragment_transitions.*
 import xuk.android.R
 import xuk.android.util.log
 
-/**
- * A simple [Fragment] subclass.
- *
- * @author Jie Xu
- */
 class TransitionsFragment : Fragment(R.layout.fragment_transitions) {
 
   @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
