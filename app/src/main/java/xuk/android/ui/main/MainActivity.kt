@@ -20,6 +20,7 @@ import pub.devrel.easypermissions.AfterPermissionGranted
 import pub.devrel.easypermissions.EasyPermissions
 import xuk.android.R
 import xuk.android.ui.coordinator.CoordinatorLayoutActivity
+import xuk.android.ui.coordinator.MotionLayout2Activity
 import xuk.android.ui.coordinator.MotionLayoutActivity
 import xuk.android.ui.palette.PaletteActivity
 import xuk.android.util.log
@@ -99,21 +100,14 @@ class MainActivity : AppCompatActivity(), EasyPermissions.PermissionCallbacks {
   }
 
   override fun onOptionsItemSelected(item: MenuItem): Boolean {
-    return when (item.itemId) {
-      R.id.action_palette -> {
-        startActivity(PaletteActivity::class.java)
-        true
-      }
-      R.id.action_coordinator_layout -> {
-        startActivity(CoordinatorLayoutActivity::class.java)
-        true
-      }
-      R.id.action_coordinator_motion_layout -> {
-        startActivity(MotionLayoutActivity::class.java)
-        true
-      }
+    when (item.itemId) {
+      R.id.action_palette -> startActivity(PaletteActivity::class.java)
+      R.id.action_coordinator_layout -> startActivity(CoordinatorLayoutActivity::class.java)
+      R.id.action_coordinator_motion_layout -> startActivity(MotionLayoutActivity::class.java)
+      R.id.action_coordinator_motion_layout2 -> startActivity(MotionLayout2Activity::class.java)
       else -> super.onOptionsItemSelected(item)
     }
+    return true
   }
 
   private fun startActivity(cls: Class<*>) {
