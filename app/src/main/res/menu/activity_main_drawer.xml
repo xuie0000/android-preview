@@ -12,5 +12,9 @@
         android:id="@+id/nav_recycler"
         android:icon="@mipmap/ic_invert_colors"
         android:title="@string/recycler_view" />
+    <item
+        android:id="@+id/nav_settings"
+        android:icon="@mipmap/ic_invert_colors"
+        android:title="@string/settings" />
 
 </menu>
