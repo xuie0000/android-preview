@@ -67,7 +67,13 @@
     <fragment
         android:id="@+id/nav_settings"
         android:name="xuk.android.ui.settings.SettingsFragment"
-        android:label="grid_page"
+        android:label="@string/settings"
+        tools:layout="@layout/fragment_gird_page" />
+
+    <fragment
+        android:id="@+id/nav_licence"
+        android:name="xuk.android.ui.settings.LicenseFragment"
+        android:label="@string/licence"
         tools:layout="@layout/fragment_gird_page" />
 
 </navigation>
