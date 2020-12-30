@@ -1,4 +1,5 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
+
     <!-- Reply Preference -->
     <string-array name="reply_entries">
         <item>Reply</item>
@@ -9,4 +10,24 @@
         <item>reply</item>
         <item>reply_all</item>
     </string-array>
+
+    <string-array name="theme_entries">
+        <item>跟随系统</item>
+        <item>自动变换</item>
+        <item>亮色主题</item>
+        <item>暗色主题</item>
+    </string-array>
+
+    <string name="follow_system">follow_system</string>
+    <string name="auto_battery">auto_battery</string>
+    <string name="night_no">night_no</string>
+    <string name="night_yes">night_yes</string>
+
+    <string-array name="theme_values" tools:ignore="ExtraTranslation">
+        <item>@string/follow_system</item>
+        <item>@string/auto_battery</item>
+        <item>@string/night_no</item>
+        <item>@string/night_yes</item>
+    </string-array>
+
 </resources>

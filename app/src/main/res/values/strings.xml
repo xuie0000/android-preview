@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <!--<string name="app_name">AndroidReview</string>-->
 
     <string name="element_text">Element</string>
@@ -128,6 +128,7 @@
     <string name="messages_header">Messages</string>
     <string name="sync_header">Sync</string>
     <string name="about">关于</string>
+    <string name="theme_title">主题模式</string>
 
     <string name="license_text">
         "Copyright 2020 The Android Open Source Project\n"
