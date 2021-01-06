@@ -10,9 +10,9 @@ class CheeseViewModel(app: Application) : AndroidViewModel(app) {
 
   val allCheeses = Pager(
       config = PagingConfig(
-          pageSize = 100,
-          prefetchDistance = 100,
-          enablePlaceholders = false
+          pageSize = 60,
+          enablePlaceholders = false,
+          maxSize = 200
       ),
       pagingSourceFactory = { dao.allCheesesByName() }
   ).flow

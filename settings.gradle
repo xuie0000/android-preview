@@ -1,4 +1,4 @@
-include ':app', ':ktx'
-include ':library'
+include ':app'
+include ':utils'
 
-project(':library').name = 'util-tools'
+//project(':utils').name = 'utils'
