@@ -5,6 +5,9 @@ plugins {
     id 'maven-publish'
 }
 
+apply from: 'maven.gradle'
+apply from: 'bintray.gradle'
+
 android {
     compileSdkVersion 30
 
@@ -12,7 +15,7 @@ android {
         minSdkVersion 15
         targetSdkVersion 30
         versionCode 2
-        versionName "1.2"
+        versionName "$mavenVersion"
     }
 
     buildTypes {
@@ -21,18 +24,11 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-//
-//    compileOptions {
-//        sourceCompatibility JavaVersion.VERSION_11
-//        targetCompatibility JavaVersion.VERSION_11
-//    }
+
 }
 
 dependencies {
     implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation 'com.google.code.gson:gson:2.8.6'
-    implementation 'org.apache.commons:commons-lang3:3.11'
 }
 
-apply from: 'maven.gradle'
-apply from: 'bintray.gradle'

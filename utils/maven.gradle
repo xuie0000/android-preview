@@ -1,4 +1,4 @@
-//apply plugin: 'com.github.dcendents.android-maven'
+//apply from: 'maven-publish'
 apply from: 'constants.gradle'
 
 // Because the components are created only during the afterEvaluate phase, you must
@@ -6,6 +6,7 @@ apply from: 'constants.gradle'
 afterEvaluate {
     publishing {
         publications {
+
             // Creates a Maven publication called "release".
             release(MavenPublication) {
                 // Applies the component for the release build variant.
@@ -28,63 +29,3 @@ afterEvaluate {
         }
     }
 }
-
-
-//install {
-//    repositories.mavenInstaller {
-//        pom.project {
-//            name projectName
-//            description projectDesc
-//            url githubUrl
-//            inceptionYear '2018'
-//
-//            packaging 'aar'
-//            groupId mavenGroup
-//            artifactId mavenArtifactId
-//            version mavenVersion
-//
-//            licenses {
-//                license {
-//                    name 'The Apache Software License, Version 2.0'
-//                    url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
-//                    distribution 'repo'
-//                }
-//            }
-//            scm {
-//                connection "${githubUrl}.git"
-//                url githubUrl
-//
-//            }
-//            developers {
-//                developer {
-//                    name 'xuie0000'
-//                }
-//            }
-//        }
-//    }
-//}
-//
-//task sourcesJar(type: Jar) {
-//    from android.sourceSets.main.java.srcDirs
-//    classifier = 'sources'
-//}
-//
-//task javadoc(type: Javadoc) {
-//    source = android.sourceSets.main.java.srcDirs
-//    classpath += configurations.compile
-//    classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
-//
-//    failOnError = false
-//}
-//
-//tasks.withType(JavaCompile) { options.encoding = "UTF-8" }
-//
-//task javadocJar(type: Jar, dependsOn: javadoc) {
-//    classifier = 'javadoc'
-//    from javadoc.destinationDir
-//}
-//
-//artifacts {
-//    archives sourcesJar
-//    archives javadocJar
-//}
