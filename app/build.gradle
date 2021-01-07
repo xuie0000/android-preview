@@ -1,7 +1,9 @@
-apply plugin: 'com.android.application'
-apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
-apply plugin: 'kotlin-kapt'
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+    id 'kotlin-android-extensions'
+    id 'kotlin-kapt'
+}
 
 android {
     signingConfigs {
@@ -29,7 +31,6 @@ android {
 
     buildTypes {
         release {
-            buildConfigField "boolean", "D", "false"
             debuggable false
             signingConfig signingConfigs.release
             minifyEnabled true
@@ -38,17 +39,11 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
         debug {
-            buildConfigField "boolean", "D", "true"
             debuggable true
             minifyEnabled false
             zipAlignEnabled false
             shrinkResources false
         }
-    }
-
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
     }
 
     kotlinOptions {
@@ -89,7 +84,7 @@ android {
 }
 
 Properties props = new Properties()
-def propFile = file('../local.properties')
+def propFile = file('../gradle.properties')
 if (propFile.canRead()) {
     props.load(new FileInputStream(propFile))
 

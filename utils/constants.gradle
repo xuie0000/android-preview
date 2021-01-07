@@ -1,12 +1,12 @@
 ext {
-    projectName = 'AndroidPreview'
+    projectName = 'android-preview'
     projectDesc = 'Normal Utils Library'
 
-    githubUrl = 'https://gitlab.com/xuie0000/AndroidPreview'
+    githubUrl = 'https://gitlab.com/xuie0000/android-preview'
 
     mavenGroup = 'com.xuie'
     mavenArtifactId = 'util-tools'
-    mavenVersion = '1.2.0'
+    mavenVersion = '1.2.1'
 
     bintrayOrg = 'xuie0000'
 }

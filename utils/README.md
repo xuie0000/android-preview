@@ -1,7 +1,7 @@
 # 使用
 
 ```groovy
-implementation 'com.xuie:util-tools:1.0.1'
+implementation 'com.xuie:util-tools:1.2.1'
 ```
 
 
@@ -13,8 +13,8 @@ bintray.user=xuie0000
 bintray.apikey=<your api key>
 ```
 
-- `gradlew install`
-- `gradlew bintrayUpload`
+- `./gradlew install`
+- `./gradlew bintrayUpload`
 
 > **Windows10用命令执行，窗口点有BUG**，其他系统还没有试
 

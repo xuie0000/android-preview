@@ -1,5 +1,6 @@
+// bintray : https://github.com/bintray/gradle-bintray-plugin
 //plugins {
-//    id "com.jfrog.bintray" version "1.8.4"
+//    id "com.jfrog.bintray" version "1.8.5"
 //}
 apply plugin: 'com.jfrog.bintray'
 apply from: 'constants.gradle'
