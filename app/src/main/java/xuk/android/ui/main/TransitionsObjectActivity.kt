@@ -15,7 +15,7 @@ class TransitionsObjectActivity : AppCompatActivity(R.layout.activity_transition
 
   override fun onPostCreate(savedInstanceState: Bundle?) {
     super.onPostCreate(savedInstanceState)
-    val tempBitmap = BitmapFactory.decodeResource(resources, R.mipmap.image_big)
+    val tempBitmap = BitmapFactory.decodeResource(resources, R.mipmap.ic_share_image)
     val finalBitmap = BlurBitmap.blur(this, tempBitmap)
 
     blured_img.setImageBitmap(finalBitmap)

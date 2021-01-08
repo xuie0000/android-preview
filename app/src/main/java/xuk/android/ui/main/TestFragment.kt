@@ -45,7 +45,7 @@ class TestFragment : Fragment(R.layout.fragment_test) {
         selectedTopLeftCornerRadius,
         selectedDrawable!!
     ).apply {
-      bitmap = BitmapFactory.decodeResource(resources, R.mipmap.image_small)
+      bitmap = BitmapFactory.decodeResource(resources, R.mipmap.ic_share_image)
     }
 
     iv_foreground.setImageDrawable(drawable)

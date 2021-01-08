@@ -58,6 +58,6 @@
         android:stateListAnimator="@animator/topic_selection"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/shake_view"
-        app:srcCompat="@mipmap/image_small" />
+        app:srcCompat="@mipmap/ic_share_image" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
