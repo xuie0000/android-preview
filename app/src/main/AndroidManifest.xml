@@ -28,7 +28,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.main.TransitionsObjectActivity"
+            android:name=".ui.renderscript.RenderScriptActivity"
             android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"
             android:parentActivityName=".ui.main.MainActivity">
             <intent-filter>

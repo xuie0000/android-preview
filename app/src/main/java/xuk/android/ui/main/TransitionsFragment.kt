@@ -11,6 +11,7 @@ import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
 import kotlinx.android.synthetic.main.fragment_transitions.*
 import xuk.android.R
+import xuk.android.ui.renderscript.RenderScriptActivity
 import xuk.android.util.log
 
 class TransitionsFragment : Fragment(R.layout.fragment_transitions) {
@@ -40,10 +41,10 @@ class TransitionsFragment : Fragment(R.layout.fragment_transitions) {
     slide.setOnClickListener { makeSceneTransitionAnimationNoParameter(1) }
     fade.setOnClickListener { makeSceneTransitionAnimationNoParameter(2) }
 
-    over_shoot.setOnClickListener {
-      log { "over_shoot" }
-      val intent = Intent(activity, TransitionsObjectActivity::class.java)
-      val options = ActivityOptions.makeSceneTransitionAnimation(activity, over_shoot, "shareOverShoot")
+    iv_share_object.setOnClickListener {
+      log { "share object" }
+      val intent = Intent(activity, RenderScriptActivity::class.java)
+      val options = ActivityOptions.makeSceneTransitionAnimation(activity, iv_share_object, "share_object")
       ActivityCompat.startActivity(requireActivity(), intent, options.toBundle())
     }
   }
