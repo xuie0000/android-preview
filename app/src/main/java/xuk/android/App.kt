@@ -3,7 +3,6 @@ package xuk.android
 import android.app.Application
 import com.gw.swipeback.tools.WxSwipeBackActivityManager
 import com.tencent.bugly.crashreport.CrashReport
-import xuk.android.ui.recycler.discrete.DiscreteScrollViewOptions
 import xuk.android.util.initLogger
 import xuk.android.util.log
 
@@ -18,8 +17,6 @@ class App : Application() {
     context = this
     initLogger(true)
     CrashReport.initCrashReport(applicationContext, BUG_LY_ID, false)
-
-    DiscreteScrollViewOptions.init(this)
 
     WxSwipeBackActivityManager.getInstance().init(this)
   }

@@ -1,16 +1,9 @@
-<com.scwang.smartrefresh.layout.SmartRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<androidx.recyclerview.widget.RecyclerView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/refreshLayout"
+    android:id="@+id/recyclerView"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    app:srlEnablePureScrollMode="true"
+    android:overScrollMode="never"
     tools:context="xuk.android.ui.recycler.RecyclerViewFragment">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_centerInParent="true"
-        android:overScrollMode="never" />
-</com.scwang.smartrefresh.layout.SmartRefreshLayout>
+</androidx.recyclerview.widget.RecyclerView>

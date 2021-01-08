@@ -24,7 +24,6 @@ class RecyclerViewFragment : Fragment(R.layout.fragment_recycler_view) {
 
   private var members: List<String> = arrayListOf(
       "ItemDecoration(时间轴) ",
-      "滑动缩放 ",
       "分页Paging ",
       "Grid Page "
   )
@@ -35,9 +34,8 @@ class RecyclerViewFragment : Fragment(R.layout.fragment_recycler_view) {
     val listAdapter = ShowAdapter { pos ->
       when (pos) {
         0 -> findNavController().navigate(R.id.action_to_axis)
-        1 -> findNavController().navigate(R.id.action_to_discrete)
-        2 -> findNavController().navigate(R.id.action_to_paging)
-        3 -> findNavController().navigate(R.id.action_to_grid_page)
+        1 -> findNavController().navigate(R.id.action_to_paging)
+        2 -> findNavController().navigate(R.id.action_to_grid_page)
         else -> throw IllegalArgumentException("no position")
       }
     }

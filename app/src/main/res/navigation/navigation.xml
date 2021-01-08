@@ -30,9 +30,6 @@
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right" />
         <action
-            android:id="@+id/action_to_discrete"
-            app:destination="@id/discrete" />
-        <action
             android:id="@+id/action_to_paging"
             app:destination="@id/paging" />
         <action
@@ -45,12 +42,6 @@
         android:name="xuk.android.ui.recycler.axis.AxisFragment"
         android:label="fragment_axis"
         tools:layout="@layout/fragment_axis" />
-
-    <fragment
-        android:id="@+id/discrete"
-        android:name="xuk.android.ui.recycler.discrete.DiscreteFragment"
-        android:label="discrete"
-        tools:layout="@layout/fragment_discrete" />
 
     <fragment
         android:id="@+id/paging"
