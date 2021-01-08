@@ -3,11 +3,8 @@ package xuk.android.ui.recycler.gridpage
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import android.widget.TextView
-import com.bumptech.glide.Glide
-import com.bumptech.glide.request.RequestOptions
-import jp.wasabeef.glide.transformations.RoundedCornersTransformation
+import com.google.android.material.imageview.ShapeableImageView
 import xuk.android.R
 
 /**
@@ -16,14 +13,12 @@ import xuk.android.R
  */
 class SmallHolder(view: View) : BaseHolder(view) {
 
-  private val head: ImageView = view.findViewById(R.id.iv_head)
+  private val head: ShapeableImageView = view.findViewById(R.id.iv_head)
   private val name: TextView = view.findViewById(R.id.tv_content)
 
   override fun bind(item: GridItem) {
-    Glide.with(itemView.context).load(item.source)
-        .apply(RequestOptions.bitmapTransform(RoundedCornersTransformation(20, 0)))
-        .into(head)
     name.text = item.name
+    head.setImageResource(item.source)
   }
 
   companion object {

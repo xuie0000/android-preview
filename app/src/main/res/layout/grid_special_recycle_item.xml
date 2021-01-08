@@ -19,12 +19,13 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <ImageView
+            <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/iv_head"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:scaleType="centerCrop"
-                android:src="@drawable/grid_head_1" />
+                android:src="@drawable/grid_head_1"
+                app:shapeAppearanceOverlay="@style/roundedCornerStyle" />
 
             <ImageView
                 android:layout_width="32dp"
