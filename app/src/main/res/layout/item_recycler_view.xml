@@ -9,12 +9,13 @@
     app:cardUseCompatPadding="true">
 
     <TextView
-        android:id="@+id/text"
-        android:layout_width="wrap_content"
+        android:id="@+id/tv_text"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:gravity="center"
         android:padding="4dp"
+        android:textAppearance="?attr/textAppearanceHeadline6"
         android:textSize="20sp"
-        android:textStyle="bold|italic"
         tools:text="Test" />
 
 </androidx.cardview.widget.CardView>
