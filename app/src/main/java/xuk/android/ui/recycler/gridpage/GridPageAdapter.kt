@@ -10,8 +10,7 @@ import androidx.recyclerview.widget.ListAdapter
  * @author Jie Xu
  * @date 2019/10/16
  */
-class GridPageAdapter :
-    ListAdapter<GridItem, BaseHolder>(gridDiffCallback) {
+class GridPageAdapter : ListAdapter<GridItem, BaseHolder>(gridDiffCallback) {
 
   override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseHolder {
     return when (viewType) {

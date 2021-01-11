@@ -1,7 +1,6 @@
 package xuk.android
 
 import android.app.Application
-import com.gw.swipeback.tools.WxSwipeBackActivityManager
 import com.tencent.bugly.crashreport.CrashReport
 import xuk.android.util.initLogger
 import xuk.android.util.log
@@ -18,7 +17,6 @@ class App : Application() {
     initLogger(true)
     CrashReport.initCrashReport(applicationContext, BUG_LY_ID, false)
 
-    WxSwipeBackActivityManager.getInstance().init(this)
   }
 
   companion object {

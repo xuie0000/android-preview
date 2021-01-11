@@ -1,14 +1,11 @@
 package xuk.android.ui.main
 
 import android.graphics.BitmapFactory
-import android.graphics.Color
 import android.os.Bundle
 import android.view.View
 import android.view.animation.AnimationUtils
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
-import com.mikepenz.iconics.IconicsDrawable
-import com.mikepenz.material_design_iconic_typeface_library.MaterialDesignIconic
 import kotlinx.android.synthetic.main.fragment_test.*
 import kotlinx.android.synthetic.main.fragment_test.view.*
 import xuk.android.R
@@ -27,7 +24,6 @@ class TestFragment : Fragment(R.layout.fragment_test) {
 
   private fun shakeSample() {
     shake_view.apply {
-      setImageDrawable(IconicsDrawable(context, MaterialDesignIconic.Icon.gmi_view_carousel).color(Color.BLUE).sizeDp(24))
       setOnClickListener {
         shake_view.startAnimation(AnimationUtils.loadAnimation(activity, R.anim.shake))
       }

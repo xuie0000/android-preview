@@ -3,11 +3,11 @@ package xuk.android.ui.palette
 import android.graphics.BitmapFactory
 import android.graphics.Color
 import android.os.Bundle
+import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.palette.graphics.Palette
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayoutMediator
-import com.mikepenz.iconics.IconicsDrawable
 import kotlinx.android.synthetic.main.activity_palette.*
 import xuk.android.R
 import java.util.*
@@ -18,13 +18,12 @@ class PaletteActivity : AppCompatActivity() {
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     setContentView(R.layout.activity_palette)
+    setSupportActionBar(toolbar)
 
-    toolbar.apply {
-      setSupportActionBar(this)
+    supportActionBar?.apply {
+      setHomeAsUpIndicator(R.drawable.ic_arrow_back_24px)
+      setDisplayHomeAsUpEnabled(true)
       setTitle(R.string.palette)
-      setTitleTextColor(Color.WHITE)
-      navigationIcon = IconicsDrawable(context, "gmi_chevron_left").sizeDp(24).color(Color.WHITE)
-      setNavigationOnClickListener { finish() }
     }
 
     val sectionsPagerAdapter = SectionsPagerAdapter(this)
@@ -32,6 +31,7 @@ class PaletteActivity : AppCompatActivity() {
       adapter = sectionsPagerAdapter
       orientation = ViewPager2.ORIENTATION_HORIZONTAL
     }
+
     TabLayoutMediator(tab_layout, viewpager, true) { tab, position ->
       tab.text = sectionsPagerAdapter.getPageTitle(position)
     }.attach()
@@ -43,6 +43,14 @@ class PaletteActivity : AppCompatActivity() {
 
     changeTopBgColor(0)
 
+  }
+
+  override fun onOptionsItemSelected(item: MenuItem): Boolean {
+    if (item.itemId == android.R.id.home) {
+      onBackPressed()
+      return true
+    }
+    return super.onOptionsItemSelected(item)
   }
 
 

@@ -133,16 +133,15 @@ dependencies {
 
     api 'com.github.bumptech.glide:glide:4.11.0'
     kapt 'com.github.bumptech.glide:compiler:4.11.0'
-    api 'jp.wasabeef:glide-transformations:4.0.1'
 
     api 'pub.devrel:easypermissions:3.0.0'
-    api 'com.mikepenz:iconics-core:3.0.3@aar'
-    api 'com.mikepenz:material-design-iconic-typeface:2.2.0.4@aar'
 
-    api 'com.gongwen:swipeback:1.0.2'
+    // crash && update
     api 'com.tencent.bugly:crashreport:3.1.0'
+    // 使用调色板 https://developer.android.com/kotlin/ktx?hl=zh-cn#palette
     api 'androidx.palette:palette-ktx:1.0.0'
 
+    // log
     api 'com.jakewharton.timber:timber:4.7.1'
 
     testImplementation 'junit:junit:4.13.1'

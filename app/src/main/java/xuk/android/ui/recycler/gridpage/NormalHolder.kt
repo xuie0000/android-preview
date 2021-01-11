@@ -7,9 +7,7 @@ import android.widget.TextView
 import com.google.android.material.imageview.ShapeableImageView
 import xuk.android.R
 
-class NormalHolder(view: View,
-                   private val clickCallback: ((view: View, position: Int, item: GridItem) -> Unit)?
-) : BaseHolder(view) {
+class NormalHolder(view: View, private val clickCallback: ((view: View, position: Int, item: GridItem) -> Unit)?) : BaseHolder(view) {
 
   private val head: ShapeableImageView = view.findViewById(R.id.iv_head)
   private val title: TextView = view.findViewById(R.id.tv_title)
@@ -20,7 +18,7 @@ class NormalHolder(view: View,
     desc.text = item.other
     head.setImageResource(item.source)
     itemView.setOnClickListener {
-      clickCallback?.invoke(it, adapterPosition, item)
+      clickCallback?.invoke(it, absoluteAdapterPosition, item)
     }
   }
 

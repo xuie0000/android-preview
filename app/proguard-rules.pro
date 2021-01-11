@@ -133,7 +133,7 @@
 -keepattributes Exceptions
 
 # com.mikepenz:iconics-core
--keep class .R
+-keep class.R
 -keep class **.R$* {
     <fields>;
 }
