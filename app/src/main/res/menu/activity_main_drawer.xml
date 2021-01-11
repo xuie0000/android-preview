@@ -2,19 +2,23 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/nav_transitions"
-        android:icon="@mipmap/ic_invert_colors"
+        android:icon="@drawable/ic_transition_list_24px"
         android:title="@string/transitions" />
     <item
         android:id="@+id/nav_test"
-        android:icon="@mipmap/ic_invert_colors"
+        android:icon="@drawable/ic_test"
         android:title="@string/test" />
     <item
+        android:id="@+id/nav_coordinator"
+        android:icon="@drawable/ic_coordinator"
+        android:title="@string/coordinator" />
+    <item
         android:id="@+id/nav_recycler"
-        android:icon="@mipmap/ic_invert_colors"
+        android:icon="@drawable/ic_recycler_view_24px"
         android:title="@string/recycler_view" />
     <item
         android:id="@+id/nav_settings"
-        android:icon="@mipmap/ic_invert_colors"
+        android:icon="@drawable/ic_settings_24px"
         android:title="@string/settings" />
 
 </menu>

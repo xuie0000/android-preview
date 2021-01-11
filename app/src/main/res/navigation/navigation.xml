@@ -8,14 +8,20 @@
     <fragment
         android:id="@+id/nav_transitions"
         android:name="xuk.android.ui.main.TransitionsFragment"
-        android:label="transitions"
+        android:label="@string/transitions"
         tools:layout="@layout/fragment_transitions" />
 
     <fragment
         android:id="@+id/nav_test"
         android:name="xuk.android.ui.main.TestFragment"
-        android:label="测试UI"
+        android:label="@string/test"
         tools:layout="@layout/fragment_test" />
+
+    <fragment
+        android:id="@+id/nav_coordinator"
+        android:name="xuk.android.ui.coordinator.CoordinatorSampleFragment"
+        android:label="@string/coordinator"
+        tools:layout="@layout/fragment_recycler_view" />
 
     <fragment
         android:id="@+id/nav_recycler"

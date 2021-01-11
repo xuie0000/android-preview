@@ -22,9 +22,6 @@ import kotlinx.android.synthetic.main.app_bar_main.toolbar
 import pub.devrel.easypermissions.AfterPermissionGranted
 import pub.devrel.easypermissions.EasyPermissions
 import xuk.android.R
-import xuk.android.ui.coordinator.CoordinatorLayoutActivity
-import xuk.android.ui.coordinator.MotionLayout2Activity
-import xuk.android.ui.coordinator.MotionLayoutActivity
 import xuk.android.ui.palette.PaletteActivity
 import xuk.android.util.getImageUriFromBitmap
 import xuk.android.util.log
@@ -54,7 +51,7 @@ class MainActivity : AppCompatActivity(), EasyPermissions.PermissionCallbacks {
     // Passing each menu ID as a set of Ids because each
     // menu should be considered as top level destinations.
     appBarConfiguration = AppBarConfiguration(setOf(
-        R.id.nav_transitions, R.id.nav_test, R.id.nav_recycler), drawer_layout)
+        R.id.nav_transitions, R.id.nav_test, R.id.nav_coordinator, R.id.nav_recycler), drawer_layout)
     setupActionBarWithNavController(navController, appBarConfiguration)
     nav_view.setupWithNavController(navController)
 
@@ -109,9 +106,6 @@ class MainActivity : AppCompatActivity(), EasyPermissions.PermissionCallbacks {
   override fun onOptionsItemSelected(item: MenuItem): Boolean {
     when (item.itemId) {
       R.id.action_palette -> startActivity(PaletteActivity::class.java)
-      R.id.action_coordinator_layout -> startActivity(CoordinatorLayoutActivity::class.java)
-      R.id.action_coordinator_motion_layout -> startActivity(MotionLayoutActivity::class.java)
-      R.id.action_coordinator_motion_layout2 -> startActivity(MotionLayout2Activity::class.java)
       else -> super.onOptionsItemSelected(item)
     }
     return super.onOptionsItemSelected(item)
