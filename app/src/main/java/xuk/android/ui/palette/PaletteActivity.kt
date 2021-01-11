@@ -13,6 +13,9 @@ import xuk.android.R
 import java.util.*
 import kotlin.math.floor
 
+/**
+ * 调色板Palette && ViewPager2 && Toolbar
+ */
 class PaletteActivity : AppCompatActivity() {
 
   override fun onCreate(savedInstanceState: Bundle?) {

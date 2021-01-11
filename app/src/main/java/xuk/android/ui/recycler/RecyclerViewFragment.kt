@@ -23,9 +23,9 @@ import xuk.android.R
 class RecyclerViewFragment : Fragment(R.layout.fragment_recycler_view) {
 
   private var members: List<String> = arrayListOf(
-      "ItemDecoration(时间轴) ",
-      "分页Paging ",
-      "Grid Page "
+      "ItemDecoration",
+      "Paging3",
+      "GridLayout"
   )
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

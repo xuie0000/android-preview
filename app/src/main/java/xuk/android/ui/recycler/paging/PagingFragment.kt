@@ -14,6 +14,9 @@ import kotlinx.coroutines.flow.collectLatest
 import timber.log.Timber
 import xuk.android.R
 
+/**
+ * Paging3
+ */
 class PagingFragment : Fragment(R.layout.fragment_paging) {
 
   private val viewModel: CheeseViewModel by viewModels()

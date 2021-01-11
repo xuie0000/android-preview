@@ -11,7 +11,7 @@ import xuk.android.R
 import java.util.*
 
 /**
- * @author Jie Xu
+ * 复杂RecyclerView Layout Sample
  */
 class GridPageFragment : Fragment(R.layout.fragment_gird_page) {
 
