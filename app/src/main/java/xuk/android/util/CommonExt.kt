@@ -49,6 +49,9 @@ val Context.screenHeight
   get() = resources.displayMetrics.heightPixels
 
 // https://www.itranslater.com/qa/details/2121697628307063808
+/**
+ * 截屏
+ */
 @RequiresApi(Build.VERSION_CODES.O)
 fun saveScreenshot(view: View, callback: ((bitmap: Bitmap) -> Unit)? = null, error: ((msg: String?) -> Unit)? = null) {
   val window = (view.context as Activity).window
@@ -77,6 +80,9 @@ fun getImageUriFromBitmap(context: Context, bitmap: Bitmap): Uri{
   return Uri.parse(path.toString())
 }
 
+/**
+ * 截屏
+ */
 fun Activity.screenShotToUri(): Uri {
   // https://medium.com/@shiveshmehta09/taking-screenshot-programmatically-using-pixelcopy-api-83c84643b02a
   val dView = window.decorView

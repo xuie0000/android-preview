@@ -14,17 +14,12 @@ import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.snackbar.Snackbar
-import kotlinx.android.synthetic.main.activity_coordinator_layout.*
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
-import kotlinx.android.synthetic.main.app_bar_main.fab
-import kotlinx.android.synthetic.main.app_bar_main.toolbar
 import pub.devrel.easypermissions.AfterPermissionGranted
 import pub.devrel.easypermissions.EasyPermissions
 import xuk.android.R
-import xuk.android.util.getImageUriFromBitmap
 import xuk.android.util.log
-import xuk.android.util.saveScreenshot
 import java.util.*
 
 /**
@@ -92,12 +87,12 @@ class MainActivity : AppCompatActivity(), EasyPermissions.PermissionCallbacks {
     shareActionProvider = MenuItemCompat.getActionProvider(item) as ShareActionProvider
     shareActionProvider.setShareIntent(Intent().apply {
       action = Intent.ACTION_SEND
-      saveScreenshot(drawer_layout, { bitmap ->
-        putExtra(Intent.EXTRA_STREAM, getImageUriFromBitmap(this@MainActivity, bitmap))
-        type = "image/*"
-      })
-//      putExtra(Intent.EXTRA_TEXT, "Share At ${Date()}")
-//      type = "text/plain"
+//      saveScreenshot(drawer_layout, { bitmap ->
+//        putExtra(Intent.EXTRA_STREAM, getImageUriFromBitmap(this@MainActivity, bitmap))
+//        type = "image/*"
+//      })
+      putExtra(Intent.EXTRA_TEXT, "Share At ${Date()}")
+      type = "text/plain"
     })
     return true
   }

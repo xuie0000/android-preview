@@ -10,11 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 
 /**
  * http://www.jianshu.com/p/9a796bb23a47
- *
- * @author Jie Xu
- * @date 17-8-9
  */
-
 class AxisItemDecoration : RecyclerView.ItemDecoration() {
   private val linePaint: Paint = Paint()
   private val leftPaint: Paint = Paint()
