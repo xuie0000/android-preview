@@ -16,11 +16,16 @@ import androidx.recyclerview.widget.RecyclerView
  */
 
 class AxisItemDecoration : RecyclerView.ItemDecoration() {
-  private val mPaint: Paint = Paint()
+  private val linePaint: Paint = Paint()
+  private val leftPaint: Paint = Paint()
 
   init {
-    mPaint.color = Color.GREEN
-    mPaint.strokeWidth = 6f
+    linePaint.color = Color.GREEN
+    linePaint.strokeWidth = 6f
+
+    leftPaint.color = Color.BLUE
+    leftPaint.strokeWidth = 4f
+    leftPaint.style = Paint.Style.FILL
   }
 
   override fun onDraw(c: Canvas, parent: RecyclerView, state: RecyclerView.State) {
@@ -33,7 +38,7 @@ class AxisItemDecoration : RecyclerView.ItemDecoration() {
       val bottom = view.bottom
       if (i == childCount - 1)
         break
-      c.drawRect((left + 30).toFloat(), bottom.toFloat(), (right - 30).toFloat(), (bottom + OUT_BOTTOM_HEIGHT).toFloat(), mPaint)
+      c.drawRect((left + 30).toFloat(), bottom.toFloat(), (right - 30).toFloat(), (bottom + OUT_BOTTOM_HEIGHT).toFloat(), linePaint)
     }
   }
 
@@ -57,21 +62,36 @@ class AxisItemDecoration : RecyclerView.ItemDecoration() {
       val x = left + (right - left) / 5
       val y = top + (bottom - top) / 2
 
-      if (index == 0) {
-        c.drawLine(x.toFloat(), y.toFloat(), x.toFloat(), bottom.toFloat(), mPaint)
-        c.drawCircle(x.toFloat(), y.toFloat(), 16f, mPaint)
-      } else {
-        c.drawLine(x.toFloat(), top.toFloat(), x.toFloat(), y.toFloat(), mPaint)
-        c.drawLine(x.toFloat(), y.toFloat(), x.toFloat(), bottom.toFloat(), mPaint)
-        c.drawCircle(x.toFloat(), y.toFloat(), 16f, mPaint)
+      // 左侧小圆点
+      c.drawCircle(left.toFloat(), (top + bottom) / 2f, 10f, leftPaint)
+
+      // 中线
+      when (index) {
+        0 -> {
+          // 第一个
+          c.drawLine(x.toFloat(), y.toFloat(), x.toFloat(), bottom.toFloat(), linePaint)
+          c.drawCircle(x.toFloat(), y.toFloat(), 16f, linePaint)
+        }
+        childCount - 1 -> {
+          // 最后一个
+          c.drawLine(x.toFloat(), top.toFloat(), x.toFloat(), y.toFloat(), linePaint)
+          c.drawCircle(x.toFloat(), y.toFloat(), 16f, linePaint)
+        }
+        else -> {
+          c.drawLine(x.toFloat(), top.toFloat(), x.toFloat(), bottom.toFloat(), linePaint)
+          c.drawCircle(x.toFloat(), y.toFloat(), 16f, linePaint)
+        }
       }
+
     }
 
   }
 
   override fun getItemOffsets(outRect: Rect, view: View, parent: RecyclerView, state: RecyclerView.State) {
-    // default (0, 0, 0, 0)
-    outRect.set(0, 0, 0, OUT_BOTTOM_HEIGHT)
+//    default(0, 0, 0, 0)
+//    outRect.set(0, 0, 0, OUT_BOTTOM_HEIGHT)
+    outRect.left = 20
+    outRect.bottom = OUT_BOTTOM_HEIGHT
   }
 
   companion object {
