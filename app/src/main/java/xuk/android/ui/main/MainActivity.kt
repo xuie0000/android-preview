@@ -22,7 +22,6 @@ import kotlinx.android.synthetic.main.app_bar_main.toolbar
 import pub.devrel.easypermissions.AfterPermissionGranted
 import pub.devrel.easypermissions.EasyPermissions
 import xuk.android.R
-import xuk.android.ui.palette.PaletteActivity
 import xuk.android.util.getImageUriFromBitmap
 import xuk.android.util.log
 import xuk.android.util.saveScreenshot
@@ -103,10 +102,9 @@ class MainActivity : AppCompatActivity(), EasyPermissions.PermissionCallbacks {
     return true
   }
 
+  @Suppress("ControlFlowWithEmptyBody")
   override fun onOptionsItemSelected(item: MenuItem): Boolean {
     when (item.itemId) {
-      R.id.action_palette -> startActivity(PaletteActivity::class.java)
-      else -> super.onOptionsItemSelected(item)
     }
     return super.onOptionsItemSelected(item)
   }
@@ -115,10 +113,6 @@ class MainActivity : AppCompatActivity(), EasyPermissions.PermissionCallbacks {
     log { "onSupportNavigateUp" }
     val navController = findNavController(R.id.nav_host_fragment)
     return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
-  }
-
-  private fun startActivity(cls: Class<*>) {
-    startActivity(Intent(this, cls))
   }
 
   companion object {
