@@ -290,7 +290,7 @@ public final class KeyboardUtils {
 
     /**
      * Fix the leaks of soft input.
-     * <p>Call the function in {@link Activity#onDestroy()}.</p>
+     * <p>Call the function in Activity#onDestroy().</p>
      *
      * @param activity The activity.
      */

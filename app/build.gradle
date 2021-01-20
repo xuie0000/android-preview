@@ -5,15 +5,28 @@ plugins {
     id 'kotlin-kapt'
 }
 
+static def releaseTime() {
+    return new Date().format("yy.MMddHH", TimeZone.getTimeZone("GMT+8"))
+}
+
+def name = "android_preview"
+def version = "1." + releaseTime()
+def gitCommits = Integer.parseInt('git rev-list --count HEAD'.execute([], project.rootDir).text.trim())
+
 android {
     signingConfigs {
-        release {
-            //storeFile file("../yourapp.keystore")
-            //storePassword "your password"
-            //keyAlias "your alias"
-            //keyPassword "your password"
-            //edit local.properties
-            //second, add property STORE_FILE, STORE_PASSWORD, KEY_ALIAS, KEY_PASSWORD
+        def propsFile = rootProject.file('keystore.properties')
+        if (propsFile.exists()) {
+            def props = new Properties()
+            props.load(new FileInputStream(propsFile))
+            myConfig {
+                storeFile file(props['storeFile'])
+                storePassword props['storePassword']
+                keyAlias props['keyAlias']
+                keyPassword props['keyPassword']
+                v1SigningEnabled true
+                v2SigningEnabled true
+            }
         }
     }
 
@@ -23,27 +36,24 @@ android {
         applicationId 'xuk.android'
         minSdkVersion 26
         targetSdkVersion 30
-        versionCode 12
-        versionName "1.3.1"
+        versionCode gitCommits
+        versionName version
 
-        flavorDimensions "versionCode"
+        flavorDimensions "flavor"
     }
 
     buildTypes {
         release {
+            if (rootProject.file('keystore.properties').exists()) {
+                signingConfig signingConfigs.myConfig
+            }
             debuggable false
-            signingConfig signingConfigs.release
             minifyEnabled true
             zipAlignEnabled true
             shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
-        debug {
-            debuggable true
-            minifyEnabled false
-            zipAlignEnabled false
-            shrinkResources false
-        }
+
     }
 
     kotlinOptions {
@@ -52,97 +62,66 @@ android {
     }
 
     buildFeatures {
+        dataBinding = true
         viewBinding = true
     }
 
     productFlavors {
         Canary {
             manifestPlaceholders = [channel : "Canary",
-                                    app_name: "Call D",
+                                    app_name: "J-Canary",
                                     app_icon: "@mipmap/ic_launcher"]
         }
         Stage {
             manifestPlaceholders = [channel : "Stage",
-                                    app_name: "Call R",
+                                    app_name: "J-Stage",
                                     app_icon: "@drawable/ic_stage"]
         }
     }
 
-    // rename the apk with the version name
     applicationVariants.all { variant ->
-        variant.outputs.all { output ->
-            if (variant.buildType.name == "release") {
-                def outputFile = output.outputFile
-                if (outputFile != null && outputFile.name.endsWith('.apk')) {
-                    def fileName = outputFile.name.replace("app", "android-v${variant.versionName}-${variant.versionCode}-${buildTime()}".toLowerCase())
-                    outputFileName = fileName
-                }
-
-            }
+        variant.outputs.all {
+            def flavor = variant.productFlavors[0].name.toLowerCase()
+            outputFileName = "${name}_${flavor}_${defaultConfig.versionName}.apk"
         }
     }
+
 }
 
-Properties props = new Properties()
-def propFile = file('../gradle.properties')
-if (propFile.canRead()) {
-    props.load(new FileInputStream(propFile))
-
-    if (props != null && props.containsKey('STORE_FILE') && props.containsKey('STORE_PASSWORD') &&
-            props.containsKey('KEY_ALIAS') && props.containsKey('KEY_PASSWORD')) {
-
-        println 'RELEASE BUILD SIGNING'
-        android.signingConfigs.release.storeFile = file(props['STORE_FILE'])
-        android.signingConfigs.release.storePassword = props['STORE_PASSWORD']
-        android.signingConfigs.release.keyAlias = props['KEY_ALIAS']
-        android.signingConfigs.release.keyPassword = props['KEY_PASSWORD']
-    } else {
-        println 'RELEASE BUILD NOT FOUND SIGNING PROPERTIES'
-
-        android.buildTypes.release.signingConfig = null
-    }
-} else {
-    println 'RELEASE BUILD NOT FOUND SIGNING FILE'
-    android.buildTypes.release.signingConfig = null
-}
-
-static def buildTime() {
-    return new Date().format("yyyy-MM-dd", TimeZone.getTimeZone("UTC"))
-}
 
 dependencies {
-    api fileTree(dir: 'libs', include: ['*.jar'])
-    api "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    api 'androidx.appcompat:appcompat:1.2.0'
-    api 'androidx.constraintlayout:constraintlayout:2.0.4'
-    api 'com.google.android.material:material:1.3.0-beta01'
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation 'androidx.appcompat:appcompat:1.2.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
+    implementation 'com.google.android.material:material:1.3.0-beta01'
 
-    api 'androidx.lifecycle:lifecycle-extensions:2.2.0'
-    api 'androidx.viewpager2:viewpager2:1.0.0'
+    implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
+    implementation 'androidx.viewpager2:viewpager2:1.0.0'
 
-    api "androidx.room:room-runtime:$room_version"
-    api "androidx.room:room-ktx:$room_version"
+    implementation "androidx.room:room-runtime:$room_version"
+    implementation "androidx.room:room-ktx:$room_version"
     kapt "androidx.room:room-compiler:$room_version"
 
     // Kotlin Navigation
-    api "androidx.navigation:navigation-fragment-ktx:$navigation_version"
-    api "androidx.navigation:navigation-ui-ktx:$navigation_version"
+    implementation "androidx.navigation:navigation-fragment-ktx:$navigation_version"
+    implementation "androidx.navigation:navigation-ui-ktx:$navigation_version"
 
     implementation "androidx.preference:preference-ktx:$preference_version"
-    implementation 'androidx.paging:paging-runtime-ktx:3.0.0-alpha11'
+    implementation 'androidx.paging:paging-runtime-ktx:3.0.0-alpha12'
 
-    api 'com.github.bumptech.glide:glide:4.11.0'
+    implementation 'com.github.bumptech.glide:glide:4.11.0'
     kapt 'com.github.bumptech.glide:compiler:4.11.0'
 
-    api 'pub.devrel:easypermissions:3.0.0'
+    implementation 'pub.devrel:easypermissions:3.0.0'
 
     // crash && update
-    api 'com.tencent.bugly:crashreport:3.1.0'
+    implementation 'com.tencent.bugly:crashreport:3.1.0'
     // 使用调色板 https://developer.android.com/kotlin/ktx?hl=zh-cn#palette
-    api 'androidx.palette:palette-ktx:1.0.0'
+    implementation 'androidx.palette:palette-ktx:1.0.0'
 
     // log
-    api 'com.jakewharton.timber:timber:4.7.1'
+    implementation 'com.jakewharton.timber:timber:4.7.1'
 
     testImplementation 'junit:junit:4.13.1'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'

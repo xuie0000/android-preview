@@ -42,7 +42,7 @@ public class MD5 {
      *
      * @param str 待加密的字符串
      */
-    public static String GetMD5Code(String str) {
+    public static String getMD5Code(String str) {
         String result = null;
         try {
             result = str;
@@ -60,7 +60,7 @@ public class MD5 {
      * @param str       待加密的字符串
      * @param lowerCase 大小写
      */
-    public static String GetMD5Code(String str, boolean lowerCase) {
+    public static String getMD5Code(String str, boolean lowerCase) {
         String result = null;
         try {
             result = str;
