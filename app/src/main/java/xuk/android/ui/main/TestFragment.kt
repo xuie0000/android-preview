@@ -7,7 +7,6 @@ import android.view.animation.AnimationUtils
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import kotlinx.android.synthetic.main.fragment_test.*
-import kotlinx.android.synthetic.main.fragment_test.view.*
 import xuk.android.R
 import xuk.android.widget.TopicThumbnailDrawable
 
@@ -23,10 +22,8 @@ class TestFragment : Fragment(R.layout.fragment_test) {
   }
 
   private fun shakeSample() {
-    shake_view.apply {
-      setOnClickListener {
-        shake_view.startAnimation(AnimationUtils.loadAnimation(activity, R.anim.shake))
-      }
+    shake_view.setOnClickListener {
+      it.startAnimation(AnimationUtils.loadAnimation(activity, R.anim.shake))
     }
   }
 
