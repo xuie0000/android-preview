@@ -8,10 +8,6 @@ import androidx.recyclerview.widget.RecyclerView
 
 import xuk.android.R
 
-/**
- * @author Jie Xu
- * @date 17-8-9
- */
 class AxisAdapter : RecyclerView.Adapter<AxisAdapter.MyViewHolder>() {
   private val dataBeen: List<DataBean> = DataBean.getDataBeen()
 
