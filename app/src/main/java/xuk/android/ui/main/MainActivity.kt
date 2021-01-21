@@ -18,8 +18,8 @@ import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
 import pub.devrel.easypermissions.AfterPermissionGranted
 import pub.devrel.easypermissions.EasyPermissions
+import timber.log.Timber
 import xuk.android.R
-import xuk.android.util.log
 import java.util.*
 
 /**
@@ -33,7 +33,7 @@ class MainActivity : AppCompatActivity(), EasyPermissions.PermissionCallbacks {
   public override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     setContentView(R.layout.activity_main)
-    log { "onCreate" }
+    Timber.d("onCreate")
     setSupportActionBar(toolbar)
 
     fab.setOnClickListener { v ->
@@ -63,7 +63,7 @@ class MainActivity : AppCompatActivity(), EasyPermissions.PermissionCallbacks {
   }
 
   override fun onPermissionsDenied(requestCode: Int, perms: List<String>) {
-    log { "onPermissionsDenied finish." }
+    Timber.d("onPermissionsDenied finish.")
 
     finish()
   }
@@ -72,7 +72,7 @@ class MainActivity : AppCompatActivity(), EasyPermissions.PermissionCallbacks {
   private fun appTask() {
     val perms = arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE)
     if (EasyPermissions.hasPermissions(this, *perms)) {
-      log { "request permissions failed! $perms" }
+      Timber.d("request permissions failed! $perms")
     } else {
       EasyPermissions.requestPermissions(this, "需要重新申请分享权限", RC_STORAGE_PERM, *perms)
     }
@@ -105,7 +105,7 @@ class MainActivity : AppCompatActivity(), EasyPermissions.PermissionCallbacks {
   }
 
   override fun onSupportNavigateUp(): Boolean {
-    log { "onSupportNavigateUp" }
+    Timber.d("onSupportNavigateUp")
     val navController = findNavController(R.id.nav_host_fragment)
     return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
   }

@@ -11,9 +11,9 @@ import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import kotlinx.android.synthetic.main.activity_second.*
+import timber.log.Timber
 import xuk.android.R
 import xuk.android.util.dp2px
-import xuk.android.util.log
 
 class SecondActivity : AppCompatActivity() {
 
@@ -78,7 +78,7 @@ class SecondActivity : AppCompatActivity() {
     // set callback for changes
     bottomSheetBehavior.setBottomSheetCallback(object : BottomSheetBehavior.BottomSheetCallback() {
       override fun onStateChanged(bottomSheet: View, newState: Int) {
-        log { "onStateChanged: $newState" }
+        Timber.d("onStateChanged: $newState")
       }
 
       override fun onSlide(bottomSheet: View, slideOffset: Float) {

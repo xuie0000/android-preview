@@ -2,19 +2,17 @@ package xuk.android
 
 import android.app.Application
 import com.tencent.bugly.crashreport.CrashReport
-import xuk.android.util.initLogger
-import xuk.android.util.log
+import timber.log.Timber
 
-/**
- * @author Jie Xu
- */
 class App : Application() {
 
   override fun onCreate() {
     super.onCreate()
-    log { "onCreate" }
+    Timber.d("onCreate")
+
     context = this
-    initLogger(true)
+    Timber.plant(Timber.DebugTree())
+
     CrashReport.initCrashReport(applicationContext, BUG_LY_ID, false)
 
   }

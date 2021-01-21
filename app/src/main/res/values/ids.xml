@@ -8,5 +8,6 @@
     <item name="grid_h_stagger" type="id" />
 
     <item name="recycler_view_holder" type="id" />
+    <item name="mask" type="id" />
 
 </resources>

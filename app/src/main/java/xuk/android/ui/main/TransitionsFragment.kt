@@ -10,9 +10,9 @@ import androidx.annotation.RequiresApi
 import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
 import kotlinx.android.synthetic.main.fragment_transitions.*
+import timber.log.Timber
 import xuk.android.R
 import xuk.android.ui.renderscript.RenderScriptActivity
-import xuk.android.util.log
 
 class TransitionsFragment : Fragment(R.layout.fragment_transitions) {
 
@@ -27,7 +27,7 @@ class TransitionsFragment : Fragment(R.layout.fragment_transitions) {
     }
 
     fab_button.setOnClickListener {
-      log { "fab_button" }
+      Timber.d("fab_button")
       val intent = Intent(activity, SecondActivity::class.java)
       val options = ActivityOptions.makeSceneTransitionAnimation(activity,
           // 创建多个共享元素
@@ -42,7 +42,7 @@ class TransitionsFragment : Fragment(R.layout.fragment_transitions) {
     fade.setOnClickListener { makeSceneTransitionAnimationNoParameter(2) }
 
     iv_share_object.setOnClickListener {
-      log { "share object" }
+      Timber.d("share object")
       val intent = Intent(activity, RenderScriptActivity::class.java)
       val options = ActivityOptions.makeSceneTransitionAnimation(activity, iv_share_object, "share_object")
       ActivityCompat.startActivity(requireActivity(), intent, options.toBundle())

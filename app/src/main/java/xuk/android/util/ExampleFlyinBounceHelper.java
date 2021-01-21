@@ -40,10 +40,6 @@ public class ExampleFlyinBounceHelper extends ConstraintHelper {
         super(context, attrs, defStyleAttr);
     }
 
-    /**
-     * @param container
-     * @hide
-     */
     @Override
     public void updatePreLayout(ConstraintLayout container) {
         if (mContainer != container) {
