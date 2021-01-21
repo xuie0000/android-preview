@@ -70,7 +70,7 @@ android {
         Canary {
             manifestPlaceholders = [channel : "Canary",
                                     app_name: "J-Canary",
-                                    app_icon: "@mipmap/ic_launcher"]
+                                    app_icon: "@drawable/ic_canary_islands"]
         }
         Stage {
             manifestPlaceholders = [channel : "Stage",
