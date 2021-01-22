@@ -18,3 +18,6 @@ bintray.apikey=<your api key>
 
 > **Windows10用命令执行，窗口点有BUG**，其他系统还没有试
 
+# Other
+- `https://github.com/MeowBase/toolkit`
+
