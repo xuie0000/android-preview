@@ -21,14 +21,14 @@ class TransitionsFragment : Fragment(R.layout.fragment_transitions) {
     super.onViewCreated(view, savedInstanceState)
 
     make_scene_transition_animation.setOnClickListener {
-      val intent = Intent(activity, SecondActivity::class.java)
+      val intent = Intent(activity, SceneTransitionsActivity::class.java)
       val options = ActivityOptions.makeSceneTransitionAnimation(activity, make_scene_transition_animation, "share01")
       ActivityCompat.startActivity(requireActivity(), intent, options.toBundle())
     }
 
     fab_button.setOnClickListener {
       Timber.d("fab_button")
-      val intent = Intent(activity, SecondActivity::class.java)
+      val intent = Intent(activity, SceneTransitionsActivity::class.java)
       val options = ActivityOptions.makeSceneTransitionAnimation(activity,
           // 创建多个共享元素
           Pair.create(make_scene_transition_animation, "share01"),
@@ -50,7 +50,7 @@ class TransitionsFragment : Fragment(R.layout.fragment_transitions) {
   }
 
   private fun makeSceneTransitionAnimationNoParameter(flag: Int) {
-    val intent = Intent(activity, SecondActivity::class.java)
+    val intent = Intent(activity, SceneTransitionsActivity::class.java)
     intent.putExtra("flag", flag)
     val options = ActivityOptions.makeSceneTransitionAnimation(activity)
     ActivityCompat.startActivity(requireActivity(), intent, options.toBundle())

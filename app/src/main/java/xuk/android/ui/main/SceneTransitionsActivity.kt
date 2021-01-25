@@ -15,7 +15,7 @@ import timber.log.Timber
 import xuk.android.R
 import xuk.android.util.dp2px
 
-class SecondActivity : AppCompatActivity() {
+class SceneTransitionsActivity : AppCompatActivity() {
 
   private lateinit var bottomSheetBehavior: BottomSheetBehavior<LinearLayout>
 
@@ -37,7 +37,7 @@ class SecondActivity : AppCompatActivity() {
     }
 
     setContentView(R.layout.activity_second)
-    toolbar.title = SecondActivity::class.java.simpleName
+    toolbar.title = SceneTransitionsActivity::class.java.simpleName
     setSupportActionBar(toolbar)
     supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
@@ -76,7 +76,7 @@ class SecondActivity : AppCompatActivity() {
     bottomSheetBehavior.isHideable = false
 
     // set callback for changes
-    bottomSheetBehavior.setBottomSheetCallback(object : BottomSheetBehavior.BottomSheetCallback() {
+    bottomSheetBehavior.addBottomSheetCallback(object : BottomSheetBehavior.BottomSheetCallback() {
       override fun onStateChanged(bottomSheet: View, newState: Int) {
         Timber.d("onStateChanged: $newState")
       }
