@@ -3,10 +3,10 @@
 buildscript {
     ext {
         kotlin_version = '1.4.21'
-        navigation_version = "2.3.2"
+        navigation_version = "2.3.3"
         retrofit2_version = "2.6.1"
         lifecycle_version = "2.2.0-rc01"
-        room_version = "2.3.0-alpha04"
+        room_version = "2.3.0-beta01"
         preference_version = "1.1.1"
     }
 
