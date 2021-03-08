@@ -6,7 +6,7 @@ plugins {
 }
 
 apply from: 'maven.gradle'
-apply from: 'bintray.gradle'
+//apply from: 'bintray.gradle'
 
 android {
     compileSdkVersion 30

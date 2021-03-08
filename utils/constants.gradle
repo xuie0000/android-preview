@@ -4,7 +4,7 @@ ext {
 
     githubUrl = 'https://gitlab.com/xuie0000/android-preview'
 
-    mavenGroup = 'com.xuie'
+    mavenGroup = 'com.xuie0000'
     mavenArtifactId = 'util-tools'
     mavenVersion = '1.2.2'
 
