@@ -2,11 +2,8 @@ package xuk.android.ui.recycler.paging
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.viewModelScope
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 
 class CheeseViewModel(app: Application) : AndroidViewModel(app) {
   private val dao = CheeseDb.get(app).cheeseDao()
