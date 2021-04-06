@@ -25,7 +25,7 @@ import androidx.room.Query
 @Dao
 interface CheeseDao {
 
-  //  @Query("SELECT * FROM Cheese ORDER BY name COLLATE NOCASE ASC")
+  //  @Query("SELECT * FROM Cheese ORDER BY name COLLATE NOCASE DESC")
   @Query("SELECT * FROM Cheese ORDER BY name ASC")
   fun allCheesesByName(): PagingSource<Int, Cheese>
 
