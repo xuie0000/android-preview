@@ -10,7 +10,7 @@ import android.view.animation.OvershootInterpolator
 import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.bottomsheet.BottomSheetBehavior
-import kotlinx.android.synthetic.main.activity_second.*
+import kotlinx.android.synthetic.main.activity_scene_transitions.*
 import timber.log.Timber
 import xuk.android.R
 import xuk.android.util.dp2px
@@ -36,8 +36,8 @@ class SceneTransitionsActivity : AppCompatActivity() {
       else -> window.enterTransition = Explode()
     }
 
-    setContentView(R.layout.activity_second)
-    toolbar.title = SceneTransitionsActivity::class.java.simpleName
+    setContentView(R.layout.activity_scene_transitions)
+    toolbar.title = "场景动画"
     setSupportActionBar(toolbar)
     supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
@@ -65,9 +65,12 @@ class SceneTransitionsActivity : AppCompatActivity() {
     bottomSheetBehavior = BottomSheetBehavior.from(bottom_sheet)
 
     // change the state of the bottom sheet
+    /**
+     * @link BottomSheetBehavior.STATE_COLLAPSED 收紧
+     * @link BottomSheetBehavior.STATE_EXPANDED 展开
+     * @link BottomSheetBehavior.STATE_HIDDEN 隐藏
+     */
     bottomSheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
-    bottomSheetBehavior.state = BottomSheetBehavior.STATE_EXPANDED
-    bottomSheetBehavior.state = BottomSheetBehavior.STATE_HIDDEN
 
     // set the peek height
     bottomSheetBehavior.peekHeight = dp2px(80f)

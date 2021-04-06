@@ -4,49 +4,43 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <RelativeLayout
-        android:id="@+id/rl_1"
+    <Button
+        android:id="@+id/make_scene_transition_animation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_margin="8dp"
+        android:background="@color/dim_gray"
+        android:text="makeSceneTransitionAnimation"
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <Button
-            android:id="@+id/make_scene_transition_animation"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:background="@color/colorPrimary"
-            android:text="makeSceneTransitionAnimation" />
-
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/fab_button"
-            android:layout_width="56dp"
-            android:layout_height="56dp"
-            android:layout_alignStart="@+id/make_scene_transition_animation"
-            android:layout_centerVertical="true"
-            android:layout_margin="5dp"
-            android:backgroundTint="@color/colorPrimaryDark"
-            android:contentDescription="TODO"
-            android:elevation="5dp"
-            android:transitionName="fab" />
-    </RelativeLayout>
-
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_button"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:layout_centerVertical="true"
+        android:layout_margin="5dp"
+        android:backgroundTint="@color/colorPrimary"
+        android:contentDescription="TODO"
+        android:elevation="5dp"
+        android:transitionName="fab"
+        app:layout_constraintStart_toStartOf="@id/make_scene_transition_animation"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/explode"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
-        android:background="@color/colorPrimary"
+        android:background="@color/dim_gray"
         android:text="Explode"
-        app:layout_constraintTop_toBottomOf="@+id/rl_1" />
+        app:layout_constraintTop_toBottomOf="@+id/make_scene_transition_animation" />
 
     <Button
         android:id="@+id/slide"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
-        android:background="@color/colorPrimary"
+        android:background="@color/dim_gray"
         android:text="Slide"
         app:layout_constraintTop_toBottomOf="@+id/explode" />
 
@@ -55,7 +49,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
-        android:background="@color/colorPrimary"
+        android:background="@color/dim_gray"
         android:text="Fade"
         app:layout_constraintTop_toBottomOf="@+id/slide" />
 
