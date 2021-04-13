@@ -1,21 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<Button xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/btn_text"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    app:cardCornerRadius="1dp"
-    app:cardElevation="1dp"
-    app:cardUseCompatPadding="true">
+    android:layout_margin="8dp"
+    android:background="@color/dim_gray"
+    android:text="Object Fragment"
+    app:layout_constraintTop_toTopOf="parent"
+    tools:text="Test" />
 
-    <TextView
-        android:id="@+id/tv_text"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:padding="4dp"
-        android:textAppearance="?attr/textAppearanceHeadline6"
-        android:textSize="20sp"
-        tools:text="Test" />
-
-</androidx.cardview.widget.CardView>

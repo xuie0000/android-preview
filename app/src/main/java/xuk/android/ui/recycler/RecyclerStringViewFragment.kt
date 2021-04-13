@@ -5,7 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
+import android.widget.Button
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -19,7 +19,7 @@ abstract class RecyclerStringViewFragment : Fragment(R.layout.fragment_recycler_
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     super.onViewCreated(view, savedInstanceState)
 
-    val listAdapter = ShowAdapter { pos ->
+    val listAdapter = ShowAdapter { _, _, pos ->
       loadClick().invoke(pos)
     }
     listAdapter.submitList(loadData())
@@ -33,29 +33,19 @@ abstract class RecyclerStringViewFragment : Fragment(R.layout.fragment_recycler_
   abstract fun loadData(): List<String>
   abstract fun loadClick(): (pos: Int) -> Unit
 
-  private class ShowAdapter(private val click: (pos: Int) -> Unit) : ListAdapter<String, ItemViewHolder>(diffCallback) {
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
-      return ItemViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_recycler_view, parent, false), click)
-    }
+}
 
-    override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
-      holder.bind(getItem(position), position)
-    }
-
+class ShowAdapter(private val click: (view: View, text: String, pos: Int) -> Unit) :
+  ListAdapter<String, ItemViewHolder>(diffCallback) {
+  override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
+    return ItemViewHolder(
+      LayoutInflater.from(parent.context).inflate(R.layout.item_recycler_view, parent, false), click
+    )
   }
 
-  private class ItemViewHolder(view: View, private val click: (pos: Int) -> Unit) : RecyclerView.ViewHolder(view) {
-    private val tvText = itemView.findViewById<TextView>(R.id.tv_text)
-
-    fun bind(text: String, position: Int) {
-      tvText.text = text
-
-      itemView.setOnClickListener {
-        click.invoke(position)
-      }
-    }
+  override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
+    holder.bind(getItem(position), position)
   }
-
 
   companion object {
     private val diffCallback = object : DiffUtil.ItemCallback<String>() {
@@ -70,4 +60,18 @@ abstract class RecyclerStringViewFragment : Fragment(R.layout.fragment_recycler_
     }
   }
 
+}
+
+class ItemViewHolder(view: View, private val click: (view: View, text: String, pos: Int) -> Unit) :
+  RecyclerView.ViewHolder(view) {
+  private val btnText = itemView.findViewById<Button>(R.id.btn_text)
+
+  fun bind(text: String, position: Int) {
+    btnText.text = text
+    btnText.transitionName = text
+
+    itemView.setOnClickListener {
+      click.invoke(btnText, text, position)
+    }
+  }
 }

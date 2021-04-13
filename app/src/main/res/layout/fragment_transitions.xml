@@ -67,7 +67,7 @@
         android:layout_margin="8dp"
         android:background="@color/dim_gray"
         android:text="Object Fragment"
-        android:transitionName="hero_image"
+        android:transitionName="hero_button"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/explode" />
 
@@ -78,10 +78,19 @@
         android:layout_margin="8dp"
         android:scaleType="centerCrop"
         android:src="@mipmap/ic_share_image"
+        android:transitionName="hero_image"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_fragment" />
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btn_fragment" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
