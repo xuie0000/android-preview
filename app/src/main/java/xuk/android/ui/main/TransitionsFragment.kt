@@ -9,6 +9,9 @@ import android.view.View
 import androidx.annotation.RequiresApi
 import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.FragmentNavigatorExtras
+import androidx.navigation.fragment.findNavController
 import kotlinx.android.synthetic.main.fragment_transitions.*
 import timber.log.Timber
 import xuk.android.R
@@ -40,6 +43,13 @@ class TransitionsFragment : Fragment(R.layout.fragment_transitions) {
     explode.setOnClickListener { makeSceneTransitionAnimationNoParameter(0) }
     slide.setOnClickListener { makeSceneTransitionAnimationNoParameter(1) }
     fade.setOnClickListener { makeSceneTransitionAnimationNoParameter(2) }
+
+    // fragment scene transition object
+    btn_fragment.setOnClickListener {
+      val extras = FragmentNavigatorExtras(btn_fragment to "hero_image")
+      findNavController().navigate(R.id.nav_transitions_object, null, null, extras)
+    }
+
 
     iv_share_object.setOnClickListener {
       Timber.d("share object")

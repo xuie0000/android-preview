@@ -12,6 +12,12 @@
         tools:layout="@layout/fragment_transitions" />
 
     <fragment
+        android:id="@+id/nav_transitions_object"
+        android:name="xuk.android.ui.main.TransitionsObjectFragment"
+        android:label="@string/transitions"
+        tools:layout="@layout/fragment_transitions_object" />
+
+    <fragment
         android:id="@+id/nav_test"
         android:name="xuk.android.ui.main.TestFragment"
         android:label="@string/test"
