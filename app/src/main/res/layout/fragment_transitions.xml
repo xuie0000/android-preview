@@ -28,30 +28,37 @@
 
     <Button
         android:id="@+id/explode"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
         android:background="@color/dim_gray"
         android:text="Explode"
+        app:layout_constraintEnd_toStartOf="@id/slide"
+        app:layout_constraintHorizontal_chainStyle="spread"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/make_scene_transition_animation" />
 
     <Button
         android:id="@+id/slide"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
         android:background="@color/dim_gray"
         android:text="Slide"
-        app:layout_constraintTop_toBottomOf="@+id/explode" />
+        app:layout_constraintEnd_toStartOf="@id/fade"
+        app:layout_constraintStart_toEndOf="@id/explode"
+        app:layout_constraintTop_toBottomOf="@+id/make_scene_transition_animation" />
 
     <Button
         android:id="@+id/fade"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
         android:background="@color/dim_gray"
         android:text="Fade"
-        app:layout_constraintTop_toBottomOf="@+id/slide" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/slide"
+        app:layout_constraintTop_toBottomOf="@+id/make_scene_transition_animation" />
 
     <Button
         android:id="@+id/btn_fragment"
@@ -62,7 +69,7 @@
         android:text="Object Fragment"
         android:transitionName="hero_image"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fade" />
+        app:layout_constraintTop_toBottomOf="@+id/explode" />
 
     <ImageView
         android:id="@+id/iv_share_object"
