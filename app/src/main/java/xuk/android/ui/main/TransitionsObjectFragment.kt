@@ -17,15 +17,17 @@ class TransitionsObjectFragment : Fragment(R.layout.fragment_transitions_object)
     sharedElementReturnTransition = ChangeBounds().apply { duration = 300 }
 
     // recyclerview shared object animation
-    sharedElementEnterTransition = TransitionInflater.from(context).inflateTransition(android.R.transition.move)
-    sharedElementReturnTransition = TransitionInflater.from(context).inflateTransition(android.R.transition.move)
+    sharedElementEnterTransition =
+      TransitionInflater.from(context).inflateTransition(android.R.transition.move)
+    sharedElementReturnTransition =
+      TransitionInflater.from(context).inflateTransition(android.R.transition.move)
     postponeEnterTransition(300, TimeUnit.MILLISECONDS)
 
     super.onViewCreated(view, savedInstanceState)
 
-    arguments?.getString("title")?.let {
-      btn_fragment.text = it
-      btn_fragment.transitionName = it
+    arguments?.getInt("resId")?.let {
+      iv_res.setImageResource(it)
+      iv_res.transitionName = it.toString()
     }
   }
 

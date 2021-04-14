@@ -13,10 +13,10 @@ import androidx.core.view.doOnPreDraw
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.fragment_transitions.*
 import timber.log.Timber
 import xuk.android.R
-import xuk.android.ui.recycler.ShowAdapter
 import xuk.android.ui.renderscript.RenderScriptActivity
 
 class TransitionsFragment : Fragment(R.layout.fragment_transitions) {
@@ -70,9 +70,9 @@ class TransitionsFragment : Fragment(R.layout.fragment_transitions) {
       ActivityCompat.startActivity(requireActivity(), intent, options.toBundle())
     }
 
-    val data = listOf("Sample Item 1", "Sample Item 2", "Sample Item 3")
-    val listAdapter = ShowAdapter { v, text, pos ->
-      val bundle = bundleOf("title" to text)
+    val data = listOf(R.mipmap.one, R.mipmap.two, R.mipmap.three, R.mipmap.four)
+    val listAdapter = TransitionsAdapter { v, resId, pos ->
+      val bundle = bundleOf("resId" to resId)
       Timber.d("click pos $pos")
       val extras = FragmentNavigatorExtras(
         v to v.transitionName,
@@ -84,6 +84,8 @@ class TransitionsFragment : Fragment(R.layout.fragment_transitions) {
     // When user hits back button transition takes backward
     postponeEnterTransition()
     recycler_view.adapter = listAdapter
+    recycler_view.layoutManager =
+      LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
     recycler_view.doOnPreDraw {
       startPostponedEnterTransition()
     }
