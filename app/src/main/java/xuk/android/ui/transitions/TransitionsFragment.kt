@@ -1,4 +1,4 @@
-package xuk.android.ui.main
+package xuk.android.ui.transitions
 
 import android.app.ActivityOptions
 import android.content.Intent

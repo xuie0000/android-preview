@@ -1,4 +1,4 @@
-package xuk.android.ui.main
+package xuk.android.ui.transitions
 
 import android.os.Bundle
 import android.transition.ChangeBounds
