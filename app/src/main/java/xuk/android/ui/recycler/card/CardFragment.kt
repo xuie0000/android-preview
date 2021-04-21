@@ -1,6 +1,5 @@
 package xuk.android.ui.recycler.card
 
-import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
@@ -15,7 +14,6 @@ import xuk.android.ui.recycler.card.widget.transformer.StackTransformer
  */
 class CardFragment : Fragment(R.layout.fragment_card) {
 
-  @SuppressLint("WrongConstant")
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     super.onViewCreated(view, savedInstanceState)
 
@@ -27,17 +25,17 @@ class CardFragment : Fragment(R.layout.fragment_card) {
       "page 2",
       "page 3",
       "page 4",
-      "page 5 \n",
+      "page 5 \ncard switch ui",
       "page 6"
     )
     adapter.submitList(data)
 
     viewPager.also { pager ->
       pager.adapter = adapter
-      pager.offscreenPageLimit = STACK_LIMIT
+      pager.offscreenPageLimit = 3
 
       pager.setPageTransformer(
-        StackTransformer(stackLimit = STACK_LIMIT)
+        StackTransformer(stackLimit = 3)
       )
       pager.registerOnPageChangeCallback(onPageSnapListener)
     }
@@ -49,10 +47,6 @@ class CardFragment : Fragment(R.layout.fragment_card) {
     OnPageSnapListener { previousPosition ->
       Timber.d("previousPosition:$previousPosition")
     }
-  }
-
-  companion object {
-    const val STACK_LIMIT: Int = 3
   }
 
 }
