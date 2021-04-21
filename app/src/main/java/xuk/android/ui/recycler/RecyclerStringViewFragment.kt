@@ -5,7 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -19,9 +19,11 @@ abstract class RecyclerStringViewFragment : Fragment(R.layout.fragment_recycler_
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     super.onViewCreated(view, savedInstanceState)
 
-    val listAdapter = ShowAdapter { _, _, pos ->
-      loadClick().invoke(pos)
-    }
+    val listAdapter = ShowAdapter(
+      click = { _, _, pos ->
+        loadClick().invoke(pos)
+      }
+    )
     listAdapter.submitList(loadData())
 
     recyclerView.apply {
@@ -35,11 +37,16 @@ abstract class RecyclerStringViewFragment : Fragment(R.layout.fragment_recycler_
 
 }
 
-class ShowAdapter(private val click: (view: View, text: String, pos: Int) -> Unit) :
+class ShowAdapter(
+  private val click: ((view: View, text: String, pos: Int) -> Unit)? = null,
+  private val resource: Int? = null
+) :
   ListAdapter<String, ItemViewHolder>(diffCallback) {
   override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
     return ItemViewHolder(
-      LayoutInflater.from(parent.context).inflate(R.layout.item_recycler_view, parent, false), click
+      LayoutInflater.from(parent.context)
+        .inflate(resource ?: R.layout.item_recycler_view, parent, false),
+      click
     )
   }
 
@@ -62,16 +69,19 @@ class ShowAdapter(private val click: (view: View, text: String, pos: Int) -> Uni
 
 }
 
-class ItemViewHolder(view: View, private val click: (view: View, text: String, pos: Int) -> Unit) :
+class ItemViewHolder(
+  view: View,
+  private val click: ((view: View, text: String, pos: Int) -> Unit)? = null
+) :
   RecyclerView.ViewHolder(view) {
-  private val btnText = itemView.findViewById<Button>(R.id.btn_text)
+  private val tvText = itemView.findViewById<TextView>(R.id.tv_text)
 
   fun bind(text: String, position: Int) {
-    btnText.text = text
-    btnText.transitionName = text
+    tvText.text = text
+    tvText.transitionName = text
 
     itemView.setOnClickListener {
-      click.invoke(btnText, text, position)
+      click?.invoke(tvText, text, position)
     }
   }
 }

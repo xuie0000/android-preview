@@ -47,6 +47,9 @@
         <action
             android:id="@+id/action_to_grid_page"
             app:destination="@id/grid_page" />
+        <action
+            android:id="@+id/action_to_card"
+            app:destination="@id/card" />
     </fragment>
 
     <fragment
@@ -66,6 +69,12 @@
         android:name="xuk.android.ui.recycler.gridpage.GridPageFragment"
         android:label="grid_page"
         tools:layout="@layout/fragment_gird_page" />
+
+    <fragment
+        android:id="@+id/card"
+        android:name="xuk.android.ui.recycler.card.CardFragment"
+        android:label="card"
+        tools:layout="@layout/fragment_card" />
 
     <fragment
         android:id="@+id/nav_settings"

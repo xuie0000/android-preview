@@ -6,9 +6,10 @@ import xuk.android.R
 class RecyclerViewFragment : RecyclerStringViewFragment() {
 
   private val members: List<String> = arrayListOf(
-      "ItemDecoration",
-      "Paging3",
-      "GridLayout"
+    "ItemDecoration",
+    "Paging3",
+    "GridLayout",
+    "CardPage",
   )
 
   override fun loadData(): List<String> {
@@ -21,6 +22,7 @@ class RecyclerViewFragment : RecyclerStringViewFragment() {
         0 -> findNavController().navigate(R.id.action_to_axis)
         1 -> findNavController().navigate(R.id.action_to_paging)
         2 -> findNavController().navigate(R.id.action_to_grid_page)
+        3 -> findNavController().navigate(R.id.action_to_card)
         else -> throw IllegalArgumentException("no position")
       }
     }
