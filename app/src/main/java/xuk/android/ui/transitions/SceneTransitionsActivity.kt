@@ -10,14 +10,14 @@ import android.view.animation.OvershootInterpolator
 import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.bottomsheet.BottomSheetBehavior
-import kotlinx.android.synthetic.main.activity_scene_transitions.*
 import timber.log.Timber
-import xuk.android.R
+import xuk.android.databinding.ActivitySceneTransitionsBinding
 import xuk.android.util.dp2px
 
 class SceneTransitionsActivity : AppCompatActivity() {
 
   private lateinit var bottomSheetBehavior: BottomSheetBehavior<LinearLayout>
+  private lateinit var binding: ActivitySceneTransitionsBinding
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
@@ -36,19 +36,22 @@ class SceneTransitionsActivity : AppCompatActivity() {
       else -> window.enterTransition = Explode()
     }
 
-    setContentView(R.layout.activity_scene_transitions)
-    toolbar.title = "场景动画"
-    setSupportActionBar(toolbar)
+    binding = ActivitySceneTransitionsBinding.inflate(layoutInflater)
+    setContentView(binding.root)
+
+    binding.toolbar.title = "场景动画"
+    setSupportActionBar(binding.toolbar)
     supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
     initBottomSheetBehavior()
 
-    fab_button.setOnClickListener {
+    binding.fabButton.setOnClickListener {
       bottomSheetBehavior.isHideable = true
       when (bottomSheetBehavior.state) {
         BottomSheetBehavior.STATE_EXPANDED -> bottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED)
         BottomSheetBehavior.STATE_COLLAPSED -> bottomSheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN)
-        BottomSheetBehavior.STATE_HIDDEN -> bottomSheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
+        BottomSheetBehavior.STATE_HIDDEN -> bottomSheetBehavior.state =
+          BottomSheetBehavior.STATE_COLLAPSED
         BottomSheetBehavior.STATE_DRAGGING -> {
         }
         BottomSheetBehavior.STATE_HALF_EXPANDED -> {
@@ -62,7 +65,7 @@ class SceneTransitionsActivity : AppCompatActivity() {
 
   private fun initBottomSheetBehavior() {
     // init the bottom sheet behavior
-    bottomSheetBehavior = BottomSheetBehavior.from(bottom_sheet)
+    bottomSheetBehavior = BottomSheetBehavior.from(binding.bottomSheet)
 
     // change the state of the bottom sheet
     /**

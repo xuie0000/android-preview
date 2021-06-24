@@ -8,8 +8,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.palette.graphics.Palette
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayoutMediator
-import kotlinx.android.synthetic.main.activity_palette.*
 import xuk.android.R
+import xuk.android.databinding.ActivityPaletteBinding
 import java.util.*
 import kotlin.math.floor
 
@@ -18,33 +18,39 @@ import kotlin.math.floor
  */
 class PaletteActivity : AppCompatActivity() {
 
+  private lateinit var binding: ActivityPaletteBinding
+
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
-    setContentView(R.layout.activity_palette)
-    setSupportActionBar(toolbar)
+    ActivityPaletteBinding.inflate(layoutInflater).apply {
+      binding = this
+      setContentView(root)
 
-    supportActionBar?.apply {
-      setHomeAsUpIndicator(R.drawable.ic_arrow_back_24px)
-      setDisplayHomeAsUpEnabled(true)
-      setTitle(R.string.palette)
-    }
-
-    val sectionsPagerAdapter = SectionsPagerAdapter(this)
-    viewpager.apply {
-      adapter = sectionsPagerAdapter
-      orientation = ViewPager2.ORIENTATION_HORIZONTAL
-    }
-
-    TabLayoutMediator(tab_layout, viewpager, true) { tab, position ->
-      tab.text = sectionsPagerAdapter.getPageTitle(position)
-    }.attach()
-    viewpager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
-      override fun onPageSelected(position: Int) {
-        changeTopBgColor(position)
+      setSupportActionBar(toolbar)
+      supportActionBar?.apply {
+        setHomeAsUpIndicator(R.drawable.ic_arrow_back_24px)
+        setDisplayHomeAsUpEnabled(true)
+        setTitle(R.string.palette)
       }
-    })
 
-    changeTopBgColor(0)
+      val sectionsPagerAdapter = SectionsPagerAdapter(this)
+      viewpager.apply {
+        adapter = sectionsPagerAdapter
+        orientation = ViewPager2.ORIENTATION_HORIZONTAL
+      }
+
+      TabLayoutMediator(tabLayout, viewpager, true) { tab, position ->
+        tab.text = sectionsPagerAdapter.getPageTitle(position)
+      }.attach()
+      viewpager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
+        override fun onPageSelected(position: Int) {
+          changeTopBgColor(position)
+        }
+      })
+
+      changeTopBgColor(0)
+    }
+
 
   }
 
@@ -62,17 +68,18 @@ class PaletteActivity : AppCompatActivity() {
    */
   private fun changeTopBgColor(position: Int) {
     // 用来提取颜色的Bitmap
-    val bitmap = BitmapFactory.decodeResource(resources, PaletteFragment.getBackgroundBitmapPosition(position))
+    val bitmap =
+      BitmapFactory.decodeResource(resources, PaletteFragment.getBackgroundBitmapPosition(position))
     // Palette的部分
     val builder = Palette.from(bitmap)
     builder.generate { palette ->
       //获取到充满活力的这种色调
       val vibrant = palette?.vibrantSwatch ?: return@generate
       //根据调色板Palette获取到图片中的颜色设置到toolbar和tab中背景，标题等，使整个UI界面颜色统一
-      tab_layout.setBackgroundColor(Objects.requireNonNull(vibrant).rgb)
-      tab_layout.setSelectedTabIndicatorColor(colorBurn(vibrant.rgb))
-      toolbar.setBackgroundColor(vibrant.rgb)
-      coordinator.setBackgroundColor(vibrant.rgb)
+      binding.tabLayout.setBackgroundColor(Objects.requireNonNull(vibrant).rgb)
+      binding.tabLayout.setSelectedTabIndicatorColor(colorBurn(vibrant.rgb))
+      binding.toolbar.setBackgroundColor(vibrant.rgb)
+      binding.coordinator.setBackgroundColor(vibrant.rgb)
 
       window.statusBarColor = colorBurn(vibrant.rgb)
       window.navigationBarColor = colorBurn(vibrant.rgb)

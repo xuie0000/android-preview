@@ -7,10 +7,6 @@ import android.widget.TextView
 import com.google.android.material.imageview.ShapeableImageView
 import xuk.android.R
 
-/**
- * @author Jie Xu
- * @date 2019/11/12
- */
 class SmallHolder(view: View) : BaseHolder(view) {
 
   private val head: ShapeableImageView = view.findViewById(R.id.iv_head)

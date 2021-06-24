@@ -5,11 +5,13 @@ import android.transition.ChangeBounds
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.transition.TransitionInflater
-import kotlinx.android.synthetic.main.fragment_transitions_object.*
+import by.kirich1409.viewbindingdelegate.viewBinding
 import xuk.android.R
+import xuk.android.databinding.FragmentTransitionsObjectBinding
 import java.util.concurrent.TimeUnit
 
 class TransitionsObjectFragment : Fragment(R.layout.fragment_transitions_object) {
+  private val binding: FragmentTransitionsObjectBinding by viewBinding()
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     // fragment shared object animation
@@ -26,8 +28,8 @@ class TransitionsObjectFragment : Fragment(R.layout.fragment_transitions_object)
     super.onViewCreated(view, savedInstanceState)
 
     arguments?.getInt("resId")?.let {
-      iv_res.setImageResource(it)
-      iv_res.transitionName = it.toString()
+      binding.ivRes.setImageResource(it)
+      binding.ivRes.transitionName = it.toString()
     }
   }
 

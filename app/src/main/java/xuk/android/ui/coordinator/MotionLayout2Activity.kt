@@ -1,13 +1,16 @@
 package xuk.android.ui.coordinator
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import xuk.android.R
+import androidx.appcompat.app.AppCompatActivity
+import xuk.android.databinding.ActivityMotionLayout2Binding
 
 class MotionLayout2Activity : AppCompatActivity() {
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
-    setContentView(R.layout.activity_motion_layout2)
 
+    ActivityMotionLayout2Binding.inflate(layoutInflater).apply {
+      setContentView(root)
+
+    }
   }
 }

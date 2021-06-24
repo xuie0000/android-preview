@@ -4,30 +4,32 @@ import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.motion.widget.MotionLayout
-import xuk.android.R
+import xuk.android.databinding.ActivityMotionLayoutBinding
 
 class MotionLayoutActivity : AppCompatActivity() {
-  private lateinit var container: MotionLayout
+
+  private lateinit var binding: ActivityMotionLayoutBinding
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
-    setContentView(R.layout.activity_motion_layout)
+    ActivityMotionLayoutBinding.inflate(layoutInflater).apply {
+      binding = this
+      setContentView(root)
 
-    container = findViewById(R.id.motionLayout)
-    val debugMode = if (intent.getBooleanExtra("showPaths", true)) {
-      MotionLayout.DEBUG_SHOW_PATH
-    } else {
-      MotionLayout.DEBUG_SHOW_NONE
+      val debugMode = if (intent.getBooleanExtra("showPaths", true)) {
+        MotionLayout.DEBUG_SHOW_PATH
+      } else {
+        MotionLayout.DEBUG_SHOW_NONE
+      }
+      motionLayout.setDebugMode(debugMode)
     }
-    container.setDebugMode(debugMode)
   }
 
   fun changeState(v: View?) {
-    val motionLayout = container as? MotionLayout ?: return
-    if (motionLayout.progress > 0.5f) {
-      motionLayout.transitionToStart()
+    if (binding.motionLayout.progress > 0.5f) {
+      binding.motionLayout.transitionToStart()
     } else {
-      motionLayout.transitionToEnd()
+      binding.motionLayout.transitionToEnd()
     }
   }
 

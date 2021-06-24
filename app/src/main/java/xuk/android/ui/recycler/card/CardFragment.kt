@@ -3,9 +3,10 @@ package xuk.android.ui.recycler.card
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
-import kotlinx.android.synthetic.main.fragment_card.*
+import by.kirich1409.viewbindingdelegate.viewBinding
 import timber.log.Timber
 import xuk.android.R
+import xuk.android.databinding.FragmentCardBinding
 import xuk.android.ui.recycler.ShowAdapter
 import xuk.android.ui.recycler.card.widget.transformer.StackTransformer
 
@@ -13,6 +14,8 @@ import xuk.android.ui.recycler.card.widget.transformer.StackTransformer
  * 卡片
  */
 class CardFragment : Fragment(R.layout.fragment_card) {
+
+  private val binding: FragmentCardBinding by viewBinding()
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     super.onViewCreated(view, savedInstanceState)
@@ -30,7 +33,7 @@ class CardFragment : Fragment(R.layout.fragment_card) {
     )
     adapter.submitList(data)
 
-    viewPager.also { pager ->
+    binding.viewPager.also { pager ->
       pager.adapter = adapter
       pager.offscreenPageLimit = 3
 

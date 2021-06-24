@@ -11,10 +11,13 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import kotlinx.android.synthetic.main.fragment_recycler_view.*
+import by.kirich1409.viewbindingdelegate.viewBinding
 import xuk.android.R
+import xuk.android.databinding.FragmentRecyclerViewBinding
 
 abstract class RecyclerStringViewFragment : Fragment(R.layout.fragment_recycler_view) {
+
+  private val binding: FragmentRecyclerViewBinding by viewBinding()
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     super.onViewCreated(view, savedInstanceState)
@@ -26,7 +29,7 @@ abstract class RecyclerStringViewFragment : Fragment(R.layout.fragment_recycler_
     )
     listAdapter.submitList(loadData())
 
-    recyclerView.apply {
+    binding.recyclerView.apply {
       layoutManager = LinearLayoutManager(context)
       adapter = listAdapter
     }
@@ -40,13 +43,13 @@ abstract class RecyclerStringViewFragment : Fragment(R.layout.fragment_recycler_
 class ShowAdapter(
   private val click: ((view: View, text: String, pos: Int) -> Unit)? = null,
   private val resource: Int? = null
-) :
-  ListAdapter<String, ItemViewHolder>(diffCallback) {
+) : ListAdapter<String, ItemViewHolder>(diffCallback) {
   override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
     return ItemViewHolder(
-      LayoutInflater.from(parent.context)
-        .inflate(resource ?: R.layout.item_recycler_view, parent, false),
-      click
+      LayoutInflater.from(parent.context).inflate(
+        resource ?: R.layout.item_recycler_view,
+        parent, false
+      ), click
     )
   }
 
@@ -70,10 +73,8 @@ class ShowAdapter(
 }
 
 class ItemViewHolder(
-  view: View,
-  private val click: ((view: View, text: String, pos: Int) -> Unit)? = null
-) :
-  RecyclerView.ViewHolder(view) {
+  view: View, private val click: ((view: View, text: String, pos: Int) -> Unit)? = null
+) : RecyclerView.ViewHolder(view) {
   private val tvText = itemView.findViewById<TextView>(R.id.tv_text)
 
   fun bind(text: String, position: Int) {

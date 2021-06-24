@@ -14,12 +14,11 @@ import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.snackbar.Snackbar
-import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.app_bar_main.*
 import pub.devrel.easypermissions.AfterPermissionGranted
 import pub.devrel.easypermissions.EasyPermissions
 import timber.log.Timber
 import xuk.android.R
+import xuk.android.databinding.ActivityMainBinding
 import java.util.*
 
 /**
@@ -27,32 +26,43 @@ import java.util.*
  */
 class MainActivity : AppCompatActivity(), EasyPermissions.PermissionCallbacks {
 
+  private lateinit var binding: ActivityMainBinding
   private lateinit var appBarConfiguration: AppBarConfiguration
   private lateinit var shareActionProvider: ShareActionProvider
 
   public override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
-    setContentView(R.layout.activity_main)
-    Timber.d("onCreate")
-    setSupportActionBar(toolbar)
+    ActivityMainBinding.inflate(layoutInflater).apply {
+      binding = this
+      setContentView(root)
 
-    fab.setOnClickListener { v ->
-      Snackbar.make(v, "Replace with your own action", Snackbar.LENGTH_LONG)
+      setSupportActionBar(appBarLayout.toolbar)
+      appBarLayout.fab.setOnClickListener { v ->
+        Snackbar.make(v, "Replace with your own action", Snackbar.LENGTH_LONG)
           .setAction("Action", null).show()
+      }
+
     }
 
     val navController = findNavController(R.id.nav_host_fragment)
     // Passing each menu ID as a set of Ids because each
     // menu should be considered as top level destinations.
-    appBarConfiguration = AppBarConfiguration(setOf(
-        R.id.nav_transitions, R.id.nav_test, R.id.nav_coordinator, R.id.nav_recycler), drawer_layout)
+    appBarConfiguration = AppBarConfiguration(
+      setOf(
+        R.id.nav_transitions, R.id.nav_test, R.id.nav_coordinator, R.id.nav_recycler
+      ), binding.drawerLayout
+    )
     setupActionBarWithNavController(navController, appBarConfiguration)
-    nav_view.setupWithNavController(navController)
+    binding.navView.setupWithNavController(navController)
 
     appTask()
   }
 
-  override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
+  override fun onRequestPermissionsResult(
+    requestCode: Int,
+    permissions: Array<String>,
+    grantResults: IntArray
+  ) {
     super.onRequestPermissionsResult(requestCode, permissions, grantResults)
     // Forward results to EasyPermissions
     EasyPermissions.onRequestPermissionsResult(requestCode, permissions, grantResults, this)
@@ -70,7 +80,8 @@ class MainActivity : AppCompatActivity(), EasyPermissions.PermissionCallbacks {
 
   @AfterPermissionGranted(RC_STORAGE_PERM)
   private fun appTask() {
-    val perms = arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE)
+    val perms =
+      arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE)
     if (EasyPermissions.hasPermissions(this, *perms)) {
       Timber.d("request permissions failed! $perms")
     } else {

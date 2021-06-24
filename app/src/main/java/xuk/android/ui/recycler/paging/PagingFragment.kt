@@ -9,15 +9,17 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
-import kotlinx.android.synthetic.main.fragment_paging.*
+import by.kirich1409.viewbindingdelegate.viewBinding
 import kotlinx.coroutines.flow.collectLatest
 import timber.log.Timber
 import xuk.android.R
+import xuk.android.databinding.FragmentPagingBinding
 
 /**
  * Paging3
  */
 class PagingFragment : Fragment(R.layout.fragment_paging) {
+  private val binding: FragmentPagingBinding by viewBinding()
 
   private val viewModel: CheeseViewModel by viewModels()
 
@@ -25,7 +27,7 @@ class PagingFragment : Fragment(R.layout.fragment_paging) {
     super.onViewCreated(view, savedInstanceState)
     // Create adapter for the RecyclerView
     val adapter = CheeseAdapter()
-    cheeseList.adapter = adapter
+    binding.cheeseList.adapter = adapter
 
     lifecycleScope.launchWhenCreated {
       viewModel.allCheeses.collectLatest {
@@ -58,24 +60,24 @@ class PagingFragment : Fragment(R.layout.fragment_paging) {
           viewModel.remove(it)
         }
       }
-    }).attachToRecyclerView(cheeseList)
+    }).attachToRecyclerView(binding.cheeseList)
   }
 
   private fun addCheese() {
-    val newCheese = inputText.text.trim()
+    val newCheese = binding.inputText.text.trim()
     if (newCheese.isNotEmpty()) {
       viewModel.insert(newCheese)
-      inputText.setText("")
+      binding.inputText.setText("")
     }
   }
 
   private fun initAddButtonListener() {
-    addButton.setOnClickListener {
+    binding.addButton.setOnClickListener {
       addCheese()
     }
 
     // when the user taps the "Done" button in the on screen keyboard, save the item.
-    inputText.setOnEditorActionListener { _, actionId, _ ->
+    binding.inputText.setOnEditorActionListener { _, actionId, _ ->
       if (actionId == EditorInfo.IME_ACTION_DONE) {
         addCheese()
         return@setOnEditorActionListener true
@@ -83,7 +85,7 @@ class PagingFragment : Fragment(R.layout.fragment_paging) {
       false // action that isn't DONE occurred - ignore
     }
     // When the user clicks on the button, or presses enter, save the item.
-    inputText.setOnKeyListener { _, keyCode, event ->
+    binding.inputText.setOnKeyListener { _, keyCode, event ->
       if (event.action == KeyEvent.ACTION_DOWN && keyCode == KeyEvent.KEYCODE_ENTER) {
         addCheese()
         return@setOnKeyListener true
