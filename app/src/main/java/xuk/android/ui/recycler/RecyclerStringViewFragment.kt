@@ -44,6 +44,7 @@ class ShowAdapter(
   private val click: ((view: View, text: String, pos: Int) -> Unit)? = null,
   private val resource: Int? = null
 ) : ListAdapter<String, ItemViewHolder>(diffCallback) {
+
   override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
     return ItemViewHolder(
       LayoutInflater.from(parent.context).inflate(

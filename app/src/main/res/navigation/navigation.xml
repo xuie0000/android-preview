@@ -77,6 +77,12 @@
         tools:layout="@layout/fragment_card" />
 
     <fragment
+        android:id="@+id/scroll_offset"
+        android:name="xuk.android.ui.recycler.offset.ScrollOffsetFragment"
+        android:label="scroll offset"
+        tools:layout="@layout/fragment_scroll_offset" />
+
+    <fragment
         android:id="@+id/nav_settings"
         android:name="xuk.android.ui.settings.SettingsFragment"
         android:label="@string/settings"

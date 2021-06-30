@@ -10,6 +10,7 @@ class RecyclerViewFragment : RecyclerStringViewFragment() {
     "Paging3",
     "GridLayout",
     "CardPage",
+    "Scroll Offset",
   )
 
   override fun loadData(): List<String> {
@@ -23,6 +24,7 @@ class RecyclerViewFragment : RecyclerStringViewFragment() {
         1 -> findNavController().navigate(R.id.action_to_paging)
         2 -> findNavController().navigate(R.id.action_to_grid_page)
         3 -> findNavController().navigate(R.id.action_to_card)
+        4 -> findNavController().navigate(R.id.scroll_offset)
         else -> throw IllegalArgumentException("no position")
       }
     }
