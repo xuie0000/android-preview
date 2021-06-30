@@ -33,7 +33,7 @@ class PaletteActivity : AppCompatActivity() {
         setTitle(R.string.palette)
       }
 
-      val sectionsPagerAdapter = SectionsPagerAdapter(this)
+      val sectionsPagerAdapter = SectionsPagerAdapter(this@PaletteActivity)
       viewpager.apply {
         adapter = sectionsPagerAdapter
         orientation = ViewPager2.ORIENTATION_HORIZONTAL
