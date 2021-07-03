@@ -17,11 +17,11 @@ class BottomQuadToClipView @JvmOverloads constructor(
 
   private lateinit var src: Bitmap
 
-  private val paint = Paint().apply {
+  private val paint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
     isFilterBitmap = false
     style = Paint.Style.FILL
   }
-  private val xfermodePaint = Paint().apply {
+  private val xfermodePaint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
     isFilterBitmap = false
     style = Paint.Style.FILL
     xfermode = PorterDuffXfermode(PorterDuff.Mode.SRC_IN)

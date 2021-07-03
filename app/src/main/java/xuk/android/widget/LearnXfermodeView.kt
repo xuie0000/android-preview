@@ -50,7 +50,7 @@ class LearnXfermodeView @JvmOverloads constructor(
     "Darken", "Lighten", "Multiply", "Screen"
   )
 
-  private val paint = Paint().apply {
+  private val paint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
     isFilterBitmap = false
   }
   private val labelP = Paint(Paint.ANTI_ALIAS_FLAG).apply {
