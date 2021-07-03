@@ -1,95 +1,105 @@
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/fragment_id"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content">
 
-    <Button
-        android:id="@+id/make_scene_transition_animation"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/fragment_id"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="8dp"
-        android:background="@color/dim_gray"
-        android:text="makeSceneTransitionAnimation"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_height="match_parent">
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fab_button"
-        android:layout_width="56dp"
-        android:layout_height="56dp"
-        android:layout_centerVertical="true"
-        android:layout_margin="5dp"
-        android:backgroundTint="@color/colorPrimary"
-        android:contentDescription="TODO"
-        android:elevation="5dp"
-        android:transitionName="fab"
-        app:layout_constraintStart_toStartOf="@id/make_scene_transition_animation"
-        app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/explode"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="8dp"
-        android:background="@color/dim_gray"
-        android:text="Explode"
-        app:layout_constraintEnd_toStartOf="@id/slide"
-        app:layout_constraintHorizontal_chainStyle="spread"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/make_scene_transition_animation" />
+        <Button
+            android:id="@+id/make_scene_transition_animation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:background="@color/dim_gray"
+            android:text="makeSceneTransitionAnimation"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/slide"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="8dp"
-        android:background="@color/dim_gray"
-        android:text="Slide"
-        app:layout_constraintEnd_toStartOf="@id/fade"
-        app:layout_constraintStart_toEndOf="@id/explode"
-        app:layout_constraintTop_toBottomOf="@+id/make_scene_transition_animation" />
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab_button"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:layout_centerVertical="true"
+            android:layout_margin="5dp"
+            android:backgroundTint="@color/colorPrimary"
+            android:contentDescription="TODO"
+            android:elevation="5dp"
+            android:transitionName="fab"
+            app:layout_constraintStart_toStartOf="@id/make_scene_transition_animation"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/fade"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="8dp"
-        android:background="@color/dim_gray"
-        android:text="Fade"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/slide"
-        app:layout_constraintTop_toBottomOf="@+id/make_scene_transition_animation" />
+        <Button
+            android:id="@+id/explode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:background="@color/dim_gray"
+            android:text="Explode"
+            app:layout_constraintEnd_toStartOf="@id/slide"
+            app:layout_constraintHorizontal_chainStyle="spread"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/make_scene_transition_animation" />
 
-    <Button
-        android:id="@+id/btn_fragment"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="8dp"
-        android:background="@color/dim_gray"
-        android:text="Object Fragment"
-        android:transitionName="hero_button"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/explode" />
+        <Button
+            android:id="@+id/slide"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:background="@color/dim_gray"
+            android:text="Slide"
+            app:layout_constraintEnd_toStartOf="@id/fade"
+            app:layout_constraintStart_toEndOf="@id/explode"
+            app:layout_constraintTop_toBottomOf="@+id/make_scene_transition_animation" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/btn_fragment" />
+        <Button
+            android:id="@+id/fade"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:background="@color/dim_gray"
+            android:text="Fade"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/slide"
+            app:layout_constraintTop_toBottomOf="@+id/make_scene_transition_animation" />
 
-    <ImageView
-        android:id="@+id/iv_share_object"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_margin="8dp"
-        android:scaleType="centerCrop"
-        android:src="@mipmap/ic_share_image"
-        android:transitionName="hero_image"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/recycler_view" />
+        <Button
+            android:id="@+id/btn_fragment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:background="@color/dim_gray"
+            android:text="Object Fragment"
+            android:transitionName="hero_button"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/explode" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btn_fragment" />
+
+        <xuk.android.widget.BottomQueImageView
+            android:id="@+id/iv_share_object"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:scaleType="centerCrop"
+            android:src="@mipmap/ic_share_image"
+            android:transitionName="hero_image"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/recycler_view" />
+
+        <xuk.android.widget.LearnXfermodeView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/iv_share_object" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>

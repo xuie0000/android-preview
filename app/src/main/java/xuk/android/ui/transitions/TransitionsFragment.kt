@@ -87,6 +87,7 @@ class TransitionsFragment : Fragment(R.layout.fragment_transitions) {
       findNavController().navigate(R.id.nav_transitions_object, bundle, null, extras)
     }
     listAdapter.submitList(data)
+
     // When user hits back button transition takes backward
     postponeEnterTransition()
     binding.recyclerView.adapter = listAdapter
