@@ -11,7 +11,7 @@ import xuk.android.R
 import xuk.android.util.dp
 import kotlin.math.min
 
-class BottomQueImageView @JvmOverloads constructor(
+class BottomQuadToClipView @JvmOverloads constructor(
   context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
 ) : View(context, attrs, defStyleAttr) {
 

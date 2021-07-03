@@ -84,7 +84,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/btn_fragment" />
 
-        <xuk.android.widget.BottomQueImageView
+        <xuk.android.widget.BottomQuadToClipView
             android:id="@+id/iv_share_object"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
