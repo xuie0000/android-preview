@@ -153,7 +153,7 @@ class LearnXfermodeView @JvmOverloads constructor(
       // wrap around when we've drawn enough for one row
       if (i % ROW_MAX == ROW_MAX - 1) {
         x = 0
-        y += H + 8.dp + labelP.textSize.toInt()
+        y += H + 16.dp + labelP.textSize.toInt()
       }
     }
   }
