@@ -24,6 +24,12 @@
         tools:layout="@layout/fragment_test" />
 
     <fragment
+        android:id="@+id/nav_xfermode"
+        android:name="xuk.android.ui.main.XfermodeFragment"
+        android:label="@string/xfermode"
+        tools:layout="@layout/fragment_test" />
+
+    <fragment
         android:id="@+id/nav_coordinator"
         android:name="xuk.android.ui.coordinator.CoordinatorSampleFragment"
         android:label="@string/coordinator"

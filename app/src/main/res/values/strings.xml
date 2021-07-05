@@ -9,6 +9,7 @@
     <string name="recycler_single">Single</string>
     <string name="recycler_stagger">Stagger</string>
     <string name="test">测试页面</string>
+    <string name="xfermode">Xfermode</string>
     <string name="coordinator">Coordinator</string>
     <string name="recycler_view">RecyclerView</string>
     <string name="transitions">5.+动画</string>

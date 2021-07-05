@@ -15,8 +15,8 @@ class LearnXfermodeView @JvmOverloads constructor(
   context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
 ) : View(context, attrs, defStyleAttr) {
 
-  private val W = 64.dp
-  private val H = 64.dp
+  private val W = 72.dp
+  private val H = 72.dp
   private val ROW_MAX = 4 // number of samples per row
 
   private var mSrcB: Bitmap = makeSrc(W, H)
@@ -41,19 +41,24 @@ class LearnXfermodeView @JvmOverloads constructor(
     PorterDuffXfermode(PorterDuff.Mode.DARKEN),
     PorterDuffXfermode(PorterDuff.Mode.LIGHTEN),
     PorterDuffXfermode(PorterDuff.Mode.MULTIPLY),
-    PorterDuffXfermode(PorterDuff.Mode.SCREEN)
+    PorterDuffXfermode(PorterDuff.Mode.SCREEN),
+    PorterDuffXfermode(PorterDuff.Mode.ADD),
+    PorterDuffXfermode(PorterDuff.Mode.OVERLAY)
   )
   private val sLabels = arrayOf(
     "Clear", "Src", "Dst", "SrcOver",
     "DstOver", "SrcIn", "DstIn", "SrcOut",
     "DstOut", "SrcATop", "DstATop", "Xor",
-    "Darken", "Lighten", "Multiply", "Screen"
+    "Darken", "Lighten", "Multiply", "Screen",
+    "Add", "Overlay"
   )
 
   private val paint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
     isFilterBitmap = false
   }
+
   private val labelP = Paint(Paint.ANTI_ALIAS_FLAG).apply {
+    textSize = 18.dp.toFloat()
     textAlign = Paint.Align.CENTER
   }
 
@@ -88,8 +93,8 @@ class LearnXfermodeView @JvmOverloads constructor(
     val reqHeightMode = MeasureSpec.getMode(heightMeasureSpec)
 
     // your choice
-    val desiredWidth: Int = 300.dp // TODO("Define your desired width")
-    val desiredHeight: Int = 300.dp// TODO("Define your desired height")
+    val desiredWidth: Int = 400.dp // TODO("Define your desired width")
+    val desiredHeight: Int = 600.dp// TODO("Define your desired height")
 
     val width = when (reqWidthMode) {
       MeasureSpec.EXACTLY -> reqWidth
@@ -111,7 +116,7 @@ class LearnXfermodeView @JvmOverloads constructor(
     super.onDraw(canvas)
 
     canvas.drawColor(Color.WHITE)
-    canvas.translate(15f, 35f)
+    canvas.translate(8.dp.toFloat(), 16.dp.toFloat() + labelP.textSize)
 
     var x = 0
     var y = 0
@@ -144,11 +149,11 @@ class LearnXfermodeView @JvmOverloads constructor(
         sLabels[i],
         (x + W / 2).toFloat(), y - labelP.textSize / 2, labelP
       )
-      x += W + 10
+      x += W + 8.dp
       // wrap around when we've drawn enough for one row
       if (i % ROW_MAX == ROW_MAX - 1) {
         x = 0
-        y += H + 30
+        y += H + 8.dp + labelP.textSize.toInt()
       }
     }
   }
