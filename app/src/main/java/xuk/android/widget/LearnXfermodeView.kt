@@ -15,9 +15,11 @@ class LearnXfermodeView @JvmOverloads constructor(
   context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
 ) : View(context, attrs, defStyleAttr) {
 
-  private val W = 72.dp
-  private val H = 72.dp
-  private val ROW_MAX = 4 // number of samples per row
+  companion object {
+    private val W = 72.dp
+    private val H = 72.dp
+    private const val ROW_MAX = 4 // number of samples per row
+  }
 
   private var mSrcB: Bitmap = makeSrc(W, H)
   private var mDstB: Bitmap = makeDst(W, H)
