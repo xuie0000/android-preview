@@ -1,4 +1,4 @@
-package xuk.android.ui.main
+package xuk.android.ui.xfermode
 
 import android.os.Bundle
 import android.view.LayoutInflater
