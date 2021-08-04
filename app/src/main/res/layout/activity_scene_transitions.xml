@@ -63,31 +63,4 @@
             app:layout_constraintTop_toBottomOf="@id/iv_2" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <!-- include bottom sheet -->
-    <LinearLayout
-        android:id="@+id/bottom_sheet"
-        android:layout_width="match_parent"
-        android:layout_height="480dp"
-        android:layout_alignParentBottom="true"
-        android:background="@color/dark_gray"
-        android:orientation="vertical"
-        app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="80dp"
-            android:background="@color/colorAccent"
-            android:gravity="center"
-            android:text="@string/bottom_sheet_peek"
-            android:textColor="@color/white" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:text="@string/bottom_sheet_content"
-            android:textColor="@color/white" />
-
-    </LinearLayout>
-
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
