@@ -15,6 +15,7 @@
  */
 package xuk.android.ui.renderscript
 
+import android.annotation.SuppressLint
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.os.AsyncTask
@@ -33,6 +34,7 @@ import kotlin.math.sin
 /**
  * https://github.com/android/renderscript-samples/blob/main/RenderScriptIntrinsic/README.md
  */
+@Suppress("DEPRECATION")
 class RenderScriptActivity : AppCompatActivity() {
 
   companion object {
@@ -55,9 +57,9 @@ class RenderScriptActivity : AppCompatActivity() {
   private var mInAllocation: Allocation? = null
   private lateinit var mOutAllocations: Array<Allocation?>
 
-  private var mScriptBlur: ScriptIntrinsicBlur? = null
-  private var mScriptConvolve: ScriptIntrinsicConvolve5x5? = null
-  private var mScriptMatrix: ScriptIntrinsicColorMatrix? = null
+  private lateinit var mScriptBlur: ScriptIntrinsicBlur
+  private lateinit var mScriptConvolve: ScriptIntrinsicConvolve5x5
+  private lateinit var mScriptMatrix: ScriptIntrinsicColorMatrix
   private var mFilterMode = MODE_BLUR
 
   private var mLatestTask: RenderScriptTask? = null
@@ -148,11 +150,11 @@ class RenderScriptActivity : AppCompatActivity() {
     when (mFilterMode) {
       MODE_BLUR -> {
         // Set blur kernel size
-        mScriptBlur!!.setRadius(value)
+        mScriptBlur.setRadius(value)
 
         // Invoke filter kernel
-        mScriptBlur!!.setInput(inAllocation)
-        mScriptBlur!!.forEach(outAllocation)
+        mScriptBlur.setInput(inAllocation)
+        mScriptBlur.forEach(outAllocation)
       }
       MODE_CONVOLVE -> {
         val f2 = 1.0f - value
@@ -161,11 +163,11 @@ class RenderScriptActivity : AppCompatActivity() {
         val coefficients = floatArrayOf(-value * 2, 0f, -value, 0f, 0f, 0f, -f2 * 2, -f2, 0f, 0f, -value, -f2, 1f, f2, value, 0f, 0f, f2, f2 * 2, 0f, 0f, 0f, value, 0f,
             value * 2)
         // Set kernel parameter
-        mScriptConvolve!!.setCoefficients(coefficients)
+        mScriptConvolve.setCoefficients(coefficients)
 
         // Invoke filter kernel
-        mScriptConvolve!!.setInput(inAllocation)
-        mScriptConvolve!!.forEach(outAllocation)
+        mScriptConvolve.setInput(inAllocation)
+        mScriptConvolve.forEach(outAllocation)
       }
       MODE_COLORMATRIX -> {
 
@@ -184,10 +186,10 @@ class RenderScriptActivity : AppCompatActivity() {
         mat[0, 2] = (.299 - .3 * cos + 1.25 * sin).toFloat()
         mat[1, 2] = (.587 - .588 * cos - 1.05 * sin).toFloat()
         mat[2, 2] = (.114 + .886 * cos - .203 * sin).toFloat()
-        mScriptMatrix!!.setColorMatrix(mat)
+        mScriptMatrix.setColorMatrix(mat)
 
         // Invoke filter kernel
-        mScriptMatrix!!.forEach(inAllocation, outAllocation)
+        mScriptMatrix.forEach(inAllocation, outAllocation)
       }
     }
 
@@ -230,6 +232,7 @@ class RenderScriptActivity : AppCompatActivity() {
    * and
    * update ImageView UI.
    */
+  @SuppressLint("StaticFieldLeak")
   private inner class RenderScriptTask : AsyncTask<Float?, Int?, Int?>() {
     private var mIssued = false
 
@@ -274,7 +277,7 @@ class RenderScriptActivity : AppCompatActivity() {
     val f = getFilterParameter(progress)
     if (mLatestTask != null) mLatestTask!!.cancel(false)
     mLatestTask = RenderScriptTask()
-    mLatestTask!!.execute(f)
+    mLatestTask?.execute(f)
   }
 
   /**
