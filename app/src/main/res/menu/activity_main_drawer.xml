@@ -13,6 +13,10 @@
         android:icon="@drawable/ic_test"
         android:title="@string/xfermode" />
     <item
+        android:id="@+id/nav_boot_sheet"
+        android:icon="@drawable/ic_test"
+        android:title="@string/boot_sheet" />
+    <item
         android:id="@+id/nav_coordinator"
         android:icon="@drawable/ic_coordinator"
         android:title="@string/coordinator" />

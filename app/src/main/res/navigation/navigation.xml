@@ -36,6 +36,12 @@
         tools:layout="@layout/fragment_recycler_view" />
 
     <fragment
+        android:id="@+id/nav_boot_sheet"
+        android:name="xuk.android.ui.bottomsheet.BottomSheetMainFragment"
+        android:label="@string/boot_sheet"
+        tools:layout="@layout/fragment_recycler_view" />
+
+    <fragment
         android:id="@+id/nav_recycler"
         android:name="xuk.android.ui.recycler.RecyclerViewFragment"
         android:label="RecyclerView"
@@ -99,5 +105,11 @@
         android:name="xuk.android.ui.settings.LicenseFragment"
         android:label="@string/licence"
         tools:layout="@layout/fragment_gird_page" />
+
+    <fragment
+        android:id="@+id/bottom_sheet_behavior"
+        android:name="xuk.android.ui.bottomsheet.BottomSheetBehaviorFragment"
+        android:label="fragment_axis"
+        tools:layout="@layout/fragment_axis" />
 
 </navigation>

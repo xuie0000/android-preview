@@ -11,6 +11,7 @@
     <string name="test">测试页面</string>
     <string name="xfermode">Xfermode</string>
     <string name="coordinator">Coordinator</string>
+    <string name="boot_sheet">BootSheet</string>
     <string name="recycler_view">RecyclerView</string>
     <string name="transitions">5.+动画</string>
     <string name="palette">Palette</string>
@@ -163,5 +164,7 @@
     <string name="blur">Blur</string>
     <string name="emboss">Emboss</string>
     <string name="hue">Hue</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
 
 </resources>
