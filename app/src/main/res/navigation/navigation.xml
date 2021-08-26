@@ -109,7 +109,7 @@
     <fragment
         android:id="@+id/bottom_sheet_behavior"
         android:name="xuk.android.ui.bottomsheet.BottomSheetBehaviorFragment"
-        android:label="fragment_axis"
-        tools:layout="@layout/fragment_axis" />
+        android:label="fragment_behavior"
+        tools:layout="@layout/fragment_bottom_sheet_behavior" />
 
 </navigation>

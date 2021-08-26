@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.AppCompatButton
+import androidx.appcompat.widget.AppCompatTextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomsheet.BottomSheetBehavior
@@ -36,6 +37,13 @@ class BottomSheetBehaviorFragment : Fragment() {
     bottomSheetBehavior.isHideable = true
     bottomSheetBehavior.state = BottomSheetBehavior.STATE_HIDDEN
 
+    view.findViewById<AppCompatTextView>(R.id.tv_hide).setOnClickListener {
+      if (bottomSheetBehavior.state == BottomSheetBehavior.STATE_HIDDEN) {
+        bottomSheetBehavior.state = BottomSheetBehavior.STATE_EXPANDED
+      } else {
+        bottomSheetBehavior.state = BottomSheetBehavior.STATE_HIDDEN
+      }
+    }
   }
 
 }

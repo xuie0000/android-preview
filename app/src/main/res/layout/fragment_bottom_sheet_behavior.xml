@@ -4,10 +4,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <!-- TODO 为什么 android:layout_height="match_parent" 无效！！！-->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@android:color/white">
+        android:background="@android:color/white"
+        android:minHeight="600dp"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_show"
@@ -27,9 +30,12 @@
         android:layout_width="match_parent"
         android:layout_height="200dp"
         android:background="@color/alice_blue"
+        app:behavior_fitToContents="true"
+        app:behavior_hideable="true"
         app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
 
         <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_hide"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="BottomSheetBehavior"
