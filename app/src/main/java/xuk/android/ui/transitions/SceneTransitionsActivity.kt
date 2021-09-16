@@ -19,9 +19,9 @@ class SceneTransitionsActivity : AppCompatActivity() {
     when (intent.getIntExtra("flag", 0)) {
       0 -> window.enterTransition = Explode()
       1 -> {
-        val slide = Slide()
-        slide.interpolator = OvershootInterpolator()
-        window.enterTransition = slide
+        window.enterTransition = Slide().apply {
+          interpolator = OvershootInterpolator()
+        }
       }
       2 -> {
         window.enterTransition = Fade()
