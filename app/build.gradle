@@ -30,12 +30,12 @@ android {
         }
     }
 
-    compileSdkVersion 30
+    compileSdkVersion 31
 
     defaultConfig {
         applicationId 'xuk.android'
         minSdkVersion 26
-        targetSdkVersion 30
+        targetSdkVersion 31
         versionCode gitCommits
         versionName version
 
