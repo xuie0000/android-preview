@@ -38,11 +38,9 @@ class BottomSheetBehaviorFragment : Fragment() {
     bottomSheetBehavior.state = BottomSheetBehavior.STATE_HIDDEN
 
     view.findViewById<AppCompatTextView>(R.id.tv_hide).setOnClickListener {
-      if (bottomSheetBehavior.state == BottomSheetBehavior.STATE_HIDDEN) {
-        bottomSheetBehavior.state = BottomSheetBehavior.STATE_EXPANDED
-      } else {
-        bottomSheetBehavior.state = BottomSheetBehavior.STATE_HIDDEN
-      }
+      bottomSheetBehavior.state = if (bottomSheetBehavior.state == BottomSheetBehavior.STATE_HIDDEN)
+        BottomSheetBehavior.STATE_EXPANDED else BottomSheetBehavior.STATE_HIDDEN
+
     }
   }
 
