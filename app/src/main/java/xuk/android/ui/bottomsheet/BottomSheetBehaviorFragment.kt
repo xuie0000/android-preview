@@ -33,9 +33,10 @@ class BottomSheetBehaviorFragment : Fragment() {
     }
 
     val bottomSheet = view.findViewById<ConstraintLayout>(R.id.sheet_layout)
-    bottomSheetBehavior = BottomSheetBehavior.from(bottomSheet)
-    bottomSheetBehavior.isHideable = true
-    bottomSheetBehavior.state = BottomSheetBehavior.STATE_HIDDEN
+    bottomSheetBehavior = BottomSheetBehavior.from(bottomSheet).apply {
+      isHideable = true
+      state = BottomSheetBehavior.STATE_HIDDEN
+    }
 
     view.findViewById<AppCompatTextView>(R.id.tv_hide).setOnClickListener {
       bottomSheetBehavior.state = if (bottomSheetBehavior.state == BottomSheetBehavior.STATE_HIDDEN)
